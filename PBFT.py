@@ -2,6 +2,8 @@ import logging
 import threading
 import time
 from utils412 import Block, QC, Mempool
+from utils.logger import event
+
 
 logging.basicConfig(level=logging.INFO)
 TXS_PER_PROPOSAL = 20
@@ -50,6 +52,45 @@ class PBFTConsensus:
             else:
                 self.votes = {"prepare": {}, "commit": {}}
 
+    def on_receive_pre_prepare(self, receiver_id, proposal_data):
+        """Replica接收Leader广播的Pre-prepare消息（对应on_receive_proposal/handle_proposal）"""
+        # 1. proposal_received埋点（已加）
+        event(
+            "proposal_received",
+            node_id=receiver_id,
+            view=proposal_data["view"],
+            block_id=proposal_data["block"].block_id,
+            consensus_type="PBFT"
+        )
+
+        # 2. 验证消息合法性
+        if proposal_data["view"] != self.view:
+            logging.warning(f"[Replica {receiver_id}] proposal view mismatch, ignore")
+            return
+
+        # 3. vote_sent埋点：Replica发送Prepare投票时触发
+        block = proposal_data["block"]
+        event(
+            "vote_sent",
+            node_id=receiver_id,  # 发送投票的Replica节点ID
+            view=self.view,
+            block_id=block.block_id,
+            extra={"vote_type": "normal"},
+            consensus_type="PBFT"
+        )
+
+        # 4. 生成Prepare投票（模拟Replica发送准备投票的逻辑）
+        self.on_receive_vote("prepare", block.block_id, self.view, receiver_id)
+        logging.info(f"[Replica {receiver_id}] received proposal {block.block_id}, sent prepare vote")
+
+    def _detect_fork(self, block, leader_node):
+        """分叉检测逻辑：检查新区块parent是否匹配节点最新区块，返回是否分叉+分叉链长度"""
+        latest_block_id = leader_node.state.latest_qc.block_id if leader_node.state.latest_qc else None
+        if block.parent_id is not None and latest_block_id is not None and block.parent_id != latest_block_id:
+            # 简化：分叉链长度设为1（实际可根据链追溯计算）
+            return True, 1
+        return False, 0
+
     def _run(self, rounds):
         """PBFT核心共识流程：预准备→准备→提交"""
         for r in range(rounds):
@@ -68,24 +109,63 @@ class PBFTConsensus:
                 payload=txs,
                 qc=leader.state.latest_qc
             )
+
+            # 分叉检测 & fork_detected埋点
+            is_fork, fork_length = self._detect_fork(block, leader)
+            if is_fork:
+                event(
+                    "fork_detected",
+                    node_id=leader_id,  # Leader检测到分叉（也可遍历所有节点触发）
+                    view=self.view,
+                    block_id=block.block_id,
+                    extra={"fork_chain_length": fork_length},
+                    consensus_type="PBFT"
+                )
+                logging.warning(f"[PBFT] fork detected at view {self.view}, block {block.block_id}")
+
             leader.state.add_block(block)
+
+            # Proposal广播埋点（已加）
+            event(
+                "proposal_broadcast",
+                node_id=leader_id,
+                view=self.view,
+                block_id=block.block_id,
+                extra={"tx_count": len(block.payload)},
+                consensus_type="PBFT"
+            )
+
             # 广播预准备消息
-            self.network.broadcast(leader_id, "pre_prepare", {
+            pre_prepare_data = {
                 "block": block,
                 "view": self.view,
                 "round": r
-            })
+            }
+            self.network.broadcast(leader_id, "pre_prepare", pre_prepare_data)
+
+            # 模拟网络层回调Replica的on_receive_pre_prepare
+            for nid in self.nodes.keys():
+                if nid != leader_id:
+                    self.on_receive_pre_prepare(nid, pre_prepare_data)
 
             # 2. 准备阶段（Prepare）
-            # 非leader节点收到预准备后会发送准备投票，此处简化为模拟收集投票
             prepare_ok = self._collect_votes("prepare", block.block_id, self.view)
             if not prepare_ok:
                 logging.warning(f"[PBFT] round {r} prepare stage failed, view change")
-                self.view += 1
+                # view_change埋点：prepare失败触发视图切换
+                next_view = self.view + 1
+                for nid in self.nodes.keys():
+                    event(
+                        "view_change",
+                        node_id=nid,
+                        view=next_view,
+                        extra={"reason": "timeout"},
+                        consensus_type="PBFT"
+                    )
+                self.view = next_view
                 continue
 
             # 3. 提交阶段（Commit）
-            # 广播提交消息，收集提交投票
             self.network.broadcast(leader_id, "commit", {
                 "block_id": block.block_id,
                 "view": self.view
@@ -96,11 +176,32 @@ class PBFTConsensus:
                 qc = QC(block_id=block.block_id, view=self.view, votes=list(self.votes["commit"][(block.block_id, self.view)]))
                 for nid, node in self.nodes.items():
                     node.state.latest_qc = qc
+                    # block_committed埋点：每个节点确认区块提交时触发
+                    event(
+                        "block_committed",
+                        node_id=nid,
+                        view=self.view,
+                        block_id=block.block_id
+                    )
                 logging.info(f"[PBFT] round {r} block {block.block_id} committed")
             else:
                 logging.warning(f"[PBFT] round {r} commit stage failed, view change")
+                # view_change埋点：commit失败触发视图切换
+                next_view = self.view + 1
+                for nid in self.nodes.keys():
+                    event(
+                        "view_change",
+                        node_id=nid,
+                        view=next_view,
+                        extra={"reason": "timeout"},
+                        consensus_type="PBFT"
+                    )
+                self.view = next_view
+                continue
 
-            self.view += 1
+            # 正常视图切换（无失败）
+            next_view = self.view + 1
+            self.view = next_view
             time.sleep(self.proposal_interval + 0.2)
 
     def on_receive_vote(self, stage, block_id, view, voter_id):

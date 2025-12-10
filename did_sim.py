@@ -1,70 +1,59 @@
 from hashlib import sha256
-from crypto import BLS  # 导入 BLS 类
+# 导入修正后的BLS类和序列化函数
+from crypto import BLS
 
-# ---------- 生成 DID 身份 ----------
+# -----------------------------
+# 序列化 G2 公钥
+# -----------------------------
+def serialize_g2_point(g2_point):
+    """
+    将 G2 公钥点序列化为 bytes
+    g2_point: tuple(FQ2, FQ2)
+    """
+    if isinstance(g2_point, tuple) and len(g2_point) == 2:
+        x_bytes = int(g2_point[0][0]).to_bytes(32, "big") + int(g2_point[0][1]).to_bytes(32, "big")
+        y_bytes = int(g2_point[1][0]).to_bytes(32, "big") + int(g2_point[1][1]).to_bytes(32, "big")
+        return x_bytes + y_bytes
+    else:
+        raise ValueError("Invalid G2 point")
+
+# -----------------------------
+# 生成单个 DID
+# -----------------------------
 def generate_did_keypair():
     """
-    生成 (private_key, public_key, did)
-    DID = did:sim:sha256(pubkey_bytes)
+    返回: (priv, pub_bytes, did)
+    DID = did:sim:sha256(pub_bytes)
     """
-    # 调用 crypto.py 中的 BLS.generate_keypair 方法
-    priv, pub = BLS.generate_keypair()
+    priv, pub_bytes = BLS.generate_keypair()  # pub_bytes 已经是 bytes
+    did = "did:sim:" + sha256(pub_bytes).hexdigest()
+    return priv, pub_bytes, did
 
-    # 计算 DID
-    did = "did:sim:" + sha256(pub).hexdigest()
-    return priv, pub, did
 
-# ---------- 批量生成身份 ----------
+# -----------------------------
+# 批量生成 DID
+# -----------------------------
 def generate_multiple_identities(n):
-    """
-    批量生成 n 个 DID 身份
-    返回：
-        identities: [ { "did":..., "priv":..., "pub":... }, ... ]
-        did_pub_map: { did -> pub_key }
-    """
     identities = []
-    did_pub = {}
+    did_pub_map = {}
 
     for _ in range(n):
-        priv, pub, did = generate_did_keypair()
+        priv, pub_bytes, did = generate_did_keypair()
         identities.append({
             "did": did,
             "priv": priv,
-            "pub": pub
+            "pub": pub_bytes
         })
-        did_pub[did] = pub
+        did_pub_map[did] = pub_bytes
 
-    return identities, did_pub
+    return identities, did_pub_map
 
-# ---------- 签名 ----------
+
+# -----------------------------
+# 消息签名与验证
+# -----------------------------
 def sign_message(message: bytes, priv_key):
-    """
-    使用 BLS 私钥对消息进行签名
-    """
     return BLS.sign(priv_key, message)
 
-# ---------- 验证 ----------
-def verify_signature(message: bytes, signature, pub_key):
-    """
-    使用 BLS 公钥验证签名
-    """
-    return BLS.verify(pub_key, message, signature)
-
-# ---------- 测试 ----------
-if __name__ == "__main__":
-    # 测试生成 DID 密钥对
-    priv, pub, did = generate_did_keypair()
-    print(f"Generated DID: {did}")
-
-    # 测试签名和验证
-    message = b"Hello, BLS!"
-    signature = sign_message(message, priv)
-    print(f"Signature: {signature}")
-
-    is_valid = verify_signature(message, signature, pub)
-    print(f"Signature valid: {is_valid}")
-
-    # 测试批量生成身份
-    identities, did_pub_map = generate_multiple_identities(3)
-    print(f"Generated identities: {identities}")
-    print(f"DID to public key map: {did_pub_map}")
+def verify_signature(message: bytes, signature, pub_bytes):
+    return BLS.verify(pub_bytes, message, signature)

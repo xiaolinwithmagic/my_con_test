@@ -1,0 +1,375 @@
+{"ts": 1765163278.194797, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "eaadb83da6b4", "tx_count": 20}
+{"ts": 1765163278.194797, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "eaadb83da6b4"}
+{"ts": 1765163278.1957703, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "eaadb83da6b4", "vote_type": "normal"}
+{"ts": 1765163278.1957703, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "eaadb83da6b4"}
+{"ts": 1765163278.1967702, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "eaadb83da6b4", "vote_type": "normal"}
+{"ts": 1765163278.1967702, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "eaadb83da6b4"}
+{"ts": 1765163278.1987698, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "eaadb83da6b4", "vote_type": "normal"}
+{"ts": 1765163278.1997705, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "eaadb83da6b4"}
+{"ts": 1765163278.1997705, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "eaadb83da6b4"}
+{"ts": 1765163278.2007704, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "eaadb83da6b4"}
+{"ts": 1765163278.2007704, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "eaadb83da6b4"}
+{"ts": 1765163279.4142742, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "db02f1a5cf07", "tx_count": 20}
+{"ts": 1765163279.4152727, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "db02f1a5cf07"}
+{"ts": 1765163279.4152727, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "db02f1a5cf07", "vote_type": "normal"}
+{"ts": 1765163279.4162724, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "db02f1a5cf07"}
+{"ts": 1765163279.4162724, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "db02f1a5cf07", "vote_type": "normal"}
+{"ts": 1765163279.4172735, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "db02f1a5cf07"}
+{"ts": 1765163279.4172735, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "db02f1a5cf07", "vote_type": "normal"}
+{"ts": 1765163279.4182742, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "db02f1a5cf07"}
+{"ts": 1765163279.4182742, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "db02f1a5cf07"}
+{"ts": 1765163279.4182742, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "db02f1a5cf07"}
+{"ts": 1765163279.4182742, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "db02f1a5cf07"}
+{"ts": 1765163280.621161, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "882e5a3dedd9", "tx_count": 20}
+{"ts": 1765163280.622161, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "882e5a3dedd9"}
+{"ts": 1765163280.623164, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "882e5a3dedd9", "vote_type": "normal"}
+{"ts": 1765163280.623164, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "882e5a3dedd9"}
+{"ts": 1765163280.623164, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "882e5a3dedd9", "vote_type": "normal"}
+{"ts": 1765163280.624164, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "882e5a3dedd9"}
+{"ts": 1765163280.624164, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "882e5a3dedd9", "vote_type": "normal"}
+{"ts": 1765163280.625161, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "882e5a3dedd9"}
+{"ts": 1765163280.625161, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "882e5a3dedd9"}
+{"ts": 1765163280.625161, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "882e5a3dedd9"}
+{"ts": 1765163280.6261609, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "882e5a3dedd9"}
+{"ts": 1765163281.860914, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "2ffd1a2c18e0", "tx_count": 20}
+{"ts": 1765163281.860914, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "2ffd1a2c18e0"}
+{"ts": 1765163281.8619149, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "2ffd1a2c18e0", "vote_type": "normal"}
+{"ts": 1765163281.8619149, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "2ffd1a2c18e0"}
+{"ts": 1765163281.8629115, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "2ffd1a2c18e0", "vote_type": "normal"}
+{"ts": 1765163281.8629115, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "2ffd1a2c18e0"}
+{"ts": 1765163281.8629115, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "2ffd1a2c18e0", "vote_type": "normal"}
+{"ts": 1765163281.8639112, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "2ffd1a2c18e0", "signer_count": 3}
+{"ts": 1765163281.8639112, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "2ffd1a2c18e0", "signer_count": 3}
+{"ts": 1765163281.864911, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "2ffd1a2c18e0", "signer_count": 3}
+{"ts": 1765163281.864911, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "2ffd1a2c18e0"}
+{"ts": 1765163281.864911, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "2ffd1a2c18e0"}
+{"ts": 1765163281.865913, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "2ffd1a2c18e0"}
+{"ts": 1765163281.865913, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "2ffd1a2c18e0"}
+{"ts": 1765163283.075545, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "4094befba3a5", "tx_count": 20}
+{"ts": 1765163283.0765235, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "4094befba3a5"}
+{"ts": 1765163283.0765235, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "4094befba3a5", "vote_type": "normal"}
+{"ts": 1765163283.0775218, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "4094befba3a5"}
+{"ts": 1765163283.0775218, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "4094befba3a5", "vote_type": "normal"}
+{"ts": 1765163283.07852, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "4094befba3a5"}
+{"ts": 1765163283.07852, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "4094befba3a5", "vote_type": "normal"}
+{"ts": 1765163283.0795205, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "4094befba3a5", "signer_count": 3}
+{"ts": 1765163283.0795205, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "4094befba3a5", "signer_count": 3}
+{"ts": 1765163283.0795205, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "4094befba3a5", "signer_count": 3}
+{"ts": 1765163283.0805216, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "4094befba3a5"}
+{"ts": 1765163283.0805216, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "4094befba3a5"}
+{"ts": 1765163283.0805216, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "4094befba3a5"}
+{"ts": 1765163283.0815248, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "4094befba3a5"}
+{"ts": 1765163284.2846212, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "937a585c3188", "tx_count": 20}
+{"ts": 1765163284.285619, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "937a585c3188"}
+{"ts": 1765163284.285619, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "937a585c3188", "vote_type": "normal"}
+{"ts": 1765163284.2866213, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "937a585c3188"}
+{"ts": 1765163284.2866213, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "937a585c3188", "vote_type": "normal"}
+{"ts": 1765163284.2876189, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "937a585c3188"}
+{"ts": 1765163284.2876189, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "937a585c3188", "vote_type": "normal"}
+{"ts": 1765163284.2886167, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "937a585c3188", "signer_count": 3}
+{"ts": 1765163284.2886167, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "937a585c3188", "signer_count": 3}
+{"ts": 1765163284.2896166, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "937a585c3188", "signer_count": 3}
+{"ts": 1765163284.2896166, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "937a585c3188"}
+{"ts": 1765163284.2896166, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "937a585c3188"}
+{"ts": 1765163284.2896166, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "937a585c3188"}
+{"ts": 1765163284.2906165, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "937a585c3188"}
+{"ts": 1765163814.5887563, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "56ad74ece3ea", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765163814.5887563, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "56ad74ece3ea", "consensus_type": "PBFT"}
+{"ts": 1765163814.5897565, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "56ad74ece3ea", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163814.5897565, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "56ad74ece3ea", "consensus_type": "PBFT"}
+{"ts": 1765163814.5907571, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "56ad74ece3ea", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163814.5907571, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "56ad74ece3ea", "consensus_type": "PBFT"}
+{"ts": 1765163814.5907571, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "56ad74ece3ea", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163814.5917563, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "56ad74ece3ea"}
+{"ts": 1765163814.5917563, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "56ad74ece3ea"}
+{"ts": 1765163814.5927567, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "56ad74ece3ea"}
+{"ts": 1765163814.5927567, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "56ad74ece3ea"}
+{"ts": 1765163815.7996185, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "462e851366fa", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765163815.8006148, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "462e851366fa", "consensus_type": "PBFT"}
+{"ts": 1765163815.8006148, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "462e851366fa", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163815.801609, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "462e851366fa", "consensus_type": "PBFT"}
+{"ts": 1765163815.801609, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "462e851366fa", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163815.802609, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "462e851366fa", "consensus_type": "PBFT"}
+{"ts": 1765163815.802609, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "462e851366fa", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163815.803609, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "462e851366fa"}
+{"ts": 1765163815.803609, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "462e851366fa"}
+{"ts": 1765163815.8046088, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "462e851366fa"}
+{"ts": 1765163815.8046088, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "462e851366fa"}
+{"ts": 1765163817.0095444, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "13fdd8604e23", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765163817.0105426, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "13fdd8604e23", "consensus_type": "PBFT"}
+{"ts": 1765163817.0105426, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "13fdd8604e23", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163817.0115426, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "13fdd8604e23", "consensus_type": "PBFT"}
+{"ts": 1765163817.0115426, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "13fdd8604e23", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163817.0125425, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "13fdd8604e23", "consensus_type": "PBFT"}
+{"ts": 1765163817.0125425, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "13fdd8604e23", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163817.0135455, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "13fdd8604e23"}
+{"ts": 1765163817.0135455, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "13fdd8604e23"}
+{"ts": 1765163817.0135455, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "13fdd8604e23"}
+{"ts": 1765163817.0145423, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "13fdd8604e23"}
+{"ts": 1765163818.2484617, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765163818.2494628, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf"}
+{"ts": 1765163818.2494628, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163818.2494628, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf"}
+{"ts": 1765163818.250466, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163818.250466, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf"}
+{"ts": 1765163818.250466, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163818.2514591, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163818.2514591, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163818.2524567, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163818.253033, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf"}
+{"ts": 1765163818.253033, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf"}
+{"ts": 1765163818.253033, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf"}
+{"ts": 1765163818.253033, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "aa8c0023a5bc", "consensus_type": "htf"}
+{"ts": 1765163819.4627094, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765163819.4636972, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf"}
+{"ts": 1765163819.4636972, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163819.464697, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf"}
+{"ts": 1765163819.464697, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163819.465697, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf"}
+{"ts": 1765163819.465697, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163819.4667113, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163819.4667113, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163819.4676976, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163819.4676976, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf"}
+{"ts": 1765163819.4686997, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf"}
+{"ts": 1765163819.4686997, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf"}
+{"ts": 1765163819.4686997, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "8995bb7e6ac2", "consensus_type": "htf"}
+{"ts": 1765163820.6769352, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765163820.6779048, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf"}
+{"ts": 1765163820.6779048, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163820.678902, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf"}
+{"ts": 1765163820.678902, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163820.6799023, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf"}
+{"ts": 1765163820.6799023, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163820.680902, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163820.680902, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163820.680902, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163820.6819022, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf"}
+{"ts": 1765163820.6819022, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf"}
+{"ts": 1765163820.6819022, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf"}
+{"ts": 1765163820.6829114, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "226133d8545e", "consensus_type": "htf"}
+{"ts": 1765163943.147899, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "960acfca939b", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765163943.1489017, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "960acfca939b", "consensus_type": "PBFT"}
+{"ts": 1765163943.1489017, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "960acfca939b", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163943.1489017, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "960acfca939b", "consensus_type": "PBFT"}
+{"ts": 1765163943.1499, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "960acfca939b", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163943.1499, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "960acfca939b", "consensus_type": "PBFT"}
+{"ts": 1765163943.1508982, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "960acfca939b", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163943.1518981, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "960acfca939b"}
+{"ts": 1765163943.1518981, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "960acfca939b"}
+{"ts": 1765163943.1518981, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "960acfca939b"}
+{"ts": 1765163943.1529, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "960acfca939b"}
+{"ts": 1765163944.3651576, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "56dd9e20cba2", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765163944.3661346, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "56dd9e20cba2", "consensus_type": "PBFT"}
+{"ts": 1765163944.3661346, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "56dd9e20cba2", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163944.3671334, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "56dd9e20cba2", "consensus_type": "PBFT"}
+{"ts": 1765163944.3671334, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "56dd9e20cba2", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163944.3681335, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "56dd9e20cba2", "consensus_type": "PBFT"}
+{"ts": 1765163944.3681335, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "56dd9e20cba2", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163944.3691342, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "56dd9e20cba2"}
+{"ts": 1765163944.370134, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "56dd9e20cba2"}
+{"ts": 1765163944.370134, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "56dd9e20cba2"}
+{"ts": 1765163944.370134, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "56dd9e20cba2"}
+{"ts": 1765163945.5779667, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "db1fbf03f109", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765163945.5789664, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "db1fbf03f109", "consensus_type": "PBFT"}
+{"ts": 1765163945.5799663, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "db1fbf03f109", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163945.5799663, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "db1fbf03f109", "consensus_type": "PBFT"}
+{"ts": 1765163945.5809662, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "db1fbf03f109", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163945.5816772, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "db1fbf03f109", "consensus_type": "PBFT"}
+{"ts": 1765163945.5821881, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "db1fbf03f109", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765163945.5821881, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "db1fbf03f109"}
+{"ts": 1765163945.5831964, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "db1fbf03f109"}
+{"ts": 1765163945.5831964, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "db1fbf03f109"}
+{"ts": 1765163945.584206, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "db1fbf03f109"}
+{"ts": 1765163946.795114, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765163946.7961109, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf"}
+{"ts": 1765163946.7961109, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163946.7971354, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf"}
+{"ts": 1765163946.7971354, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163946.7981126, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf"}
+{"ts": 1765163946.7981126, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163946.799111, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163946.8001106, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163946.8001106, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163946.8011134, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf"}
+{"ts": 1765163946.8011134, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf"}
+{"ts": 1765163946.8011134, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf"}
+{"ts": 1765163946.8011134, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "a0e2a0ec9a45", "consensus_type": "htf"}
+{"ts": 1765163948.0189888, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765163948.019992, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf"}
+{"ts": 1765163948.020995, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163948.020995, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf"}
+{"ts": 1765163948.0219882, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163948.0219882, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf"}
+{"ts": 1765163948.0229878, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163948.0229878, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163948.0239878, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163948.024988, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163948.024988, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf"}
+{"ts": 1765163948.024988, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf"}
+{"ts": 1765163948.0259905, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf"}
+{"ts": 1765163948.0259905, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "2f08ec29df78", "consensus_type": "htf"}
+{"ts": 1765163949.229866, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765163949.230866, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf"}
+{"ts": 1765163949.2318652, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163949.2318652, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf"}
+{"ts": 1765163949.2328658, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163949.2328658, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf"}
+{"ts": 1765163949.233865, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765163949.233865, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163949.2348652, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163949.2358654, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765163949.2358654, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf"}
+{"ts": 1765163949.236865, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf"}
+{"ts": 1765163949.236865, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf"}
+{"ts": 1765163949.236865, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "c5a298fa4bde", "consensus_type": "htf"}
+{"ts": 1765164213.46478, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "463205cd93d3", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765164213.4657798, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "463205cd93d3", "consensus_type": "PBFT"}
+{"ts": 1765164213.4657798, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "463205cd93d3", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164213.4657798, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "463205cd93d3", "consensus_type": "PBFT"}
+{"ts": 1765164213.46678, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "463205cd93d3", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164213.46678, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "463205cd93d3", "consensus_type": "PBFT"}
+{"ts": 1765164213.4677851, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "463205cd93d3", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164213.4677851, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "463205cd93d3"}
+{"ts": 1765164213.4677851, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "463205cd93d3"}
+{"ts": 1765164213.4687798, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "463205cd93d3"}
+{"ts": 1765164213.4687798, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "463205cd93d3"}
+{"ts": 1765164214.6726618, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "f19c18d1bfe3", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765164214.673697, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "f19c18d1bfe3", "consensus_type": "PBFT"}
+{"ts": 1765164214.673697, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "f19c18d1bfe3", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164214.6746643, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "f19c18d1bfe3", "consensus_type": "PBFT"}
+{"ts": 1765164214.6746643, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "f19c18d1bfe3", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164214.6756642, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "f19c18d1bfe3", "consensus_type": "PBFT"}
+{"ts": 1765164214.6756642, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "f19c18d1bfe3", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164214.6756642, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "f19c18d1bfe3"}
+{"ts": 1765164214.6766615, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "f19c18d1bfe3"}
+{"ts": 1765164214.6766615, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "f19c18d1bfe3"}
+{"ts": 1765164214.6766615, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "f19c18d1bfe3"}
+{"ts": 1765164215.8851385, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "1542be50bc1d", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765164215.8861408, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "1542be50bc1d", "consensus_type": "PBFT"}
+{"ts": 1765164215.8871431, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "1542be50bc1d", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164215.8871431, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "1542be50bc1d", "consensus_type": "PBFT"}
+{"ts": 1765164215.8881414, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "1542be50bc1d", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164215.8881414, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "1542be50bc1d", "consensus_type": "PBFT"}
+{"ts": 1765164215.8881414, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "1542be50bc1d", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164215.8891451, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "1542be50bc1d"}
+{"ts": 1765164215.8891451, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "1542be50bc1d"}
+{"ts": 1765164215.8901393, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "1542be50bc1d"}
+{"ts": 1765164215.8901393, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "1542be50bc1d"}
+{"ts": 1765164217.1024296, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765164217.1024296, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf"}
+{"ts": 1765164217.1024296, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164217.1034245, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf"}
+{"ts": 1765164217.1034245, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164217.104425, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf"}
+{"ts": 1765164217.104425, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164217.104425, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164217.1054273, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164217.106424, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164217.106424, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf"}
+{"ts": 1765164217.106424, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf"}
+{"ts": 1765164217.1074243, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf"}
+{"ts": 1765164217.1074243, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "c0d47ec5220a", "consensus_type": "htf"}
+{"ts": 1765164218.3228295, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765164218.323829, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf"}
+{"ts": 1765164218.3248308, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164218.3248308, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf"}
+{"ts": 1765164218.325829, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164218.3268285, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf"}
+{"ts": 1765164218.3268285, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164218.3278286, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164218.3278286, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164218.3288288, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164218.3288288, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf"}
+{"ts": 1765164218.3288288, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf"}
+{"ts": 1765164218.3288288, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf"}
+{"ts": 1765164218.329829, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "9cf330755021", "consensus_type": "htf"}
+{"ts": 1765164219.544171, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765164219.5451758, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf"}
+{"ts": 1765164219.5461755, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164219.5461755, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf"}
+{"ts": 1765164219.5461755, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164219.5471714, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf"}
+{"ts": 1765164219.5471714, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164219.5481713, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164219.5481713, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164219.5491714, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164219.5491714, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf"}
+{"ts": 1765164219.5491714, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf"}
+{"ts": 1765164219.5491714, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf"}
+{"ts": 1765164219.5501711, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "4c2bfd4fb1a2", "consensus_type": "htf"}
+{"ts": 1765164420.3145216, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "203ab5f2d3b4", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765164420.3155222, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "203ab5f2d3b4", "consensus_type": "PBFT"}
+{"ts": 1765164420.3155222, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "203ab5f2d3b4", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164420.3165216, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "203ab5f2d3b4", "consensus_type": "PBFT"}
+{"ts": 1765164420.3165216, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "203ab5f2d3b4", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164420.3175392, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "203ab5f2d3b4", "consensus_type": "PBFT"}
+{"ts": 1765164420.3175392, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "203ab5f2d3b4", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164420.3185241, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "203ab5f2d3b4"}
+{"ts": 1765164420.3185241, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "203ab5f2d3b4"}
+{"ts": 1765164420.3185241, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "203ab5f2d3b4"}
+{"ts": 1765164420.3195333, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "203ab5f2d3b4"}
+{"ts": 1765164421.524394, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "caa57cb402cb", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765164421.5253844, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "caa57cb402cb", "consensus_type": "PBFT"}
+{"ts": 1765164421.5253844, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "caa57cb402cb", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164421.5263894, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "caa57cb402cb", "consensus_type": "PBFT"}
+{"ts": 1765164421.5263894, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "caa57cb402cb", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164421.5273721, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "caa57cb402cb", "consensus_type": "PBFT"}
+{"ts": 1765164421.5273721, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "caa57cb402cb", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164421.528372, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "caa57cb402cb"}
+{"ts": 1765164421.528372, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "caa57cb402cb"}
+{"ts": 1765164421.528372, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "caa57cb402cb"}
+{"ts": 1765164421.528372, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "caa57cb402cb"}
+{"ts": 1765164422.7414384, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "fa4e1f0dcc92", "consensus_type": "PBFT", "tx_count": 20}
+{"ts": 1765164422.7424407, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "fa4e1f0dcc92", "consensus_type": "PBFT"}
+{"ts": 1765164422.7424407, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "fa4e1f0dcc92", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164422.743439, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "fa4e1f0dcc92", "consensus_type": "PBFT"}
+{"ts": 1765164422.743439, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "fa4e1f0dcc92", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164422.744439, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "fa4e1f0dcc92", "consensus_type": "PBFT"}
+{"ts": 1765164422.744439, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "fa4e1f0dcc92", "consensus_type": "PBFT", "vote_type": "normal"}
+{"ts": 1765164422.7454388, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "fa4e1f0dcc92"}
+{"ts": 1765164422.7454388, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "fa4e1f0dcc92"}
+{"ts": 1765164422.746439, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "fa4e1f0dcc92"}
+{"ts": 1765164422.746439, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "fa4e1f0dcc92"}
+{"ts": 1765164423.952053, "event": "proposal_broadcast", "node": "node_1", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765164423.953048, "event": "proposal_received", "node": "node_0", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf"}
+{"ts": 1765164423.953048, "event": "vote_sent", "node": "node_0", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164423.9540484, "event": "proposal_received", "node": "node_2", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf"}
+{"ts": 1765164423.9540484, "event": "vote_sent", "node": "node_2", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164423.9540484, "event": "proposal_received", "node": "node_3", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf"}
+{"ts": 1765164423.9550476, "event": "vote_sent", "node": "node_3", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164423.9550476, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164423.9550476, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164423.9560475, "event": "qc_built", "node": "node_1", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164423.9560475, "event": "block_committed", "node": "node_0", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf"}
+{"ts": 1765164423.9560475, "event": "block_committed", "node": "node_1", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf"}
+{"ts": 1765164423.9570477, "event": "block_committed", "node": "node_2", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf"}
+{"ts": 1765164423.9570477, "event": "block_committed", "node": "node_3", "view": 1, "block_id": "f2dce250c9c3", "consensus_type": "htf"}
+{"ts": 1765164425.172664, "event": "proposal_broadcast", "node": "node_2", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765164425.1736658, "event": "proposal_received", "node": "node_0", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf"}
+{"ts": 1765164425.1736658, "event": "vote_sent", "node": "node_0", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164425.1736658, "event": "proposal_received", "node": "node_1", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf"}
+{"ts": 1765164425.1736658, "event": "vote_sent", "node": "node_1", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164425.1746645, "event": "proposal_received", "node": "node_3", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf"}
+{"ts": 1765164425.1746645, "event": "vote_sent", "node": "node_3", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164425.1756651, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164425.1756651, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164425.176685, "event": "qc_built", "node": "node_2", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164425.176685, "event": "block_committed", "node": "node_0", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf"}
+{"ts": 1765164425.176685, "event": "block_committed", "node": "node_1", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf"}
+{"ts": 1765164425.1776638, "event": "block_committed", "node": "node_2", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf"}
+{"ts": 1765164425.1776638, "event": "block_committed", "node": "node_3", "view": 2, "block_id": "bf56f79d2276", "consensus_type": "htf"}
+{"ts": 1765164426.3817568, "event": "proposal_broadcast", "node": "node_3", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf", "tx_count": 20}
+{"ts": 1765164426.3827586, "event": "proposal_received", "node": "node_0", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf"}
+{"ts": 1765164426.3827586, "event": "vote_sent", "node": "node_0", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164426.383757, "event": "proposal_received", "node": "node_1", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf"}
+{"ts": 1765164426.383757, "event": "vote_sent", "node": "node_1", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164426.384757, "event": "proposal_received", "node": "node_2", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf"}
+{"ts": 1765164426.384757, "event": "vote_sent", "node": "node_2", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf", "vote_type": "normal"}
+{"ts": 1765164426.385757, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164426.385757, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164426.385757, "event": "qc_built", "node": "node_3", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf", "signer_count": 3}
+{"ts": 1765164426.3867571, "event": "block_committed", "node": "node_0", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf"}
+{"ts": 1765164426.3867571, "event": "block_committed", "node": "node_1", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf"}
+{"ts": 1765164426.3867571, "event": "block_committed", "node": "node_2", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf"}
+{"ts": 1765164426.387757, "event": "block_committed", "node": "node_3", "view": 3, "block_id": "6f4394dcd046", "consensus_type": "htf"}

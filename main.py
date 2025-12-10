@@ -1,56 +1,3 @@
-# import logging
-# from network import Network
-# from node import Node
-# from consensus import Consensus
-# from crypto import BLS
-
-# logging.basicConfig(level=logging.INFO)
-
-
-# def make_privpub():
-#     """ 使用 BLS 生成密钥对 """
-#     return BLS.generate_keypair()
-
-
-# def main():
-#     # 配置
-#     f = 1
-#     n = 4
-#     node_ids = [f"node{i}" for i in range(n)]
-#     net = Network(drop_rate=0.05, delay_range=(0.01, 0.05))
-
-#     # 初始化节点
-#     nodes = {}
-#     for nid in node_ids:
-#         priv, pub = make_privpub()
-#         node = Node(
-#             node_id=nid,
-#             priv_key=priv,
-#             pub_key=pub,
-#             network=net,
-#             f=f,
-#             all_nodes=node_ids
-#         )
-#         nodes[nid] = node
-#         net.register(node)
-#         logging.info(f"[Init] Node {nid} started")
-
-#     # 初始化共识模块
-#     cons = Consensus(nodes, net, f=f)
-
-#     # 启动共识
-#     try:
-#         t = cons.start(rounds=6)
-#         logging.info("[Consensus] started")
-#         t.join(timeout=20)
-#     except Exception as e:
-#         logging.error(f"[Fatal] Consensus error: {e}")
-#     finally:
-#         logging.info("[System] shutdown")
-
-
-# if __name__ == "__main__":
-#     main()
 
 import logging
 from simulator import Simulator
@@ -93,27 +40,48 @@ root_logger.addHandler(console_handler)
 
 # 4. 自定义logger沿用root的配置（可选，确保main.py中的日志也统一）
 logger = logging.getLogger(__name__)
+# import logging
+# logging.basicConfig(
+#     level=logging.info
+# )
+
 
 def main():
     try:
-        # 初始化模拟器
-        logger.info("Initializing simulator...")
-        simulator = Simulator(num_nodes=5)  # 设置节点数量为 4
-
-        # 设置模拟器
-        logger.info("Setting up simulator...")
+        print("创建模拟器...")
+        # 1. 创建模拟器
+        simulator = Simulator(num_nodes=5, f=1)
+        
+        # 2. 设置
         simulator.setup()
-
-        # 填充交易池
-        logger.info("Filling mempool with 200 register transactions...")
-        simulator.fill_mempool_registers(10)  # 填充 200 个注册交易
-
-        # 运行模拟器
-        logger.info("Running simulator for 50 rounds...")
-        t = simulator.run(rounds=5, attack=False)  # 运行 50 轮，无攻击
-        t.join()  # 等待模拟器运行完成
-
+        simulator.fill_mempool_registers(count=10)
+        
+        # 3. 运行并获取线程对象
+        print("启动共识...")
+        consensus_thread = simulator.run(rounds=2)
+        
+        # 4. 等待共识线程完成
+        print("等待共识完成...")
+        consensus_thread.join(timeout=3)  # 最多等待30秒
+        
+        if consensus_thread.is_alive():
+            print("警告：共识线程超时，强制停止")
+            simulator.stop()
+        else:
+            print("共识线程正常结束")
+        
+        # 5. 验证安全机制
+        results = simulator.verify_security_mechanisms()
+        print("\n安全机制验证结果:")
+        for mechanism, passed in results.items():
+            print(f"  {mechanism}: {'✓ 通过' if passed else '✗ 失败'}")
+        
         logger.info("Simulation completed successfully.")
+        
+    except KeyboardInterrupt:
+        print("\n模拟被用户中断")
+        if 'simulator' in locals():
+            simulator.stop()
     except Exception as e:
         logger.error(f"An error occurred during simulation: {e}", exc_info=True)
 

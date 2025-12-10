@@ -1,102 +1,90 @@
-# crypto.py
+# did_bls_demo.py
+
 from secrets import randbelow
+from hashlib import sha256
 from py_ecc.bls import G2ProofOfPossession as bls
 from py_ecc.optimized_bn128 import curve_order
 
-
+# -----------------------------
+# BLS 工具类
+# -----------------------------
 class BLS:
-    """BLS 签名工具类"""
-
     @staticmethod
     def generate_keypair():
-        """
-        生成 BLS 密钥对
-        返回: (sk: int, pk: bytes)
-        """
+        """生成单个 BLS 密钥对"""
         sk = randbelow(curve_order)
         pk = bls.SkToPk(sk)
         return sk, pk
 
     @staticmethod
-    def sign(sk, message):
-        """
-        BLS 签名
-        message: str 或 bytes
-        返回: signature bytes
-        """
-        if isinstance(message, str):
-            message = message.encode()
+    def generate_single_keypair():
+        """兼容函数"""
+        return BLS.generate_keypair()
+
+    @staticmethod
+    def sign(sk, message: bytes):
         return bls.Sign(sk, message)
 
     @staticmethod
-    def verify(pk, message, signature):
-        """
-        验证 BLS 签名
-        message: str 或 bytes
-        signature: bytes
-        返回: bool
-        """
-        if isinstance(message, str):
-            message = message.encode()
+    def verify(pk, message: bytes, signature):
         return bls.Verify(pk, message, signature)
 
-    @staticmethod
-    def aggregate(signatures):
-        """
-        聚合多个签名
-        signatures: list[bytes]
-        返回: bytes
-        """
-        return bls.Aggregate(signatures)
 
     @staticmethod
-    def verify_aggregate(pks, messages, agg_sig):
+    def generate_partial_keys(n):
         """
-        验证聚合签名
-        pks: list[bytes]
-        messages: list[str/bytes] 或单条 str/bytes
-        agg_sig: bytes
-        返回: bool
-
-        支持单条消息自动复制给每个公钥
+        模拟分布式密钥生成
+        返回：sks, pks, group_pk
         """
-        # 如果 messages 不是 list/tuple -> 复制单条消息
-        if not isinstance(messages, (list, tuple)):
-            msg = messages
-            if isinstance(msg, str):
-                msg = msg.encode()
-            elif isinstance(msg, (bytes, bytearray)):
-                msg = bytes(msg)
-            else:
-                msg = bytes(msg)
-            msgs = [msg] * len(pks)
-        else:
-            # messages 是可迭代对象 -> 逐一转换为 bytes
-            msgs = []
-            for m in messages:
-                if isinstance(m, str):
-                    msgs.append(m.encode())
-                elif isinstance(m, (bytes, bytearray)):
-                    msgs.append(bytes(m))
-                else:
-                    msgs.append(bytes(m))
+        sks = []
+        pks = []
+        for _ in range(n):
+            sk = randbelow(curve_order)
+            pk = bls.SkToPk(sk)
+            sks.append(sk)
+            pks.append(pk)
 
-        return bls.AggregateVerify(pks, msgs, agg_sig)
+        # 聚合成 group_pk
+        group_pk = bls._AggregatePKs(pks)
+        return sks, pks, group_pk
 
+    @staticmethod
+    def sign_partial(sk_i, message):
+        if isinstance(message, str):
+            message = message.encode()
+        return bls.Sign(sk_i, message)
 
-# ----------------------------
-# 兼容旧接口
-# ----------------------------
-def sign(sk, message):
-    """兼容旧接口：sign(sk, message)"""
-    return BLS.sign(sk, message)
+    @staticmethod
+    def aggregate_partial_sigs(partial_sigs):
+        return bls.Aggregate(partial_sigs)
+
+    @staticmethod
+    def verify_group_signature(group_pk, message, agg_sig):
+        if isinstance(message, str):
+            message = message.encode()
+        return bls.Verify(group_pk, message, agg_sig)
 
 
-def aggregate(signatures):
-    """兼容旧接口：aggregate(signatures)"""
-    return BLS.aggregate(signatures)
 
+# # -----------------------------
+# # 测试
+# # -----------------------------
+# if __name__ == "__main__":
+#     # 单个 DID
+#     priv, pub, did = generate_did_keypair()
+#     print(f"Generated DID: {did}")
 
-def verify_aggregate(pks, messages, agg_sig):
-    """兼容旧接口：verify_aggregate(pks, messages, agg_sig)"""
-    return BLS.verify_aggregate(pks, messages, agg_sig)
+#     # 测试签名与验证
+#     message = b"Hello, BLS!"
+#     signature = sign_message(message, priv)
+#     print(f"Signature (hex): {signature.hex()}")
+
+#     valid = verify_signature(message, signature, pub)
+#     print(f"Signature valid: {valid}")
+
+#     # 批量生成
+#     identities, did_pub_map = generate_multiple_identities(3)
+#     print("\n=== Batch Generated Identities ===")
+#     for idx, identity in enumerate(identities):
+#         print(f"Identity {idx+1}: DID={identity['did'][:20]}...")
+#     print(f"\nDID to pubkey map length: {len(did_pub_map)}")

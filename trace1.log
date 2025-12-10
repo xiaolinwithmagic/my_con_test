@@ -1,0 +1,29 @@
+{"ts": 1765166498.5698352, "event": "proposal_received", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166764.131822, "event": "did_rotation_start", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166812.1193454, "event": "did_rotation_start", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166832.248922, "event": "did_rotation_start", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166832.2500846, "event": "proposal_received", "node": "node0", "view": 0, "block_id": "setup"}
+{"ts": 1765166852.875243, "event": "did_rotation_start", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166852.8772392, "event": "proposal_received", "node": "node0", "view": 0, "block_id": "setup"}
+{"ts": 1765166864.3241832, "event": "did_rotation_start", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166864.325187, "event": "proposal_received", "node": "node0", "view": 0, "block_id": "setup"}
+{"ts": 1765166864.6271834, "event": "proposal_received", "node": "node0", "view": 1, "block_id": "setup"}
+{"ts": 1765166883.0363514, "event": "did_rotation_start", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166883.0368438, "event": "proposal_received", "node": "node0", "view": 0, "block_id": "setup"}
+{"ts": 1765166883.3404994, "event": "proposal_received", "node": "node0", "view": 1, "block_id": "setup"}
+{"ts": 1765166892.6994674, "event": "did_rotation_start", "node": "system", "view": 0, "block_id": "setup", "consensus_type": "test"}
+{"ts": 1765166892.700469, "event": "proposal_received", "node": "node0", "view": 0, "block_id": "setup"}
+{"ts": 1765166893.0046053, "event": "proposal_received", "node": "node0", "view": 1, "block_id": "setup"}
+{"ts": 1765166893.0638967, "event": "proposal_broadcast", "node": "node0", "view": 1, "block_id": "setup"}
+{"ts": 1765166893.2231348, "event": "proposal_received", "node": "node0", "view": 2, "block_id": "setup"}
+{"ts": 1765166893.2863166, "event": "proposal_broadcast", "node": "node0", "view": 2, "block_id": "setup"}
+{"ts": 1765166893.4453552, "event": "proposal_received", "node": "node0", "view": 3, "block_id": "setup"}
+{"ts": 1765166893.5095398, "event": "proposal_broadcast", "node": "node0", "view": 3, "block_id": "setup"}
+{"ts": 1765166893.6685767, "event": "proposal_received", "node": "node0", "view": 4, "block_id": "setup"}
+{"ts": 1765166893.7325766, "event": "proposal_broadcast", "node": "node0", "view": 4, "block_id": "setup"}
+{"ts": 1765166893.8905766, "event": "proposal_received", "node": "node0", "view": 5, "block_id": "setup"}
+{"ts": 1765166893.9556437, "event": "proposal_broadcast", "node": "node0", "view": 5, "block_id": "setup"}
+{"ts": 1765281658.5448332, "event": "consensus_stopped", "node": "system", "view": 1, "consensus_type": "my"}
+{"ts": 1765281658.5545752, "event": "consensus_stopped", "node": "system", "view": 1, "consensus_type": "my"}
+{"ts": 1765281719.9929292, "event": "consensus_stopped", "node": "system", "view": 1, "consensus_type": "my"}
+{"ts": 1765281720.002213, "event": "consensus_stopped", "node": "system", "view": 1, "consensus_type": "my"}

@@ -1,6 +1,8 @@
 import threading
 import logging
 from utils412 import Node, Network, Block, Mempool
+from simulator import Simulator
+
 
 
 def test_consensus(consensus_type, rounds=3, f=1):
@@ -45,10 +47,33 @@ def test_consensus(consensus_type, rounds=3, f=1):
     # assert avg_committed >= rounds * 0.8, f"{consensus_type} consensus failed: too few blocks committed"
     # logging.info(f"{consensus_type.upper()} test PASSED!\n")
 
+
+# 4. 自定义logger沿用root的配置（可选，确保main.py中的日志也统一）
+# logger = logging.getLogger(__name__)
+
+def test_my():
+    try:
+        # 初始化模拟器
+        simulator = Simulator(num_nodes=1)  # 设置节点数量为 4
+
+        # 设置模拟器
+        simulator.setup()
+
+        # 填充交易池
+        simulator.fill_mempool_registers(1)  # 填充 200 个注册交易
+
+        # 运行模拟器
+        t = simulator.run(rounds=5, attack=False)  # 运行 50 轮，无攻击
+        t.join()  # 等待模拟器运行完成
+
+    except Exception as e:
+        raise ValueError("An error occurred during simulation: {e}")
+
 # 主测试入口
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
     # 测试PBFT
-    test_consensus("pbft", rounds=3, f=1)
+    # test_consensus("pbft", rounds=3, f=1)
     # 测试HotStuff
-    test_consensus("hotstuff", rounds=3, f=1)
+    # test_consensus("hotstuff", rounds=3, f=1)
+    test_my()
