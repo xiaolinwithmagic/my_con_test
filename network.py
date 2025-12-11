@@ -39,9 +39,9 @@ class Network:
             del self.nodes[node_id]
             logging.debug(f"Node {node_id} unregistered from network")
     
-    def _should_drop(self) -> bool:
-        """随机决定是否丢弃消息"""
-        return random.random() < self.drop_rate
+    # def _should_drop(self) -> bool:
+    #     """随机决定是否丢弃消息"""
+    #     return random.random() < self.drop_rate
     
     def _get_delay(self) -> float:
         """获取随机延迟时间"""
@@ -51,10 +51,10 @@ class Network:
         """
         内部投递方法：模拟网络延迟和丢包
         """
-        # 检查消息是否被丢弃
-        if self._should_drop():
-            logging.warning(f"✗ Message {message_type} to {receiver.id} dropped.")
-            return
+        # # 检查消息是否被丢弃
+        # if self._should_drop():
+        #     logging.warning(f"✗ Message {message_type} to {receiver.id} dropped.")
+        #     return
             
         # 模拟网络延迟
         delay = self._get_delay()
@@ -123,28 +123,68 @@ class Network:
     # 具体的消息广播方法（针对不同的消息类型）
     # ------------------------------------------------------------
     
+    # def broadcast_proposal(self, sender_id: str, block, qc: Optional[QC] = None, view: int = 0) -> None:
+    #     """广播提案消息"""
+    #     message = {
+    #         "block": block.to_dict() if hasattr(block, "to_dict") else block,
+    #         "qc": qc.to_dict() if qc else None,
+    #         "view": view,
+    #         "timestamp": time.time(),
+    #     }
+    #     self.broadcast(sender_id, self.MSG_TYPES["PROPOSAL"], message)
+
     def broadcast_proposal(self, sender_id: str, block, qc: Optional[QC] = None, view: int = 0) -> None:
-        """广播提案消息"""
-        message = {
-            "block": block.to_dict() if hasattr(block, "to_dict") else block,
-            "qc": qc.to_dict() if qc else None,
-            "view": view,
-            "timestamp": time.time(),
-        }
-        self.broadcast(sender_id, self.MSG_TYPES["PROPOSAL"], message)
+        """广播提案消息 - 修正版"""
+        try:
+            # 确保 block 被正确序列化
+            if hasattr(block, "to_dict"):
+                block_dict = block.to_dict()
+            elif isinstance(block, dict):
+                block_dict = block
+            else:
+                # 尝试将 block 转换为字典
+                block_dict = block.__dict__
+                logging.warning(f"Block converted to dict via __dict__: type={type(block)}")
+            
+            # 确保 QC 被正确序列化
+            qc_dict = None
+            if qc:
+                if hasattr(qc, "to_dict"):
+                    qc_dict = qc.to_dict()
+                elif isinstance(qc, dict):
+                    qc_dict = qc
+                else:
+                    qc_dict = qc.__dict__
+                    logging.warning(f"QC converted to dict via __dict__: type={type(qc)}")
+            
+            message = {
+                "block": block_dict,
+                "qc": qc_dict,
+                "view": view,
+                "timestamp": time.time(),
+            }
+            
+            # 添加调试信息
+            logging.debug(f"[Broadcast] Proposal from {sender_id}, block hash: {block_dict.get('hash', 'unknown')[:8] if isinstance(block_dict, dict) else 'N/A'}")
+            
+            self.broadcast(sender_id, self.MSG_TYPES["PROPOSAL"], message)
+        except Exception as e:
+            logging.error(f"Error in broadcast_proposal: {e}")
     
     def broadcast_vote(self, sender_id: str, block_id: str, view: int, 
-                      partial_sig: bytes, voter_index: int) -> None:
+                  partial_sig: bytes, voter_index: int, block_hash: bytes = None) -> None:
         """广播投票消息"""
         message = {
-            "block_id": block_id,
-            "block_hash": None,  # 将由接收者补充
-            "view": view,
-            "partial_sig": partial_sig.hex() if partial_sig else None,
-            "voter_index": voter_index,
+            "voter_id": sender_id,  # 发送者ID
+            "voter_index": voter_index,  # 发送者索引
+            "block_id": block_id,  # 区块ID
+            "block_hash": block_hash.hex() if block_hash else None,  # 区块哈希
+            "view": view,  # 视图号
+            "partial_signature": partial_sig.hex() if partial_sig else None,  # 部分签名
             "timestamp": time.time(),
         }
         self.broadcast(sender_id, self.MSG_TYPES["VOTE"], message)
+        logging.debug(f"[Broadcast] Vote from {sender_id} for block {block_id[:8] if block_id else 'unknown'}")
     
     def broadcast_new_view(self, sender_id: str, qc: QC) -> None:
         """广播新视图消息（携带新的QC）"""
@@ -247,3 +287,37 @@ class Network:
         """清空网络中的所有节点（用于测试）"""
         self.nodes.clear()
         logging.debug("Network cleared")
+
+
+
+    def _deliver(self, receiver, message_type: str, message: Dict[str, Any]) -> None:
+        """
+        内部投递方法：模拟网络延迟和丢包
+        """
+        # 检查消息是否被丢弃
+        # if self._should_drop():
+        #     logging.warning(f"✗ Message {message_type} to {receiver.id} dropped.")
+        #     return
+            
+        # 模拟网络延迟
+        delay = self._get_delay()
+        if delay > 0:
+            time.sleep(delay)
+            
+        # 记录投递日志
+        src = message.get("sender", "unknown")
+        logging.debug(f"✓ {message_type} from {src} to {receiver.id} (delay: {delay:.3f}s)")
+        
+        # 投递消息到接收者
+        try:
+            # 添加调试信息
+            if message_type == self.MSG_TYPES["PROPOSAL"]:
+                logging.debug(f"[DEBUG] Proposal block type: {type(message.get('block'))}")
+                logging.debug(f"[DEBUG] Proposal block keys: {list(message.get('block', {}).keys())[:3]}...")
+            
+            receiver.receive_message(message_type, message)
+        except Exception as e:
+            logging.error(f"Failed to deliver {message_type} to {receiver.id}: {e}")
+            import traceback
+            traceback.print_exc()
+

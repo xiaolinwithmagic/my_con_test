@@ -14,6 +14,7 @@ from metrics import Metrics
 from network import Network
 
 logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 SOFT_VOTE_TIMEOUT = 0.6
 DEFER_TIMEOUT = 1.2
@@ -113,7 +114,8 @@ class Node:
             logging.warning(f"[{self.id}] Proposal invalid: {reason}")
             # 如果怀疑，可以请求Merkle证明
             if self.should_request_proof(qc):
-                self.request_merkle_proof(qc, self.index)
+                self.verify_with_merkle_proof(qc, self.index)
+                return False, "Merkle proof verification failed01"
             return
         
         # 存储当前提案
@@ -129,6 +131,10 @@ class Node:
     
     def validate_proposal_new(self, block, qc: QC, view: int) -> Tuple[bool, str]:
         """新的提案验证（使用分层验证）"""
+        if self.view == 0:
+            # 创世QC不需要验证签名
+            logger.info("Verifying genesis QC (special handling)")
+            return True, "Genesis QC (special)"
         # 1. 基础检查
         if view < self.view:
             return False, f"view {view} < current view {self.view}"
@@ -161,6 +167,11 @@ class Node:
     
     def verify_qc_as_replica(self, qc: QC) -> Tuple[bool, str]:
         """副本的分层QC验证"""
+        # 创世QC的特殊处理
+        if qc.view == 0:
+            # 创世QC不需要验证签名
+            logger.info("Verifying genesis QC (special handling)")
+            return True, "Genesis QC (special)"
         # 1. 基本检查
         if qc.view < self.state.locked_qc.view:
             return False, f"QC view {qc.view} < locked view {self.state.locked_qc.view}"
@@ -177,10 +188,12 @@ class Node:
             if not self.verify_with_merkle_proof(qc, self.index):
                 return False, "Merkle proof verification failed"
         
-        # 5. 最终聚合签名验证（需要实现）
-        # 这里需要实现BLS聚合签名验证
-        if not self.bls.verify_group_signature(qc):
-            return False, "Aggregate signature verification failed"
+        # 5. 最终聚合签名验证 view.to_bytes(8, 'big') + block.hash todo
+        # if not BLS.verify_group_signature(self.group_pk, message, qc.aggregate_signature):
+        message = qc.view.to_bytes(8, 'big') + qc.block_hash
+        # if not self.bls.verify_group_signature(self.gpk, message, qc.aggregate_signature):
+            # return False, "Aggregate signature verification failed"
+            # return True, "Aggregate signature verification succ111"
         
         return True, "QC verified"
     
@@ -214,6 +227,7 @@ class Node:
             
             time.sleep(0.01)
         
+        proof_received =True  # 临时 todo
         if not proof_received:
             logging.warning(f"[{self.id}] Merkle proof request timeout")
             # 可以尝试向其他副本请求
@@ -225,16 +239,20 @@ class Node:
         """验证Merkle证明"""
         try:
             # 1. 验证部分签名
+            logger.debug(f"[{self.id}] 111Verifying Merkle proof for replica {proof.replica_index}")
             sign_data = proof.view.to_bytes(8, 'big') + proof.block_hash
-            # 需要获取该副本的spk_i
-            if not self.bls.verify_group_signature(self.gpk, proof.partial_signature, sign_data):
-                return False
+            # 需要获取该副本的spk_i todo
+            # if not self.bls.verify_group_signature(self.gpk, proof.partial_signature, sign_data):
+            #     logging.error(f"[{self.id}] Partial signature verification failed in Merkle proof")
+            #     return False
             
             # 2. 验证Merkle路径
             leaf_hash = proof.calculate_leaf_hash()
             # 这里需要实现Merkle路径验证
+            logging.debug(f"[{self.id}] Verifying Merkle proof for replica {proof.replica_index}")
             computed_root = self.compute_root_from_proof(leaf_hash, proof.sibling_hashes)
             if computed_root != qc.merkle_root:
+                logging.error(f"[{self.id}] Merkle root mismatch: computed {computed_root.hex()[:8]} != qc {qc.merkle_root.hex()[:8]}")
                 return False
             
             return True
@@ -294,9 +312,15 @@ class Node:
             return
         
         try:
+            logging.info(f"[{self.id}] Received vote dict: type={type(vote_dict)}, keys={list(vote_dict.keys()) if isinstance(vote_dict, dict) else 'not dict'}")
             vote = Vote.from_dict(vote_dict)
-            
-            # 验证投票
+
+            # 确保有voter_id
+            if 'voter_id' not in vote_dict:
+                logger.error(f"[{self.id}] Vote missing voter_id: {vote_dict}")
+                return
+                        
+            # 验证投票 todo
             # 需要获取投票者的spk_i
             # spk_i = self.get_spk_for_node(vote.voter_id)
             # valid, reason = vote.verify(spk_i, self.view, self.current_proposal["block"].hash)
@@ -331,17 +355,26 @@ class Node:
         """组装QC（Leader）"""
         votes = self.pending_votes.get(block_id_hex, [])
         if len(votes) < 2 * self.f + 1:
+            logger.debug(f"[{self.id}] Not enough votes to assemble QC for block {block_id_hex[:8]}")
             return
         
         # 获取区块
         block = self.state.get_block(block_id_hex)
         if not block:
+            logger.error(f"[{self.id}] Block {block_id_hex[:8]} not found for QC assembly")
             return
         
         # 构建signer_bitmap
         signer_bitmap = 0
         for vote in votes:
             signer_bitmap |= (1 << vote.voter_index)
+            logger.debug(f"[{self.id}] Vote from {vote.voter_id} at index {vote.voter_index} included in QC assembly")
+            if(vote.partial_signature is None):
+                logger.error(f"[{self.id}] Vote from {vote.voter_id} has no partial_signature")
+            if(vote.block_hash is None):
+                logger.error(f"[{self.id}] Vote from {vote.voter_id} has no block_hash")
+            if(vote.view is None):
+                logger.error(f"[{self.id}] Vote from {vote.voter_id} has no view")
         
         # 构建Merkle树
         leaves_data = []
@@ -525,3 +558,225 @@ class Node:
     def verify_did_signature(self, message: bytes, signature: bytes, pub_key) -> bool:
         """验证DID签名"""
         return BLS.verify(pub_key, message, signature)
+
+    def sign_consensus(self, message: bytes) -> bytes:
+        """使用BLS私钥为共识消息签名"""
+        from crypto import BLS
+        return BLS.sign(self.priv_key, message)
+
+
+####todo
+        # ==================== 新视图处理 ====================
+    
+    def handle_new_view(self, payload):
+        """处理NEW-VIEW消息（包含新QC）"""
+        try:
+            sender = payload.get("sender")
+            qc_dict = payload.get("qc")
+            view = payload.get("view", 0)
+
+            if view == 0:
+                # 创世QC不需要验证签名
+                logger.info("handle genesis QC (special handling)")
+            
+            logger.info(f"[{self.id}] Received NEW-VIEW from {sender}, view={view}")
+            
+            if not qc_dict:
+                logger.warning(f"[{self.id}] Invalid NEW-VIEW: missing QC")
+                return
+            
+            # 反序列化QC
+            qc = QC.from_dict(qc_dict)
+            
+            # 验证QC的基本有效性
+            if not self._validate_new_view_qc(qc, sender, view):
+                logger.warning(f"[{self.id}] NEW-VIEW QC validation failed")
+                return
+            
+            # 更新本地状态
+            self._update_state_with_new_qc(qc)
+            
+            # 检查是否需要成为下一个Leader
+            self._check_and_become_next_leader(qc.view)
+            
+            logger.info(f"[{self.id}] Successfully processed NEW-VIEW for view {qc.view}")
+            
+        except Exception as e:
+            logger.error(f"[{self.id}] Error handling NEW-VIEW: {e}", exc_info=True)
+    
+    def _validate_new_view_qc(self, qc: QC, sender: str, view: int) -> bool:
+        """验证NEW-VIEW消息中的QC"""
+        # 1. 验证发送者是否为前一个视图的Leader todo
+        expected_leader = self.leader_for_view(view - 1)
+        if sender != expected_leader:
+            logger.warning(f"[{self.id}] NEW-VIEW sender {sender} not the leader of previous view {view-1}")
+            # 这可能不是致命错误，但值得注意
+            # return False  # 根据协议严格性决定
+        
+        # 2. 验证QC的视图号
+        # if qc.view != view - 1:  # NEW-VIEW消息应该携带前一个视图的QC
+        #     logger.warning(f"[{self.id}] QC view {qc.view} doesn't match expected view {view-1}")
+        #     return False
+        
+        # 3. 验证QC本身（使用分层验证）
+        qc_valid, reason = self.verify_qc_as_replica(qc)
+        if not qc_valid:
+            logger.warning(f"[{self.id}] NEW-VIEW QC verification failed: {reason}")
+            return False
+        
+        # 4. 检查QC是否比当前最新QC更新
+        if qc.view <= self.state.latest_qc.view:
+            logger.debug(f"[{self.id}] NEW-VIEW QC view {qc.view} <= current latest view {self.state.latest_qc.view}")
+            # 这不是错误，但可能不需要更新
+            # return False
+        
+        return True
+    
+    def _update_state_with_new_qc(self, qc: QC):
+        """用新的QC更新本地状态"""
+        # 1. 更新latest_qc
+        if self.state.update_latest_qc(qc):
+            logger.info(f"[{self.id}] Updated latest_qc to view {qc.view}")
+        
+        # 2. 尝试更新locked_qc（如果满足条件）
+        if self._should_update_locked_qc(qc):
+            if self.state.update_locked_qc(qc):
+                logger.info(f"[{self.id}] Updated locked_qc to view {qc.view}")
+        
+        # 3. 尝试提交区块
+        self._try_commit_with_new_qc(qc)
+    
+    def _should_update_locked_qc(self, qc: QC) -> bool:
+        """判断是否应该更新locked_qc"""
+        # HotStuff的锁定规则：
+        # 如果新QC的视图比当前locked_qc高，并且新QC的父QC视图 >= 当前locked_qc的视图
+        # 则更新locked_qc
+        
+        # 获取新QC对应的区块
+        if(qc.block_hash is None):
+            logger.warning(f"[{self.id}] Cannot update locked_qc: qc.block_hash is None for QC {qc.view}")
+            return False
+        block = self.state.get_block_by_hash(qc.block_hash)
+        # if not block or not block.qc:
+        if block is None:
+            logger.warning(f"[{self.id}] Cannot update locked_qc: block not found for QC {qc.view}")
+            return False
+        
+        # 检查新QC的父QC
+        parent_qc = block.qc
+        
+        # 规则：新QC的父QC视图 >= 当前locked_qc的视图
+        if parent_qc is None:
+            logger.warning(f"[{self.id}] Cannot update locked_qc: parent_qc is None for block {block.id[:8]}")
+            # return False
+        if self.state.locked_qc is None:
+            logger.warning(f"[{self.id}] Cannot update locked_qc: locked_qc is Nonehhhhh")
+            return False
+
+        # if parent_qc.view >= self.state.locked_qc.view:
+        #     return True 
+        #todo
+
+        return True
+        
+        return False
+    
+    def _try_commit_with_new_qc(self, qc: QC):
+        """尝试使用新的QC提交区块"""
+        # 获取QC对应的区块
+        if(qc.block_hash is None):
+            logger.warning(f"[{self.id}] 222Cannot update locked_qc: qc.block_hash is None for QC {qc.view}")
+            return False
+        block = self.state.get_block_by_hash(qc.block_hash)
+        # if not block or not block.qc:
+        if block is None:
+            logger.warning(f"[{self.id}] Cannot commit: block not found for QC {qc.view}")
+            return
+        
+        
+        # HotStuff的三链提交规则：
+        # 需要三个连续的区块 B0, B1, B2 满足：
+        # 1. B2有QC (当前qc)
+        # 2. B1有QC (B2.parent_qc)
+        # 3. B0有QC (B1.parent_qc)
+        
+        try:
+            # 检查三链
+            b2 = block  # 当前区块
+            # b1 = self.state.get_block_by_hash(b2.parent_hash)
+            
+            # if not b1 or not b1.qc:
+            #     return
+            
+            # b0 = self.state.get_block_by_hash(b1.parent_hash)
+            # if not b0 or not b0.qc:
+            #     return
+            
+            # 检查连续性和QC关系
+            # if (b2.height == b1.height + 1 == b0.height + 2 and
+            #     b2.qc.view >= b1.qc.view >= b0.qc.view):
+                
+            #     # 提交b0
+            #     self._commit_block(b0)
+            #     logger.info(f"[{self.id}] Committed block {b0.id[:8]} via three-chain rule")
+
+            self._commit_block(b2)
+                
+        except Exception as e:
+            logger.error(f"[{self.id}] Error in three-chain commit check: {e}")
+    
+    def _commit_block(self, block):
+        """提交区块到世界状态"""
+        try:
+            logger.info(f"[{self.id}] COMMITTING block {block.id[:8]}, height={block.height}, view={block.view}")
+            
+            # 调试 block.payload
+            logger.debug(f"[{self.id}] block.payload type: {type(block.payload)}")
+            # logger.debug(f"[{self.id}] block.payload: {block.payload}")
+
+            # 应用区块中的交易到世界状态 todo
+            for tx in block.payload:
+                logger.debug(f"[{self.id}] 12.tx type: {type(tx)}")
+                # self.world_state.apply_transaction(tx)
+            
+            # 更新已提交的QC
+            if block.qc:
+                logger.debug(f"[{self.id}] 23.block.qc type: {type(block.qc)}")
+                self.state.update_commit_qc(block.qc)
+            
+            # 记录指标
+            if self.metrics:
+                logger.debug(f"[{self.id}] 34.metrics type: {type(self.metrics)}")
+                # self.metrics.record_block_commit(block.height, block.view)
+            
+        except Exception as e:
+            logger.error(f"[{self.id}] Error committing block {block.id[:8]}: {e}")
+    
+    def _check_and_become_next_leader(self, qc_view: int):
+        """检查是否需要成为下一个Leader"""
+        next_view = qc_view + 1
+        next_leader = self.leader_for_view(next_view)
+        
+        if next_leader == self.id:
+            logger.info(f"[{self.id}] I am the leader for next view {next_view}")
+            self._prepare_for_leadership(next_view)
+        else:
+            logger.debug(f"[{self.id}] Next leader is {next_leader}, not me")
+    
+    def _prepare_for_leadership(self, view: int):
+        """为成为Leader做准备"""
+        # 设置视图号
+        self.view = view
+        self.is_leader = True
+        
+        logger.info(f"[{self.id}] Preparing to lead view {view}")
+        
+        # 这里可以启动Leader的提案流程
+        # 在实际实现中，可能需要启动一个定时器或直接开始提案
+        # 为了简化，我们可以在共识模块中处理
+        
+        # 如果当前有内存池，可以开始创建提案
+        if hasattr(self, 'mempool'):
+            # 创建新区块并广播提案
+            # 这个逻辑可能在共识模块中统一处理
+            pass

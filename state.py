@@ -5,6 +5,8 @@ from qc import QC
 from block import Block
 
 logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 # 删除旧的 DummyQC 类，用实际的创世 QC 替代
 
@@ -94,10 +96,28 @@ class NodeState:
     
     def get_block_by_hash(self, block_hash: bytes) -> Optional[Block]:
         """通过区块哈希（字节）获取区块"""
-        block_hash_hex = block_hash.hex()
+        # 首先尝试直接比较 bytes
+        logger.debug(f"get_block_by_hash -> in")
+        if self.block_tree is None:
+            logger.debug(f"block_tree is None")
+            return None
         for block in self.block_tree.values():
-            if block.hash == block_hash or block.id == block_hash_hex:
+            logger.debug(f"get_block_by_hash -> in22")
+            if block is None:
+                logger.debug(f"get_block_by_hash -> None")
+            return block
+            # if block.hash == block_hash: todo
+            #     logger.debug(f"get_block_by_hash -> in333")
+            #     return block
+
+        # 如果没找到，尝试将 block_hash 转换为十六进制字符串再比较
+        block_hash_hex = block_hash.hex()
+        logger.debug(f"get_block_by_hash -> in444")
+        for block in self.block_tree.values():
+            if block.id == block_hash_hex:
+                logger.debug(f"get_block_by_hash -> in555")
                 return block
+
         return None
     
     def has_voted(self, block_id: str) -> bool:

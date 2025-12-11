@@ -18,9 +18,13 @@ from qc import QC
 from transaction import verify_tx_signature
 from utils.logger import event
 from crypto import BLS
+import logging
+
+# 创建当前模块的logger实例（推荐方式，而非直接用logging.root）
+logger = logging.getLogger(__name__)
 
 class Simulator:
-    def __init__(self, num_nodes=4, f=1, txs_per_proposal=20, drop_rate=0.05, delay_range=(0.01, 0.05)):
+    def __init__(self, num_nodes, f, txs_per_proposal=20, drop_rate=0.05, delay_range=(0.01, 0.05)):
         self.num_nodes = num_nodes
         self.f = f
         self.tx_per_prop = txs_per_proposal
@@ -78,7 +82,7 @@ class Simulator:
             # 尝试调用BLS的密钥生成方法
             self.consensus_sks, self.consensus_pks, self.group_pk = BLS.generate_partial_keys(self.num_nodes)
         except AttributeError:
-            print(f"[Simulator] BLS.generate_partial_keys not found, using mock keys")
+            logger.info(f"[Simulator] BLS.generate_partial_keys not found, using mock keys")
             # 使用模拟密钥
             self.consensus_sks = [f"sk_{i}".encode() for i in range(self.num_nodes)]
             self.consensus_pks = [f"pk_{i}".encode() for i in range(self.num_nodes)]
@@ -99,14 +103,14 @@ class Simulator:
                 f=self.f,
                 all_nodes=self.node_ids
             )
-        # 注入映射和 metrics
-        node.did_pub_lookup = {x["did"]: x["pub"] for x in self.identities}
-        node.consensus_pub_lookup = {self.node_ids[j]: self.consensus_pks[j] for j in range(self.num_nodes)}
-        node.metrics = self.metrics
-        node.state.add_block(self.genesis_block)
-        self.nodes[nid] = node
-        self.net.register(node)
-        # event("node_created", node_id=nid, index=i, view=0, consensus_type="my")
+            # 注入映射和 metrics
+            node.did_pub_lookup = {x["did"]: x["pub"] for x in self.identities}
+            node.consensus_pub_lookup = {self.node_ids[j]: self.consensus_pks[j] for j in range(self.num_nodes)}
+            node.metrics = self.metrics
+            node.state.add_block(self.genesis_block)
+            self.nodes[nid] = node
+            self.net.register(node)
+            # event("node_created", node_id=nid, index=i, view=0, consensus_type="my")
 
 
     def _init_consensus(self):
@@ -121,7 +125,7 @@ class Simulator:
         creators = self.identities
         ncre = len(creators)
         
-        print(f"[Simulator] 开始填充内存池，目标数量: {count}")
+        logger.info(f"[Simulator] 开始填充内存池，目标数量: {count}")
         
         successful_adds = 0
         for i in range(count):
@@ -140,16 +144,16 @@ class Simulator:
                     self.metrics.mark_created(tx_hash)
                     
                     if successful_adds % 100 == 0:
-                        print(f"[Simulator] 已添加 {successful_adds} 个交易到内存池")
+                        logger.info(f"[Simulator] 已添加 {successful_adds} 个交易到内存池")
                 else:
-                    print(f"[Simulator] 交易重复或添加失败: {i}")
+                    logger.info(f"[Simulator] 交易重复或添加失败: {i}")
                     
             except Exception as e:
-                print(f"[Simulator] 创建交易失败: {e}")
+                logger.info(f"[Simulator] 创建交易失败: {e}")
                 continue
         
-        print(f"[Simulator] 内存池填充完成，成功添加: {successful_adds}/{count}")
-        print(f"[Simulator] 内存池当前大小: {self.mempool.size()}")
+        logger.info(f"[Simulator] 内存池填充完成，成功添加: {successful_adds}/{count}")
+        logger.info(f"[Simulator] 内存池当前大小: {self.mempool.size()}")
         
         # event("mempool_fill_complete", node_id="system", view=0, 
         #       actual_count=count, consensus_type="my")
@@ -266,19 +270,23 @@ class Simulator:
         
         # 创建两个冲突的转移交易
         from transaction import create_transfer_tx
+
+        # 创建 from_actor 字典
+        alice_actor = {
+            "did": alice_did,
+            "priv": alice_priv  # 确保这是 sign_message 所需的私钥格式
+        }
         
         # 交易A：转移到攻击者A
         tx_a = create_transfer_tx(
-            from_did=alice_did,
-            priv_key=alice_priv,
+            from_actor=alice_actor, 
             to_did="did:sim:attackerA",
             image_hash=asset
         )
-        
+
         # 交易B：转移到攻击者B（冲突）
         tx_b = create_transfer_tx(
-            from_did=alice_did,
-            priv_key=alice_priv,
+            from_actor=alice_actor,  
             to_did="did:sim:attackerB",
             image_hash=asset
         )
@@ -467,32 +475,32 @@ class Simulator:
                 if node.state.commit_qc.view > 0:
                     committed_blocks += 1
         
-        print(f"\n=== 模拟器统计 (轮数: {self.current_round}/{self.max_rounds}) ===")
-        print(f"活跃节点: {len(self.nodes)}")
-        print(f"内存池大小: {mempool_size}")
-        print(f"已提交区块: {committed_blocks}")
-        print(f"视图: {self.consensus.view}")
+        logger.info(f"\n=== 模拟器统计 (轮数: {self.current_round}/{self.max_rounds}) ===")
+        logger.info(f"活跃节点: {len(self.nodes)}")
+        logger.info(f"内存池大小: {mempool_size}")
+        logger.info(f"已提交区块: {committed_blocks}")
+        logger.info(f"视图: {self.consensus.view}")
         
         if stats:
-            print(f"提案数: {stats.get('proposals_made', 0)}")
-            print(f"成功QC数: {stats.get('qcs_formed', 0)}")
-            print(f"视图切换: {stats.get('view_changes', 0)}")
-            print(f"平均投票收集时间: {stats.get('avg_vote_collection_time', 0):.3f}s")
+            logger.info(f"提案数: {stats.get('proposals_made', 0)}")
+            logger.info(f"成功QC数: {stats.get('qcs_formed', 0)}")
+            logger.info(f"视图切换: {stats.get('view_changes', 0)}")
+            logger.info(f"平均投票收集时间: {stats.get('avg_vote_collection_time', 0):.3f}s")
         
         # 检查是否有未处理的攻击
         if hasattr(self, 'recorded_attack') and self.recorded_attack:
-            print(f"⚠️  已记录攻击: {self.recorded_attack['type']}")
-            print(f"   预期检测: {'是' if self.recorded_attack.get('expected_to_fail', False) else '否'}")
+            logger.info(f"⚠️  已记录攻击: {self.recorded_attack['type']}")
+            logger.info(f"   预期检测: {'是' if self.recorded_attack.get('expected_to_fail', False) else '否'}")
     
     def _print_final_stats(self, run_time: float) -> None:
         """打印最终统计信息"""
-        print("\n" + "="*50)
-        print("模拟器运行完成!")
-        print("="*50)
-        print(f"总运行时间: {run_time:.2f}秒")
-        print(f"总轮数: {self.current_round}")
-        print(f"节点数: {len(self.nodes)}")
-        print(f"容错数 (f): {self.f}")
+        logger.info("\n" + "="*50)
+        logger.info("模拟器运行完成!")
+        logger.info("="*50)
+        logger.info(f"总运行时间: {run_time:.2f}秒")
+        logger.info(f"总轮数: {self.current_round}")
+        logger.info(f"节点数: {len(self.nodes)}")
+        logger.info(f"容错数 (f): {self.f}")
         
         # 计算TPS（粗略估计）
         total_transactions = 0
@@ -502,18 +510,18 @@ class Simulator:
                 pass
         
         if run_time > 0:
-            print(f"估算TPS: {total_transactions/run_time:.2f}")
+            logger.info(f"估算TPS: {total_transactions/run_time:.2f}")
         
         # 检查安全机制是否有效
         if hasattr(self, 'recorded_attack') and self.recorded_attack:
-            print(f"\n攻击测试结果:")
-            print(f"  攻击类型: {self.recorded_attack['type']}")
-            print(f"  预期被检测: {'是' if self.recorded_attack.get('expected_to_fail', False) else '否'}")
+            logger.info(f"\n攻击测试结果:")
+            logger.info(f"  攻击类型: {self.recorded_attack['type']}")
+            logger.info(f"  预期被检测: {'是' if self.recorded_attack.get('expected_to_fail', False) else '否'}")
             
             # 这里可以添加实际的检测结果检查
             # 例如，检查是否有节点拒绝了伪造的QC
         
-        print("="*50)
+        logger.info("="*50)
     
     def stop(self) -> None:
         """停止模拟器"""
@@ -588,7 +596,7 @@ if __name__ == "__main__":
     simulator.fill_mempool_registers(count=1000)
     
     # 运行模拟器（可选：启用攻击测试）
-    print("启动模拟器...")
+    logger.info("启动模拟器...")
     thread = simulator.run(
         rounds=50,
         attack_type="view_number_attack",  # 测试view number攻击
@@ -599,12 +607,12 @@ if __name__ == "__main__":
     try:
         thread.join(timeout=30)  # 最多等待30秒
     except KeyboardInterrupt:
-        print("\n模拟被用户中断")
+        logger.info("\n模拟被用户中断")
     finally:
         simulator.stop()
         
         # 验证安全机制
         results = simulator.verify_security_mechanisms()
-        print("\n安全机制验证结果:")
+        logger.info("\n安全机制验证结果:")
         for mechanism, passed in results.items():
-            print(f"  {mechanism}: {'✓ 通过' if passed else '✗ 失败'}")
+            logger.info(f"  {mechanism}: {'✓ 通过' if passed else '✗ 失败'}")

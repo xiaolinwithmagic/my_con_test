@@ -1,4 +1,4 @@
-# block.py (修改后)
+# block.py (修正版)
 import hashlib
 import json
 import time
@@ -13,42 +13,45 @@ class Block:
         proposer: str, 
         payload: List[Any], 
         qc: Optional[QC] = None,  # 新的QC对象
-        view: int = 0
+        view: int = 0,
+        timestamp: Optional[float] = None  # 添加可选的时间戳参数
     ):
         self.parent_hash = parent_hash  # 字节类型，与QC一致
         self.height = height
         self.proposer = proposer
         self.payload = payload
         self.qc = qc  # 指向父区块的QC证明
-        self.timestamp = time.time()
+        self.timestamp = timestamp if timestamp is not None else time.time()
         self.view = view
+        
         # 计算区块哈希（字节类型）
-        self.hash = self.calculate_hash()
+        self.hash = self._compute_hash()
         # 保留十六进制字符串ID用于显示和调试
         self.id = self.hash.hex() if self.hash else None
         
-    def calculate_hash(self) -> bytes:
+    def _compute_hash(self) -> bytes:
         """
-        计算区块哈希，必须与QC中使用的block_hash一致。
-        哈希计算需要包含所有关键字段，特别是QC的merkle_root。
+        计算区块哈希 - 私有方法，只在初始化时调用
+        必须确保序列化的方式与 to_dict() 完全一致
         """
-        # 序列化所有关键数据
-        block_data = {
+        # 使用 to_dict 方法获取序列化数据，但排除 hash 字段
+        data = self._get_serializable_data()
+        
+        # 稳定序列化：按key排序确保确定性
+        block_string = json.dumps(data, sort_keys=True, separators=(',', ':'))
+        return hashlib.sha256(block_string.encode()).digest()
+    
+    def _get_serializable_data(self) -> Dict[str, Any]:
+        """获取用于哈希计算的序列化数据"""
+        return {
             "parent_hash": self.parent_hash.hex() if self.parent_hash else None,
             "height": self.height,
             "proposer": self.proposer,
             "payload": self.payload,
-            # QC信息：包含merkle_root确保绑定
-            "qc_view": self.qc.view if self.qc else None,
-            "qc_block_hash": self.qc.block_hash.hex() if self.qc and self.qc.block_hash else None,
-            "qc_merkle_root": self.qc.merkle_root.hex() if self.qc and self.qc.merkle_root else None,
-            "timestamp": int(self.timestamp * 1000),  # 毫秒精度，避免浮点数问题
+            "qc": self.qc.to_dict() if self.qc else None,
+            "timestamp": self.timestamp,
             "view": self.view,
         }
-        
-        # 稳定序列化：按key排序确保确定性
-        block_string = json.dumps(block_data, sort_keys=True, separators=(',', ':'))
-        return hashlib.sha256(block_string.encode()).digest()  # 返回字节
     
     def validate(self) -> bool:
         """基本验证逻辑"""
@@ -79,36 +82,61 @@ class Block:
     
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Block':
-        """从字典反序列化"""
-        # 处理parent_hash
-        parent_hash = None
-        if data.get("parent_hash"):
-            parent_hash = bytes.fromhex(data["parent_hash"])
-        
-        # 处理QC
-        qc = None
-        if data.get("qc"):
-            qc = QC.from_dict(data["qc"])
-        
-        # 创建Block实例
-        block = cls(
-            parent_hash=parent_hash,
-            height=data["height"],
-            proposer=data["proposer"],
-            payload=data["payload"],
-            qc=qc,
-            view=data.get("view", 0)
-        )
-        
-        # 验证反序列化的哈希是否一致
-        expected_hash = bytes.fromhex(data["hash"]) if data.get("hash") else None
-        if expected_hash and block.hash != expected_hash:
-            raise ValueError("Block hash mismatch during deserialization")
+        """从字典反序列化 - 修正版"""
+        try:
+            # 处理parent_hash
+            parent_hash = None
+            if data.get("parent_hash"):
+                parent_hash = bytes.fromhex(data["parent_hash"])
             
-        return block
+            # 处理QC
+            qc = None
+            if data.get("qc"):
+                try:
+                    qc = QC.from_dict(data["qc"])
+                except Exception as e:
+                    raise ValueError(f"Failed to deserialize QC: {e}")
+            
+            # 从数据中获取时间戳
+            timestamp = data.get("timestamp")
+            if timestamp is None:
+                timestamp = time.time()  # 如果没有时间戳，使用当前时间
+            
+            # 创建Block实例
+            block = cls(
+                parent_hash=parent_hash,
+                height=data["height"],
+                proposer=data["proposer"],
+                payload=data["payload"],
+                qc=qc,
+                view=data.get("view", 0),
+                timestamp=timestamp  # 传递时间戳
+            )
+            
+            # 获取数据中的哈希
+            expected_hash_hex = data.get("hash")
+            if expected_hash_hex:
+                expected_hash = bytes.fromhex(expected_hash_hex)
+                
+                # 验证哈希是否匹配
+                if block.hash != expected_hash:
+                    # 重新计算哈希以调试
+                    computed_hash = block._compute_hash()
+                    raise ValueError(
+                        f"Block hash mismatch during deserialization:\n"
+                        f"  Expected: {expected_hash.hex()[:16]}\n"
+                        f"  Computed: {computed_hash.hex()[:16]}\n"
+                        f"  Block data: height={block.height}, view={block.view}, proposer={block.proposer}"
+                    )
+            
+            return block
+            
+        except Exception as e:
+            raise ValueError(f"Failed to deserialize block: {e}")
     
     def __repr__(self):
-        return f"Block(hash={self.hash.hex()[:8]}..., height={self.height}, proposer={self.proposer}, view={self.view})"
+        hash_str = self.hash.hex()[:8] if self.hash else "None"
+        return f"Block(hash={hash_str}, height={self.height}, proposer={self.proposer}, view={self.view})"
 
 # 辅助函数：创建创世区块
 def create_genesis_block() -> Block:
@@ -119,5 +147,6 @@ def create_genesis_block() -> Block:
         proposer="genesis",
         payload=["Genesis block"],
         qc=None,
-        view=0
+        view=0,
+        timestamp=time.time()  # 显式设置时间戳
     )

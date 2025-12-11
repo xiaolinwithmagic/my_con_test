@@ -2,24 +2,6 @@
 import logging
 from simulator import Simulator
 
-# # 配置日志
-# logger = logging.getLogger()
-# logger.setLevel(logging.DEBUG)
-
-# # 创建文件处理器
-# file_handler = logging.FileHandler("simulation.log", mode='w')
-# file_handler.setLevel(logging.DEBUG)
-# file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-# file_handler.setFormatter(file_formatter)
-# logger.addHandler(file_handler)
-
-# # 创建控制台处理器
-# console_handler = logging.StreamHandler()
-# console_handler.setLevel(logging.DEBUG)
-# console_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-# console_handler.setFormatter(console_formatter)
-# logger.addHandler(console_handler)
-
 # 1. 配置root logger（所有日志的顶层logger，会捕获所有未指定logger的输出）
 root_logger = logging.getLogger()
 root_logger.setLevel(logging.DEBUG)  # 允许root接收所有级别日志
@@ -48,38 +30,38 @@ logger = logging.getLogger(__name__)
 
 def main():
     try:
-        print("创建模拟器...")
+        logger.info("创建模拟器...")
         # 1. 创建模拟器
-        simulator = Simulator(num_nodes=5, f=1)
+        simulator = Simulator(num_nodes=4, f=0)
         
         # 2. 设置
         simulator.setup()
-        simulator.fill_mempool_registers(count=10)
+        simulator.fill_mempool_registers(count=100)
         
         # 3. 运行并获取线程对象
-        print("启动共识...")
+        logger.info("启动共识...")
         consensus_thread = simulator.run(rounds=2)
         
         # 4. 等待共识线程完成
-        print("等待共识完成...")
-        consensus_thread.join(timeout=3)  # 最多等待30秒
+        logger.info("等待共识完成...")
+        consensus_thread.join(timeout=30)  # 最多等待30秒
         
         if consensus_thread.is_alive():
-            print("警告：共识线程超时，强制停止")
+            logger.info("警告：共识线程超时，强制停止")
             simulator.stop()
         else:
-            print("共识线程正常结束")
+            logger.info("共识线程正常结束")
         
         # 5. 验证安全机制
         results = simulator.verify_security_mechanisms()
-        print("\n安全机制验证结果:")
+        logger.info("\n安全机制验证结果:")
         for mechanism, passed in results.items():
-            print(f"  {mechanism}: {'✓ 通过' if passed else '✗ 失败'}")
+            logger.info(f"  {mechanism}: {'✓ 通过' if passed else '✗ 失败'}")
         
         logger.info("Simulation completed successfully.")
         
     except KeyboardInterrupt:
-        print("\n模拟被用户中断")
+        logger.info("\n模拟被用户中断")
         if 'simulator' in locals():
             simulator.stop()
     except Exception as e:

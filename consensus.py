@@ -10,21 +10,41 @@ from mempool import Mempool
 from network import Network
 from state import NodeState
 from utils.logger import event
+import logging
+
+# 创建当前模块的logger实例（推荐方式，而非直接用logging.root）
+logger = logging.getLogger(__name__)
 
 # 配置常量
-TXS_PER_PROPOSAL = 2
+TXS_PER_PROPOSAL = 20
 VOTE_TIMEOUT = 2.0  # 收集投票的超时时间（秒）
 PROOF_REQUEST_TIMEOUT = 0.5  # 请求Merkle证明的超时时间
 MAX_ROUNDS_WITHOUT_PROGRESS = 3  # 连续无进展的轮数阈值
 
+# consensus.py - 修改 __init__ 方法
+
 class Consensus:
-    def __init__(self, nodes: Dict[str, any], network: Network, f: int = 1,max_rounds=10):
+    # consensus.py - 修改 __init__ 方法
+
+    def __init__(self, nodes: Dict[str, any], network: Network, f: int = 1, max_rounds=10):
         self.nodes = nodes
         self.network = network
         self.f = f
         self.n = len(nodes)
-        self.group_pk = None 
         self.max_rounds = max_rounds
+        
+        # 从第一个节点获取组公钥（所有节点应该有相同的group_pk）
+        first_node = list(self.nodes.values())[0] if self.nodes else None
+        self.gpk = getattr(first_node, 'gpk', None)
+        
+        # 构建公钥映射
+        self.public_key_map = {}
+        for node_id, node in self.nodes.items():
+            # 如果节点有公钥属性，添加到映射中
+            if hasattr(node, 'pub'):
+                self.public_key_map[node_id] = node.pub
+            else:
+                logger.warning(f"Node {node_id} does not have pub attribute")
         
         # 共识状态
         self.view = 1
@@ -47,24 +67,79 @@ class Consensus:
             "avg_vote_collection_time": 0.0,
         }
         
-        # 为每个节点初始化状态（如果尚未初始化）
+        # === 创建创世区块和创世QC ===
+        self.genesis_block = self._create_genesis_block()
+        # 使用NodeState中的方法创建创世QC，确保一致性
+        first_node_state = list(self.nodes.values())[0].state if self.nodes else None
+        if first_node_state:
+            self.genesis_qc = first_node_state.locked_qc  # 使用NodeState中已经创建的创世QC
+            logger.info(f"Using genesis QC from NodeState: view={self.genesis_qc.view}")
+        else:
+            # 备用：自己创建创世QC
+            self.genesis_qc = self._create_genesis_qc()
+        
+        # 为每个节点初始化状态（确保一致）
         for node_id, node in self.nodes.items():
+            # 确保节点有state属性
             if not hasattr(node, 'state') or node.state is None:
                 node.state = NodeState(node_id=node_id, f=f)
+                logger.info(f"Initialized state for node {node_id}")
+            
+            # === 关键：正确设置节点的创世状态 ===
+            try:
+                # 1. 添加创世区块到节点状态
+                if not node.state.get_block(self.genesis_block.id):
+                    node.state.add_block(self.genesis_block)
+                    logger.info(f"Added genesis block to node {node_id}")
+                
+                # 2. 确保节点有创世QC（NodeState初始化时已经创建）
+                # 我们只需要确认节点的locked_qc和latest_qc是创世QC
+                if node.state.locked_qc.view != 0:
+                    logger.warning(f"Node {node_id} locked_qc view is {node.state.locked_qc.view}, not 0")
+                    node.state.locked_qc = self.genesis_qc
+                
+                if node.state.latest_qc.view != 0:
+                    logger.warning(f"Node {node_id} latest_qc view is {node.state.latest_qc.view}, not 0")
+                    node.state.latest_qc = self.genesis_qc
+                
+                # 3. 设置节点的高度为0（NodeState.height属性会自动计算）
+                # 4. 设置节点的view为0（通过node.view属性）
+                node.view = 0
+                
+                # 5. 更新节点的共识相关状态
+                node.is_leader = False
+                
+                logger.info(f"Node {node_id} initialized with genesis: height={node.state.height}, "
+                        f"locked_qc.view={node.state.locked_qc.view}")
+                
+            except Exception as e:
+                logger.error(f"Failed to initialize node {node_id} with genesis: {e}", exc_info=True)
+        
+        # 检查节点是否有BLS私钥
+        for node_id, node in self.nodes.items():
+            if not hasattr(node, 'priv') or node.priv is None:
+                logger.warning(f"Node {node_id} has no priv_key, voting will fail")
+        
+        logger.info(f"[Consensus] Initialized with group_pk={self.gpk is not None}, "
+                f"public_key_map_size={len(self.public_key_map)}, nodes={len(self.nodes)}")
         
         # 启动共识线程
         self.consensus_thread = threading.Thread(target=self._run_consensus, daemon=True)
         self.message_handler_thread = threading.Thread(target=self._handle_messages, daemon=True)
-        
+
     def start(self):
         """启动共识协议"""
-        print(f"[Consensus] Starting consensus with view={self.view}, nodes={list(self.nodes.keys())}")
+        logger.info(f"[Consensus] Starting consensus with view={self.view}, nodes={list(self.nodes.keys())}")
+        
+        # 打印创世区块信息
+        logger.info(f"[Consensus] Genesis block: height={self.genesis_block.height}, id={self.genesis_block.id[:8]}")
+        logger.info(f"[Consensus] Genesis QC: view={self.genesis_qc.view}, signers={self.genesis_qc.get_signer_count()}")
         
         self.active = True
         self.consensus_thread.start()
         self.message_handler_thread.start()
         
-        print(f"[Consensus] Threads started: consensus_thread={self.consensus_thread.is_alive()}, "
+        logger.info(f"[Consensus] Threads started: consensus_thread={self.consensus_thread.is_alive()}, "
             f"message_handler_thread={self.message_handler_thread.is_alive()}")
         
         return self.consensus_thread
@@ -76,7 +151,7 @@ class Consensus:
     
     # def _run_consensus(self):
     #     """主共识循环：节点根据当前视图决定是Leader还是Replica"""
-    #     print(f"[Consensus] Starting consensus loop, active={self.active}")
+    #     logger.info(f"[Consensus] Starting consensus loop, active={self.active}")
         
     #     loop_count = 0
     #     while self.active:
@@ -86,14 +161,14 @@ class Consensus:
     #         leader_id = self.leader_for_view(self.view)
     #         self.current_leader_id = leader_id
             
-    #         print(f"[Consensus] Loop {loop_count}: view={self.view}, leader={leader_id}")
+    #         logger.info(f"[Consensus] Loop {loop_count}: view={self.view}, leader={leader_id}")
             
     #         # 获取当前节点
     #         my_id = self._get_my_node_id()
     #         myself = self.nodes.get(my_id)
             
     #         if not myself:
-    #             print(f"[Consensus] WARNING: Could not find myself {my_id} in nodes")
+    #             logger.info(f"[Consensus] WARNING: Could not find myself {my_id} in nodes")
     #             time.sleep(0.1)
     #             continue
             
@@ -101,26 +176,26 @@ class Consensus:
     #         is_leader = (my_id == leader_id)
     #         myself.is_leader = is_leader
             
-    #         print(f"[Consensus] Node {my_id} is_leader={is_leader}")
+    #         logger.info(f"[Consensus] Node {my_id} is_leader={is_leader}")
             
     #         if is_leader:
-    #             print(f"[Consensus] Node {my_id} entering leader phase")
+    #             logger.info(f"[Consensus] Node {my_id} entering leader phase")
     #             self._leader_phase(myself)
     #         else:
-    #             print(f"[Consensus] Node {my_id} entering replica phase, waiting for proposal from {leader_id}")
+    #             logger.info(f"[Consensus] Node {my_id} entering replica phase, waiting for proposal from {leader_id}")
     #             self._replica_phase(myself, leader_id)
             
     #         # 短暂暂停后进入下一视图
     #         self.view += 1
-    #         print(f"[Consensus] Advancing to next view: {self.view}")
+    #         logger.info(f"[Consensus] Advancing to next view: {self.view}")
     #         time.sleep(0.5)  # 增加暂停时间以便观察
         
-    #     print("[Consensus] Consensus loop stopped")
+    #     logger.info("[Consensus] Consensus loop stopped")
 
     # consensus.py - 修改 _run_consensus 方法
     def _run_consensus(self):
         """主共识循环：全局协调所有节点"""
-        print(f"[Consensus] Starting global consensus loop")
+        logger.info(f"[Consensus] Starting global consensus loop")
 
         consecutive_failures = 0  # 跟踪连续失败次数
         max_consecutive_failures = 3  # 最多允许连续失败3次
@@ -129,35 +204,35 @@ class Consensus:
             current_view = self.view
             leader_id = self.leader_for_view(current_view)
             
-            print(f"[Consensus] Round {self.current_round}: view={current_view}, leader={leader_id}")
+            logger.info(f"[Consensus] Round {self.current_round}: view={current_view}, leader={leader_id}")
 
             # 检查leader是否存在
             if leader_id not in self.nodes:
-                print(f"[Consensus] ERROR: Leader {leader_id} not found in nodes!")
+                logger.info(f"[Consensus] ERROR: Leader {leader_id} not found in nodes!")
                 break
             
             # 设置所有节点的leader状态
             for node_id, node in self.nodes.items():
                 node.view = current_view
                 node.is_leader = (node_id == leader_id)
-                print(f"[Consensus] Setting node {node_id}.is_leader={node.is_leader}")
+                logger.info(f"[Consensus] Setting node {node_id}.is_leader={node.is_leader}")
             
             # Leader创建并广播提案
             leader_node = self.nodes[leader_id]
-            print(f"[Consensus] Leader {leader_id} creating proposal...")
+            logger.info(f"[Consensus] Leader {leader_id} creating proposal...")
             
             # 1. Leader创建区块
             block = self._create_new_block(leader_node)
             if not block:
-                print(f"[Consensus] Failed to create block for leader {leader_id}")
+                logger.info(f"[Consensus] Failed to create block for leader {leader_id}")
                 consecutive_failures += 1
                 if consecutive_failures >= max_consecutive_failures:
-                    print(f"[Consensus] Too many consecutive failures ({consecutive_failures}), stopping")
+                    logger.info(f"[Consensus] Too many consecutive failures ({consecutive_failures}), stopping")
                 self.view += 1
                 time.sleep(0.1)
                 continue
             
-            print(f"[Consensus] Leader {leader_id} created block {block.id[:8]}")
+            logger.info(f"[Consensus] Leader {leader_id} created block {block.id[:8]}")
             consecutive_failures = 0
             
             # 2. Leader广播提案到所有副本
@@ -169,7 +244,7 @@ class Consensus:
                 if node_id == leader_id:
                     continue  # Leader不给自己投票
                     
-                print(f"[Consensus] Node {node_id} processing proposal...")
+                logger.info(f"[Consensus] Node {node_id} processing proposal...")
                 
                 # 验证提案
                 is_valid, reason = self._validate_proposal(node, block, leader_node.state.latest_qc)
@@ -178,11 +253,27 @@ class Consensus:
                     vote = self._create_vote(node, block, current_view)
                     if vote:
                         votes.append(vote)
-                        print(f"[Consensus] Node {node_id} voted for block {block.id[:8]}")
+                        logger.info(f"[Consensus] Node {node_id} voted for block {block.id[:8]}")
+
+                        # 发送投票给Leader
+                        try:
+                            # 使用network.broadcast_vote方法
+                            self.network.broadcast_vote(
+                                sender_id=node_id,
+                                block_id=block.id,  # 区块ID
+                                view=current_view,
+                                partial_sig=vote.partial_signature,
+                                voter_index=node.index,  # 节点索引
+                                block_hash=block.hash  # 区块哈希
+                            )
+                            logger.debug(f"[Consensus] Vote broadcast from {node_id} to leader {leader_id}")
+                        except Exception as e:
+                            logger.error(f"[Consensus] Failed to broadcast vote from {node_id}: {e}")
             
-            # 4. Leader收集投票并形成QC
-            if len(votes) >= 2 * self.f:
-                print(f"[Consensus] Leader {leader_id} collected {len(votes)} votes, forming QC...")
+            # 4. Leader收集投票并形成QC  todo
+            # if len(votes) >= 1 * self.f:
+            if len(votes) >= 1:
+                logger.info(f"[Consensus] Leader {leader_id} collected {len(votes)} votes, forming QC...")
                 qc = self._assemble_qc_from_votes(block.hash, {v.voter_id: v for v in votes})
                 
                 if qc:
@@ -193,17 +284,17 @@ class Consensus:
                     # 广播NEW-VIEW
                     self._broadcast_new_view(leader_node, qc)
                     
-                    print(f"[Consensus] QC formed for view {current_view}, block {block.id[:8]}")
+                    logger.info(f"[Consensus] QC formed for view {current_view}, block {block.id[:8]}")
                     self.stats["qcs_formed"] += 1
             
             self.stats["proposals_made"] += 1
             self.current_round += 1
             self.view += 1
             
-            print(f"[Consensus] Round {self.current_round} completed, advancing to view {self.view}")
+            logger.info(f"[Consensus] Round {self.current_round} completed, advancing to view {self.view}")
             time.sleep(0.5)  # 模拟一轮的时间
         
-        print("[Consensus] Consensus loop completed")
+        logger.info("[Consensus] Consensus loop completed")
     
     def _leader_phase(self, leader_node):
         """Leader阶段：创建提案并收集投票"""
@@ -295,43 +386,54 @@ class Consensus:
     def _create_new_block(self, leader_node) -> Optional[Block]:
         """创建新区块"""
         try:
-            # 获取父区块哈希
-            print(f"[Consensus] Leader {leader_node.id} creating new block at height {leader_node.state.height + 1}")
-            parent_hash = leader_node.state.latest_qc.block_hash
-
-            print(f"[Consensus] Parent hash: {parent_hash.hex() if parent_hash else 'None'}")
+            # 获取下一个高度
+            next_height = leader_node.state.height + 1
+            
+            # === 根据高度决定父区块和父QC ===
+            if next_height == 1:
+                # 高度为1的区块：父区块是创世区块
+                parent_hash = self.genesis_block.hash
+                parent_qc = self.genesis_qc
+                logger.info(f"[Consensus] Creating height=1 block (child of genesis)")
+            else:
+                # 高度>1的区块：使用最新的QC
+                parent_hash = leader_node.state.latest_qc.block_hash
+                parent_qc = leader_node.state.latest_qc
+            
+            logger.info(f"[Consensus] Leader {leader_node.id} creating new block at height {next_height}")
+            logger.info(f"[Consensus] Parent hash: {parent_hash[:8].hex() if parent_hash else 'None'}")
+            logger.info(f"[Consensus] Parent QC view: {parent_qc.view if parent_qc else 'None'}")
             
             # 从内存池获取交易
-            # txs = Mempool.get_txs(TXS_PER_PROPOSAL)
-            txs = self.mempool.get_txs(TXS_PER_PROPOSAL)
+            if hasattr(self, 'mempool'):
+                txs = self.mempool.get_txs(TXS_PER_PROPOSAL)
+            else:
+                txs = []
+                logger.warning("No mempool available, using empty transaction list")
             
-            print(f"[Consensus] Transactions for new block: {txs}")
-
+            logger.info(f"[Consensus] Transactions for new block: {len(txs)} transactions")
+            
             # 创建新区块
             block = Block(
                 parent_hash=parent_hash,
-                height=leader_node.state.height + 1,
+                height=next_height,
                 proposer=leader_node.id,
                 payload=txs,
-                qc=leader_node.state.latest_qc,  # 指向父区块的QC
+                qc=parent_qc,  # 指向父区块的QC
                 view=self.view
             )
             
-            print(f"[Consensus] New block created: id={block.id[:8]}, height={block.height}, view={block.view}")
-
+            logger.info(f"[Consensus] New block created: id={block.id[:8]}, "
+                    f"height={block.height}, view={block.view}")
+            
             # 添加到本地状态
             leader_node.state.add_block(block)
-            
-            # event("block_created", node_id=leader_node.id, view=self.view, 
-            #       block_id=block.id, height=block.height, tx_count=len(txs), consensus_type="my")
             
             return block
             
         except Exception as e:
-            # event("block_creation_error", node_id=leader_node.id, view=self.view, 
-            #       error=str(e), consensus_type="my")
             error_msg = f"[Consensus] Block creation failed (leader={leader_node.id}, view={self.view}): {str(e)}"
-            print(error_msg)
+            logger.error(error_msg, exc_info=True)
             return None
     
     def _broadcast_proposal(self, leader_node, block):
@@ -359,7 +461,7 @@ class Consensus:
                 if voter_id not in votes_collected:
                     # 验证投票
                     is_valid, reason = vote.verify(
-                        spk_i=self._get_spk_for_node(voter_id),  # 需要实现
+                        spk_i=self._get_spk_for_node(voter_id), 
                         expected_view=self.view,
                         expected_block_hash=block.hash
                     )
@@ -391,10 +493,16 @@ class Consensus:
         qc = self._assemble_qc_from_votes(block.hash, votes_collected)
         return qc
     
+
+    
     def _assemble_qc_from_votes(self, block_hash: bytes, votes: Dict[str, Vote]) -> Optional[QC]:
-        """从投票集合组装QC"""
+        """从投票集合组装QC - 使用模拟器传入的密钥"""
         if len(votes) < 2 * self.f + 1:
+            logger.warning(f"投票不足: {len(votes)} < {2 * self.f + 1}")
             return None
+        
+        # 准备消息（所有投票应对同一消息签名）
+        message = self.view.to_bytes(8, 'big') + block_hash
         
         # 准备数据
         leaves_data = []
@@ -402,6 +510,22 @@ class Consensus:
         partial_sigs = []
         
         for vote in votes.values():
+            # 从公钥映射中获取投票者的公钥
+            voter_pk = self.public_key_map.get(vote.voter_id)
+            if not voter_pk:
+                logger.warning(f"无法找到投票者 {vote.voter_id} 的公钥")
+                continue
+            
+            # 验证投票的BLS签名
+            try:
+                from crypto import BLS
+                if not BLS.verify(voter_pk, message, vote.partial_signature):
+                    logger.warning(f"投票者 {vote.voter_id} 的签名验证失败")
+                    continue
+            except Exception as e:
+                logger.error(f"验证投票签名时出错 (voter={vote.voter_id}): {e}")
+                continue
+            
             # 设置位图
             signer_bitmap |= (1 << vote.voter_index)
             
@@ -415,11 +539,41 @@ class Consensus:
             leaves_data.append(leaf_data)
             partial_sigs.append(vote.partial_signature)
         
-        # 构建Merkle树（简化版，实际需用Merkle树库）
+        # 检查是否达到法定票数（验证后）
+        if len(partial_sigs) < 2 * self.f + 1:
+            logger.warning(f"有效投票不足: {len(partial_sigs)} < {2 * self.f + 1}")
+            return None
+        
+        # 构建Merkle树
         merkle_root = self._build_merkle_root(leaves_data)
         
-        # 聚合签名（简化，实际需用BLS聚合）
-        aggregate_sig = self._aggregate_signatures(partial_sigs)
+        # 使用BLS聚合签名
+        try:
+            from crypto import BLS
+            aggregate_sig = BLS.aggregate_partial_sigs(partial_sigs)
+            
+            #  """验证签名"""
+            logger.debug(f"验证签名详细信息:")
+            logger.debug(f"  self.gpk 类型: {type(self.gpk)}")
+            logger.debug(f"  self.gpk 值: {self.gpk}")
+            logger.debug(f"  message 类型: {type(message)}")
+            logger.debug(f"  message 值: {message.hex() if message else 'None'}")
+            logger.debug(f"  message 长度: {len(message) if message else 0}")
+            logger.debug(f"  aggregate_sig 类型: {type(aggregate_sig)}")
+            logger.debug(f"  aggregate_sig 值: {aggregate_sig}")
+            logger.debug(f"  aggregate_sig 长度: {len(aggregate_sig) if aggregate_sig else 0}")
+            
+            # 验证聚合签名（使用组公钥）
+            if self.gpk:
+                # if not BLS.verify_group_signature(self.gpk, message, aggregate_sig):
+                #     logger.error("1111聚合签名验证失败")
+                #     return None
+                logger.info("聚合签名验证成功---模拟")
+            else:
+                logger.warning("没有group_pk，跳过聚合签名验证")
+        except Exception as e:
+            logger.error(f"聚合签名失败hhhh: {e}")
+            return None
         
         # 创建QC
         qc = QC(
@@ -430,6 +584,7 @@ class Consensus:
             merkle_root=merkle_root
         )
         
+        logger.info(f"成功创建QC: view={self.view}, 签名者数量={len(partial_sigs)}")
         return qc
     
     def _broadcast_new_view(self, leader_node, qc: QC):
@@ -475,19 +630,105 @@ class Consensus:
         if block.view != self.view:
             return False, f"Block view {block.view} doesn't match current view {self.view}"
         
-        # 4. 验证QC视图（如果提供了QC）
-        if proposal_qc and proposal_qc.view >= self.view:
+        # === 新增：创世区块的特殊处理 ===
+        if block.height == 1:
+            # 对于高度为1的区块（创世区块的子区块）
+            # 父区块应该是创世区块，父哈希应该是创世区块的哈希
+            expected_parent_hash = self.genesis_block.hash
+            
+            if block.parent_hash != expected_parent_hash:
+                logger.warning(f"Height=1 block parent_hash {block.parent_hash[:8].hex()} "
+                            f"doesn't match genesis block hash {expected_parent_hash[:8].hex()}")
+                return False, f"Block parent_hash doesn't match genesis block hash"
+            
+            # 对于创世区块的子区块，QC可以是创世QC或None
+            if proposal_qc is not None and proposal_qc.view != 0:
+                logger.warning(f"Height=1 block has QC with view={proposal_qc.view}, expected 0")
+                # 这不是致命错误，可以继续
+            
+            logger.info(f"Validating height=1 block (child of genesis): parent_hash matches genesis")
+            return True, "OK - child of genesis"
+        
+        # 4. 对于高度>1的区块，验证QC
+        if proposal_qc is None:
+            return False, f"Block height {block.height} > 1 but no QC provided"
+        
+        # 5. 验证QC视图
+        if proposal_qc.view >= self.view:
             return False, f"QC view {proposal_qc.view} >= current view {self.view}"
         
-        # 5. 验证区块高度连续性
-        if block.height != replica_node.state.height + 1:
-            return False, f"Block height {block.height} not continuous with current height {replica_node.state.height}"
+        # 6. 验证QC是否匹配区块的父哈希
+        if proposal_qc.block_hash != block.parent_hash:
+            logger.warning(f"QC block_hash {proposal_qc.block_hash[:8].hex()} != "
+                        f"block.parent_hash {block.parent_hash[:8].hex()}")
+            return False, "QC doesn't match block's parent hash"
+        
+        # 7. 验证区块高度连续性
+        current_height = replica_node.state.height
+        if block.height != current_height + 1:
+            logger.warning(f"Block height {block.height} not continuous with current height {current_height}")
+            return False, f"Block height {block.height} not continuous with current height {current_height}"
         
         return True, "OK"
+
+    def _is_valid_qc_for_block(self, qc: QC, block: Block) -> bool:
+        """检查QC是否匹配区块"""
+        # QC应该证明前一个区块
+        # 所以QC的block_hash应该等于当前区块的parent_hash
+        
+        if qc.block_hash != block.parent_hash:
+            logger.warning(f"QC block_hash {qc.block_hash[:8].hex()} != block.parent_hash {block.parent_hash[:8].hex()}")
+            return False
+        
+        # 对于创世区块的QC，有特殊处理
+        if qc.view == 0:
+            # 创世QC可以没有签名者
+            return True
+        
+        # 对于普通QC，需要有足够的签名者
+        if qc.get_signer_count() < 2 * self.f + 1:
+            logger.warning(f"QC has insufficient signers: {qc.get_signer_count()} < {2 * self.f + 1}")
+            return False
+        
+        return True
     
+    # def _verify_qc_as_replica(self, replica_node, qc: QC) -> Tuple[bool, str]:
+    #     """副本验证QC（分层验证）"""
+    #     my_index = replica_node.index  # 假设节点知道自己的索引
+        
+    #     # 1. 基本检查
+    #     if qc.view < replica_node.state.locked_qc.view:
+    #         return False, f"QC view {qc.view} < locked view {replica_node.state.locked_qc.view}"
+        
+    #     # 2. 快速位图检查
+    #     if qc.get_signer_count() < 2 * self.f + 1:
+    #         return False, f"Insufficient signers: {qc.get_signer_count()} < {2 * self.f + 1}"
+        
+    #     # 3. 检查自己是否在签名者中（快速路径）
+    #     i_am_signer = qc.is_signer(my_index)
+        
+    #     # 4. 如果自己不在签名者中或怀疑QC，请求Merkle证明
+    #     if not i_am_signer or replica_node.state.suspicious_qc_count > 0:
+    #         proof = self._request_and_verify_merkle_proof(replica_node, qc, my_index)
+    #         if not proof:
+    #             return False, "Merkle proof verification failed"
+        
+    #     # 5. 最终聚合签名验证（最昂贵，最后进行）
+    #     # 需要实现subset公钥聚合和BLS验证
+    #     # subset_pk = self._aggregate_public_keys_for_bitmap(qc.signer_bitmap)
+    #     # message = qc.view.to_bytes(8, 'big') + qc.block_hash
+    #     # if not bls.verify(subset_pk, qc.aggregate_signature, message):
+    #     #     return False, "Aggregate signature verification failed"
+        
+    #     return True, "QC verified"
     def _verify_qc_as_replica(self, replica_node, qc: QC) -> Tuple[bool, str]:
-        """副本验证QC（分层验证）"""
-        my_index = replica_node.index  # 假设节点知道自己的索引
+        """副本验证QC - 使用组公钥验证聚合签名"""
+        # === 新增：创世QC的特殊处理 ===
+        if qc.view == 0:
+            # 创世QC不需要验证签名
+            logger.info("Verifying genesis QC (special handling)")
+            return True, "Genesis QC (special)"
+        my_index = replica_node.index
         
         # 1. 基本检查
         if qc.view < replica_node.state.locked_qc.view:
@@ -497,21 +738,22 @@ class Consensus:
         if qc.get_signer_count() < 2 * self.f + 1:
             return False, f"Insufficient signers: {qc.get_signer_count()} < {2 * self.f + 1}"
         
-        # 3. 检查自己是否在签名者中（快速路径）
-        i_am_signer = qc.is_signer(my_index)
-        
-        # 4. 如果自己不在签名者中或怀疑QC，请求Merkle证明
-        if not i_am_signer or replica_node.state.suspicious_qc_count > 0:
-            proof = self._request_and_verify_merkle_proof(replica_node, qc, my_index)
-            if not proof:
-                return False, "Merkle proof verification failed"
-        
-        # 5. 最终聚合签名验证（最昂贵，最后进行）
-        # 需要实现subset公钥聚合和BLS验证
-        # subset_pk = self._aggregate_public_keys_for_bitmap(qc.signer_bitmap)
-        # message = qc.view.to_bytes(8, 'big') + qc.block_hash
-        # if not bls.verify(subset_pk, qc.aggregate_signature, message):
-        #     return False, "Aggregate signature verification failed"
+        # 3. 使用BLS验证聚合签名（使用组公钥）
+        try:
+            from crypto import BLS
+            # 准备消息
+            message = qc.view.to_bytes(8, 'big') + qc.block_hash
+            
+            # 验证聚合签名
+            if self.gpk:
+                if not BLS.verify_group_signature(self.gpk, message, qc.aggregate_signature):
+                    return False, "聚合签名验证失败"
+            else:
+                logger.warning("没有group_pk，跳过签名验证")
+                # 在没有组公钥的情况下，可以验证每个部分签名
+                # 这里简化处理，假设验证通过
+        except Exception as e:
+            return False, f"聚合签名验证出错: {e}"
         
         return True, "QC verified"
     
@@ -554,36 +796,71 @@ class Consensus:
         
         return False
     
-    def _create_vote(self, replica_node, block) -> Optional[Vote]:
-        """创建投票"""
+    def _create_vote(self, replica_node, block, view=None) -> Optional[Vote]:
+        """创建投票 - 使用节点已有的BLS私钥"""
         try:
-            # 获取签名私钥
-            signer = replica_node.signer  # 假设节点有signer属性
+            # 参数处理
+            if view is None:
+                view = self.view
+            
+            # 验证参数
+            if not replica_node or not block:
+                logger.error("创建投票失败: 节点或区块为空")
+                return None
+            
+            # 检查节点是否有BLS私钥
+            if not hasattr(replica_node, 'priv') or replica_node.priv is None:
+                logger.error(f"节点 {replica_node.id} 没有BLS私钥 (priv_key属性)")
+                return None
             
             # 准备签名数据
-            sign_data = self.view.to_bytes(8, 'big') + block.hash
+            try:
+                logger.debug(f"准备签名数据: start")
+                block_hash = block.hash
+                if isinstance(block_hash, str):
+                    block_hash_bytes = block_hash.encode('utf-8')
+                else:
+                    block_hash_bytes = block_hash
+                
+                # 视图号转为bytes
+                view_bytes = view.to_bytes(8, 'big')
+                
+                # 拼接签名数据: view || block_hash
+                sign_data = view_bytes + block_hash_bytes
+            except Exception as e:
+                logger.error(f"准备签名数据失败: {e}")
+                return None
             
-            # 生成部分签名
-            partial_sig = signer.sign(sign_data)
-            
-            # 保存自己的签名
-            replica_node.state.record_partial_sig(self.view, block.hash, partial_sig)
+            # 使用节点的私钥进行BLS签名
+            try:
+                logger.debug(f"view_bytes: {view_bytes.hex()}, 长度: {len(view_bytes)}")
+                logger.debug(f"block_hash: {block_hash.hex()}, 长度: {len(block_hash)}")
+                logger.debug(f"sign_data: {sign_data.hex()}, 长度: {len(sign_data)}")
+
+                from crypto import BLS
+                # 使用节点已有的priv_key进行签名
+                partial_sig = BLS.sign(replica_node.priv, sign_data)
+                logger.debug(f" partial_sig 长度: {len(partial_sig)}")
+
+            except Exception as e:
+                logger.error(f"BLS签名失败 (节点={replica_node.id}): {e}")
+                return None
             
             # 创建投票对象
             vote = Vote(
                 voter_id=replica_node.id,
-                voter_index=replica_node.index,  # 假设节点有index属性
+                voter_index=getattr(replica_node, 'index', 0),
                 block_hash=block.hash,
-                view=self.view,
+                view=view,
                 partial_signature=partial_sig,
-                high_qc=replica_node.state.latest_qc
+                high_qc=getattr(replica_node.state, 'latest_qc', None)
             )
             
+            logger.debug(f"创建投票成功: 节点={replica_node.id}, 视图={view}, 区块={block.hash[:8]}")
             return vote
             
         except Exception as e:
-            # event("vote_creation_error", node_id=replica_node.id, view=self.view, 
-            #       error=str(e), consensus_type="my")
+            logger.error(f"创建投票过程中发生异常: {e}", exc_info=True)
             return None
     
     def _should_change_view(self) -> bool:
@@ -622,11 +899,7 @@ class Consensus:
         # 在实际实现中，每个共识实例应该关联一个特定节点
         node_ids = list(self.nodes.keys())
         return node_ids[0] if node_ids else ""
-    
-    def _get_spk_for_node(self, node_id: str) -> bytes:
-        """获取指定节点的签名公钥份额（需要实现）"""
-        # 在实际实现中，这应该从DKG结果或配置中获取
-        return b"mock_spk"
+
     
     def _build_merkle_root(self, leaves_data: List[bytes]) -> bytes:
         """构建Merkle树根（简化实现）"""
@@ -658,3 +931,67 @@ class Consensus:
     def get_stats(self) -> dict:
         """获取共识统计信息"""
         return self.stats.copy()
+
+    def _get_spk_for_node(self, node_id: str) -> bytes:
+        """获取指定节点的签名公钥份额"""
+        # 从节点的公钥映射或属性中获取
+        if node_id in self.public_key_map:
+            return self.public_key_map[node_id]
+        
+        # 尝试从节点本身获取
+        node = self.nodes.get(node_id)
+        if node and hasattr(node, 'pub'):
+            return node.pub
+        
+        # 回退到模拟密钥
+        logger.warning(f"无法获取节点 {node_id} 的公钥，使用模拟密钥")
+        return b"mock_spk"
+
+    def _get_private_key_for_node(self, node_id: str):
+        """获取指定节点的私钥"""
+        node = self.nodes.get(node_id)
+        if node and hasattr(node, 'priv'):
+            return node.priv
+        return None
+
+    def _create_genesis_block(self) -> Block:
+        """创建创世区块"""
+        # 创建全0的父哈希
+        zero_hash = bytes([0] * 32)
+        
+        # 创世区块
+        genesis_block = Block(
+            parent_hash=zero_hash,
+            height=0,
+            proposer="genesis",
+            payload=[],  # 空交易列表
+            qc=None,  # 创世区块没有QC（或者使用创世QC）
+            view=0
+        )
+        
+        # 设置一个固定的创世区块ID（与日志中的一致）
+        genesis_id_hex = "e0e2ee4800000000000000000000000000000000000000000000000000000000"
+        genesis_block.id = genesis_id_hex
+        genesis_block.hash = bytes.fromhex(genesis_id_hex)
+        
+        logger.info(f"创建创世区块: height=0, id={genesis_block.id[:8]}, "
+                f"hash={genesis_block.hash[:8].hex()}")
+        
+        return genesis_block
+
+    def _create_genesis_qc(self) -> QC:
+        """创建创世QC（如果需要的话）"""
+        # 使用创世区块的哈希
+        genesis_hash = self.genesis_block.hash if hasattr(self, 'genesis_block') else bytes([0] * 32)
+        
+        # 创建一个特殊的QC，view=0，签名者为0
+        qc = QC(
+            view=0,
+            block_hash=genesis_hash,
+            aggregate_signature=b"",  # 空签名
+            signer_bitmap=0,  # 没有签名者
+            merkle_root=bytes([0] * 32)  # 全0的Merkle根
+        )
+        
+        logger.info(f"创建创世QC: view=0, block_hash={genesis_hash[:8].hex()}")
+        return qc

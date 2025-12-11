@@ -11,11 +11,13 @@ class QC:
     2. 增加 merkle_root 字段，用于后续按需请求Merkle证明来验证partial sig的合法性。
     3. 不再在QC中直接存储 signatures 列表，该列表仅由Leader在本地存储以生成证明。
     """
-    view: int                    # QC对应的视图编号，用于检测view篡改
-    block_hash: bytes            # 区块哈希，更明确的命名
-    aggregate_signature: bytes   # 聚合签名 (原 agg 字段)
-    signer_bitmap: int           # 签名者位图，第i位为1表示索引i的副本参与了签名
-    merkle_root: bytes           # 所有partial signature的Merkle树根哈希
+    def __init__(self, view: int, block_hash: bytes, aggregate_signature: bytes, 
+                 signer_bitmap: int, merkle_root: bytes):
+        self.view = view
+        self.block_hash = block_hash  # bytes
+        self.aggregate_signature = aggregate_signature  # bytes
+        self.signer_bitmap = signer_bitmap
+        self.merkle_root = merkle_root  # bytes
     
     # 可选：用于调试或兼容性的字段，正式版本可考虑移除
     # signatures: Optional[List[bytes]] = None  # 不再通过网络发送，Leader本地存储
@@ -43,6 +45,8 @@ class QC:
     @classmethod
     def from_dict(cls, data: dict) -> "QC":
         """从字典反序列化。"""
+        if not data:
+            return None
         return cls(
             view=data["view"],
             block_hash=bytes.fromhex(data["block_hash"]) if data["block_hash"] else None,
