@@ -13,6 +13,7 @@ class Network:
         self.nodes: Dict[str, Any] = {}  # node_id -> Node对象
         self.drop_rate = drop_rate
         self.delay_range = delay_range
+        # self.services = services
         
         # 定义支持的消息类型常量
         self.MSG_TYPES = {
@@ -24,6 +25,8 @@ class Network:
             "VIEW_CHANGE": "view_change",
             "TIMEOUT": "timeout",  # 超时消息，用于触发view change
         }
+
+
         
     def register(self, node) -> None:
         """注册节点到网络"""
@@ -72,35 +75,25 @@ class Network:
                args=(receiver, message_type, message_with_sender),
                daemon=True).start()
     
-    def broadcast(self, sender_id: str, message_type: str, message: Dict[str, Any]) -> None:
+    def broadcast(self, sender_id: str, message_type: str, message: Dict[str, Any]) -> int:
         """
         广播消息到所有其他节点
         """
         if sender_id not in self.nodes:
             logging.error(f"Cannot broadcast from {sender_id}: node not registered")
-            return
+            return 0  # 返回0而不是None
 
-        # if message_type == self.MSG_TYPES["PROPOSAL"]:
-        #     block = message.get("block")
-        #     if block:
-        #         logging.debug(f"[Broadcast DEBUG] Original block type: {type(block)}")
-        #         if isinstance(block, dict):
-        #             # 检查各种可能的hash字段
-        #             hash_keys = ["hash", "block_hash", "id"]
-        #             for key in hash_keys:
-        #                 if key in block:
-        #                     value = block[key]
-        #                     if value:
-        #                         if isinstance(value, bytes):
-        #                             logging.debug(f"[Broadcast DEBUG] Block[{key}] (bytes): {value.hex()[:16]}...")
-        #                         else:
-        #                             logging.debug(f"[Broadcast DEBUG] Block[{key}]: {value[:16] if isinstance(value, str) else value}")
-        #                     else:
-        #                         logging.debug(f"[Broadcast DEBUG] Block[{key}] is empty/None")
-            
         logging.debug(f"[Broadcast] {message_type} from {sender_id}")
+
+        # 提前初始化变量
+        threads = []
+        total_targets = len(self.nodes) - 1  # 排除自己
         
-        # 为每个接收者创建独立的投递线程
+        if total_targets <= 0:
+            logging.debug(f"[Broadcast] 没有其他节点可发送")
+            return 0
+        
+        # 步骤1: 为每个接收者创建独立的投递线程
         for node_id, node in self.nodes.items():
             if node_id == sender_id:
                 continue  # 不发送给自己
@@ -110,31 +103,37 @@ class Network:
             msg_copy["sender"] = sender_id
             msg_copy["type"] = message_type
             
-            Thread(target=self._deliver, 
-                   args=(node, message_type, msg_copy),
-                   daemon=True).start()
-    
-    # ------------------------------------------------------------
-    # 具体的消息广播方法（针对不同的消息类型）
-    # ------------------------------------------------------------
-    
-    # def broadcast_proposal(self, sender_id: str, block, qc: Optional[QC] = None, view: int = 0) -> None:
-    #     """广播提案消息"""
-    #     message = {
-    #         "block": block.to_dict() if hasattr(block, "to_dict") else block,
-    #         "qc": qc.to_dict() if qc else None,
-    #         "view": view,
-    #         "timestamp": time.time(),
-    #     }
-    #     self.broadcast(sender_id, self.MSG_TYPES["PROPOSAL"], message)
-
-    # self.network.broadcast_proposal(
-    #         sender_id=leader_node.id,
-    #         block=block,
-    #         qc=leader_node.state.latest_qc,
-    #         view=self.view
-    #     )
+            # 创建线程
+            thread = Thread(target=self._deliver, 
+                        args=(node, message_type, msg_copy),
+                        daemon=True)
+            threads.append(thread)
         
+        # 步骤2: 启动所有线程（在循环外部！）
+        for thread in threads:
+            thread.start()
+        
+        # 给线程一点时间开始执行
+        time.sleep(0.05)
+        
+        # 步骤3: 等待所有线程完成（带超时）
+        start_time = time.time()
+        timeout = 5.0  # 5秒超时
+        
+        # 注意：这里我们使用一个新的变量名来避免混淆
+        for current_thread in threads:
+            remaining_time = timeout - (time.time() - start_time)
+            if remaining_time > 0:
+                current_thread.join(timeout=remaining_time)
+            else:
+                logging.warning(f"[Broadcast] 超时，部分线程未完成")
+                break
+        
+        # 步骤4: 统计成功数量
+        success_count = sum(1 for t in threads if not t.is_alive())
+        logging.debug(f"[Broadcast] {message_type} from {sender_id} 成功发送给 {success_count}/{total_targets} 个节点")
+        return success_count
+
 
     def broadcast_proposal(self, sender_id: str, block, qc: Optional[QC] = None, view: int = 0) -> None:
         """广播提案消息 - 修正版"""
@@ -174,20 +173,71 @@ class Network:
         except Exception as e:
             logging.error(f"Error in broadcast_proposal: {e}")
     
-    def broadcast_vote(self, sender_id: str, block_id: str, view: int, 
-                  partial_sig: bytes, voter_index: int, block_hash: bytes = None) -> None:
-        """广播投票消息"""
-        message = {
-            "voter_id": sender_id,  # 发送者ID
-            "voter_index": voter_index,  # 发送者索引
-            "block_id": block_id,  # 区块ID
-            "block_hash": block_hash.hex() if block_hash else None,  # 区块哈希
-            "view": view,  # 视图号
-            "partial_signature": partial_sig.hex() if partial_sig else None,  # 部分签名
-            "timestamp": time.time(),
-        }
-        self.broadcast(sender_id, self.MSG_TYPES["VOTE"], message)
-        logging.debug(f"[Broadcast] Vote from {sender_id} for block {block_id[:8] if block_id else 'unknown'}")
+    # def broadcast_vote(self, sender_id: str, block_id: str, view: int, 
+    #               partial_sig: bytes, voter_index: int, block_hash: bytes = None) -> bool:
+    #     """广播投票消息"""
+    #     message = {
+    #         "voter_id": sender_id,  # 发送者ID
+    #         "voter_index": voter_index,  # 发送者索引
+    #         "block_id": block_id,  # 区块ID
+    #         "block_hash": block_hash.hex() if block_hash else None,  # 区块哈希
+    #         "view": view,  # 视图号
+    #         "partial_signature": partial_sig.hex() if partial_sig else None,  # 部分签名
+    #         "timestamp": time.time(),
+    #     }
+    #     self.broadcast(sender_id, self.MSG_TYPES["VOTE"], message)
+    #     logging.debug(f"[Broadcast] Vote from {sender_id} for block {block_id[:8] if block_id else 'unknown'}")
+    #     return True
+
+    def broadcast_vote(self, sender_id: str, vote: 'Vote', block: 'Block') -> bool:
+        """广播投票消息（使用Vote对象）"""
+        try:
+            if vote is None:
+                logging.error(f"[Network] 投票对象为空，无法广播")
+                return False
+                
+            if block is None:
+                logging.error(f"[Network] 区块对象为空，无法广播")
+                return False
+            
+            # 使用Vote对象的to_dict方法序列化
+            vote_dict = vote.to_dict()
+            
+            # 添加额外信息
+            message = {
+                "vote": vote_dict,  # 序列化后的投票
+                "block": {
+                    "id": block.id,
+                    "hash": block.hash,
+                    "height": block.height if hasattr(block, 'height') else None,
+                    "proposer": block.proposer if hasattr(block, 'proposer') else None,
+                    "transactions": block.transactions if hasattr(block, 'transactions') else [],
+                    "timestamp": block.timestamp if hasattr(block, 'timestamp') else time.time()
+                },
+                "timestamp": time.time()
+            }
+            
+            logging.info(f"[Network] 节点 {sender_id} 广播投票，view={vote.view}, block={block.id[:8]}")
+            
+            # 广播消息
+            success_count = self.broadcast(sender_id, self.MSG_TYPES["VOTE"], message)
+            logging.info(f"[Network] 广播投票完成")
+            
+            # 判断是否成功（至少发送给大多数节点）
+            # total_nodes = len(self.nodes) - 1  # 排除自己
+            # if total_nodes > 0:
+            #     success_rate = success_count / total_nodes
+            #     success = success_rate >= 0  # 至少50%成功
+            #     logging.info(f"[Network] 投票广播结果: {success_count}/{total_nodes} ({success_rate:.1%}), 成功: {success}")
+            #     return success
+            # else:
+            #     logging.info(f"[Network] 没有其他节点可发送")
+            #     return True  # 没有其他节点，视为成功
+            return True
+                
+        except Exception as e:
+            logging.error(f"[Network] 广播投票异常: {e}", exc_info=True)
+            return False
     
     def broadcast_new_view(self, sender_id: str, qc: QC) -> None:
         """广播新视图消息（携带新的QC）"""
@@ -324,4 +374,20 @@ class Network:
             logging.error(f"Failed to deliver {message_type} to {receiver.id}: {e}")
             import traceback
             traceback.print_exc()
+
+    def broadcast_qc_acceptance(self, sender_id: str, qc_view: int, block_id: str, 
+                               accept_count: int, timestamp: float):
+        """广播QC接受通知（可选）"""
+        message = {
+            "type": "QC_ACCEPTANCE_NOTIFICATION",
+            "sender": sender_id,
+            "qc_view": qc_view,
+            "block_id": block_id,
+            "accept_count": accept_count,
+            "timestamp": timestamp
+        }
+        
+        for node in self.nodes.values():
+            if node.id != sender_id:
+                node.receive_message(self.MSG_TYPES.get("QC_ACCEPTANCE_NOTIFICATION", 999), message)
 

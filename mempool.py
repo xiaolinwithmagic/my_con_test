@@ -5,6 +5,8 @@ import time
 from typing import Optional, Dict, List
 import hashlib
 import json
+from services import services
+
 
 class Mempool:
     def __init__(self):
@@ -15,6 +17,8 @@ class Mempool:
         
         # 可选：用于快速访问的列表（如果需要）
         self.all_txs = []  # 所有交易列表（用于调试）
+        self.services = services
+
         
     def push(self, tx: Dict) -> bool:
         """添加交易到内存池"""

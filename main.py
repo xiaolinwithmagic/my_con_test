@@ -29,43 +29,49 @@ logger = logging.getLogger(__name__)
 
 
 def main():
+    logger.info("创建模拟器...")
+    # 创建模拟器
+    simulator = Simulator(
+        num_nodes=4,
+        f=1,
+        txs_per_proposal=10,
+        drop_rate=0.05,
+        delay_range=(0.01, 0.05)
+    )
+    
     try:
-        logger.info("创建模拟器...")
-        # 1. 创建模拟器
-        simulator = Simulator(num_nodes=4, f=0)
-        
-        # 2. 设置
+        # 设置模拟器
         simulator.setup()
+        
+        # 填充内存池
         simulator.fill_mempool_registers(count=100)
         
-        # 3. 运行并获取线程对象
-        logger.info("启动共识...")
-        consensus_thread = simulator.run(rounds=2)
+        # 运行模拟器
+        logger.info("启动模拟器...")
+        sim_thread = simulator.run(
+            rounds=50,
+            attack_type="view_number_attack",
+            attack_round=10
+        )
         
-        # 4. 等待共识线程完成
-        logger.info("等待共识完成...")
-        consensus_thread.join(timeout=30)  # 最多等待30秒
-        
-        if consensus_thread.is_alive():
-            logger.info("警告：共识线程超时，强制停止")
+        # 等待模拟完成（最多60秒）
+        if not simulator.wait_for_completion(timeout=60):
+            logger.warning("模拟超时，强制停止")
             simulator.stop()
-        else:
-            logger.info("共识线程正常结束")
         
-        # 5. 验证安全机制
+        # 验证安全机制
         results = simulator.verify_security_mechanisms()
         logger.info("\n安全机制验证结果:")
         for mechanism, passed in results.items():
             logger.info(f"  {mechanism}: {'✓ 通过' if passed else '✗ 失败'}")
-        
-        logger.info("Simulation completed successfully.")
-        
+            
     except KeyboardInterrupt:
         logger.info("\n模拟被用户中断")
-        if 'simulator' in locals():
-            simulator.stop()
+        simulator.stop()
+        
     except Exception as e:
-        logger.error(f"An error occurred during simulation: {e}", exc_info=True)
+        logger.error(f"模拟异常: {e}", exc_info=True)
+        simulator.stop()
 
 if __name__ == "__main__":
     main()

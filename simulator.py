@@ -10,7 +10,6 @@ from asset_sim import generate_dummy_hashes
 from transaction import create_register_tx, create_transfer_tx, create_license_tx, tx_id
 from mempool import Mempool
 from metrics import Metrics
-from network import Network
 from node import Node
 from consensus import Consensus 
 from block import Block, create_genesis_block
@@ -20,6 +19,9 @@ from utils.logger import event
 from crypto import BLS
 import logging
 from typing import Dict, List, Optional
+from network import Network
+from ThreadManager import ThreadManager
+
 
 # 创建当前模块的logger实例（推荐方式，而非直接用logging.root）
 logger = logging.getLogger(__name__)
@@ -60,6 +62,10 @@ class Simulator:
         
         # 创世区块
         self.genesis_block = create_genesis_block()
+
+        # 线程管理
+        self.thread_manager = ThreadManager()
+        self.sim_lock = threading.Lock()
     
     def setup(self):
         self.node_ids = [f"node{i}" for i in range(self.num_nodes)]
@@ -102,7 +108,8 @@ class Simulator:
                 group_pk=self.group_pk,
                 network=self.net,
                 f=self.f,
-                all_nodes=self.node_ids
+                all_nodes=self.node_ids,
+                auto_start_threads=False
             )
             # 注入映射和 metrics
             node.did_pub_lookup = {x["did"]: x["pub"] for x in self.identities}
@@ -113,12 +120,26 @@ class Simulator:
             self.net.register(node)
             event("node_created", node_id=nid, view=0, consensus_type="my")
 
+            for nid, node in self.nodes.items():
+                node.start_message_processing()
+                self.thread_manager.register_thread(f"node_{nid}", node.processing_thread)  
+
 
     def _init_consensus(self):
-        self.consensus = Consensus(self.nodes, self.net, f=self.f)
+        """初始化共识 - 设置consensus给所有节点"""
+        # 创建共识实例
+        self.consensus = Consensus(
+            nodes=self.nodes,  # 传递节点字典
+            network=self.net,
+            f=self.f
+        )
         self.consensus.group_pk = self.group_pk
         self.consensus.mempool = self.mempool
         self.consensus.max_rounds = 10
+        
+        # 为每个节点设置共识实例
+        for node in self.nodes.values():
+            node.set_consensus(self.consensus)
     
     # simulator.py - 修改相关部分
     def fill_mempool_registers(self, count=10):
@@ -184,12 +205,24 @@ class Simulator:
             
             # 启动共识线程
             consensus_thread = self.consensus.start()
+            self.thread_manager.register_thread("consensus", consensus_thread)
+
             
             # 同时启动模拟器监控线程
-            sim_thread = threading.Thread(target=self._monitor_and_control, args=(rounds,), daemon=True)
+            # sim_thread = threading.Thread(target=self._monitor_and_control, args=(rounds,), daemon=True)
+            # sim_thread.start()
+
+             # 2. 启动模拟器监控线程
+            sim_thread = threading.Thread(
+                target=self._monitor_and_control, 
+                args=(rounds,),
+                name="simulator_monitor",
+                daemon=False  # 非守护线程，主线程会等待它
+            )
             sim_thread.start()
+            self.thread_manager.register_thread("simulator_monitor", sim_thread)
             
-            return consensus_thread
+            return sim_thread
         else:
             raise RuntimeError("Consensus controller not initialized. Call setup() first.")
     
@@ -198,6 +231,8 @@ class Simulator:
         start_time = time.time()
         last_stats_time = start_time
         stats_interval = 2.0  # 每2秒打印一次统计
+        no_progress_timeout = 10.0  # 30秒无进展则退出
+
         
         while self.current_round < rounds and self.consensus and self.consensus.active:
             # 检查是否到达攻击轮数
@@ -217,14 +252,23 @@ class Simulator:
                 self.current_round = self.consensus.current_round
             
             time.sleep(0.1)
+
+            # 检查是否停滞
+            current_time = time.time()
+            if current_time - start_time > no_progress_timeout:
+                logger.error(f"[Simulator] 超时无进展，当前轮数: {self.current_round}，退出")
+                break
         
         # 运行结束
         run_time = time.time() - start_time
         self._print_final_stats(run_time)
         
-        # 停止共识
-        if self.consensus:
-            self.consensus.stop()
+        # 停止所有线程
+        self.stop()
+
+        # # 停止共识
+        # if self.consensus:
+        #     self.consensus.stop()
         
         event("simulation_complete", node_id="system", view=self.current_round,
               consensus_type="my")
@@ -528,12 +572,41 @@ class Simulator:
         logger.info("="*50)
     
     def stop(self) -> None:
-        """停止模拟器"""
-        self.active = False
+        """停止模拟器（修复停止逻辑）"""
+        logger.info("[Simulator] 停止模拟器...")
+        
+        # 1. 停止共识
         if self.consensus:
             self.consensus.stop()
+            logger.info("[Simulator] 共识已停止")
+        
+        # 2. 停止所有节点的消息处理
+        for node_id, node in self.nodes.items():
+            node.stop_message_processing()
+        
+        logger.info("[Simulator] 所有节点消息处理已停止")
+        
+        # 3. 通过线程管理器停止所有线程
+        self.thread_manager.stop_all()
+        
+        # 4. 更新状态
+        self.active = False
         
         event("simulator_stopped", node_id="system", view=self.current_round, consensus_type="my")
+
+    def wait_for_completion(self, timeout: float = None) -> bool:
+        """等待模拟完成"""
+        # 找到模拟器监控线程
+        sim_thread = self.thread_manager.threads.get("simulator_monitor")
+        
+        if sim_thread and sim_thread.is_alive():
+            try:
+                sim_thread.join(timeout=timeout)
+                return True
+            except Exception as e:
+                logger.error(f"[Simulator] 等待线程完成异常: {e}")
+                return False
+        return True
     
     def verify_security_mechanisms(self) -> Dict[str, bool]:
         """

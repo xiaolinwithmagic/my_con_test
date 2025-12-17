@@ -59,7 +59,7 @@ class Vote:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Vote':
         """从字典反序列化"""
-        logger.info("从字典反序列化")
+        logger.info("[votes]从字典反序列化")
         # 处理block_hash
         block_hash = None
         if data.get("block_hash"):

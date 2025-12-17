@@ -3,6 +3,8 @@ import logging
 from typing import Dict, Optional
 from qc import QC
 from block import Block
+from typing import List, Any
+
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -320,3 +322,38 @@ class NodeState:
             return None
         
         return max(highest_blocks, key=lambda b: b.view)
+
+
+    def get_qc_for_block(self, block_hash: bytes) -> Optional[QC]:
+        """获取区块对应的QC（如果有的话）"""
+        block = self.get_block_by_hash(block_hash)
+        if block and hasattr(block, 'qc'):
+            return block.qc
+        return None
+    
+    def get_children_blocks(self, parent_hash: bytes) -> List[Block]:
+        """获取指定父哈希的所有子区块"""
+        children = []
+        for block in self.block_tree.values():
+            if block.parent_hash == parent_hash:
+                children.append(block)
+        return children
+    
+    def mark_block_confirmed(self, block_hash: bytes):
+        """标记区块为已确认（可选）"""
+        # 这个方法可以根据需要实现
+        # 例如，可以设置一个 confirmed_blocks 集合
+        if not hasattr(self, 'confirmed_blocks'):
+            self.confirmed_blocks = set()
+        
+        block_hash_hex = block_hash.hex() if isinstance(block_hash, bytes) else block_hash
+        self.confirmed_blocks.add(block_hash_hex)
+        logger.debug(f"[{self.node_id}] 标记区块 {block_hash_hex[:8]} 为已确认")
+    
+    def is_block_confirmed(self, block_hash: bytes) -> bool:
+        """检查区块是否已确认"""
+        if not hasattr(self, 'confirmed_blocks'):
+            return False
+        
+        block_hash_hex = block_hash.hex() if isinstance(block_hash, bytes) else block_hash
+        return block_hash_hex in self.confirmed_blocks

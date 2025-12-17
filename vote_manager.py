@@ -77,11 +77,62 @@ class VoteManager:
     @staticmethod
     def broadcast_vote(network: Network, node_id: str, vote: Vote, block: Block):
         """广播投票"""
-        network.broadcast_vote(
-            sender_id=node_id,
-            block_id=block.id,
-            view=vote.view,
-            partial_sig=vote.partial_signature,
-            voter_index=vote.voter_index,
-            block_hash=block.hash
-        )
+        try:
+            logger.info(f"[VoteManager] 节点 {node_id} 开始广播投票")
+            logger.info(f"[VoteManager] network实例: {network}, 类型: {type(network)}")
+            logger.info(f"[VoteManager] vote对象: {vote}, block对象: {block}")
+            
+            # 检查参数
+            if network is None:
+                logger.error(f"[VoteManager] network实例为None")
+                return False
+                
+            if vote is None:
+                logger.error(f"[VoteManager] vote对象为None")
+                return False
+                
+            if block is None:
+                logger.error(f"[VoteManager] block对象为None")
+                return False
+            
+            logger.info(f"[VoteManager] 调用network.broadcast_vote, 参数: node_id={node_id}, vote.view={vote.view}")
+            
+            # 调用network的广播方法
+            # result = network.broadcast_vote(
+            #     sender_id=node_id,
+            #     # block_id=block.id,
+            #     view=vote.view,
+            #     partial_sig=vote.partial_signature,
+            #     voter_index=vote.voter_index,
+            #     block_hash=block.hash
+            # )
+            result = network.broadcast_vote(
+                sender_id=node_id,
+                vote=vote,  # 传递整个vote对象
+                block=block,  # 传递整个block对象
+            )
+            # 2025-12-15 20:21:35,362 - INFO - [VoteManager] vote对象: Vote(id=0afe7e5946cb4198, voter=node0, index=0, view=1), block对象: Block(hash=a84f2ccf, height=1, proposer=node1, view=1)
+
+                # 添加额外信息
+            # message = {
+            #     "vote": vote_dict,  # 序列化后的投票
+            #     "block": {
+            #         "id": block.id,
+            #         "hash": block.hash,
+            #         "height": block.height if hasattr(block, 'height') else None,
+            #         "proposer": block.proposer if hasattr(block, 'proposer') else None,
+            #         "transactions": block.transactions if hasattr(block, 'transactions') else [],
+            #         "timestamp": block.timestamp if hasattr(block, 'timestamp') else time.time()
+            #     },
+            #     "timestamp": time.time()
+            # }
+            if result is None:
+                logger.info(f"[VoteManager] 投票广播完成，结果: ")
+
+            logger.info(f"[VoteManager] 投票广播完成，结果: {result}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"[VoteManager] 广播投票异常: {e}", exc_info=True)
+            return False
+        
