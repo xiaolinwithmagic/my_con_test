@@ -37,3 +37,7 @@ def event(
     logger.info(json.dumps(data))
 
 
+    #   event("simulator_setup_start", node_id="system", view=0,
+    #         num_nodes=self.num_nodes, f=self.f, consensus_type="my")
+
+

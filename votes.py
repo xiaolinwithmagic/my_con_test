@@ -2,6 +2,11 @@
 import hashlib
 from typing import Optional, Tuple, List, Dict, Any
 from qc import QC
+import logging
+
+
+
+logger = logging.getLogger(__name__)
 
 class Vote:
     """
@@ -54,10 +59,15 @@ class Vote:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Vote':
         """从字典反序列化"""
+        logger.info("从字典反序列化")
         # 处理block_hash
         block_hash = None
         if data.get("block_hash"):
             block_hash = bytes.fromhex(data["block_hash"])
+
+        if block_hash is None:
+            logger.error("jiushizheli")
+            return None
         
         # 处理partial_signature
         partial_sig = None

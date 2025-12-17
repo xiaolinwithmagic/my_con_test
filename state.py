@@ -49,24 +49,111 @@ class NodeState:
             merkle_root=bytes([0] * 32)  # 空的Merkle根
         )
     
-    def update_locked_qc(self, qc: QC) -> bool:
-        """更新locked_qc：只有当新QC的view更高时才更新"""
-        if qc and qc.view > self.locked_qc.view:
-            logging.debug(f"[{self.node_id}] update_locked_qc -> view={qc.view}, block={qc.block_hash.hex()[:8]}")
-            self.locked_qc = qc
+    # def update_locked_qc(self, qc: QC) -> bool:
+    #     """更新locked_qc：只有当新QC的view更高时才更新"""
+    #     if qc and qc.view > self.locked_qc.view:
+    #         logging.debug(f"[{self.node_id}] update_locked_qc -> view={qc.view}, block={qc.block_hash.hex()[:8]}")
+    #         self.locked_qc = qc
             
-            # 安全规则：locked_qc更新后，需要重新评估哪些区块可以提交
+    #         # 安全规则：locked_qc更新后，需要重新评估哪些区块可以提交
+    #         self._try_commit_blocks()
+    #         return True
+    #     return False
+
+    def update_locked_qc(self, qc: QC) -> bool:
+        if qc.view <= self.locked_qc.view:
+            return False
+
+        self.locked_qc = qc
+        logger.info(f"[{self.node_id}] Updated locked_qc to view {qc.view}")
+
+        # 🔒 只在这里触发 commit
+        self._try_commit_blocks()
+        return True
+    
+    def update_latest_qc(self, qc: QC, block: Block = None) -> bool:
+        """更新latest_qc：确保区块存在后再更新QC"""
+        if qc and qc.view > self.latest_qc.view:
+            # 1. 确保对应的区块存在
+            qc_block = self.get_block_by_hash(qc.block_hash)
+            if not qc_block:
+                if block:
+                    # 如果传入了区块，添加它
+                    self.add_block(block)
+                    logger.info(f"[{self.node_id}] Added missing block {block.id[:8]} for QC")
+                else:
+                    # 尝试从存储中获取
+                    logger.warning(f"[{self.node_id}] Cannot update QC: block {qc.block_hash[:8].hex()} not found")
+                    return False
+            
+            # 2. 更新QC
+            logger.debug(f"[{self.node_id}] update_latest_qc -> view={qc.view}, block={qc.block_hash[:8].hex()}")
+            self.latest_qc = qc
+            
+            # 3. 尝试更新locked_qc（三链规则）
+            self._try_update_locked_qc(qc)
+            
+            return True
+        return True
+
+    def _try_update_locked_qc(self, qc: QC) -> bool:
+        """
+        三链规则（3-chain rule）更新 locked_qc
+
+        条件：
+        QC(B2) -> B2
+        B2.parent -> B1 且 B1.qc 存在
+        B1.parent -> B0
+        且 view: B0 < B1 < B2
+        ==> locked_qc = QC(B1)
+        """
+        if qc.view < 2:
+            return True  # view < 2 时不适用三链规则
+
+        if not qc:
+            return False
+
+        # 1. 找到 B2
+        block_b2 = self.get_block_by_hash(qc.block_hash)
+        if not block_b2:
+            logger.debug(f"[{self.node_id}] try_update_locked_qc: B2 not found")
+            return False
+
+        # 2. 找到 B1
+        block_b1 = self.get_block_by_hash(block_b2.parent_hash)
+        if not block_b1 or not block_b1.qc:
+            logger.debug(f"[{self.node_id}] try_update_locked_qc: B1 or B1.qc missing")
+            return False
+
+        # 3. 找到 B0
+        block_b0 = self.get_block_by_hash(block_b1.parent_hash)
+        if not block_b0:
+            logger.debug(f"[{self.node_id}] try_update_locked_qc: B0 missing")
+            return False
+
+        # 4. view 必须严格递增
+        if not (block_b0.view < block_b1.view < block_b2.view):
+            logger.warning(
+                f"[{self.node_id}] try_update_locked_qc: view order invalid "
+                f"B0={block_b0.view}, B1={block_b1.view}, B2={block_b2.view}"
+            )
+            self.mark_qc_suspicious(qc, "invalid 3-chain view order")
+            return False
+
+        # 5. 更新 locked_qc（锁 B1 的 QC）
+        if block_b1.qc.view > self.locked_qc.view:
+            self.locked_qc = block_b1.qc
+            logger.info(
+                f"[{self.node_id}] locked_qc updated -> "
+                f"view={block_b1.qc.view}, block={block_b1.hash.hex()[:8]}"
+            )
+
+            # locked_qc 前进后，尝试提交
             self._try_commit_blocks()
             return True
+
         return False
-    
-    def update_latest_qc(self, qc: QC) -> bool:
-        """更新latest_qc：只要新QC的view更高就更新"""
-        if qc and qc.view > self.latest_qc.view:
-            logging.debug(f"[{self.node_id}] update_latest_qc -> view={qc.view}, block={qc.block_hash.hex()[:8]}")
-            self.latest_qc = qc
-            return True
-        return False
+
     
     def update_commit_qc(self, qc: QC) -> bool:
         """更新commit_qc：只有当新QC的view更高且对应区块已提交时才更新"""
@@ -84,6 +171,7 @@ class NodeState:
         if block.id not in self.block_tree:
             self.block_tree[block.id] = block
             logging.debug(f"[{self.node_id}] add_block -> id={block.id[:8]}, height={block.height}, view={block.view}")
+            logger.info(f"[{self.node_id}]blockhash={block.hash.hex()[:8]} added to block_tree")
             
             # 新区块添加后，尝试提交连续的区块
             self._try_commit_blocks()
@@ -102,21 +190,20 @@ class NodeState:
             logger.debug(f"block_tree is None")
             return None
         for block in self.block_tree.values():
-            logger.debug(f"get_block_by_hash -> in22")
             if block is None:
                 logger.debug(f"get_block_by_hash -> None")
-            return block
-            # if block.hash == block_hash: todo
-            #     logger.debug(f"get_block_by_hash -> in333")
-            #     return block
-
-        # 如果没找到，尝试将 block_hash 转换为十六进制字符串再比较
-        block_hash_hex = block_hash.hex()
-        logger.debug(f"get_block_by_hash -> in444")
-        for block in self.block_tree.values():
-            if block.id == block_hash_hex:
-                logger.debug(f"get_block_by_hash -> in555")
+            return None
+            if block.hash == block_hash: 
                 return block
+            else:
+            # 如果没找到，尝试将 block_hash 转换为十六进制字符串再比较
+                block_hash_hex = block_hash.hex()
+                for block in self.block_tree.values():
+                    if block.id == block_hash_hex:
+                        return block
+
+        logger.debug(f"get_block_by_hash -> out")
+        logger.debug(f"get_block_by_hash -> not found")
 
         return None
     

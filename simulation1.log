@@ -1,0 +1,287 @@
+2025-12-15 03:16:37,262 - INFO - 创建模拟器...
+2025-12-15 03:16:37,701 - INFO - {"ts": 1765739797.7018259, "event": "simulator_setup_start", "node": "system", "view": 0, "consensus_type": "my"}
+2025-12-15 03:16:38,214 - INFO - 创建创世区块: height=0, id=00000000, hash=0000000000000000
+2025-12-15 03:16:38,214 - INFO - 创建创世QC: view=0, block_hash=0000000000000000
+2025-12-15 03:16:38,214 - INFO - [Consensus] Initialized with group_pk=False, public_key_map_size=0, nodes=0
+2025-12-15 03:16:38,214 - DEBUG - [node0] add_block -> id=948bdbfc, height=0, view=0
+2025-12-15 03:16:38,214 - INFO - [node0]blockhash=948bdbfc added to block_tree
+2025-12-15 03:16:38,215 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,215 - DEBUG - Node node0 registered to network (total: 1)
+2025-12-15 03:16:38,215 - INFO - {"ts": 1765739798.2152727, "event": "node_created", "node": "node0", "view": 0, "consensus_type": "my"}
+2025-12-15 03:16:38,215 - INFO - 创建创世区块: height=0, id=00000000, hash=0000000000000000
+2025-12-15 03:16:38,215 - INFO - 创建创世QC: view=0, block_hash=0000000000000000
+2025-12-15 03:16:38,215 - INFO - [Consensus] Initialized with group_pk=False, public_key_map_size=0, nodes=0
+2025-12-15 03:16:38,216 - DEBUG - [node1] add_block -> id=948bdbfc, height=0, view=0
+2025-12-15 03:16:38,216 - INFO - [node1]blockhash=948bdbfc added to block_tree
+2025-12-15 03:16:38,216 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,216 - DEBUG - Node node1 registered to network (total: 2)
+2025-12-15 03:16:38,216 - INFO - {"ts": 1765739798.2163796, "event": "node_created", "node": "node1", "view": 0, "consensus_type": "my"}
+2025-12-15 03:16:38,216 - INFO - 创建创世区块: height=0, id=00000000, hash=0000000000000000
+2025-12-15 03:16:38,216 - INFO - 创建创世QC: view=0, block_hash=0000000000000000
+2025-12-15 03:16:38,216 - INFO - [Consensus] Initialized with group_pk=False, public_key_map_size=0, nodes=0
+2025-12-15 03:16:38,217 - DEBUG - [node2] add_block -> id=948bdbfc, height=0, view=0
+2025-12-15 03:16:38,217 - INFO - [node2]blockhash=948bdbfc added to block_tree
+2025-12-15 03:16:38,217 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,217 - DEBUG - Node node2 registered to network (total: 3)
+2025-12-15 03:16:38,217 - INFO - {"ts": 1765739798.217673, "event": "node_created", "node": "node2", "view": 0, "consensus_type": "my"}
+2025-12-15 03:16:38,217 - INFO - 创建创世区块: height=0, id=00000000, hash=0000000000000000
+2025-12-15 03:16:38,218 - INFO - 创建创世QC: view=0, block_hash=0000000000000000
+2025-12-15 03:16:38,218 - INFO - [Consensus] Initialized with group_pk=False, public_key_map_size=0, nodes=0
+2025-12-15 03:16:38,218 - DEBUG - [node3] add_block -> id=948bdbfc, height=0, view=0
+2025-12-15 03:16:38,218 - INFO - [node3]blockhash=948bdbfc added to block_tree
+2025-12-15 03:16:38,218 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,218 - DEBUG - Node node3 registered to network (total: 4)
+2025-12-15 03:16:38,218 - INFO - {"ts": 1765739798.2187426, "event": "node_created", "node": "node3", "view": 0, "consensus_type": "my"}
+2025-12-15 03:16:38,219 - INFO - 创建创世区块: height=0, id=00000000, hash=0000000000000000
+2025-12-15 03:16:38,219 - INFO - Using genesis QC from NodeState: view=0
+2025-12-15 03:16:38,219 - DEBUG - [node0] add_block -> id=00000000, height=0, view=0
+2025-12-15 03:16:38,219 - INFO - [node0]blockhash=00000000 added to block_tree
+2025-12-15 03:16:38,219 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,219 - INFO - Added genesis block to node node0
+2025-12-15 03:16:38,219 - INFO - Node node0 initialized with genesis: height=0, locked_qc.view=0
+2025-12-15 03:16:38,219 - DEBUG - [node1] add_block -> id=00000000, height=0, view=0
+2025-12-15 03:16:38,219 - INFO - [node1]blockhash=00000000 added to block_tree
+2025-12-15 03:16:38,219 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,219 - INFO - Added genesis block to node node1
+2025-12-15 03:16:38,219 - INFO - Node node1 initialized with genesis: height=0, locked_qc.view=0
+2025-12-15 03:16:38,219 - DEBUG - [node2] add_block -> id=00000000, height=0, view=0
+2025-12-15 03:16:38,220 - INFO - [node2]blockhash=00000000 added to block_tree
+2025-12-15 03:16:38,220 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,220 - INFO - Added genesis block to node node2
+2025-12-15 03:16:38,220 - INFO - Node node2 initialized with genesis: height=0, locked_qc.view=0
+2025-12-15 03:16:38,220 - DEBUG - [node3] add_block -> id=00000000, height=0, view=0
+2025-12-15 03:16:38,220 - INFO - [node3]blockhash=00000000 added to block_tree
+2025-12-15 03:16:38,220 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:38,220 - INFO - Added genesis block to node node3
+2025-12-15 03:16:38,220 - INFO - Node node3 initialized with genesis: height=0, locked_qc.view=0
+2025-12-15 03:16:38,220 - INFO - [Consensus] Initialized with group_pk=True, public_key_map_size=4, nodes=4
+2025-12-15 03:16:38,220 - INFO - {"ts": 1765739798.2206945, "event": "simulator_setup_complete", "node": "system", "view": 0, "consensus_type": "my"}
+2025-12-15 03:16:38,220 - INFO - [Simulator] 开始填充内存池，目标数量: 100
+2025-12-15 03:16:52,648 - INFO - [Simulator] 已添加 100 个交易到内存池
+2025-12-15 03:16:52,649 - INFO - [Simulator] 内存池填充完成，成功添加: 100/100
+2025-12-15 03:16:52,649 - INFO - [Simulator] 内存池当前大小: 100
+2025-12-15 03:16:52,649 - INFO - 启动共识...
+2025-12-15 03:16:52,649 - INFO - {"ts": 1765739812.6493156, "event": "consensus_start", "node": "system", "view": 0, "consensus_type": "my"}
+2025-12-15 03:16:52,649 - INFO - [Consensus] Starting consensus with view=1, nodes=['node0', 'node1', 'node2', 'node3']
+2025-12-15 03:16:52,650 - INFO - 主共识循环：全局协调所有节点
+2025-12-15 03:16:52,650 - INFO - [Consensus] Starting global consensus loop
+2025-12-15 03:16:52,650 - INFO - [Consensus] Round 0: view=1, leader=node1
+2025-12-15 03:16:52,651 - INFO - [Consensus] Setting node node0.is_leader=False
+2025-12-15 03:16:52,651 - INFO - [Consensus] Setting node node1.is_leader=True
+2025-12-15 03:16:52,651 - INFO - [Consensus] Setting node node2.is_leader=False
+2025-12-15 03:16:52,651 - INFO - [Consensus] Setting node node3.is_leader=False
+2025-12-15 03:16:52,651 - INFO - [Consensus] Leader node1 creating proposal...
+2025-12-15 03:16:52,651 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:52,651 - INFO - [Consensus] Latest QC found: view=0, parent_block=0000000000000000
+2025-12-15 03:16:52,651 - WARNING - [Consensus] Parent block for latest_qc not found, using genesis
+2025-12-15 03:16:52,651 - INFO - [Consensus] Creating block at height 1, parent height=0, parent QC view=0
+2025-12-15 03:16:52,651 - INFO - [Consensus] Leader node1 creating new block at height 1
+2025-12-15 03:16:52,651 - INFO - [Consensus] Parent hash: 0000000000000000
+2025-12-15 03:16:52,651 - INFO - [Consensus] Parent QC view: 0
+2025-12-15 03:16:52,652 - INFO - [Consensus] Transactions for new block: 20 transactions
+2025-12-15 03:16:52,652 - INFO - [Consensus] Threads started: consensus_thread=True, message_handler_thread=True
+2025-12-15 03:16:52,652 - INFO - [Consensus] New block created: id=d13acd43, height=1, view=1
+2025-12-15 03:16:52,653 - INFO - 等待共识完成...
+2025-12-15 03:16:52,654 - DEBUG - [node1] add_block -> id=d13acd43, height=1, view=1
+2025-12-15 03:16:52,654 - INFO - [node1]blockhash=d13acd43 added to block_tree
+2025-12-15 03:16:52,654 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:52,654 - INFO - [Consensus] Leader node1 created block d13acd43
+2025-12-15 03:16:52,654 - DEBUG - [Broadcast] Proposal from node1, block hash: d13acd43
+2025-12-15 03:16:52,654 - DEBUG - [Broadcast] proposal from node1
+2025-12-15 03:16:52,655 - INFO - {"ts": 1765739812.6555176, "event": "proposal_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
+2025-12-15 03:16:52,655 - INFO - [Consensus] Node node0 processing proposal...
+2025-12-15 03:16:52,656 - INFO - 区块高度 1 高于当前高度 0，继续验证
+2025-12-15 03:16:52,656 - DEBUG -  准备签名数据: view=1, block_hash=b'\xd1:\xcdC\xa0=V\xa3R\xb6p\x1a\x1b\xb5\x95"\x8cH\xb2D8\'2\x8c\x14K\x14`\x1f}c\xc8'
+2025-12-15 03:16:52,656 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-15 03:16:52,672 - DEBUG - ✓ proposal from node1 to node3 (delay: 0.012s)
+2025-12-15 03:16:52,683 - DEBUG - [DEBUG] Delivering Proposal to node3
+2025-12-15 03:16:52,683 - DEBUG - ✓ proposal from node1 to node0 (delay: 0.027s)
+2025-12-15 03:16:52,694 - INFO - 处理所有类型的消息
+2025-12-15 03:16:52,699 - DEBUG - [DEBUG] Delivering Proposal to node0
+2025-12-15 03:16:52,709 - DEBUG - ✓ proposal from node1 to node2 (delay: 0.044s)
+2025-12-15 03:16:52,726 - INFO - 节点 node3 收到提案，视图=1
+2025-12-15 03:16:52,731 - INFO - 处理所有类型的消息
+2025-12-15 03:16:52,737 - DEBUG - [DEBUG] Delivering Proposal to node2
+2025-12-15 03:16:52,764 - INFO - 节点 node0 收到提案，视图=1
+2025-12-15 03:16:52,769 - INFO - 处理所有类型的消息
+2025-12-15 03:16:52,801 - INFO - 节点 node2 收到提案，视图=1
+2025-12-15 03:16:52,810 - DEBUG -  partial_sig 长度: 96
+2025-12-15 03:16:52,810 - INFO -  node0 创建投票成功
+2025-12-15 03:16:52,811 - INFO - [Consensus] Node node0 voted for block d13acd43
+2025-12-15 03:16:52,811 - DEBUG - [Broadcast] vote from node0
+2025-12-15 03:16:52,812 - DEBUG - [Broadcast] Vote from node0 for block d13acd43
+2025-12-15 03:16:52,812 - DEBUG - [Consensus] Vote broadcast from node0 to leader node1
+2025-12-15 03:16:52,812 - INFO - [Consensus] Node node2 processing proposal...
+2025-12-15 03:16:52,812 - INFO - 区块高度 1 高于当前高度 0，继续验证
+2025-12-15 03:16:52,812 - DEBUG -  准备签名数据: view=1, block_hash=b'\xd1:\xcdC\xa0=V\xa3R\xb6p\x1a\x1b\xb5\x95"\x8cH\xb2D8\'2\x8c\x14K\x14`\x1f}c\xc8'
+2025-12-15 03:16:52,812 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-15 03:16:52,840 - DEBUG - ✓ vote from node0 to node3 (delay: 0.023s)
+2025-12-15 03:16:52,840 - DEBUG - ✓ vote from node0 to node2 (delay: 0.027s)
+2025-12-15 03:16:52,851 - DEBUG - ✓ vote from node0 to node1 (delay: 0.038s)
+2025-12-15 03:16:52,851 - INFO - 处理所有类型的消息
+2025-12-15 03:16:52,862 - INFO - 处理所有类型的消息
+2025-12-15 03:16:52,872 - INFO - 处理所有类型的消息
+2025-12-15 03:16:52,960 - DEBUG -  partial_sig 长度: 96
+2025-12-15 03:16:52,960 - INFO -  node2 创建投票成功
+2025-12-15 03:16:52,960 - INFO - [Consensus] Node node2 voted for block d13acd43
+2025-12-15 03:16:52,960 - DEBUG - [Broadcast] vote from node2
+2025-12-15 03:16:52,961 - DEBUG - [Broadcast] Vote from node2 for block d13acd43
+2025-12-15 03:16:52,961 - DEBUG - [Consensus] Vote broadcast from node2 to leader node1
+2025-12-15 03:16:52,962 - INFO - [Consensus] Node node3 processing proposal...
+2025-12-15 03:16:52,962 - INFO - 区块高度 1 高于当前高度 0，继续验证
+2025-12-15 03:16:52,962 - DEBUG -  准备签名数据: view=1, block_hash=b'\xd1:\xcdC\xa0=V\xa3R\xb6p\x1a\x1b\xb5\x95"\x8cH\xb2D8\'2\x8c\x14K\x14`\x1f}c\xc8'
+2025-12-15 03:16:52,962 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-15 03:16:52,975 - DEBUG - ✓ vote from node2 to node0 (delay: 0.012s)
+2025-12-15 03:16:52,980 - INFO - 处理所有类型的消息
+2025-12-15 03:16:52,986 - DEBUG - ✓ vote from node2 to node1 (delay: 0.018s)
+2025-12-15 03:16:52,986 - DEBUG - ✓ vote from node2 to node3 (delay: 0.023s)
+2025-12-15 03:16:53,017 - INFO - 处理所有类型的消息
+2025-12-15 03:16:53,028 - INFO - 处理所有类型的消息
+2025-12-15 03:16:53,110 - DEBUG -  partial_sig 长度: 96
+2025-12-15 03:16:53,110 - INFO -  node3 创建投票成功
+2025-12-15 03:16:53,110 - INFO - [Consensus] Node node3 voted for block d13acd43
+2025-12-15 03:16:53,110 - DEBUG - [Broadcast] vote from node3
+2025-12-15 03:16:53,111 - DEBUG - [Broadcast] Vote from node3 for block d13acd43
+2025-12-15 03:16:53,112 - DEBUG - [Consensus] Vote broadcast from node3 to leader node1
+2025-12-15 03:16:53,112 - INFO - [Consensus] Leader node1 collected 3 votes, forming QC...
+2025-12-15 03:16:53,125 - DEBUG - ✓ vote from node3 to node2 (delay: 0.012s)
+2025-12-15 03:16:53,135 - INFO - 处理所有类型的消息
+2025-12-15 03:16:53,136 - DEBUG - ✓ vote from node3 to node0 (delay: 0.021s)
+2025-12-15 03:16:53,147 - INFO - 处理所有类型的消息
+2025-12-15 03:16:53,152 - DEBUG - ✓ vote from node3 to node1 (delay: 0.039s)
+2025-12-15 03:16:53,153 - INFO - 处理所有类型的消息
+2025-12-15 03:16:54,273 - INFO - 聚合签名验证成功---模拟
+2025-12-15 03:16:54,273 - INFO - QC组装成功: view=1, block_hash=d13acd43a03d56a3
+2025-12-15 03:16:54,273 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:54,274 - DEBUG - [Broadcast] new_view from node1
+2025-12-15 03:16:54,274 - INFO - {"ts": 1765739814.2749505, "event": "new_view_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
+2025-12-15 03:16:54,275 - INFO - [Consensus] QC formed for view 1, block d13acd43
+2025-12-15 03:16:54,275 - INFO - [Consensus] Round 1 completed, advancing to view 2
+2025-12-15 03:16:54,308 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.033s)
+2025-12-15 03:16:54,308 - INFO - 处理所有类型的消息
+2025-12-15 03:16:54,309 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.035s)
+2025-12-15 03:16:54,309 - INFO - 处理所有类型的消息
+2025-12-15 03:16:54,318 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.044s)
+2025-12-15 03:16:54,319 - INFO - 处理所有类型的消息
+2025-12-15 03:16:54,717 - INFO - 
+=== 模拟器统计 (轮数: 1/2) ===
+2025-12-15 03:16:54,717 - INFO - 活跃节点: 4
+2025-12-15 03:16:54,717 - INFO - 内存池大小: 80
+2025-12-15 03:16:54,717 - INFO - 已提交区块: 0
+2025-12-15 03:16:54,718 - INFO - 视图: 2
+2025-12-15 03:16:54,775 - INFO - [Consensus] Round 1: view=2, leader=node2
+2025-12-15 03:16:54,776 - INFO - [Consensus] Setting node node0.is_leader=False
+2025-12-15 03:16:54,776 - INFO - [Consensus] Setting node node1.is_leader=False
+2025-12-15 03:16:54,776 - INFO - [Consensus] Setting node node2.is_leader=True
+2025-12-15 03:16:54,776 - INFO - [Consensus] Setting node node3.is_leader=False
+2025-12-15 03:16:54,776 - INFO - [Consensus] Leader node2 creating proposal...
+2025-12-15 03:16:54,776 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:54,776 - INFO - [Consensus] Latest QC found: view=0, parent_block=0000000000000000
+2025-12-15 03:16:54,776 - WARNING - [Consensus] Parent block for latest_qc not found, using genesis
+2025-12-15 03:16:54,776 - INFO - [Consensus] Creating block at height 1, parent height=0, parent QC view=0
+2025-12-15 03:16:54,776 - INFO - [Consensus] Leader node2 creating new block at height 1
+2025-12-15 03:16:54,776 - INFO - [Consensus] Parent hash: 0000000000000000
+2025-12-15 03:16:54,777 - INFO - [Consensus] Parent QC view: 0
+2025-12-15 03:16:54,777 - INFO - [Consensus] Transactions for new block: 20 transactions
+2025-12-15 03:16:54,777 - INFO - [Consensus] New block created: id=74deeeef, height=1, view=2
+2025-12-15 03:16:54,778 - DEBUG - [node2] add_block -> id=74deeeef, height=1, view=2
+2025-12-15 03:16:54,778 - INFO - [node2]blockhash=74deeeef added to block_tree
+2025-12-15 03:16:54,778 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:54,778 - INFO - [Consensus] Leader node2 created block 74deeeef
+2025-12-15 03:16:54,778 - DEBUG - [Broadcast] Proposal from node2, block hash: 74deeeef
+2025-12-15 03:16:54,778 - DEBUG - [Broadcast] proposal from node2
+2025-12-15 03:16:54,779 - INFO - {"ts": 1765739814.7790673, "event": "proposal_broadcast", "node": "node2", "view": 2, "consensus_type": "my"}
+2025-12-15 03:16:54,779 - INFO - [Consensus] Node node0 processing proposal...
+2025-12-15 03:16:54,779 - INFO - 区块高度 1 高于当前高度 0，继续验证
+2025-12-15 03:16:54,779 - DEBUG -  准备签名数据: view=2, block_hash=b't\xde\xee\xef\t\xd1\x9cO\xa6y}\x1b\xdb4&\xe2\x1f\x9c\xb1\xbc\xf5\x9a\xed\x9c\xae\x11\xf0\x18^6\xbef'
+2025-12-15 03:16:54,779 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-15 03:16:54,796 - DEBUG - ✓ proposal from node2 to node3 (delay: 0.012s)
+2025-12-15 03:16:54,806 - DEBUG - [DEBUG] Delivering Proposal to node3
+2025-12-15 03:16:54,806 - DEBUG - ✓ proposal from node2 to node0 (delay: 0.025s)
+2025-12-15 03:16:54,806 - DEBUG - ✓ proposal from node2 to node1 (delay: 0.024s)
+2025-12-15 03:16:54,816 - INFO - 处理所有类型的消息
+2025-12-15 03:16:54,817 - DEBUG - [DEBUG] Delivering Proposal to node0
+2025-12-15 03:16:54,822 - DEBUG - [DEBUG] Delivering Proposal to node1
+2025-12-15 03:16:54,872 - INFO - 处理所有类型的消息
+2025-12-15 03:16:54,872 - INFO - 节点 node3 收到提案，视图=2
+2025-12-15 03:16:54,873 - INFO - 处理所有类型的消息
+2025-12-15 03:16:54,889 - INFO - 节点 node0 收到提案，视图=2
+2025-12-15 03:16:54,910 - INFO - 节点 node1 收到提案，视图=2
+2025-12-15 03:16:54,957 - DEBUG -  partial_sig 长度: 96
+2025-12-15 03:16:54,958 - INFO -  node0 创建投票成功
+2025-12-15 03:16:54,958 - INFO - [Consensus] Node node0 voted for block 74deeeef
+2025-12-15 03:16:54,958 - DEBUG - [Broadcast] vote from node0
+2025-12-15 03:16:54,959 - DEBUG - [Broadcast] Vote from node0 for block 74deeeef
+2025-12-15 03:16:54,959 - DEBUG - [Consensus] Vote broadcast from node0 to leader node2
+2025-12-15 03:16:54,959 - INFO - [Consensus] Node node1 processing proposal...
+2025-12-15 03:16:54,959 - WARNING - 区块高度 1 未高于当前高度 1
+2025-12-15 03:16:54,959 - DEBUG -  准备签名数据: view=2, block_hash=b't\xde\xee\xef\t\xd1\x9cO\xa6y}\x1b\xdb4&\xe2\x1f\x9c\xb1\xbc\xf5\x9a\xed\x9c\xae\x11\xf0\x18^6\xbef'
+2025-12-15 03:16:54,960 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-15 03:16:54,983 - DEBUG - ✓ vote from node0 to node1 (delay: 0.019s)
+2025-12-15 03:16:54,993 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,004 - DEBUG - ✓ vote from node0 to node2 (delay: 0.042s)
+2025-12-15 03:16:55,010 - DEBUG - ✓ vote from node0 to node3 (delay: 0.040s)
+2025-12-15 03:16:55,015 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,026 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,106 - DEBUG -  partial_sig 长度: 96
+2025-12-15 03:16:55,106 - INFO -  node1 创建投票成功
+2025-12-15 03:16:55,106 - INFO - [Consensus] Node node1 voted for block 74deeeef
+2025-12-15 03:16:55,107 - DEBUG - [Broadcast] vote from node1
+2025-12-15 03:16:55,107 - DEBUG - [Broadcast] Vote from node1 for block 74deeeef
+2025-12-15 03:16:55,108 - DEBUG - [Consensus] Vote broadcast from node1 to leader node2
+2025-12-15 03:16:55,108 - INFO - [Consensus] Node node3 processing proposal...
+2025-12-15 03:16:55,108 - INFO - 区块高度 1 高于当前高度 0，继续验证
+2025-12-15 03:16:55,108 - DEBUG -  准备签名数据: view=2, block_hash=b't\xde\xee\xef\t\xd1\x9cO\xa6y}\x1b\xdb4&\xe2\x1f\x9c\xb1\xbc\xf5\x9a\xed\x9c\xae\x11\xf0\x18^6\xbef'
+2025-12-15 03:16:55,108 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-15 03:16:55,132 - DEBUG - ✓ vote from node1 to node0 (delay: 0.025s)
+2025-12-15 03:16:55,133 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,154 - DEBUG - ✓ vote from node1 to node3 (delay: 0.042s)
+2025-12-15 03:16:55,155 - DEBUG - ✓ vote from node1 to node2 (delay: 0.045s)
+2025-12-15 03:16:55,168 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,178 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,254 - DEBUG -  partial_sig 长度: 96
+2025-12-15 03:16:55,254 - INFO -  node3 创建投票成功
+2025-12-15 03:16:55,254 - INFO - [Consensus] Node node3 voted for block 74deeeef
+2025-12-15 03:16:55,255 - DEBUG - [Broadcast] vote from node3
+2025-12-15 03:16:55,255 - DEBUG - [Broadcast] Vote from node3 for block 74deeeef
+2025-12-15 03:16:55,256 - DEBUG - [Consensus] Vote broadcast from node3 to leader node2
+2025-12-15 03:16:55,256 - INFO - [Consensus] Leader node2 collected 3 votes, forming QC...
+2025-12-15 03:16:55,289 - DEBUG - ✓ vote from node3 to node0 (delay: 0.027s)
+2025-12-15 03:16:55,294 - DEBUG - ✓ vote from node3 to node1 (delay: 0.036s)
+2025-12-15 03:16:55,300 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,305 - DEBUG - ✓ vote from node3 to node2 (delay: 0.039s)
+2025-12-15 03:16:55,310 - INFO - 处理所有类型的消息
+2025-12-15 03:16:55,326 - INFO - 处理所有类型的消息
+2025-12-15 03:16:56,405 - INFO - 聚合签名验证成功---模拟
+2025-12-15 03:16:56,405 - INFO - QC组装成功: view=2, block_hash=74deeeef09d19c4f
+2025-12-15 03:16:56,405 - DEBUG - get_block_by_hash -> in
+2025-12-15 03:16:56,406 - DEBUG - [Broadcast] new_view from node2
+2025-12-15 03:16:56,407 - INFO - {"ts": 1765739816.406965, "event": "new_view_broadcast", "node": "node2", "view": 2, "consensus_type": "my"}
+2025-12-15 03:16:56,407 - INFO - [Consensus] QC formed for view 2, block 74deeeef
+2025-12-15 03:16:56,407 - INFO - [Consensus] Round 2 completed, advancing to view 3
+2025-12-15 03:16:56,419 - DEBUG - ✓ new_view from node2 to node1 (delay: 0.012s)
+2025-12-15 03:16:56,419 - INFO - 处理所有类型的消息
+2025-12-15 03:16:56,436 - DEBUG - ✓ new_view from node2 to node3 (delay: 0.029s)
+2025-12-15 03:16:56,436 - INFO - 处理所有类型的消息
+2025-12-15 03:16:56,454 - DEBUG - ✓ new_view from node2 to node0 (delay: 0.047s)
+2025-12-15 03:16:56,454 - INFO - 处理所有类型的消息
+2025-12-15 03:16:56,595 - INFO - 
+==================================================
+2025-12-15 03:16:56,595 - INFO - 模拟器运行完成!
+2025-12-15 03:16:56,595 - INFO - ==================================================
+2025-12-15 03:16:56,595 - INFO - 总运行时间: 3.94秒
+2025-12-15 03:16:56,595 - INFO - 总轮数: 2
+2025-12-15 03:16:56,595 - INFO - 节点数: 4
+2025-12-15 03:16:56,595 - INFO - 容错数 (f): 0
+2025-12-15 03:16:56,595 - INFO - 估算TPS: 0.00
+2025-12-15 03:16:56,595 - INFO - ==================================================
+2025-12-15 03:16:56,595 - INFO - {"ts": 1765739816.595839, "event": "consensus_stopped", "node": "system", "view": 3, "consensus_type": "my"}
+2025-12-15 03:16:56,596 - INFO - {"ts": 1765739816.5961108, "event": "simulation_complete", "node": "system", "view": 2, "consensus_type": "my"}
+2025-12-15 03:16:56,907 - INFO - [Consensus] Consensus loop completed
+2025-12-15 03:16:56,908 - INFO - 共识线程正常结束
+2025-12-15 03:16:56,908 - INFO - 
+安全机制验证结果:
+2025-12-15 03:16:56,908 - INFO -   view_number_attack_detection: ✗ 失败
+2025-12-15 03:16:56,908 - INFO -   fake_bitmap_detection: ✗ 失败
+2025-12-15 03:16:56,908 - INFO -   merkle_proof_mechanism: ✓ 通过
+2025-12-15 03:16:56,909 - INFO - Simulation completed successfully.

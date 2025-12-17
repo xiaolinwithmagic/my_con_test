@@ -1,819 +1,591 @@
-2025-12-10 20:44:24,140 - INFO - 创建模拟器...
-2025-12-10 20:44:29,016 - DEBUG - [node0] add_block -> id=9e375c44, height=0, view=0
-2025-12-10 20:44:29,019 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,022 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,026 - DEBUG - Node node0 registered to network (total: 1)
-2025-12-10 20:44:29,029 - DEBUG - [node1] add_block -> id=9e375c44, height=0, view=0
-2025-12-10 20:44:29,031 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,034 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,036 - DEBUG - Node node1 registered to network (total: 2)
-2025-12-10 20:44:29,039 - DEBUG - [node2] add_block -> id=9e375c44, height=0, view=0
-2025-12-10 20:44:29,040 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,040 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,042 - DEBUG - Node node2 registered to network (total: 3)
-2025-12-10 20:44:29,045 - DEBUG - [node3] add_block -> id=9e375c44, height=0, view=0
-2025-12-10 20:44:29,046 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,048 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,050 - DEBUG - Node node3 registered to network (total: 4)
-2025-12-10 20:44:29,053 - INFO - 创建创世区块: height=0, id=e0e2ee48, hash=e0e2ee4800000000
-2025-12-10 20:44:29,054 - INFO - Using genesis QC from NodeState: view=0
-2025-12-10 20:44:29,054 - DEBUG - [node0] add_block -> id=e0e2ee48, height=0, view=0
-2025-12-10 20:44:29,056 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,058 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,061 - INFO - Added genesis block to node node0
-2025-12-10 20:44:29,063 - INFO - Node node0 initialized with genesis: height=0, locked_qc.view=0
-2025-12-10 20:44:29,065 - DEBUG - [node1] add_block -> id=e0e2ee48, height=0, view=0
-2025-12-10 20:44:29,067 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,068 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,072 - INFO - Added genesis block to node node1
-2025-12-10 20:44:29,075 - INFO - Node node1 initialized with genesis: height=0, locked_qc.view=0
-2025-12-10 20:44:29,076 - DEBUG - [node2] add_block -> id=e0e2ee48, height=0, view=0
-2025-12-10 20:44:29,077 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,079 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,082 - INFO - Added genesis block to node node2
-2025-12-10 20:44:29,083 - INFO - Node node2 initialized with genesis: height=0, locked_qc.view=0
-2025-12-10 20:44:29,086 - DEBUG - [node3] add_block -> id=e0e2ee48, height=0, view=0
-2025-12-10 20:44:29,092 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:44:29,096 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:44:29,100 - INFO - Added genesis block to node node3
-2025-12-10 20:44:29,102 - INFO - Node node3 initialized with genesis: height=0, locked_qc.view=0
-2025-12-10 20:44:29,106 - INFO - [Consensus] Initialized with group_pk=True, public_key_map_size=4, nodes=4
-2025-12-10 20:44:29,108 - INFO - [Simulator] 开始填充内存池，目标数量: 100
-2025-12-10 20:45:35,581 - INFO - [Simulator] 已添加 100 个交易到内存池
-2025-12-10 20:45:35,583 - INFO - [Simulator] 内存池填充完成，成功添加: 100/100
-2025-12-10 20:45:35,583 - INFO - [Simulator] 内存池当前大小: 100
-2025-12-10 20:45:35,583 - INFO - 启动共识...
-2025-12-10 20:45:35,583 - INFO - [Consensus] Starting consensus with view=1, nodes=['node0', 'node1', 'node2', 'node3']
-2025-12-10 20:45:35,583 - INFO - [Consensus] Genesis block: height=0, id=e0e2ee48
-2025-12-10 20:45:35,584 - INFO - [Consensus] Genesis QC: view=0, signers=0
-2025-12-10 20:45:35,586 - INFO - [Consensus] Starting global consensus loop
-2025-12-10 20:45:35,586 - INFO - [Consensus] Round 0: view=1, leader=node1
-2025-12-10 20:45:35,587 - INFO - [Consensus] Setting node node0.is_leader=False
-2025-12-10 20:45:35,588 - INFO - [Consensus] Setting node node1.is_leader=True
-2025-12-10 20:45:35,591 - INFO - [Consensus] Setting node node2.is_leader=False
-2025-12-10 20:45:35,590 - INFO - [Consensus] Threads started: consensus_thread=True, message_handler_thread=True
-2025-12-10 20:45:35,592 - INFO - [Consensus] Setting node node3.is_leader=False
-2025-12-10 20:45:35,596 - INFO - 等待共识完成...
-2025-12-10 20:45:35,597 - INFO - [Consensus] Leader node1 creating proposal...
-2025-12-10 20:45:35,599 - INFO - [Consensus] Creating height=1 block (child of genesis)
-2025-12-10 20:45:35,599 - INFO - [Consensus] Leader node1 creating new block at height 1
-2025-12-10 20:45:35,603 - INFO - [Consensus] Parent hash: e0e2ee4800000000
-2025-12-10 20:45:35,604 - INFO - [Consensus] Parent QC view: 0
-2025-12-10 20:45:35,607 - INFO - [Consensus] Transactions for new block: 20 transactions
-2025-12-10 20:45:35,610 - INFO - [Consensus] New block created: id=6185241a, height=1, view=1
-2025-12-10 20:45:35,610 - DEBUG - [node1] add_block -> id=6185241a, height=1, view=1
-2025-12-10 20:45:35,611 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:35,611 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:35,613 - INFO - [Consensus] Leader node1 created block 6185241a
-2025-12-10 20:45:35,615 - DEBUG - [Broadcast] Proposal from node1, block hash: 6185241a
-2025-12-10 20:45:35,617 - DEBUG - [Broadcast] proposal from node1
-2025-12-10 20:45:35,623 - INFO - [Consensus] Node node0 processing proposal...
-2025-12-10 20:45:35,624 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
-2025-12-10 20:45:35,626 - DEBUG - 准备签名数据: start
-2025-12-10 20:45:35,627 - DEBUG - view_bytes: 0000000000000001, 长度: 8
-2025-12-10 20:45:35,628 - DEBUG - block_hash: 6185241aedde69b2aceea903809a0bcfaa0a6639894964768bdc49c8b4fb3909, 长度: 32
-2025-12-10 20:45:35,630 - DEBUG - sign_data: 00000000000000016185241aedde69b2aceea903809a0bcfaa0a6639894964768bdc49c8b4fb3909, 长度: 40
-2025-12-10 20:45:35,639 - DEBUG - ✓ proposal from node1 to node0 (delay: 0.013s)
-2025-12-10 20:45:35,641 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
-2025-12-10 20:45:35,642 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
-2025-12-10 20:45:35,644 - DEBUG - [node0] Received proposal at view 1
-2025-12-10 20:45:35,646 - WARNING - [node0] Proposal invalid: Block parent_hash e0e2ee48 != QC block_hash 00000000
-2025-12-10 20:45:35,655 - DEBUG - ✓ proposal from node1 to node2 (delay: 0.028s)
-2025-12-10 20:45:35,658 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
-2025-12-10 20:45:35,668 - DEBUG - ✓ proposal from node1 to node3 (delay: 0.016s)
-2025-12-10 20:45:35,669 - DEBUG - [Proof Request] node0 -> node0 (index=0, view=0)
-2025-12-10 20:45:35,671 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
-2025-12-10 20:45:35,676 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
-2025-12-10 20:45:35,685 - DEBUG - [node2] Received proposal at view 1
-2025-12-10 20:45:35,686 - WARNING - [node2] Proposal invalid: Block parent_hash e0e2ee48 != QC block_hash 00000000
-2025-12-10 20:45:35,688 - DEBUG - [Proof Request] node2 -> node0 (index=2, view=0)
-2025-12-10 20:45:35,701 - DEBUG - ✓ request_merkle_proof from node2 to node0 (delay: 0.013s)
-2025-12-10 20:45:35,787 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
-2025-12-10 20:45:35,799 - DEBUG - [node3] Received proposal at view 1
-2025-12-10 20:45:35,801 - DEBUG - ✓ request_merkle_proof from node0 to node0 (delay: 0.033s)
-2025-12-10 20:45:35,803 - WARNING - [node3] Proposal invalid: Block parent_hash e0e2ee48 != QC block_hash 00000000
-2025-12-10 20:45:35,813 - DEBUG - [Proof Request] node3 -> node0 (index=3, view=0)
-2025-12-10 20:45:35,835 - DEBUG - ✓ request_merkle_proof from node3 to node0 (delay: 0.023s)
-2025-12-10 20:45:36,544 - DEBUG -  partial_sig 长度: 96
-2025-12-10 20:45:36,545 - DEBUG - 创建投票成功: 节点=node0, 视图=1, 区块=b'a\x85$\x1a\xed\xdei\xb2'
-2025-12-10 20:45:36,547 - INFO - [Consensus] Node node0 voted for block 6185241a
-2025-12-10 20:45:36,549 - DEBUG - [Broadcast] vote from node0
-2025-12-10 20:45:36,555 - DEBUG - [Broadcast] Vote from node0 for block 6185241a
-2025-12-10 20:45:36,556 - DEBUG - [Consensus] Vote broadcast from node0 to leader node1
-2025-12-10 20:45:36,559 - INFO - [Consensus] Node node2 processing proposal...
-2025-12-10 20:45:36,561 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
-2025-12-10 20:45:36,563 - DEBUG - 准备签名数据: start
-2025-12-10 20:45:36,787 - DEBUG - view_bytes: 0000000000000001, 长度: 8
-2025-12-10 20:45:36,791 - DEBUG - block_hash: 6185241aedde69b2aceea903809a0bcfaa0a6639894964768bdc49c8b4fb3909, 长度: 32
-2025-12-10 20:45:36,792 - DEBUG - sign_data: 00000000000000016185241aedde69b2aceea903809a0bcfaa0a6639894964768bdc49c8b4fb3909, 长度: 40
-2025-12-10 20:45:36,790 - DEBUG - ✓ vote from node0 to node3 (delay: 0.026s)
-2025-12-10 20:45:36,788 - DEBUG - ✓ vote from node0 to node1 (delay: 0.034s)
-2025-12-10 20:45:36,806 - INFO - [node1] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
-2025-12-10 20:45:36,807 - DEBUG - [node1] Vote from node0 at index 0 included in QC assembly
-2025-12-10 20:45:36,788 - DEBUG - ✓ vote from node0 to node2 (delay: 0.044s)
-2025-12-10 20:45:36,860 - DEBUG - [node1] update_latest_qc -> view=1, block=6185241a
-2025-12-10 20:45:36,862 - DEBUG - [Broadcast] new_view from node1
-2025-12-10 20:45:36,881 - INFO - [node1] Assembled QC for block 6185241a
-2025-12-10 20:45:36,908 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.031s)
-2025-12-10 20:45:36,909 - INFO - [node0] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:36,917 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.034s)
-2025-12-10 20:45:36,918 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:36,921 - DEBUG - [node0] update_latest_qc -> view=1, block=6185241a
-2025-12-10 20:45:36,921 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.041s)
-2025-12-10 20:45:36,922 - INFO - [node0] Updated latest_qc to view 1
-2025-12-10 20:45:36,920 - INFO - [node3] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:36,930 - INFO - [node2] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:36,937 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:36,939 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:36,940 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:36,940 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:36,940 - DEBUG - [node0] update_locked_qc -> view=1, block=6185241a
-2025-12-10 20:45:36,940 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:36,940 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:36,940 - INFO - [node0] Updated locked_qc to view 1
-2025-12-10 20:45:36,940 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:36,940 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:36,940 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:36,941 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:36,941 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:36,945 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:36,946 - DEBUG - [node0] Next leader is node2, not me
-2025-12-10 20:45:36,946 - INFO - [node0] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:36,937 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:36,953 - DEBUG - [Proof Request] node3 -> node1 (index=3, view=1)
-2025-12-10 20:45:36,954 - DEBUG - [Proof Request] node2 -> node1 (index=2, view=1)
-2025-12-10 20:45:36,976 - DEBUG - ✓ request_merkle_proof from node3 to node1 (delay: 0.018s)
-2025-12-10 20:45:36,983 - DEBUG - ✓ request_merkle_proof from node2 to node1 (delay: 0.031s)
-2025-12-10 20:45:37,788 - INFO - 
+2025-12-11 21:42:13,500 - INFO - 创建模拟器...
+2025-12-11 21:42:16,140 - DEBUG - [node0] add_block -> id=971370d5, height=0, view=0
+2025-12-11 21:42:16,140 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,141 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,142 - DEBUG - Node node0 registered to network (total: 1)
+2025-12-11 21:42:16,143 - DEBUG - [node1] add_block -> id=971370d5, height=0, view=0
+2025-12-11 21:42:16,144 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,147 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,148 - DEBUG - Node node1 registered to network (total: 2)
+2025-12-11 21:42:16,150 - DEBUG - [node2] add_block -> id=971370d5, height=0, view=0
+2025-12-11 21:42:16,150 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,151 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,151 - DEBUG - Node node2 registered to network (total: 3)
+2025-12-11 21:42:16,152 - DEBUG - [node3] add_block -> id=971370d5, height=0, view=0
+2025-12-11 21:42:16,153 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,155 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,157 - DEBUG - Node node3 registered to network (total: 4)
+2025-12-11 21:42:16,158 - INFO - Node node0 =======================================================
+2025-12-11 21:42:16,159 - INFO - Node node1 =======================================================
+2025-12-11 21:42:16,161 - INFO - Node node2 =======================================================
+2025-12-11 21:42:16,162 - INFO - Node node3 =======================================================
+2025-12-11 21:42:16,162 - INFO - 创建创世区块: height=0, id=e0e2ee48, hash=e0e2ee4800000000
+2025-12-11 21:42:16,164 - INFO - Using genesis QC from NodeState: view=0
+2025-12-11 21:42:16,165 - DEBUG - [node0] add_block -> id=e0e2ee48, height=0, view=0
+2025-12-11 21:42:16,166 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,167 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,168 - INFO - Added genesis block to node node0
+2025-12-11 21:42:16,171 - INFO - Node node0 initialized with genesis: height=0, locked_qc.view=0
+2025-12-11 21:42:16,172 - DEBUG - [node1] add_block -> id=e0e2ee48, height=0, view=0
+2025-12-11 21:42:16,172 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,172 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,172 - INFO - Added genesis block to node node1
+2025-12-11 21:42:16,175 - INFO - Node node1 initialized with genesis: height=0, locked_qc.view=0
+2025-12-11 21:42:16,175 - DEBUG - [node2] add_block -> id=e0e2ee48, height=0, view=0
+2025-12-11 21:42:16,175 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,175 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,178 - INFO - Added genesis block to node node2
+2025-12-11 21:42:16,178 - INFO - Node node2 initialized with genesis: height=0, locked_qc.view=0
+2025-12-11 21:42:16,179 - DEBUG - [node3] add_block -> id=e0e2ee48, height=0, view=0
+2025-12-11 21:42:16,179 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:42:16,179 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:42:16,181 - INFO - Added genesis block to node node3
+2025-12-11 21:42:16,183 - INFO - Node node3 initialized with genesis: height=0, locked_qc.view=0
+2025-12-11 21:42:16,184 - INFO - [Consensus] Initialized with group_pk=True, public_key_map_size=4, nodes=4
+2025-12-11 21:42:16,185 - INFO - [Simulator] 开始填充内存池，目标数量: 100
+2025-12-11 21:43:15,055 - INFO - [Simulator] 已添加 100 个交易到内存池
+2025-12-11 21:43:15,057 - INFO - [Simulator] 内存池填充完成，成功添加: 100/100
+2025-12-11 21:43:15,058 - INFO - [Simulator] 内存池当前大小: 100
+2025-12-11 21:43:15,059 - INFO - 启动共识...
+2025-12-11 21:43:15,062 - INFO - [Consensus] Starting consensus with view=1, nodes=['node0', 'node1', 'node2', 'node3']
+2025-12-11 21:43:15,063 - INFO - [Consensus] Genesis block: height=0, id=e0e2ee48
+2025-12-11 21:43:15,065 - INFO - [Consensus] Genesis QC: view=0, signers=0
+2025-12-11 21:43:15,068 - INFO - 主共识循环：全局协调所有节点
+2025-12-11 21:43:15,071 - INFO - [Consensus] Starting global consensus loop
+2025-12-11 21:43:15,071 - INFO - [Consensus] Threads started: consensus_thread=True, message_handler_thread=True
+2025-12-11 21:43:15,073 - INFO - [Consensus] Round 0: view=1, leader=node1
+2025-12-11 21:43:15,076 - INFO - [Consensus] Setting node node0.is_leader=False
+2025-12-11 21:43:15,078 - INFO - [Consensus] Setting node node1.is_leader=True
+2025-12-11 21:43:15,080 - INFO - [Consensus] Setting node node2.is_leader=False
+2025-12-11 21:43:15,083 - INFO - [Consensus] Setting node node3.is_leader=False
+2025-12-11 21:43:15,084 - INFO - [Consensus] Leader node1 creating proposal...
+2025-12-11 21:43:15,084 - INFO - 等待共识完成...
+2025-12-11 21:43:15,085 - INFO - Using genesis as parent (no QC formed yet)
+2025-12-11 21:43:15,089 - INFO - [Consensus] Leader node1 creating new block at height 1
+2025-12-11 21:43:15,090 - INFO - [Consensus] Parent hash: e0e2ee4800000000
+2025-12-11 21:43:15,091 - INFO - [Consensus] Parent QC view: 0
+2025-12-11 21:43:15,095 - INFO - [Consensus] Transactions for new block: 20 transactions
+2025-12-11 21:43:15,099 - INFO - [Consensus] New block created: id=a2e59763, height=1, view=1
+2025-12-11 21:43:15,099 - DEBUG - [node1] add_block -> id=a2e59763, height=1, view=1
+2025-12-11 21:43:15,102 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:15,103 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:15,105 - INFO - [Consensus] Leader node1 created block a2e59763
+2025-12-11 21:43:15,106 - DEBUG - [Broadcast] Proposal from node1, block hash: a2e59763
+2025-12-11 21:43:15,107 - DEBUG - [Broadcast] proposal from node1
+2025-12-11 21:43:15,112 - INFO - [Consensus] Node node0 processing proposal...
+2025-12-11 21:43:15,114 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
+2025-12-11 21:43:15,114 - DEBUG - 准备签名数据: start
+2025-12-11 21:43:15,116 - DEBUG - view_bytes: 0000000000000001, 长度: 8
+2025-12-11 21:43:15,116 - DEBUG - block_hash: a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41, 长度: 32
+2025-12-11 21:43:15,116 - DEBUG - sign_data: 0000000000000001a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41, 长度: 40
+2025-12-11 21:43:15,135 - DEBUG - ✓ proposal from node1 to node0 (delay: 0.022s)
+2025-12-11 21:43:15,136 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
+2025-12-11 21:43:15,137 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
+2025-12-11 21:43:15,138 - DEBUG - ✓ proposal from node1 to node2 (delay: 0.019s)
+2025-12-11 21:43:15,146 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,158 - INFO - 处理提案消息（使用新的验证流程）
+2025-12-11 21:43:15,158 - DEBUG - [node0] Received proposal at view 1
+2025-12-11 21:43:15,157 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
+2025-12-11 21:43:15,158 - INFO - line110
+2025-12-11 21:43:15,157 - DEBUG - ✓ proposal from node1 to node3 (delay: 0.043s)
+2025-12-11 21:43:15,171 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
+2025-12-11 21:43:15,177 - INFO - line112
+2025-12-11 21:43:15,179 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
+2025-12-11 21:43:15,186 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,187 - INFO - line114
+2025-12-11 21:43:15,208 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
+2025-12-11 21:43:15,213 - INFO - 处理提案消息（使用新的验证流程）
+2025-12-11 21:43:15,221 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,221 - INFO - 新的提案验证（使用分层验证）
+2025-12-11 21:43:15,244 - DEBUG - [node2] Received proposal at view 1
+2025-12-11 21:43:15,255 - INFO - line110
+2025-12-11 21:43:15,256 - INFO - 副本的分层QC验证
+2025-12-11 21:43:15,257 - INFO - Verifying genesis QC (special handling)
+2025-12-11 21:43:15,283 - INFO - line112
+2025-12-11 21:43:15,289 - INFO - 处理提案消息（使用新的验证流程）
+2025-12-11 21:43:15,291 - INFO - line114
+2025-12-11 21:43:15,304 - INFO - [node0] Proposal validated, waiting for consensus layer to create vote
+2025-12-11 21:43:15,312 - INFO - 新的提案验证（使用分层验证）
+2025-12-11 21:43:15,311 - DEBUG - [node3] Received proposal at view 1
+2025-12-11 21:43:15,318 - INFO - 副本的分层QC验证
+2025-12-11 21:43:15,336 - INFO - line110
+2025-12-11 21:43:15,347 - INFO - Verifying genesis QC (special handling)
+2025-12-11 21:43:15,363 - INFO - [node2] Proposal validated, waiting for consensus layer to create vote
+2025-12-11 21:43:15,379 - INFO - line112
+2025-12-11 21:43:15,391 - INFO - line114
+2025-12-11 21:43:15,400 - INFO - 新的提案验证（使用分层验证）
+2025-12-11 21:43:15,407 - INFO - 副本的分层QC验证
+2025-12-11 21:43:15,419 - INFO - Verifying genesis QC (special handling)
+2025-12-11 21:43:15,419 - INFO - [node3] Proposal validated, waiting for consensus layer to create vote
+2025-12-11 21:43:15,587 - DEBUG -  partial_sig 长度: 96
+2025-12-11 21:43:15,589 - DEBUG - 创建投票成功: 节点=node0, 视图=1, 区块=b'\xa2\xe5\x97c\x97\x88S\xc4'
+2025-12-11 21:43:15,591 - INFO - [Consensus] Node node0 voted for block a2e59763
+2025-12-11 21:43:15,594 - DEBUG - [Broadcast] vote from node0
+2025-12-11 21:43:15,597 - DEBUG - [Broadcast] Vote from node0 for block a2e59763
+2025-12-11 21:43:15,598 - DEBUG - [Consensus] Vote broadcast from node0 to leader node1
+2025-12-11 21:43:15,600 - INFO - [Consensus] Node node2 processing proposal...
+2025-12-11 21:43:15,601 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
+2025-12-11 21:43:15,602 - DEBUG - 准备签名数据: start
+2025-12-11 21:43:15,606 - DEBUG - view_bytes: 0000000000000001, 长度: 8
+2025-12-11 21:43:15,607 - DEBUG - block_hash: a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41, 长度: 32
+2025-12-11 21:43:15,608 - DEBUG - sign_data: 0000000000000001a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41, 长度: 40
+2025-12-11 21:43:15,624 - DEBUG - ✓ vote from node0 to node2 (delay: 0.024s)
+2025-12-11 21:43:15,631 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,648 - DEBUG - ✓ vote from node0 to node1 (delay: 0.044s)
+2025-12-11 21:43:15,656 - DEBUG - ✓ vote from node0 to node3 (delay: 0.050s)
+2025-12-11 21:43:15,657 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,664 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,678 - INFO - [node1] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
+2025-12-11 21:43:15,679 - INFO - [node1] Received vote dict: type=<class 'dict'>, content={'voter_id': 'node0', 'voter_index': 0, 'block_id': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'block_hash': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'view': 1, 'partial_signature': 'b8ad00f996ccc285663415eca3444d74ee4efaa7a00e462fb2bf7c2c5917ec57598e761cf1eea7e4dffb9db1c1424e2a0855a8d9a7805bd3e4991a1ade427650abb60be6e06ba6d8e5392530368a1f61f151a98784ee7511524b26b34efd01ad', 'timestamp': 1765460595.5945451, 'sender': 'node0', 'type': 'vote'}
+2025-12-11 21:43:15,695 - INFO - 从字典反序列化
+2025-12-11 21:43:15,702 - INFO - 1111111111111
+2025-12-11 21:43:15,723 - INFO - 222222222
+2025-12-11 21:43:15,734 - INFO - 组装QC（Leader）
+2025-12-11 21:43:15,741 - DEBUG - [node1] Vote from node0 at index 0 included in QC assembly
+2025-12-11 21:43:15,789 - DEBUG - [node1] update_latest_qc -> view=1, block=a2e59763
+2025-12-11 21:43:15,789 - DEBUG - [Broadcast] new_view from node1
+2025-12-11 21:43:15,827 - INFO - [node1] Assembled QC for block a2e59763
+2025-12-11 21:43:15,829 - INFO - [node1] handle succ.
+2025-12-11 21:43:15,842 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.026s)
+2025-12-11 21:43:15,843 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.047s)
+2025-12-11 21:43:15,853 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,859 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.037s)
+2025-12-11 21:43:15,873 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,881 - INFO - [node2] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:15,899 - INFO - 处理所有类型的消息
+2025-12-11 21:43:15,905 - INFO - [node0] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:15,913 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:15,914 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:15,920 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:15,928 - INFO - [node3] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:15,940 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:15,943 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:15,946 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:15,948 - INFO - 副本的分层QC验证
+2025-12-11 21:43:15,955 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:15,955 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:15,971 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:15,961 - INFO - 副本的分层QC验证
+2025-12-11 21:43:15,972 - INFO - 副本的分层QC验证
+2025-12-11 21:43:15,956 - DEBUG - [node0] update_latest_qc -> view=1, block=a2e59763
+2025-12-11 21:43:15,989 - DEBUG - [Proof Request] node2 -> node1 (index=2, view=1)
+2025-12-11 21:43:16,000 - DEBUG - [Proof Request] node3 -> node1 (index=3, view=1)
+2025-12-11 21:43:16,000 - INFO - [node0] Updated latest_qc to view 1
+2025-12-11 21:43:16,008 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:16,010 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:16,012 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:16,014 - DEBUG - [node0] update_locked_qc -> view=1, block=a2e59763
+2025-12-11 21:43:16,023 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:16,024 - DEBUG - ✓ request_merkle_proof from node2 to node1 (delay: 0.037s)
+2025-12-11 21:43:16,025 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:16,034 - DEBUG - ✓ request_merkle_proof from node3 to node1 (delay: 0.043s)
+2025-12-11 21:43:16,069 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,064 - INFO - [node0] Updated locked_qc to view 1
+2025-12-11 21:43:16,077 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:16,084 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:16,063 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,092 - INFO - [node0] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:16,093 - DEBUG - [node0] block.payload type: <class 'list'>
+2025-12-11 21:43:16,095 - DEBUG - [node0] 12.tx type: <class 'str'>
+2025-12-11 21:43:16,097 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:16,101 - DEBUG - [node0] Next leader is node2, not me
+2025-12-11 21:43:16,113 - INFO - [node0] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:16,157 - DEBUG -  partial_sig 长度: 96
+2025-12-11 21:43:16,158 - DEBUG - 创建投票成功: 节点=node2, 视图=1, 区块=b'\xa2\xe5\x97c\x97\x88S\xc4'
+2025-12-11 21:43:16,159 - INFO - [Consensus] Node node2 voted for block a2e59763
+2025-12-11 21:43:16,160 - DEBUG - [Broadcast] vote from node2
+2025-12-11 21:43:16,162 - DEBUG - [Broadcast] Vote from node2 for block a2e59763
+2025-12-11 21:43:16,163 - DEBUG - [Consensus] Vote broadcast from node2 to leader node1
+2025-12-11 21:43:16,163 - INFO - [Consensus] Node node3 processing proposal...
+2025-12-11 21:43:16,164 - WARNING - Height=1 block has QC with view=1, expected 0
+2025-12-11 21:43:16,164 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
+2025-12-11 21:43:16,165 - DEBUG - 准备签名数据: start
+2025-12-11 21:43:16,167 - DEBUG - view_bytes: 0000000000000001, 长度: 8
+2025-12-11 21:43:16,167 - DEBUG - block_hash: a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41, 长度: 32
+2025-12-11 21:43:16,168 - DEBUG - sign_data: 0000000000000001a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41, 长度: 40
+2025-12-11 21:43:16,183 - DEBUG - ✓ vote from node2 to node0 (delay: 0.016s)
+2025-12-11 21:43:16,185 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,207 - DEBUG - ✓ vote from node2 to node1 (delay: 0.040s)
+2025-12-11 21:43:16,221 - DEBUG - ✓ vote from node2 to node3 (delay: 0.049s)
+2025-12-11 21:43:16,221 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,237 - INFO - [node1] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
+2025-12-11 21:43:16,238 - INFO - [node1] Received vote dict: type=<class 'dict'>, content={'voter_id': 'node2', 'voter_index': 2, 'block_id': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'block_hash': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'view': 1, 'partial_signature': '911f82cab202a541682f49b8ae3c7e2827fb29a15cd09a10ba937d141f71f48727b12b95f59202373e7f917710fbcd1809efa9f55330ca132076414eeb4340527cc30d6a6e7ad76032c0a737122d5598b60bba9f481f2df6ffadc7f2a59d0047', 'timestamp': 1765460596.160053, 'sender': 'node2', 'type': 'vote'}
+2025-12-11 21:43:16,236 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,246 - INFO - 从字典反序列化
+2025-12-11 21:43:16,274 - INFO - 1111111111111
+2025-12-11 21:43:16,281 - INFO - 222222222
+2025-12-11 21:43:16,288 - INFO - 组装QC（Leader）
+2025-12-11 21:43:16,294 - DEBUG - [node1] Vote from node2 at index 2 included in QC assembly
+2025-12-11 21:43:16,339 - DEBUG - [Broadcast] new_view from node1
+2025-12-11 21:43:16,392 - INFO - [node1] Assembled QC for block a2e59763
+2025-12-11 21:43:16,393 - INFO - [node1] handle succ.
+2025-12-11 21:43:16,416 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.022s)
+2025-12-11 21:43:16,424 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,423 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.039s)
+2025-12-11 21:43:16,416 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.049s)
+2025-12-11 21:43:16,449 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,443 - INFO - [node3] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:16,456 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,463 - INFO - [node2] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:16,472 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:16,475 - INFO - [node0] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:16,475 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:16,500 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:16,508 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:16,512 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:16,543 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:16,549 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:16,549 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:16,552 - INFO - 副本的分层QC验证
+2025-12-11 21:43:16,552 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:16,553 - INFO - 副本的分层QC验证
+2025-12-11 21:43:16,582 - INFO - 副本的分层QC验证
+2025-12-11 21:43:16,583 - DEBUG - [Proof Request] node3 -> node1 (index=3, view=1)
+2025-12-11 21:43:16,586 - DEBUG - [Proof Request] node0 -> node1 (index=0, view=1)
+2025-12-11 21:43:16,590 - DEBUG - [node2] update_latest_qc -> view=1, block=a2e59763
+2025-12-11 21:43:16,593 - INFO - [node2] Updated latest_qc to view 1
+2025-12-11 21:43:16,602 - DEBUG - ✓ request_merkle_proof from node3 to node1 (delay: 0.013s)
+2025-12-11 21:43:16,613 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,611 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:16,614 - DEBUG - ✓ request_merkle_proof from node0 to node1 (delay: 0.020s)
+2025-12-11 21:43:16,643 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,636 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:16,657 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:16,659 - DEBUG - [node2] update_locked_qc -> view=1, block=a2e59763
+2025-12-11 21:43:16,671 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:16,671 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:16,674 - INFO - [node2] Updated locked_qc to view 1
+2025-12-11 21:43:16,685 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:16,701 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:16,709 - INFO - [node2] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:16,711 - DEBUG - [node2] block.payload type: <class 'list'>
+2025-12-11 21:43:16,712 - DEBUG - [node2] 12.tx type: <class 'str'>
+2025-12-11 21:43:16,713 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:16,728 - INFO - [node2] I am the leader for next view 2
+2025-12-11 21:43:16,739 - INFO - [node2] Preparing to lead view 2
+2025-12-11 21:43:16,744 - DEBUG -  partial_sig 长度: 96
+2025-12-11 21:43:16,746 - INFO - [node2] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:16,746 - DEBUG - 创建投票成功: 节点=node3, 视图=1, 区块=b'\xa2\xe5\x97c\x97\x88S\xc4'
+2025-12-11 21:43:16,749 - INFO - [Consensus] Node node3 voted for block a2e59763
+2025-12-11 21:43:16,750 - DEBUG - [Broadcast] vote from node3
+2025-12-11 21:43:16,753 - DEBUG - [Broadcast] Vote from node3 for block a2e59763
+2025-12-11 21:43:16,754 - DEBUG - [Consensus] Vote broadcast from node3 to leader node1
+2025-12-11 21:43:16,755 - INFO - [Consensus] Leader node1 collected 3 votes, forming QC...
+2025-12-11 21:43:16,772 - DEBUG - ✓ vote from node3 to node1 (delay: 0.015s)
+2025-12-11 21:43:16,783 - DEBUG - ✓ vote from node3 to node2 (delay: 0.029s)
+2025-12-11 21:43:16,784 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,797 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,797 - INFO - [node1] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
+2025-12-11 21:43:16,804 - DEBUG - ✓ vote from node3 to node0 (delay: 0.047s)
+2025-12-11 21:43:16,837 - INFO - [node2] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
+2025-12-11 21:43:16,837 - INFO - [node1] Received vote dict: type=<class 'dict'>, content={'voter_id': 'node3', 'voter_index': 3, 'block_id': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'block_hash': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'view': 1, 'partial_signature': '88317d4d5701a29f08aa7bc888ffb494eca048906a57f19520f285aad6da7f77efaf55ca1ebabfe2b4c7aa8832bccafc06102d66d1beea9f39af9e35d0b5a9000852d626c37f28ce10eaf392842aa0ac6008aa1bc27253d063b4090e67982840', 'timestamp': 1765460596.750279, 'sender': 'node3', 'type': 'vote'}
+2025-12-11 21:43:16,838 - INFO - 从字典反序列化
+2025-12-11 21:43:16,879 - INFO - 处理所有类型的消息
+2025-12-11 21:43:16,910 - INFO - 1111111111111
+2025-12-11 21:43:16,919 - INFO - [node2] Received vote dict: type=<class 'dict'>, content={'voter_id': 'node3', 'voter_index': 3, 'block_id': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'block_hash': 'a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41', 'view': 1, 'partial_signature': '88317d4d5701a29f08aa7bc888ffb494eca048906a57f19520f285aad6da7f77efaf55ca1ebabfe2b4c7aa8832bccafc06102d66d1beea9f39af9e35d0b5a9000852d626c37f28ce10eaf392842aa0ac6008aa1bc27253d063b4090e67982840', 'timestamp': 1765460596.750279, 'sender': 'node3', 'type': 'vote'}
+2025-12-11 21:43:16,919 - INFO - 从字典反序列化
+2025-12-11 21:43:16,921 - INFO - 1111111111111
+2025-12-11 21:43:16,926 - INFO - 222222222
+2025-12-11 21:43:16,948 - INFO - 222222222
+2025-12-11 21:43:16,950 - INFO - 组装QC（Leader）
+2025-12-11 21:43:16,960 - INFO - 组装QC（Leader）
+2025-12-11 21:43:16,968 - ERROR - [node2] Block a2e59763 not found for QC assembly
+2025-12-11 21:43:16,975 - DEBUG - [node1] Vote from node3 at index 3 included in QC assembly
+2025-12-11 21:43:16,990 - INFO - [node2] handle succ.
+2025-12-11 21:43:17,012 - DEBUG - [node2] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:17,013 - DEBUG - [node3] update_latest_qc -> view=1, block=a2e59763
+2025-12-11 21:43:17,021 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,024 - INFO - [node3] Updated latest_qc to view 1
+2025-12-11 21:43:17,042 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,042 - DEBUG - [Broadcast] new_view from node1
+2025-12-11 21:43:17,055 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,056 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:17,058 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,059 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,069 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,072 - INFO - [node2] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:17,078 - DEBUG - [node2] block.payload type: <class 'list'>
+2025-12-11 21:43:17,077 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:17,078 - INFO - [node1] Assembled QC for block a2e59763
+2025-12-11 21:43:17,087 - DEBUG - [node2] 12.tx type: <class 'str'>
+2025-12-11 21:43:17,089 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:17,090 - INFO - [node1] handle succ.
+2025-12-11 21:43:17,098 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.029s)
+2025-12-11 21:43:17,099 - INFO - [node2] I am the leader for next view 2
+2025-12-11 21:43:17,107 - DEBUG - [node3] update_locked_qc -> view=1, block=a2e59763
+2025-12-11 21:43:17,110 - INFO - 处理所有类型的消息
+2025-12-11 21:43:17,112 - INFO - [node2] Preparing to lead view 2
+2025-12-11 21:43:17,113 - INFO - [node2] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:17,117 - INFO - [node0] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:17,119 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.046s)
+2025-12-11 21:43:17,128 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:17,128 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.042s)
+2025-12-11 21:43:17,144 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,150 - INFO - 处理所有类型的消息
+2025-12-11 21:43:17,161 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:17,169 - INFO - 处理所有类型的消息
+2025-12-11 21:43:17,170 - INFO - 
 === 模拟器统计 (轮数: 0/2) ===
-2025-12-10 20:45:37,795 - INFO - 活跃节点: 4
-2025-12-10 20:45:37,797 - INFO - 内存池大小: 80
-2025-12-10 20:45:37,798 - INFO - 已提交区块: 0
-2025-12-10 20:45:37,798 - INFO - 视图: 1
-2025-12-10 20:45:37,805 - INFO - 提案数: 0
-2025-12-10 20:45:37,807 - INFO - 成功QC数: 0
-2025-12-10 20:45:37,807 - INFO - 视图切换: 0
-2025-12-10 20:45:37,808 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:37,902 - DEBUG -  partial_sig 长度: 96
-2025-12-10 20:45:37,903 - DEBUG - 创建投票成功: 节点=node2, 视图=1, 区块=b'a\x85$\x1a\xed\xdei\xb2'
-2025-12-10 20:45:37,903 - INFO - [Consensus] Node node2 voted for block 6185241a
-2025-12-10 20:45:37,903 - DEBUG - [Broadcast] vote from node2
-2025-12-10 20:45:37,907 - DEBUG - [Broadcast] Vote from node2 for block 6185241a
-2025-12-10 20:45:37,907 - DEBUG - [Consensus] Vote broadcast from node2 to leader node1
-2025-12-10 20:45:37,908 - INFO - [Consensus] Node node3 processing proposal...
-2025-12-10 20:45:37,908 - WARNING - Height=1 block has QC with view=1, expected 0
-2025-12-10 20:45:37,908 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
-2025-12-10 20:45:37,908 - DEBUG - 准备签名数据: start
-2025-12-10 20:45:37,908 - DEBUG - view_bytes: 0000000000000001, 长度: 8
-2025-12-10 20:45:37,908 - DEBUG - block_hash: 6185241aedde69b2aceea903809a0bcfaa0a6639894964768bdc49c8b4fb3909, 长度: 32
-2025-12-10 20:45:37,908 - DEBUG - sign_data: 00000000000000016185241aedde69b2aceea903809a0bcfaa0a6639894964768bdc49c8b4fb3909, 长度: 40
-2025-12-10 20:45:37,924 - DEBUG - ✓ vote from node2 to node0 (delay: 0.015s)
-2025-12-10 20:45:37,925 - DEBUG - ✓ vote from node2 to node1 (delay: 0.013s)
-2025-12-10 20:45:37,926 - INFO - [node1] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
-2025-12-10 20:45:37,928 - DEBUG - [node1] Vote from node2 at index 2 included in QC assembly
-2025-12-10 20:45:37,939 - DEBUG - ✓ vote from node2 to node3 (delay: 0.031s)
-2025-12-10 20:45:37,961 - DEBUG - [Broadcast] new_view from node1
-2025-12-10 20:45:37,964 - DEBUG - [node2] update_latest_qc -> view=1, block=6185241a
-2025-12-10 20:45:37,964 - INFO - [node2] Updated latest_qc to view 1
-2025-12-10 20:45:37,965 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:37,967 - DEBUG - [node3] update_latest_qc -> view=1, block=6185241a
-2025-12-10 20:45:37,968 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:37,978 - INFO - [node1] Assembled QC for block 6185241a
-2025-12-10 20:45:37,979 - INFO - [node3] Updated latest_qc to view 1
-2025-12-10 20:45:37,979 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:37,980 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:37,982 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:37,982 - DEBUG - [node2] update_locked_qc -> view=1, block=6185241a
-2025-12-10 20:45:37,982 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:37,983 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:37,983 - INFO - [node2] Updated locked_qc to view 1
-2025-12-10 20:45:37,984 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:37,984 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:37,987 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:37,989 - INFO - [node2] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:37,994 - DEBUG - [node3] update_locked_qc -> view=1, block=6185241a
-2025-12-10 20:45:38,001 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.034s)
-2025-12-10 20:45:38,004 - DEBUG - [node2] block.payload type: <class 'list'>
-2025-12-10 20:45:38,013 - DEBUG - [node2] 12.tx type: <class 'str'>
-2025-12-10 20:45:38,012 - INFO - [node0] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:38,011 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:38,013 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:38,013 - INFO - [node2] I am the leader for next view 2
-2025-12-10 20:45:38,014 - INFO - [node2] Preparing to lead view 2
-2025-12-10 20:45:38,014 - INFO - [node2] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:38,022 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.048s)
-2025-12-10 20:45:38,022 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:38,024 - INFO - [node2] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:38,024 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:38,025 - DEBUG - [node2] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:38,029 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:38,030 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.045s)
-2025-12-10 20:45:38,031 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:38,041 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:38,042 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:38,042 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:38,042 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:38,042 - INFO - [node2] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:38,042 - DEBUG - [node2] block.payload type: <class 'list'>
-2025-12-10 20:45:38,043 - DEBUG - [node2] 12.tx type: <class 'str'>
-2025-12-10 20:45:38,033 - INFO - [node3] Updated locked_qc to view 1
-2025-12-10 20:45:38,043 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:38,043 - INFO - [node2] I am the leader for next view 2
-2025-12-10 20:45:38,038 - INFO - [node3] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:38,076 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:38,061 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:38,068 - INFO - [node2] Preparing to lead view 2
-2025-12-10 20:45:38,075 - DEBUG - ✓ request_merkle_proof from node0 to node1 (delay: 0.029s)
-2025-12-10 20:45:38,060 - DEBUG - [Proof Request] node0 -> node1 (index=0, view=1)
-2025-12-10 20:45:38,095 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:38,097 - DEBUG - [Proof Request] node3 -> node1 (index=3, view=1)
-2025-12-10 20:45:38,099 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:38,103 - INFO - [node2] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:38,111 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:38,117 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:38,118 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:38,126 - DEBUG - ✓ request_merkle_proof from node3 to node1 (delay: 0.030s)
-2025-12-10 20:45:38,148 - DEBUG - [node3] Next leader is node2, not me
-2025-12-10 20:45:38,154 - INFO - [node3] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:39,116 - DEBUG - [node3] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:39,124 - DEBUG - [node0] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:39,126 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:39,127 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:39,128 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:39,128 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:39,129 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:39,129 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:39,131 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:39,141 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:39,142 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:39,140 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:39,148 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:39,149 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:39,149 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:39,150 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:39,151 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:39,158 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:39,158 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:39,159 - DEBUG - [node0] Next leader is node2, not me
-2025-12-10 20:45:39,159 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:39,160 - INFO - [node0] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:39,160 - DEBUG - [node3] Next leader is node2, not me
-2025-12-10 20:45:39,161 - INFO - [node3] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:39,173 - DEBUG -  partial_sig 长度: 96
-2025-12-10 20:45:39,175 - DEBUG - 创建投票成功: 节点=node3, 视图=1, 区块=b'a\x85$\x1a\xed\xdei\xb2'
-2025-12-10 20:45:39,176 - INFO - [Consensus] Node node3 voted for block 6185241a
-2025-12-10 20:45:39,178 - DEBUG - [Broadcast] vote from node3
-2025-12-10 20:45:39,185 - DEBUG - [Broadcast] Vote from node3 for block 6185241a
-2025-12-10 20:45:39,186 - DEBUG - [Consensus] Vote broadcast from node3 to leader node1
-2025-12-10 20:45:39,190 - INFO - [Consensus] Leader node1 collected 3 votes, forming QC...
-2025-12-10 20:45:39,211 - DEBUG - ✓ vote from node3 to node1 (delay: 0.024s)
-2025-12-10 20:45:39,211 - INFO - [node1] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
-2025-12-10 20:45:39,212 - DEBUG - [node1] Vote from node3 at index 3 included in QC assembly
-2025-12-10 20:45:39,222 - DEBUG - ✓ vote from node3 to node2 (delay: 0.020s)
-2025-12-10 20:45:39,223 - DEBUG - ✓ vote from node3 to node0 (delay: 0.036s)
-2025-12-10 20:45:39,223 - INFO - [node2] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
-2025-12-10 20:45:39,224 - ERROR - [node2] Block 6185241a not found for QC assembly
-2025-12-10 20:45:39,264 - DEBUG - [Broadcast] new_view from node1
-2025-12-10 20:45:39,274 - INFO - [node1] Assembled QC for block 6185241a
-2025-12-10 20:45:39,283 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.014s)
-2025-12-10 20:45:39,284 - INFO - [node0] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:39,286 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:39,289 - DEBUG - [Proof Request] node0 -> node1 (index=0, view=1)
-2025-12-10 20:45:39,321 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.041s)
-2025-12-10 20:45:39,323 - INFO - [node2] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:39,324 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:39,333 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.043s)
-2025-12-10 20:45:39,342 - INFO - [node3] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:39,341 - DEBUG - ✓ request_merkle_proof from node0 to node1 (delay: 0.046s)
-2025-12-10 20:45:39,344 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:39,345 - DEBUG - [node3] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:39,341 - DEBUG - [Proof Request] node2 -> node1 (index=2, view=1)
-2025-12-10 20:45:39,348 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:39,365 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:39,368 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:39,377 - DEBUG - ✓ request_merkle_proof from node2 to node1 (delay: 0.013s)
-2025-12-10 20:45:39,391 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:39,403 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:39,405 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:39,406 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:39,407 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:39,407 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:39,409 - DEBUG - [node3] Next leader is node2, not me
-2025-12-10 20:45:39,416 - INFO - [node3] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:39,795 - INFO - 
+2025-12-11 21:43:17,188 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,190 - INFO - [node2] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:17,190 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:17,193 - INFO - [node3] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:17,193 - INFO - 活跃节点: 4
+2025-12-11 21:43:17,194 - INFO - [node3] Updated locked_qc to view 1
+2025-12-11 21:43:17,194 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:17,210 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:17,221 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:17,223 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:17,226 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,242 - INFO - 副本的分层QC验证
+2025-12-11 21:43:17,246 - INFO - 内存池大小: 80
+2025-12-11 21:43:17,248 - INFO - 已提交区块: 0
+2025-12-11 21:43:17,247 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:17,248 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,244 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:17,261 - INFO - [node3] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:17,263 - DEBUG - [node3] block.payload type: <class 'list'>
+2025-12-11 21:43:17,258 - INFO - 副本的分层QC验证
+2025-12-11 21:43:17,252 - INFO - 视图: 1
+2025-12-11 21:43:17,266 - DEBUG - [node3] 12.tx type: <class 'str'>
+2025-12-11 21:43:17,267 - DEBUG - [Proof Request] node0 -> node1 (index=0, view=1)
+2025-12-11 21:43:17,282 - DEBUG - [node3] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:17,283 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,285 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:17,287 - DEBUG - [node3] Next leader is node2, not me
+2025-12-11 21:43:17,288 - INFO - [node3] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:17,268 - INFO - 副本的分层QC验证
+2025-12-11 21:43:17,293 - INFO - 提案数: 0
+2025-12-11 21:43:17,296 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,309 - DEBUG - ✓ request_merkle_proof from node0 to node1 (delay: 0.038s)
+2025-12-11 21:43:17,320 - INFO - 成功QC数: 0
+2025-12-11 21:43:17,321 - INFO - 视图切换: 0
+2025-12-11 21:43:17,322 - DEBUG - [Proof Request] node2 -> node1 (index=2, view=1)
+2025-12-11 21:43:17,337 - INFO - 处理所有类型的消息
+2025-12-11 21:43:17,338 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:17,339 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,346 - INFO - 平均投票收集时间: 0.000s
+2025-12-11 21:43:17,348 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,353 - INFO - [node3] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:17,354 - DEBUG - ✓ request_merkle_proof from node2 to node1 (delay: 0.032s)
+2025-12-11 21:43:17,357 - DEBUG - [node3] block.payload type: <class 'list'>
+2025-12-11 21:43:17,361 - DEBUG - [node3] 12.tx type: <class 'str'>
+2025-12-11 21:43:17,364 - INFO - 处理所有类型的消息
+2025-12-11 21:43:17,370 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:17,386 - DEBUG - [node3] Next leader is node2, not me
+2025-12-11 21:43:17,405 - INFO - [node3] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:17,606 - DEBUG - [node3] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:17,606 - DEBUG - [node0] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:17,617 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,629 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,635 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,650 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,650 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:17,651 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:17,666 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,667 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,666 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:17,667 - INFO - [node0] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:17,680 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:17,687 - DEBUG - [node0] block.payload type: <class 'list'>
+2025-12-11 21:43:17,688 - INFO - [node3] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:17,695 - DEBUG - [node3] block.payload type: <class 'list'>
+2025-12-11 21:43:17,694 - DEBUG - [node0] 12.tx type: <class 'str'>
+2025-12-11 21:43:17,695 - DEBUG - [node3] 12.tx type: <class 'str'>
+2025-12-11 21:43:17,707 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:17,707 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:17,720 - DEBUG - [node3] Next leader is node2, not me
+2025-12-11 21:43:17,722 - DEBUG - [node0] Next leader is node2, not me
+2025-12-11 21:43:17,723 - INFO - [node3] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:17,738 - INFO - [node0] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:18,307 - DEBUG - [node0] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:18,312 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:18,320 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:18,340 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:18,343 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:18,345 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:18,427 - DEBUG - [node2] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:18,437 - INFO - [node0] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:18,438 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:18,441 - DEBUG - [node0] block.payload type: <class 'list'>
+2025-12-11 21:43:18,444 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:18,457 - DEBUG - [node0] 12.tx type: <class 'str'>
+2025-12-11 21:43:18,459 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:18,465 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:18,471 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:18,490 - DEBUG - [node0] Next leader is node2, not me
+2025-12-11 21:43:18,503 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:18,504 - INFO - [node0] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:18,538 - INFO - [node2] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:18,552 - DEBUG - [node2] block.payload type: <class 'list'>
+2025-12-11 21:43:18,563 - DEBUG - [node2] 12.tx type: <class 'str'>
+2025-12-11 21:43:18,572 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:18,577 - INFO - [node2] I am the leader for next view 2
+2025-12-11 21:43:18,577 - INFO - [node2] Preparing to lead view 2
+2025-12-11 21:43:18,579 - INFO - [node2] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:19,179 - INFO - 
 === 模拟器统计 (轮数: 0/2) ===
-2025-12-10 20:45:39,795 - INFO - 活跃节点: 4
-2025-12-10 20:45:39,797 - INFO - 内存池大小: 80
-2025-12-10 20:45:39,804 - INFO - 已提交区块: 0
-2025-12-10 20:45:39,805 - INFO - 视图: 1
-2025-12-10 20:45:39,806 - INFO - 提案数: 0
-2025-12-10 20:45:39,808 - INFO - 成功QC数: 0
-2025-12-10 20:45:39,809 - INFO - 视图切换: 0
-2025-12-10 20:45:39,815 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:40,294 - DEBUG - [node0] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:40,301 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:40,307 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:40,315 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:40,329 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:40,330 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:40,340 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:40,354 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:40,362 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:40,365 - DEBUG - [node2] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:40,375 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:40,382 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:40,383 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:40,383 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:40,383 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:40,383 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:40,383 - INFO - [node2] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:40,384 - DEBUG - [node2] block.payload type: <class 'list'>
-2025-12-10 20:45:40,384 - DEBUG - [node2] 12.tx type: <class 'str'>
-2025-12-10 20:45:40,384 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:40,385 - INFO - [node2] I am the leader for next view 2
-2025-12-10 20:45:40,385 - INFO - [node2] Preparing to lead view 2
-2025-12-10 20:45:40,386 - INFO - [node2] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:40,387 - DEBUG - [node0] Next leader is node2, not me
-2025-12-10 20:45:40,388 - INFO - [node0] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:41,891 - INFO - 
-=== 模拟器统计 (轮数: 0/2) ===
-2025-12-10 20:45:41,898 - INFO - 活跃节点: 4
-2025-12-10 20:45:41,900 - INFO - 内存池大小: 80
-2025-12-10 20:45:41,902 - INFO - 已提交区块: 0
-2025-12-10 20:45:41,902 - INFO - 视图: 1
-2025-12-10 20:45:41,909 - INFO - 提案数: 0
-2025-12-10 20:45:41,910 - INFO - 成功QC数: 0
-2025-12-10 20:45:41,917 - INFO - 视图切换: 0
-2025-12-10 20:45:41,917 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:43,891 - INFO - 
-=== 模拟器统计 (轮数: 0/2) ===
-2025-12-10 20:45:43,899 - INFO - 活跃节点: 4
-2025-12-10 20:45:43,906 - INFO - 内存池大小: 80
-2025-12-10 20:45:43,912 - INFO - 已提交区块: 0
-2025-12-10 20:45:43,918 - INFO - 视图: 1
-2025-12-10 20:45:43,919 - INFO - 提案数: 0
-2025-12-10 20:45:43,919 - INFO - 成功QC数: 0
-2025-12-10 20:45:43,926 - INFO - 视图切换: 0
-2025-12-10 20:45:43,940 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:45,892 - INFO - 
-=== 模拟器统计 (轮数: 0/2) ===
-2025-12-10 20:45:45,905 - INFO - 活跃节点: 4
-2025-12-10 20:45:45,913 - INFO - 内存池大小: 80
-2025-12-10 20:45:45,931 - INFO - 已提交区块: 0
-2025-12-10 20:45:45,933 - INFO - 视图: 1
-2025-12-10 20:45:45,933 - INFO - 提案数: 0
-2025-12-10 20:45:45,933 - INFO - 成功QC数: 0
-2025-12-10 20:45:45,935 - INFO - 视图切换: 0
-2025-12-10 20:45:45,935 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:46,342 - DEBUG - 验证签名详细信息:
-2025-12-10 20:45:46,342 - DEBUG -   self.gpk 类型: <class 'bytes'>
-2025-12-10 20:45:46,343 - DEBUG -   self.gpk 值: b'\xa3\xe6P\x7f;{\x85B+\xf2\xa7\n\xfb\xa3?\xdf\xa2\x84=\xa9\x9c\xb6\r\xd4*\x16\xf7Q\x02\xc5\xff\xcb{\x90\x96g\xec~\t\xd5\xf8uA~LU4\r'
-2025-12-10 20:45:46,344 - DEBUG -   message 类型: <class 'bytes'>
-2025-12-10 20:45:46,346 - DEBUG -   message 值: 00000000000000016185241aedde69b2aceea903809a0bcfaa0a6639894964768bdc49c8b4fb3909
-2025-12-10 20:45:46,347 - DEBUG -   message 长度: 40
-2025-12-10 20:45:46,347 - DEBUG -   aggregate_sig 类型: <class 'bytes'>
-2025-12-10 20:45:46,350 - DEBUG -   aggregate_sig 值: b'\x95\xd9\xa9S3\xde\x16\xa1\x1a\x9c\x05\x02\x9d\xc8$\\,\xe2\xb8XD\xc2e\xfff\x13~\x14\x1aj\x19;Qb\xe5\xe3g\x1e\xfa\x845\x81~s1\xd4\x07D\x10)\x82\xe3\xfe\xd8\x19\x1c\xbfk\xcb\x1c7\xdc\xd4@\x1c\x0f\x03\x9e\xa3G_\xb3\xb5 \xa2\x13\xa9\x0eY-={\x81\x16\xac\xcc\xd9\x14.\xa60l\x0c\xe5\xca\xf4'
-2025-12-10 20:45:46,351 - DEBUG -   aggregate_sig 长度: 96
-2025-12-10 20:45:46,352 - INFO - 聚合签名验证成功---模拟
-2025-12-10 20:45:46,352 - INFO - 成功创建QC: view=1, 签名者数量=3
-2025-12-10 20:45:46,353 - DEBUG - [Broadcast] new_view from node1
-2025-12-10 20:45:46,359 - INFO - [Consensus] QC formed for view 1, block 6185241a
-2025-12-10 20:45:46,361 - INFO - [Consensus] Round 1 completed, advancing to view 2
-2025-12-10 20:45:46,367 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.010s)
-2025-12-10 20:45:46,368 - INFO - [node2] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:46,368 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:46,369 - DEBUG - [node2] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:46,370 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:46,370 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:46,370 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:46,370 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:46,372 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:46,374 - INFO - [node2] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:46,374 - DEBUG - [node2] block.payload type: <class 'list'>
-2025-12-10 20:45:46,374 - DEBUG - [node2] 12.tx type: <class 'str'>
-2025-12-10 20:45:46,374 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:46,375 - INFO - [node2] I am the leader for next view 2
-2025-12-10 20:45:46,375 - INFO - [node2] Preparing to lead view 2
-2025-12-10 20:45:46,375 - INFO - [node2] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:46,387 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.028s)
-2025-12-10 20:45:46,388 - INFO - [node3] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:46,392 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:46,394 - DEBUG - [node3] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:46,395 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:46,395 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:46,397 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:46,399 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:46,399 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:46,402 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.046s)
-2025-12-10 20:45:46,403 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:46,406 - INFO - [node0] Received NEW-VIEW from node1, view=1
-2025-12-10 20:45:46,406 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
-2025-12-10 20:45:46,406 - DEBUG - [node0] NEW-VIEW QC view 1 <= current latest view 1
-2025-12-10 20:45:46,406 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:46,406 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:46,407 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:46,407 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:46,408 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:46,408 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:46,408 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:46,408 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:46,408 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:46,409 - DEBUG - [node0] Next leader is node2, not me
-2025-12-10 20:45:46,411 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:46,411 - INFO - [node0] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:46,414 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:46,416 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:46,417 - DEBUG - [node3] Next leader is node2, not me
-2025-12-10 20:45:46,419 - INFO - [node3] Successfully processed NEW-VIEW for view 1
-2025-12-10 20:45:46,862 - INFO - [Consensus] Round 1: view=2, leader=node2
-2025-12-10 20:45:46,863 - INFO - [Consensus] Setting node node0.is_leader=False
-2025-12-10 20:45:46,864 - INFO - [Consensus] Setting node node1.is_leader=False
-2025-12-10 20:45:46,864 - INFO - [Consensus] Setting node node2.is_leader=True
-2025-12-10 20:45:46,865 - INFO - [Consensus] Setting node node3.is_leader=False
-2025-12-10 20:45:46,867 - INFO - [Consensus] Leader node2 creating proposal...
-2025-12-10 20:45:46,869 - INFO - [Consensus] Creating height=1 block (child of genesis)
-2025-12-10 20:45:46,869 - INFO - [Consensus] Leader node2 creating new block at height 1
-2025-12-10 20:45:46,870 - INFO - [Consensus] Parent hash: e0e2ee4800000000
-2025-12-10 20:45:46,870 - INFO - [Consensus] Parent QC view: 0
-2025-12-10 20:45:46,872 - INFO - [Consensus] Transactions for new block: 20 transactions
-2025-12-10 20:45:46,875 - INFO - [Consensus] New block created: id=37c73c2c, height=1, view=2
-2025-12-10 20:45:46,878 - DEBUG - [node2] add_block -> id=37c73c2c, height=1, view=2
-2025-12-10 20:45:46,879 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:46,880 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:46,881 - INFO - [Consensus] Leader node2 created block 37c73c2c
-2025-12-10 20:45:46,883 - DEBUG - [Broadcast] Proposal from node2, block hash: 37c73c2c
-2025-12-10 20:45:46,883 - DEBUG - [Broadcast] proposal from node2
-2025-12-10 20:45:46,890 - INFO - [Consensus] Node node0 processing proposal...
-2025-12-10 20:45:46,891 - WARNING - Height=1 block has QC with view=1, expected 0
-2025-12-10 20:45:46,892 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
-2025-12-10 20:45:46,894 - DEBUG - 准备签名数据: start
-2025-12-10 20:45:46,895 - DEBUG - view_bytes: 0000000000000002, 长度: 8
-2025-12-10 20:45:46,897 - DEBUG - block_hash: 37c73c2c0d1cb12fad204c3a3caeb92dbc0e0a5be360e21df37be09b7e3d6c5d, 长度: 32
-2025-12-10 20:45:46,898 - DEBUG - sign_data: 000000000000000237c73c2c0d1cb12fad204c3a3caeb92dbc0e0a5be360e21df37be09b7e3d6c5d, 长度: 40
-2025-12-10 20:45:46,921 - DEBUG - ✓ proposal from node2 to node0 (delay: 0.028s)
-2025-12-10 20:45:46,921 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
-2025-12-10 20:45:46,921 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
-2025-12-10 20:45:46,922 - DEBUG - [node0] Received proposal at view 2
-2025-12-10 20:45:46,922 - WARNING - [node0] Proposal invalid: Block parent_hash e0e2ee48 != QC block_hash 6185241a
-2025-12-10 20:45:46,929 - DEBUG - ✓ proposal from node2 to node1 (delay: 0.039s)
-2025-12-10 20:45:46,936 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
-2025-12-10 20:45:46,929 - DEBUG - ✓ proposal from node2 to node3 (delay: 0.036s)
-2025-12-10 20:45:46,937 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
-2025-12-10 20:45:46,938 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
-2025-12-10 20:45:46,941 - DEBUG - [node1] Received proposal at view 2
-2025-12-10 20:45:46,942 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
-2025-12-10 20:45:46,952 - WARNING - [node1] Proposal invalid: Block parent_hash e0e2ee48 != QC block_hash 6185241a
-2025-12-10 20:45:46,954 - DEBUG - [node3] Received proposal at view 2
-2025-12-10 20:45:46,963 - WARNING - [node3] Proposal invalid: Block parent_hash e0e2ee48 != QC block_hash 6185241a
-2025-12-10 20:45:46,966 - DEBUG - [Proof Request] node1 -> node1 (index=1, view=1)
-2025-12-10 20:45:46,967 - DEBUG - [Proof Request] node3 -> node1 (index=3, view=1)
-2025-12-10 20:45:46,992 - DEBUG - ✓ request_merkle_proof from node3 to node1 (delay: 0.021s)
-2025-12-10 20:45:47,015 - DEBUG - ✓ request_merkle_proof from node1 to node1 (delay: 0.046s)
-2025-12-10 20:45:47,894 - INFO - 
-=== 模拟器统计 (轮数: 1/2) ===
-2025-12-10 20:45:47,904 - INFO - 活跃节点: 4
-2025-12-10 20:45:47,922 - INFO - 内存池大小: 60
-2025-12-10 20:45:47,925 - DEBUG -  partial_sig 长度: 96
-2025-12-10 20:45:47,929 - INFO - 已提交区块: 0
-2025-12-10 20:45:47,929 - INFO - 视图: 2
-2025-12-10 20:45:47,929 - INFO - 提案数: 1
-2025-12-10 20:45:47,930 - INFO - 成功QC数: 1
-2025-12-10 20:45:47,930 - DEBUG - 创建投票成功: 节点=node0, 视图=2, 区块=b'7\xc7<,\r\x1c\xb1/'
-2025-12-10 20:45:47,931 - INFO - [Consensus] Node node0 voted for block 37c73c2c
-2025-12-10 20:45:47,931 - DEBUG - [Broadcast] vote from node0
-2025-12-10 20:45:47,932 - INFO - 视图切换: 0
-2025-12-10 20:45:47,932 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:47,937 - DEBUG - [Broadcast] Vote from node0 for block 37c73c2c
-2025-12-10 20:45:47,939 - DEBUG - [Consensus] Vote broadcast from node0 to leader node2
-2025-12-10 20:45:47,941 - INFO - [Consensus] Node node1 processing proposal...
-2025-12-10 20:45:47,943 - WARNING - Height=1 block has QC with view=1, expected 0
-2025-12-10 20:45:47,945 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
-2025-12-10 20:45:47,947 - DEBUG - 准备签名数据: start
-2025-12-10 20:45:47,947 - DEBUG - view_bytes: 0000000000000002, 长度: 8
-2025-12-10 20:45:47,947 - DEBUG - block_hash: 37c73c2c0d1cb12fad204c3a3caeb92dbc0e0a5be360e21df37be09b7e3d6c5d, 长度: 32
-2025-12-10 20:45:47,949 - DEBUG - sign_data: 000000000000000237c73c2c0d1cb12fad204c3a3caeb92dbc0e0a5be360e21df37be09b7e3d6c5d, 长度: 40
-2025-12-10 20:45:47,956 - DEBUG - ✓ vote from node0 to node2 (delay: 0.022s)
-2025-12-10 20:45:47,956 - DEBUG - ✓ vote from node0 to node1 (delay: 0.016s)
-2025-12-10 20:45:47,957 - INFO - [node2] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
-2025-12-10 20:45:47,958 - DEBUG - [node2] Vote from node0 at index 0 included in QC assembly
-2025-12-10 20:45:47,991 - DEBUG - ✓ vote from node0 to node3 (delay: 0.043s)
-2025-12-10 20:45:48,014 - DEBUG - [node2] update_latest_qc -> view=2, block=37c73c2c
-2025-12-10 20:45:48,025 - DEBUG - [Broadcast] new_view from node2
-2025-12-10 20:45:48,061 - INFO - [node2] Assembled QC for block 37c73c2c
-2025-12-10 20:45:48,062 - DEBUG - ✓ new_view from node2 to node0 (delay: 0.025s)
-2025-12-10 20:45:48,064 - INFO - [node0] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:48,064 - WARNING - [node0] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:48,064 - DEBUG - [node0] update_latest_qc -> view=2, block=37c73c2c
-2025-12-10 20:45:48,064 - INFO - [node0] Updated latest_qc to view 2
-2025-12-10 20:45:48,065 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:48,065 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:48,065 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:48,065 - DEBUG - [node0] update_locked_qc -> view=2, block=37c73c2c
-2025-12-10 20:45:48,065 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:48,065 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:48,065 - INFO - [node0] Updated locked_qc to view 2
-2025-12-10 20:45:48,065 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:48,065 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:48,065 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:48,066 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:48,066 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:48,066 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:48,066 - DEBUG - [node0] Next leader is node3, not me
-2025-12-10 20:45:48,066 - INFO - [node0] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:48,104 - DEBUG - ✓ new_view from node2 to node1 (delay: 0.042s)
-2025-12-10 20:45:48,111 - DEBUG - ✓ new_view from node2 to node3 (delay: 0.044s)
-2025-12-10 20:45:48,119 - INFO - [node1] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:48,133 - INFO - [node3] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:48,135 - WARNING - [node1] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:48,152 - WARNING - [node3] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:48,190 - DEBUG - [Proof Request] node3 -> node2 (index=3, view=2)
-2025-12-10 20:45:48,191 - DEBUG - ✓ request_merkle_proof from node3 to node2 (delay: 0.011s)
-2025-12-10 20:45:48,192 - DEBUG - [Proof Request] node1 -> node2 (index=1, view=2)
-2025-12-10 20:45:48,244 - DEBUG - ✓ request_merkle_proof from node1 to node2 (delay: 0.050s)
-2025-12-10 20:45:49,078 - DEBUG -  partial_sig 长度: 96
-2025-12-10 20:45:49,079 - DEBUG - 创建投票成功: 节点=node1, 视图=2, 区块=b'7\xc7<,\r\x1c\xb1/'
-2025-12-10 20:45:49,080 - INFO - [Consensus] Node node1 voted for block 37c73c2c
-2025-12-10 20:45:49,080 - DEBUG - [Broadcast] vote from node1
-2025-12-10 20:45:49,085 - DEBUG - [Broadcast] Vote from node1 for block 37c73c2c
-2025-12-10 20:45:49,087 - DEBUG - [Consensus] Vote broadcast from node1 to leader node2
-2025-12-10 20:45:49,088 - INFO - [Consensus] Node node3 processing proposal...
-2025-12-10 20:45:49,091 - WARNING - Height=1 block has QC with view=2, expected 0
-2025-12-10 20:45:49,094 - INFO - Validating height=1 block (child of genesis): parent_hash matches genesis
-2025-12-10 20:45:49,097 - DEBUG - 准备签名数据: start
-2025-12-10 20:45:49,099 - DEBUG - ✓ vote from node1 to node3 (delay: 0.012s)
-2025-12-10 20:45:49,100 - DEBUG - view_bytes: 0000000000000002, 长度: 8
-2025-12-10 20:45:49,102 - DEBUG - block_hash: 37c73c2c0d1cb12fad204c3a3caeb92dbc0e0a5be360e21df37be09b7e3d6c5d, 长度: 32
-2025-12-10 20:45:49,103 - DEBUG - ✓ vote from node1 to node2 (delay: 0.020s)
-2025-12-10 20:45:49,106 - DEBUG - sign_data: 000000000000000237c73c2c0d1cb12fad204c3a3caeb92dbc0e0a5be360e21df37be09b7e3d6c5d, 长度: 40
-2025-12-10 20:45:49,107 - INFO - [node2] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
-2025-12-10 20:45:49,108 - DEBUG - [node2] Vote from node1 at index 1 included in QC assembly
-2025-12-10 20:45:49,124 - DEBUG - ✓ vote from node1 to node0 (delay: 0.042s)
-2025-12-10 20:45:49,158 - DEBUG - [Broadcast] new_view from node2
-2025-12-10 20:45:49,178 - INFO - [node2] Assembled QC for block 37c73c2c
-2025-12-10 20:45:49,201 - DEBUG - ✓ new_view from node2 to node0 (delay: 0.038s)
-2025-12-10 20:45:49,203 - INFO - [node0] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:49,204 - DEBUG - [node3] update_latest_qc -> view=2, block=37c73c2c
-2025-12-10 20:45:49,204 - DEBUG - [node1] update_latest_qc -> view=2, block=37c73c2c
-2025-12-10 20:45:49,205 - DEBUG - ✓ new_view from node2 to node1 (delay: 0.031s)
-2025-12-10 20:45:49,207 - WARNING - [node0] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:49,214 - DEBUG - ✓ new_view from node2 to node3 (delay: 0.035s)
-2025-12-10 20:45:49,227 - INFO - [node1] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:49,227 - WARNING - [node1] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:49,228 - DEBUG - [node1] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:49,229 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,225 - INFO - [node1] Updated latest_qc to view 2
-2025-12-10 20:45:49,223 - INFO - [node3] Updated latest_qc to view 2
-2025-12-10 20:45:49,257 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,247 - DEBUG - [Proof Request] node0 -> node2 (index=0, view=2)
-2025-12-10 20:45:49,248 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,268 - WARNING - [node1] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:49,269 - DEBUG - [node1] update_locked_qc -> view=2, block=37c73c2c
-2025-12-10 20:45:49,236 - INFO - [node3] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:49,256 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,266 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,283 - DEBUG - ✓ request_merkle_proof from node0 to node2 (delay: 0.021s)
-2025-12-10 20:45:49,292 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,293 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,294 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,296 - WARNING - [node3] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:49,296 - INFO - [node1] Updated locked_qc to view 2
-2025-12-10 20:45:49,311 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:49,331 - WARNING - [node1] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:49,333 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,333 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,335 - INFO - [node1] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:49,350 - DEBUG - [Proof Request] node3 -> node2 (index=3, view=2)
-2025-12-10 20:45:49,351 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,368 - DEBUG - [node3] update_locked_qc -> view=2, block=37c73c2c
-2025-12-10 20:45:49,370 - DEBUG - ✓ request_merkle_proof from node3 to node2 (delay: 0.019s)
-2025-12-10 20:45:49,371 - DEBUG - [node1] block.payload type: <class 'list'>
-2025-12-10 20:45:49,372 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,387 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,403 - DEBUG - [node1] 12.tx type: <class 'str'>
-2025-12-10 20:45:49,411 - DEBUG - [node1] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:49,411 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,417 - INFO - [node3] Updated locked_qc to view 2
-2025-12-10 20:45:49,417 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:49,417 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:49,417 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:49,418 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:49,418 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:49,419 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:49,419 - INFO - [node3] I am the leader for next view 3
-2025-12-10 20:45:49,417 - INFO - [node1] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:49,425 - DEBUG - [node1] Next leader is node3, not me
-2025-12-10 20:45:49,435 - INFO - [node3] Preparing to lead view 3
-2025-12-10 20:45:49,787 - DEBUG - [node1] block.payload type: <class 'list'>
-2025-12-10 20:45:49,788 - INFO - [node1] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:49,789 - INFO - [node3] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:49,789 - DEBUG - [node1] 12.tx type: <class 'str'>
-2025-12-10 20:45:49,798 - DEBUG - [node1] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:49,799 - DEBUG - [node1] Next leader is node3, not me
-2025-12-10 20:45:49,799 - INFO - [node1] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:49,897 - INFO - 
-=== 模拟器统计 (轮数: 1/2) ===
-2025-12-10 20:45:49,907 - INFO - 活跃节点: 4
-2025-12-10 20:45:49,917 - INFO - 内存池大小: 60
-2025-12-10 20:45:49,918 - INFO - 已提交区块: 0
-2025-12-10 20:45:49,918 - INFO - 视图: 2
-2025-12-10 20:45:49,919 - INFO - 提案数: 1
-2025-12-10 20:45:49,920 - INFO - 成功QC数: 1
-2025-12-10 20:45:49,920 - INFO - 视图切换: 0
-2025-12-10 20:45:49,922 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:50,270 - DEBUG -  partial_sig 长度: 96
-2025-12-10 20:45:50,271 - DEBUG - 创建投票成功: 节点=node3, 视图=2, 区块=b'7\xc7<,\r\x1c\xb1/'
-2025-12-10 20:45:50,273 - INFO - [Consensus] Node node3 voted for block 37c73c2c
-2025-12-10 20:45:50,273 - DEBUG - [node0] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:50,274 - DEBUG - [Broadcast] vote from node3
-2025-12-10 20:45:50,275 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:50,277 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:50,278 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:50,280 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:50,281 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:50,284 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:50,284 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:50,285 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:50,288 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:50,289 - DEBUG - [node0] Next leader is node3, not me
-2025-12-10 20:45:50,290 - INFO - [node0] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:50,294 - DEBUG - [Broadcast] Vote from node3 for block 37c73c2c
-2025-12-10 20:45:50,295 - DEBUG - [Consensus] Vote broadcast from node3 to leader node2
-2025-12-10 20:45:50,296 - INFO - [Consensus] Leader node2 collected 3 votes, forming QC...
-2025-12-10 20:45:50,310 - DEBUG - ✓ vote from node3 to node1 (delay: 0.012s)
-2025-12-10 20:45:50,322 - DEBUG - ✓ vote from node3 to node2 (delay: 0.011s)
-2025-12-10 20:45:50,324 - INFO - [node2] Received vote dict: type=<class 'dict'>, keys=['voter_id', 'voter_index', 'block_id', 'block_hash', 'view', 'partial_signature', 'timestamp', 'sender', 'type']
-2025-12-10 20:45:50,331 - DEBUG - [node2] Vote from node3 at index 3 included in QC assembly
-2025-12-10 20:45:50,344 - DEBUG - ✓ vote from node3 to node0 (delay: 0.048s)
-2025-12-10 20:45:50,377 - DEBUG - [node3] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:50,379 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:50,386 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:50,387 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:50,395 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:50,414 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:50,384 - DEBUG - [Broadcast] new_view from node2
-2025-12-10 20:45:50,416 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:50,425 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:50,432 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:50,433 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:50,440 - INFO - [node3] I am the leader for next view 3
-2025-12-10 20:45:50,447 - INFO - [node3] Preparing to lead view 3
-2025-12-10 20:45:50,447 - INFO - [node3] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:50,786 - DEBUG - ✓ new_view from node2 to node0 (delay: 0.029s)
-2025-12-10 20:45:50,794 - INFO - [node2] Assembled QC for block 37c73c2c
-2025-12-10 20:45:50,794 - DEBUG - ✓ new_view from node2 to node1 (delay: 0.043s)
-2025-12-10 20:45:50,795 - INFO - [node0] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:50,803 - INFO - [node1] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:50,811 - WARNING - [node0] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:50,830 - WARNING - [node1] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:50,840 - DEBUG - ✓ new_view from node2 to node3 (delay: 0.038s)
-2025-12-10 20:45:50,846 - DEBUG - [Proof Request] node0 -> node2 (index=0, view=2)
-2025-12-10 20:45:50,846 - INFO - [node3] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:50,846 - WARNING - [node3] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:50,848 - DEBUG - [node3] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:50,849 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:50,849 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:50,849 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:50,850 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:50,850 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:50,850 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:50,851 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:50,847 - DEBUG - [Proof Request] node1 -> node2 (index=1, view=2)
-2025-12-10 20:45:50,852 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:50,852 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:50,852 - INFO - [node3] I am the leader for next view 3
-2025-12-10 20:45:50,852 - INFO - [node3] Preparing to lead view 3
-2025-12-10 20:45:50,852 - INFO - [node3] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:50,876 - DEBUG - ✓ request_merkle_proof from node0 to node2 (delay: 0.027s)
-2025-12-10 20:45:50,897 - DEBUG - ✓ request_merkle_proof from node1 to node2 (delay: 0.044s)
-2025-12-10 20:45:51,859 - DEBUG - [node0] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:51,860 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:51,860 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:51,860 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:51,860 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:51,860 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:51,860 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:51,860 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:51,860 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:51,861 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:51,861 - DEBUG - [node0] Next leader is node3, not me
-2025-12-10 20:45:51,861 - INFO - [node0] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:51,862 - DEBUG - [node1] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:51,862 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:51,862 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:51,862 - WARNING - [node1] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:51,862 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:51,862 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:51,863 - INFO - [node1] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:51,863 - DEBUG - [node1] block.payload type: <class 'list'>
-2025-12-10 20:45:51,863 - DEBUG - [node1] 12.tx type: <class 'str'>
-2025-12-10 20:45:51,864 - DEBUG - [node1] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:51,870 - DEBUG - [node1] Next leader is node3, not me
-2025-12-10 20:45:51,870 - INFO - [node1] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:51,903 - INFO - 
-=== 模拟器统计 (轮数: 1/2) ===
-2025-12-10 20:45:51,904 - INFO - 活跃节点: 4
-2025-12-10 20:45:51,904 - INFO - 内存池大小: 60
-2025-12-10 20:45:51,904 - INFO - 已提交区块: 0
-2025-12-10 20:45:51,904 - INFO - 视图: 2
-2025-12-10 20:45:51,904 - INFO - 提案数: 1
-2025-12-10 20:45:51,904 - INFO - 成功QC数: 1
-2025-12-10 20:45:51,905 - INFO - 视图切换: 0
-2025-12-10 20:45:51,906 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:53,999 - INFO - 
-=== 模拟器统计 (轮数: 1/2) ===
-2025-12-10 20:45:54,000 - INFO - 活跃节点: 4
-2025-12-10 20:45:54,006 - INFO - 内存池大小: 60
-2025-12-10 20:45:54,007 - INFO - 已提交区块: 0
-2025-12-10 20:45:54,008 - INFO - 视图: 2
-2025-12-10 20:45:54,009 - INFO - 提案数: 1
-2025-12-10 20:45:54,009 - INFO - 成功QC数: 1
-2025-12-10 20:45:54,010 - INFO - 视图切换: 0
-2025-12-10 20:45:54,016 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:56,094 - INFO - 
-=== 模拟器统计 (轮数: 1/2) ===
-2025-12-10 20:45:56,106 - INFO - 活跃节点: 4
-2025-12-10 20:45:56,123 - INFO - 内存池大小: 60
-2025-12-10 20:45:56,133 - INFO - 已提交区块: 0
-2025-12-10 20:45:56,140 - INFO - 视图: 2
-2025-12-10 20:45:56,149 - INFO - 提案数: 1
-2025-12-10 20:45:56,164 - INFO - 成功QC数: 1
-2025-12-10 20:45:56,182 - INFO - 视图切换: 0
-2025-12-10 20:45:56,191 - INFO - 平均投票收集时间: 0.000s
-2025-12-10 20:45:56,586 - DEBUG - 验证签名详细信息:
-2025-12-10 20:45:56,587 - DEBUG -   self.gpk 类型: <class 'bytes'>
-2025-12-10 20:45:56,786 - DEBUG -   self.gpk 值: b'\xa3\xe6P\x7f;{\x85B+\xf2\xa7\n\xfb\xa3?\xdf\xa2\x84=\xa9\x9c\xb6\r\xd4*\x16\xf7Q\x02\xc5\xff\xcb{\x90\x96g\xec~\t\xd5\xf8uA~LU4\r'
-2025-12-10 20:45:56,789 - DEBUG -   message 类型: <class 'bytes'>
-2025-12-10 20:45:56,791 - DEBUG -   message 值: 000000000000000237c73c2c0d1cb12fad204c3a3caeb92dbc0e0a5be360e21df37be09b7e3d6c5d
-2025-12-10 20:45:56,793 - DEBUG -   message 长度: 40
-2025-12-10 20:45:56,798 - DEBUG -   aggregate_sig 类型: <class 'bytes'>
-2025-12-10 20:45:56,802 - DEBUG -   aggregate_sig 值: b"\xaf\xa6\xd2\xf4\xc2\xf4hF{B\xfb\xce9;M%\x11\xf0\xb2\xc2\x00:\t\xe5\x16\x16\xf9<3$\x02<k\xd4\x10'\xa8\xb3\xd7\xa8p\xe0\xef\x89\xc8\x93\xed\xd3\x10\xa5\xf7\xad\xe2gW\x7f\xff\xf8\xfa\xdc\xdf\xd2\xb1\x0f\xfbJ\xabS/\xec\x16\xbf\xf6\xa6H\xcc\n\x11*\xa32S\x86U\xd8\x07#\xdap2h\x9cH\xd5\x9c\xa8"
-2025-12-10 20:45:56,804 - DEBUG -   aggregate_sig 长度: 96
-2025-12-10 20:45:56,805 - INFO - 聚合签名验证成功---模拟
-2025-12-10 20:45:56,807 - INFO - 成功创建QC: view=2, 签名者数量=3
-2025-12-10 20:45:56,809 - DEBUG - [Broadcast] new_view from node2
-2025-12-10 20:45:56,817 - INFO - [Consensus] QC formed for view 2, block 37c73c2c
-2025-12-10 20:45:56,819 - INFO - [Consensus] Round 2 completed, advancing to view 3
-2025-12-10 20:45:56,834 - DEBUG - ✓ new_view from node2 to node3 (delay: 0.018s)
-2025-12-10 20:45:56,836 - INFO - [node3] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:56,838 - WARNING - [node3] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:56,840 - DEBUG - [node3] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:56,840 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:56,844 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:56,846 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:56,849 - DEBUG - ✓ new_view from node2 to node1 (delay: 0.035s)
-2025-12-10 20:45:56,853 - INFO - [node1] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:56,854 - WARNING - [node1] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:56,854 - DEBUG - [node1] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:56,854 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:56,854 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:56,854 - WARNING - [node1] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:56,855 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:56,855 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:56,856 - INFO - [node1] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:56,852 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:56,859 - DEBUG - [node1] block.payload type: <class 'list'>
-2025-12-10 20:45:56,860 - DEBUG - ✓ new_view from node2 to node0 (delay: 0.047s)
-2025-12-10 20:45:56,870 - INFO - [node0] Received NEW-VIEW from node2, view=2
-2025-12-10 20:45:56,870 - WARNING - [node0] NEW-VIEW sender node2 not the leader of previous view 1
-2025-12-10 20:45:56,870 - DEBUG - [node0] NEW-VIEW QC view 2 <= current latest view 2
-2025-12-10 20:45:56,870 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:56,871 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:56,871 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 9e375c44
-2025-12-10 20:45:56,871 - DEBUG - get_block_by_hash -> in
-2025-12-10 20:45:56,871 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:56,864 - DEBUG - get_block_by_hash -> in22
-2025-12-10 20:45:56,868 - DEBUG - [node1] 12.tx type: <class 'str'>
-2025-12-10 20:45:56,874 - INFO - [node0] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:56,880 - DEBUG - [node0] block.payload type: <class 'list'>
-2025-12-10 20:45:56,880 - DEBUG - [node0] 12.tx type: <class 'str'>
-2025-12-10 20:45:56,880 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:56,880 - DEBUG - [node0] Next leader is node3, not me
-2025-12-10 20:45:56,880 - INFO - [node0] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:56,879 - INFO - [node3] COMMITTING block 9e375c44, height=0, view=0
-2025-12-10 20:45:56,880 - DEBUG - [node1] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:56,885 - DEBUG - [node3] block.payload type: <class 'list'>
-2025-12-10 20:45:56,891 - DEBUG - [node1] Next leader is node3, not me
-2025-12-10 20:45:56,891 - INFO - [node1] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:56,895 - DEBUG - [node3] 12.tx type: <class 'str'>
-2025-12-10 20:45:56,897 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
-2025-12-10 20:45:56,899 - INFO - [node3] I am the leader for next view 3
-2025-12-10 20:45:56,903 - INFO - [node3] Preparing to lead view 3
-2025-12-10 20:45:56,905 - INFO - [node3] Successfully processed NEW-VIEW for view 2
-2025-12-10 20:45:56,991 - INFO - 
+2025-12-11 21:43:19,185 - INFO - 活跃节点: 4
+2025-12-11 21:43:19,193 - INFO - 内存池大小: 80
+2025-12-11 21:43:19,217 - INFO - 已提交区块: 0
+2025-12-11 21:43:19,228 - INFO - 视图: 1
+2025-12-11 21:43:19,229 - INFO - 提案数: 0
+2025-12-11 21:43:19,229 - INFO - 成功QC数: 0
+2025-12-11 21:43:19,231 - INFO - 视图切换: 0
+2025-12-11 21:43:19,234 - INFO - 平均投票收集时间: 0.000s
+2025-12-11 21:43:20,335 - DEBUG - 验证签名详细信息:
+2025-12-11 21:43:20,336 - DEBUG -   self.gpk 类型: <class 'bytes'>
+2025-12-11 21:43:20,336 - DEBUG -   self.gpk 值: b'\xb2\x0e\xbe\x1c\x83\xd1\xfb&\x92\xb6\x94\xaf\x99\x9f,\xf2\xd28\xd3\xfdC0\x15@e\xf6\xc8\xc4\x04\xc5\x04\xfe\x93\r\xbaO\xf3\xee\xb1\xa8\xe65\xee\xa7\x05n\x83\xb3'
+2025-12-11 21:43:20,338 - DEBUG -   message 类型: <class 'bytes'>
+2025-12-11 21:43:20,339 - DEBUG -   message 值: 0000000000000001a2e59763978853c4d19d56dd57fde12f043ce64b31da93c47f166c1485eafe41
+2025-12-11 21:43:20,339 - DEBUG -   message 长度: 40
+2025-12-11 21:43:20,339 - DEBUG -   aggregate_sig 类型: <class 'bytes'>
+2025-12-11 21:43:20,340 - DEBUG -   aggregate_sig 值: b'\x88oe\x9a\xe8oY\xbbz\xcc\xf1WnO\xdf\x8a\x8e\xc6\xaf\xe3\x9cE\xb6\xdfGC\x93\x9d\xe2z\xe2=\x8f;m\xc4\x12\xa5s\xf5\xd8~\xe7\x04\xd0\xca\xf2\xab\x18\x9f\xbe\xa8\xe0\x9a\x9d~x\xb3ti}\x02"-\xbc|\xc4\xeb:\xf8\xb9\x04\xb5y=\x92\x8a\xec[Tw&C\x8c{\x88\xe5%\xf1\xbc\xd7=T\xf4\x1fP'
+2025-12-11 21:43:20,340 - DEBUG -   aggregate_sig 长度: 96
+2025-12-11 21:43:20,343 - INFO - 聚合签名验证成功---模拟
+2025-12-11 21:43:20,344 - INFO - 成功创建QC: view=1, 签名者数量=3
+2025-12-11 21:43:20,346 - DEBUG - [Broadcast] new_view from node1
+2025-12-11 21:43:20,348 - INFO - [Consensus] QC formed for view 1, block a2e59763
+2025-12-11 21:43:20,349 - INFO - [Consensus] Round 1 completed, advancing to view 2
+2025-12-11 21:43:20,361 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.013s)
+2025-12-11 21:43:20,362 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,367 - INFO - [node2] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:20,368 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:20,368 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:20,368 - WARNING - [node2] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:20,370 - INFO - 副本的分层QC验证
+2025-12-11 21:43:20,370 - DEBUG - [node2] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:20,370 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:20,371 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:20,371 - WARNING - [node2] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:20,371 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:20,371 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:20,371 - INFO - [node2] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:20,371 - DEBUG - [node2] block.payload type: <class 'list'>
+2025-12-11 21:43:20,371 - DEBUG - [node2] 12.tx type: <class 'str'>
+2025-12-11 21:43:20,371 - DEBUG - [node2] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:20,371 - INFO - [node2] I am the leader for next view 2
+2025-12-11 21:43:20,371 - INFO - [node2] Preparing to lead view 2
+2025-12-11 21:43:20,372 - INFO - [node2] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:20,380 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.033s)
+2025-12-11 21:43:20,380 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,380 - INFO - [node0] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:20,381 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:20,389 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:20,390 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.041s)
+2025-12-11 21:43:20,392 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,391 - WARNING - [node0] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:20,394 - INFO - 副本的分层QC验证
+2025-12-11 21:43:20,395 - DEBUG - [node0] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:20,395 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:20,396 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:20,396 - WARNING - [node0] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:20,396 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:20,397 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:20,398 - INFO - [node0] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:20,393 - INFO - [node3] Received NEW-VIEW from node1, view=1
+2025-12-11 21:43:20,401 - INFO - 处理NEW-VIEW消息from_dict start
+2025-12-11 21:43:20,402 - INFO - 处理NEW-VIEW消息from_dict end 
+2025-12-11 21:43:20,402 - WARNING - [node3] NEW-VIEW sender node1 not the leader of previous view 0
+2025-12-11 21:43:20,403 - INFO - 副本的分层QC验证
+2025-12-11 21:43:20,404 - DEBUG - [node3] NEW-VIEW QC view 1 <= current latest view 1
+2025-12-11 21:43:20,406 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:20,406 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:20,406 - WARNING - [node3] Cannot update locked_qc: parent_qc is None for block 971370d5
+2025-12-11 21:43:20,407 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:20,401 - DEBUG - [node0] block.payload type: <class 'list'>
+2025-12-11 21:43:20,412 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:20,416 - DEBUG - [node0] 12.tx type: <class 'str'>
+2025-12-11 21:43:20,424 - INFO - [node3] COMMITTING block 971370d5, height=0, view=0
+2025-12-11 21:43:20,426 - DEBUG - [node0] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:20,427 - DEBUG - [node3] block.payload type: <class 'list'>
+2025-12-11 21:43:20,429 - DEBUG - [node3] 12.tx type: <class 'str'>
+2025-12-11 21:43:20,427 - DEBUG - [node0] Next leader is node2, not me
+2025-12-11 21:43:20,432 - DEBUG - [node3] 34.metrics type: <class 'metrics.Metrics'>
+2025-12-11 21:43:20,435 - DEBUG - [node3] Next leader is node2, not me
+2025-12-11 21:43:20,436 - INFO - [node3] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:20,439 - INFO - [node0] Successfully processed NEW-VIEW for view 1
+2025-12-11 21:43:20,851 - INFO - [Consensus] Round 1: view=2, leader=node2
+2025-12-11 21:43:20,852 - INFO - [Consensus] Setting node node0.is_leader=False
+2025-12-11 21:43:20,855 - INFO - [Consensus] Setting node node1.is_leader=False
+2025-12-11 21:43:20,856 - INFO - [Consensus] Setting node node2.is_leader=True
+2025-12-11 21:43:20,858 - INFO - [Consensus] Setting node node3.is_leader=False
+2025-12-11 21:43:20,861 - INFO - [Consensus] Leader node2 creating proposal...
+2025-12-11 21:43:20,864 - INFO - [Consensus] Leader node2 creating new block at height 1
+2025-12-11 21:43:20,866 - INFO - [Consensus] Parent hash: a2e59763978853c4
+2025-12-11 21:43:20,868 - INFO - [Consensus] Parent QC view: 1
+2025-12-11 21:43:20,872 - INFO - [Consensus] Transactions for new block: 20 transactions
+2025-12-11 21:43:20,874 - INFO - [Consensus] New block created: id=e8cd4611, height=1, view=2
+2025-12-11 21:43:20,876 - DEBUG - [node2] add_block -> id=e8cd4611, height=1, view=2
+2025-12-11 21:43:20,877 - DEBUG - get_block_by_hash -> in
+2025-12-11 21:43:20,878 - DEBUG - get_block_by_hash -> in22
+2025-12-11 21:43:20,880 - INFO - [Consensus] Leader node2 created block e8cd4611
+2025-12-11 21:43:20,881 - DEBUG - [Broadcast] Proposal from node2, block hash: e8cd4611
+2025-12-11 21:43:20,882 - DEBUG - [Broadcast] proposal from node2
+2025-12-11 21:43:20,888 - INFO - [Consensus] Node node0 processing proposal...
+2025-12-11 21:43:20,890 - WARNING - Height=1 block parent_hash a2e59763978853c4 doesn't match genesis block hash e0e2ee4800000000
+2025-12-11 21:43:20,891 - INFO - [Consensus] Node node1 processing proposal...
+2025-12-11 21:43:20,892 - WARNING - Height=1 block parent_hash a2e59763978853c4 doesn't match genesis block hash e0e2ee4800000000
+2025-12-11 21:43:20,894 - INFO - [Consensus] Node node3 processing proposal...
+2025-12-11 21:43:20,895 - WARNING - Height=1 block parent_hash a2e59763978853c4 doesn't match genesis block hash e0e2ee4800000000
+2025-12-11 21:43:20,895 - INFO - [Consensus] Round 2 completed, advancing to view 3
+2025-12-11 21:43:20,898 - DEBUG - ✓ proposal from node2 to node0 (delay: 0.012s)
+2025-12-11 21:43:20,899 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
+2025-12-11 21:43:20,899 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
+2025-12-11 21:43:20,900 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,901 - INFO - 处理提案消息（使用新的验证流程）
+2025-12-11 21:43:20,902 - DEBUG - [node0] Received proposal at view 2
+2025-12-11 21:43:20,903 - DEBUG - ✓ proposal from node2 to node1 (delay: 0.015s)
+2025-12-11 21:43:20,904 - INFO - line110
+2025-12-11 21:43:20,905 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
+2025-12-11 21:43:20,907 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
+2025-12-11 21:43:20,909 - INFO - line112
+2025-12-11 21:43:20,911 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,912 - INFO - line114
+2025-12-11 21:43:20,918 - INFO - 新的提案验证（使用分层验证）
+2025-12-11 21:43:20,915 - INFO - 处理提案消息（使用新的验证流程）
+2025-12-11 21:43:20,919 - INFO - 副本的分层QC验证
+2025-12-11 21:43:20,922 - DEBUG - [node1] Received proposal at view 2
+2025-12-11 21:43:20,926 - INFO - line110
+2025-12-11 21:43:20,928 - INFO - line112
+2025-12-11 21:43:20,928 - INFO - line114
+2025-12-11 21:43:20,931 - INFO - 新的提案验证（使用分层验证）
+2025-12-11 21:43:20,931 - INFO - 副本的分层QC验证
+2025-12-11 21:43:20,933 - DEBUG - [Proof Request] node0 -> node1 (index=0, view=1)
+2025-12-11 21:43:20,934 - DEBUG - [Proof Request] node1 -> node1 (index=1, view=1)
+2025-12-11 21:43:20,938 - DEBUG - ✓ proposal from node2 to node3 (delay: 0.047s)
+2025-12-11 21:43:20,940 - DEBUG - [DEBUG] Proposal block type: <class 'dict'>
+2025-12-11 21:43:20,941 - DEBUG - [DEBUG] Proposal block keys: ['hash', 'id', 'parent_hash']...
+2025-12-11 21:43:20,942 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,943 - INFO - 处理提案消息（使用新的验证流程）
+2025-12-11 21:43:20,944 - DEBUG - [node3] Received proposal at view 2
+2025-12-11 21:43:20,944 - INFO - line110
+2025-12-11 21:43:20,946 - DEBUG - ✓ request_merkle_proof from node1 to node1 (delay: 0.012s)
+2025-12-11 21:43:20,949 - INFO - line112
+2025-12-11 21:43:20,951 - DEBUG - ✓ request_merkle_proof from node0 to node1 (delay: 0.018s)
+2025-12-11 21:43:20,952 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,954 - INFO - 处理所有类型的消息
+2025-12-11 21:43:20,953 - INFO - line114
+2025-12-11 21:43:20,962 - INFO - 新的提案验证（使用分层验证）
+2025-12-11 21:43:20,963 - INFO - 副本的分层QC验证
+2025-12-11 21:43:20,966 - DEBUG - [Proof Request] node3 -> node1 (index=3, view=1)
+2025-12-11 21:43:21,013 - DEBUG - ✓ request_merkle_proof from node3 to node1 (delay: 0.047s)
+2025-12-11 21:43:21,013 - INFO - 处理所有类型的消息
+2025-12-11 21:43:21,019 - INFO - 
 ==================================================
-2025-12-10 20:45:56,993 - INFO - 模拟器运行完成!
-2025-12-10 20:45:56,995 - INFO - ==================================================
-2025-12-10 20:45:56,996 - INFO - 总运行时间: 21.40秒
-2025-12-10 20:45:56,996 - INFO - 总轮数: 2
-2025-12-10 20:45:56,997 - INFO - 节点数: 4
-2025-12-10 20:45:56,997 - INFO - 容错数 (f): 0
-2025-12-10 20:45:56,997 - INFO - 估算TPS: 0.00
-2025-12-10 20:45:56,998 - INFO - ==================================================
-2025-12-10 20:45:57,319 - INFO - [Consensus] Consensus loop completed
-2025-12-10 20:45:57,322 - INFO - 共识线程正常结束
-2025-12-10 20:45:57,322 - INFO - 
+2025-12-11 21:43:21,020 - INFO - 模拟器运行完成!
+2025-12-11 21:43:21,020 - INFO - ==================================================
+2025-12-11 21:43:21,020 - INFO - 总运行时间: 5.94秒
+2025-12-11 21:43:21,020 - INFO - 总轮数: 2
+2025-12-11 21:43:21,020 - INFO - 节点数: 4
+2025-12-11 21:43:21,021 - INFO - 容错数 (f): 0
+2025-12-11 21:43:21,021 - INFO - 估算TPS: 0.00
+2025-12-11 21:43:21,021 - INFO - ==================================================
+2025-12-11 21:43:21,396 - INFO - [Consensus] Consensus loop completed
+2025-12-11 21:43:21,397 - INFO - 共识线程正常结束
+2025-12-11 21:43:21,398 - INFO - 
 安全机制验证结果:
-2025-12-10 20:45:57,324 - INFO -   view_number_attack_detection: ✗ 失败
-2025-12-10 20:45:57,324 - INFO -   fake_bitmap_detection: ✗ 失败
-2025-12-10 20:45:57,324 - INFO -   merkle_proof_mechanism: ✓ 通过
-2025-12-10 20:45:57,324 - INFO - Simulation completed successfully.
+2025-12-11 21:43:21,398 - INFO -   view_number_attack_detection: ✗ 失败
+2025-12-11 21:43:21,399 - INFO -   fake_bitmap_detection: ✗ 失败
+2025-12-11 21:43:21,399 - INFO -   merkle_proof_mechanism: ✓ 通过
+2025-12-11 21:43:21,400 - INFO - Simulation completed successfully.

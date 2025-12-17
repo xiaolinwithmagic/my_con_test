@@ -19,6 +19,7 @@ from transaction import verify_tx_signature
 from utils.logger import event
 from crypto import BLS
 import logging
+from typing import Dict, List, Optional
 
 # 创建当前模块的logger实例（推荐方式，而非直接用logging.root）
 logger = logging.getLogger(__name__)
@@ -62,16 +63,16 @@ class Simulator:
     
     def setup(self):
         self.node_ids = [f"node{i}" for i in range(self.num_nodes)]
-        # event("simulator_setup_start", node_id="system", view=0,
-        #     num_nodes=self.num_nodes, f=self.f, consensus_type="my")
+        event("simulator_setup_start", node_id="system", view=0,
+            consensus_type="my")
         
         self._generate_identities()
         self._generate_consensus_keys()
         self._create_nodes()
         self._init_consensus()
 
-        # event("simulator_setup_complete", node_id="system", view=0,
-        #     num_nodes=len(self.nodes), consensus_type="my")
+        event("simulator_setup_complete", node_id="system", view=0,
+            consensus_type="my")
         
     def _generate_identities(self):
         self.identities, self.did_pub = generate_multiple_identities(max(50, self.num_nodes + 10))
@@ -110,7 +111,7 @@ class Simulator:
             node.state.add_block(self.genesis_block)
             self.nodes[nid] = node
             self.net.register(node)
-            # event("node_created", node_id=nid, index=i, view=0, consensus_type="my")
+            event("node_created", node_id=nid, view=0, consensus_type="my")
 
 
     def _init_consensus(self):
@@ -178,8 +179,8 @@ class Simulator:
         
         # 启动共识控制器
         if self.consensus:
-            # event("consensus_start", node_id="system", view=0, 
-            #       rounds=rounds, attack_type=attack_type, consensus_type="my")
+            event("consensus_start", node_id="system", view=0, 
+                 consensus_type="my")
             
             # 启动共识线程
             consensus_thread = self.consensus.start()
@@ -200,10 +201,10 @@ class Simulator:
         
         while self.current_round < rounds and self.consensus and self.consensus.active:
             # 检查是否到达攻击轮数
-            if (self.attack_config["enabled"] and 
-                self.current_round >= self.attack_config["attack_round"]):
-                self._execute_attack()
-                self.attack_config["enabled"] = False  # 只执行一次攻击
+            # if (self.attack_config["enabled"] and 
+            #     self.current_round >= self.attack_config["attack_round"]):
+            #     # self._execute_attack()
+            #     self.attack_config["enabled"] = False  # 只执行一次攻击
             
             # 定期打印统计信息
             current_time = time.time()
@@ -225,27 +226,30 @@ class Simulator:
         if self.consensus:
             self.consensus.stop()
         
-        # event("simulation_complete", node_id="system", view=self.current_round,
-        #       total_rounds=rounds, run_time=run_time, consensus_type="my")
+        event("simulation_complete", node_id="system", view=self.current_round,
+              consensus_type="my")
     
     def _execute_attack(self) -> None:
         """执行攻击（根据配置的攻击类型）"""
         attack_type = self.attack_config["attack_type"]
         current_view = self.consensus.view if self.consensus else 0
         
-        # event("attack_triggered", node_id="system", view=current_view,
-        #       attack_type=attack_type, round=self.current_round, consensus_type="my")
+        event("attack_triggered", node_id="system", view=current_view,
+             round=self.current_round, consensus_type="my")
         
         if attack_type == "split_proposal":
-            self._split_proposal_attack(current_view)
+            pass
+            # self._split_proposal_attack(current_view)
         elif attack_type == "view_number_attack":
-            self._view_number_attack(current_view)
+            pass
+            # self._view_number_attack(current_view)
         elif attack_type == "fake_bitmap":
-            self._fake_bitmap_attack(current_view)
+            pass
+            # self._fake_bitmap_attack(current_view)
         else:
             pass
-            # event("attack_unknown", node_id="system", view=current_view,
-            #       attack_type=attack_type, consensus_type="my")
+            event("attack_unknown", node_id="system", view=current_view,
+                consensus_type="my")
     
     def _split_proposal_attack(self, current_view: int) -> None:
         """分裂提案攻击：恶意Leader向不同副本发送不同的提案"""
@@ -323,8 +327,8 @@ class Simulator:
         for nid in group_a:
             node = self.nodes[nid]
             proposal = {
-                "block": block_a,
-                "qc": leader.state.latest_qc,
+                "block": block_a.to_dict() if hasattr(block_a, "to_dict") else block_a.__dict__,
+                "qc": leader.state.latest_qc.to_dict() if leader.state.latest_qc and hasattr(leader.state.latest_qc, "to_dict") else None,
                 "view": current_view,
                 "transactions": [tx_a]
             }
@@ -339,8 +343,8 @@ class Simulator:
         for nid in group_b:
             node = self.nodes[nid]
             proposal = {
-                "block": block_b,
-                "qc": leader.state.latest_qc,
+                "block": block_b.to_dict() if hasattr(block_b, "to_dict") else block_b.__dict__,
+                "qc": leader.state.latest_qc.to_dict() if leader.state.latest_qc and hasattr(leader.state.latest_qc, "to_dict") else None,
                 "view": current_view,
                 "transactions": [tx_b]
             }
@@ -351,8 +355,8 @@ class Simulator:
                 message=proposal
             )
         
-        # event("split_proposal_executed", node_id=leader_id, view=current_view,
-        #       group_a_size=len(group_a), group_b_size=len(group_b), consensus_type="my")
+        event("split_proposal_executed", node_id=leader_id, view=current_view,
+             consensus_type="my")
     
     def _view_number_attack(self, current_view: int) -> None:
         """视图号攻击：恶意Leader尝试使用旧QC但修改view number"""
@@ -398,8 +402,8 @@ class Simulator:
         
         # 注意：这里我们实际上是在模拟恶意Leader的行为
         # 在真实场景中，恶意Leader会直接广播这个提案
-        # event("view_number_attack_executed", node_id=leader_id, view=current_view,
-        #       old_qc_view=old_qc.view, fake_qc_view=fake_qc.view, consensus_type="my")
+        event("view_number_attack_executed", node_id=leader_id, view=current_view,
+              consensus_type="my")
         
         # 记录攻击，用于后续验证
         self.recorded_attack = {
@@ -444,8 +448,8 @@ class Simulator:
             merkle_root=leader.state.latest_qc.merkle_root
         )
         
-        # event("fake_bitmap_attack_executed", node_id=leader_id, view=current_view,
-        #       real_signers=selected_indices, fake_signers=fake_indices, consensus_type="my")
+        event("fake_bitmap_attack_executed", node_id=leader_id, view=current_view,
+             consensus_type="my")
         
         # 记录攻击
         self.recorded_attack = {
@@ -529,7 +533,7 @@ class Simulator:
         if self.consensus:
             self.consensus.stop()
         
-        # event("simulator_stopped", node_id="system", view=self.current_round, consensus_type="my")
+        event("simulator_stopped", node_id="system", view=self.current_round, consensus_type="my")
     
     def verify_security_mechanisms(self) -> Dict[str, bool]:
         """

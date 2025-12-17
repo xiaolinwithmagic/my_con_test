@@ -47,30 +47,7 @@ class Network:
         """获取随机延迟时间"""
         return random.uniform(*self.delay_range)
     
-    def _deliver(self, receiver, message_type: str, message: Dict[str, Any]) -> None:
-        """
-        内部投递方法：模拟网络延迟和丢包
-        """
-        # # 检查消息是否被丢弃
-        # if self._should_drop():
-        #     logging.warning(f"✗ Message {message_type} to {receiver.id} dropped.")
-        #     return
-            
-        # 模拟网络延迟
-        delay = self._get_delay()
-        if delay > 0:
-            time.sleep(delay)
-            
-        # 记录投递日志
-        src = message.get("sender", "unknown")
-        logging.debug(f"✓ {message_type} from {src} to {receiver.id} (delay: {delay:.3f}s)")
-        
-        # 投递消息到接收者
-        try:
-            receiver.receive_message(message_type, message)
-        except Exception as e:
-            logging.error(f"Failed to deliver {message_type} to {receiver.id}: {e}")
-    
+   
     def send_to(self, sender_id: str, receiver_id: str, message_type: str, message: Dict[str, Any]) -> None:
         """
         发送消息到特定节点（用于请求证明等点对点通信）
@@ -102,6 +79,24 @@ class Network:
         if sender_id not in self.nodes:
             logging.error(f"Cannot broadcast from {sender_id}: node not registered")
             return
+
+        # if message_type == self.MSG_TYPES["PROPOSAL"]:
+        #     block = message.get("block")
+        #     if block:
+        #         logging.debug(f"[Broadcast DEBUG] Original block type: {type(block)}")
+        #         if isinstance(block, dict):
+        #             # 检查各种可能的hash字段
+        #             hash_keys = ["hash", "block_hash", "id"]
+        #             for key in hash_keys:
+        #                 if key in block:
+        #                     value = block[key]
+        #                     if value:
+        #                         if isinstance(value, bytes):
+        #                             logging.debug(f"[Broadcast DEBUG] Block[{key}] (bytes): {value.hex()[:16]}...")
+        #                         else:
+        #                             logging.debug(f"[Broadcast DEBUG] Block[{key}]: {value[:16] if isinstance(value, str) else value}")
+        #                     else:
+        #                         logging.debug(f"[Broadcast DEBUG] Block[{key}] is empty/None")
             
         logging.debug(f"[Broadcast] {message_type} from {sender_id}")
         
@@ -132,6 +127,14 @@ class Network:
     #         "timestamp": time.time(),
     #     }
     #     self.broadcast(sender_id, self.MSG_TYPES["PROPOSAL"], message)
+
+    # self.network.broadcast_proposal(
+    #         sender_id=leader_node.id,
+    #         block=block,
+    #         qc=leader_node.state.latest_qc,
+    #         view=self.view
+    #     )
+        
 
     def broadcast_proposal(self, sender_id: str, block, qc: Optional[QC] = None, view: int = 0) -> None:
         """广播提案消息 - 修正版"""
@@ -312,8 +315,9 @@ class Network:
         try:
             # 添加调试信息
             if message_type == self.MSG_TYPES["PROPOSAL"]:
-                logging.debug(f"[DEBUG] Proposal block type: {type(message.get('block'))}")
-                logging.debug(f"[DEBUG] Proposal block keys: {list(message.get('block', {}).keys())[:3]}...")
+                logging.debug(f"[DEBUG] Delivering Proposal to {receiver.id}")
+            #     logging.debug(f"[DEBUG] Proposal block type: {type(message.get('block'))}")
+            #     logging.debug(f"[DEBUG] Proposal block keys: {list(message.get('block', {}).keys())[:3]}...")
             
             receiver.receive_message(message_type, message)
         except Exception as e:

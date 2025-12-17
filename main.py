@@ -8,7 +8,7 @@ root_logger.setLevel(logging.DEBUG)  # 允许root接收所有级别日志
 root_logger.handlers.clear()  # 清空默认handler，避免重复输出
 
 # 2. 配置FileHandler（写入文件，捕获全量日志）
-file_handler = logging.FileHandler("simulation.log", mode='w', encoding='utf-8')
+file_handler = logging.FileHandler("simulation1.log", mode='w', encoding='utf-8')
 file_handler.setLevel(logging.DEBUG)
 file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(file_formatter)
