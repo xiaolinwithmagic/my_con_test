@@ -471,9 +471,10 @@ class Node:
                 self.view = qc.view
                 logger.info(f"节点 {self.id} 更新视图: {old_view} -> {self.view}")
             
-            # 4. 如果自己是leader，需要检查是否需要创建下一个提案
-            if self.is_leader:
-                self._check_for_next_proposal()
+            # 5. 清除当前提案（因为已经完成）
+            if hasattr(self, 'current_proposal'):
+                self.current_proposal = None
+                logger.info(f"节点 {self.id} 清除当前提案")
                 
             return True
             

@@ -256,7 +256,7 @@ class Simulator:
             # 检查是否停滞
             current_time = time.time()
             if current_time - start_time > no_progress_timeout:
-                logger.error(f"[Simulator] 超时无进展，当前轮数: {self.current_round}，退出")
+                logger.warning(f"[Simulator] 超时无进展，当前轮数: {self.current_round}，退出")
                 break
         
         # 运行结束

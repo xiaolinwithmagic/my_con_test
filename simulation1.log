@@ -1,649 +1,739 @@
-2025-12-16 21:45:39,787 - INFO - 创建模拟器...
-2025-12-16 21:45:40,271 - INFO - {"ts": 1765892740.2713306, "event": "simulator_setup_start", "node": "system", "view": 0, "consensus_type": "my"}
-2025-12-16 21:45:40,764 - DEBUG - [node0] add_block -> id=bfd7b4f8, height=0, view=0
-2025-12-16 21:45:40,764 - INFO - [node0]blockhash=bfd7b4f8 added to block_tree
-2025-12-16 21:45:40,765 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,765 - DEBUG - Node node0 registered to network (total: 1)
-2025-12-16 21:45:40,765 - INFO - {"ts": 1765892740.7655616, "event": "node_created", "node": "node0", "view": 0, "consensus_type": "my"}
-2025-12-16 21:45:40,766 - INFO - [Node] 节点 node0 启动消息队列处理
-2025-12-16 21:45:40,766 - INFO - [Node] 启动消息处理线程: node0
-2025-12-16 21:45:40,767 - DEBUG - [ThreadManager] 注册线程: node_node0
-2025-12-16 21:45:40,767 - DEBUG - [node1] add_block -> id=bfd7b4f8, height=0, view=0
-2025-12-16 21:45:40,768 - INFO - [node1]blockhash=bfd7b4f8 added to block_tree
-2025-12-16 21:45:40,768 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,768 - DEBUG - Node node1 registered to network (total: 2)
-2025-12-16 21:45:40,768 - INFO - {"ts": 1765892740.7686574, "event": "node_created", "node": "node1", "view": 0, "consensus_type": "my"}
-2025-12-16 21:45:40,769 - DEBUG - [ThreadManager] 注册线程: node_node0
-2025-12-16 21:45:40,770 - INFO - [Node] 节点 node1 启动消息队列处理
-2025-12-16 21:45:40,770 - INFO - [Node] 启动消息处理线程: node1
-2025-12-16 21:45:40,771 - DEBUG - [ThreadManager] 注册线程: node_node1
-2025-12-16 21:45:40,772 - DEBUG - [node2] add_block -> id=bfd7b4f8, height=0, view=0
-2025-12-16 21:45:40,772 - INFO - [node2]blockhash=bfd7b4f8 added to block_tree
-2025-12-16 21:45:40,772 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,772 - DEBUG - Node node2 registered to network (total: 3)
-2025-12-16 21:45:40,773 - INFO - {"ts": 1765892740.7731018, "event": "node_created", "node": "node2", "view": 0, "consensus_type": "my"}
-2025-12-16 21:45:40,773 - DEBUG - [ThreadManager] 注册线程: node_node0
-2025-12-16 21:45:40,773 - DEBUG - [ThreadManager] 注册线程: node_node1
-2025-12-16 21:45:40,774 - INFO - [Node] 节点 node2 启动消息队列处理
-2025-12-16 21:45:40,774 - INFO - [Node] 启动消息处理线程: node2
-2025-12-16 21:45:40,775 - DEBUG - [ThreadManager] 注册线程: node_node2
-2025-12-16 21:45:40,775 - DEBUG - [node3] add_block -> id=bfd7b4f8, height=0, view=0
-2025-12-16 21:45:40,775 - INFO - [node3]blockhash=bfd7b4f8 added to block_tree
-2025-12-16 21:45:40,776 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,776 - DEBUG - Node node3 registered to network (total: 4)
-2025-12-16 21:45:40,776 - INFO - {"ts": 1765892740.77669, "event": "node_created", "node": "node3", "view": 0, "consensus_type": "my"}
-2025-12-16 21:45:40,777 - DEBUG - [ThreadManager] 注册线程: node_node0
-2025-12-16 21:45:40,777 - DEBUG - [ThreadManager] 注册线程: node_node1
-2025-12-16 21:45:40,777 - DEBUG - [ThreadManager] 注册线程: node_node2
-2025-12-16 21:45:40,778 - INFO - [Node] 节点 node3 启动消息队列处理
-2025-12-16 21:45:40,778 - INFO - [Node] 启动消息处理线程: node3
-2025-12-16 21:45:40,779 - DEBUG - [ThreadManager] 注册线程: node_node3
-2025-12-16 21:45:40,779 - INFO - [Consensus] 初始化超时和视图切换机制，故障容错f=1
-2025-12-16 21:45:40,779 - INFO - 创建创世区块: height=0, id=00000000, hash=0000000000000000
-2025-12-16 21:45:40,780 - INFO - Using genesis QC from NodeState: view=0
-2025-12-16 21:45:40,780 - DEBUG - [node0] add_block -> id=00000000, height=0, view=0
-2025-12-16 21:45:40,780 - INFO - [node0]blockhash=00000000 added to block_tree
-2025-12-16 21:45:40,780 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,781 - INFO - Added genesis block to node node0
-2025-12-16 21:45:40,781 - INFO - Node node0 initialized with genesis: height=0, locked_qc.view=0
-2025-12-16 21:45:40,781 - DEBUG - [node1] add_block -> id=00000000, height=0, view=0
-2025-12-16 21:45:40,782 - INFO - [node1]blockhash=00000000 added to block_tree
-2025-12-16 21:45:40,782 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,782 - INFO - Added genesis block to node node1
-2025-12-16 21:45:40,782 - INFO - Node node1 initialized with genesis: height=0, locked_qc.view=0
-2025-12-16 21:45:40,783 - DEBUG - [node2] add_block -> id=00000000, height=0, view=0
-2025-12-16 21:45:40,783 - INFO - [node2]blockhash=00000000 added to block_tree
-2025-12-16 21:45:40,783 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,783 - INFO - Added genesis block to node node2
-2025-12-16 21:45:40,784 - INFO - Node node2 initialized with genesis: height=0, locked_qc.view=0
-2025-12-16 21:45:40,784 - DEBUG - [node3] add_block -> id=00000000, height=0, view=0
-2025-12-16 21:45:40,784 - INFO - [node3]blockhash=00000000 added to block_tree
-2025-12-16 21:45:40,784 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:40,785 - INFO - Added genesis block to node node3
-2025-12-16 21:45:40,785 - INFO - Node node3 initialized with genesis: height=0, locked_qc.view=0
-2025-12-16 21:45:40,785 - INFO - [Consensus] Initialized with group_pk=True, public_key_map_size=4, nodes=4
-2025-12-16 21:45:40,786 - INFO - 节点 node0 设置共识实例
-2025-12-16 21:45:40,786 - INFO - 节点 node1 设置共识实例
-2025-12-16 21:45:40,786 - INFO - 节点 node2 设置共识实例
-2025-12-16 21:45:40,787 - INFO - 节点 node3 设置共识实例
-2025-12-16 21:45:40,787 - INFO - {"ts": 1765892740.7873015, "event": "simulator_setup_complete", "node": "system", "view": 0, "consensus_type": "my"}
-2025-12-16 21:45:40,787 - INFO - [Simulator] 开始填充内存池，目标数量: 100
-2025-12-16 21:45:56,936 - INFO - [Simulator] 已添加 100 个交易到内存池
-2025-12-16 21:45:56,937 - INFO - [Simulator] 内存池填充完成，成功添加: 100/100
-2025-12-16 21:45:56,937 - INFO - [Simulator] 内存池当前大小: 100
-2025-12-16 21:45:56,938 - INFO - 启动模拟器...
-2025-12-16 21:45:56,938 - INFO - {"ts": 1765892756.938395, "event": "consensus_start", "node": "system", "view": 0, "consensus_type": "my"}
-2025-12-16 21:45:56,938 - INFO - [Consensus] Starting consensus with view=1, nodes=['node0', 'node1', 'node2', 'node3']
-2025-12-16 21:45:56,939 - INFO - [Global][Consensus] Starting global consensus loop
-2025-12-16 21:45:56,939 - DEBUG - [Consensus] 同步节点状态: view=1, leader=node1
-2025-12-16 21:45:56,940 - DEBUG - [Consensus] 节点 node0 视图同步: 0 -> 1
-2025-12-16 21:45:56,940 - DEBUG - [Consensus] 节点 node1 视图同步: 0 -> 1
-2025-12-16 21:45:56,940 - DEBUG - [Consensus] 节点 node1 领导者状态: True
-2025-12-16 21:45:56,940 - DEBUG - [Consensus] 节点 node2 视图同步: 0 -> 1
-2025-12-16 21:45:56,941 - DEBUG - [Consensus] 节点 node3 视图同步: 0 -> 1
-2025-12-16 21:45:56,941 - INFO - [Consensus] 状态同步完成: 4/4 个节点已同步
-2025-12-16 21:45:56,941 - INFO - [Global][Consensus] Round 0: view=1, leader=node1
-2025-12-16 21:45:56,941 - DEBUG - [Consensus] 同步节点状态: view=1, leader=node1
-2025-12-16 21:45:56,942 - INFO - [Consensus] 状态同步完成: 4/4 个节点已同步
-2025-12-16 21:45:56,942 - DEBUG - [Global][Consensus] 设置节点 node0.is_leader=False
-2025-12-16 21:45:56,942 - DEBUG - [Global][Consensus] 设置节点 node1.is_leader=True
-2025-12-16 21:45:56,942 - DEBUG - [Global][Consensus] 设置节点 node2.is_leader=False
-2025-12-16 21:45:56,942 - DEBUG - [Global][Consensus] 设置节点 node3.is_leader=False
-2025-12-16 21:45:56,942 - INFO - [Global][Consensus] Setting node node0.is_leader=False
-2025-12-16 21:45:56,943 - INFO - [Global][Consensus] Setting node node1.is_leader=True
-2025-12-16 21:45:56,943 - INFO - [Global][Consensus] Setting node node2.is_leader=False
-2025-12-16 21:45:56,943 - INFO - [Global][Consensus] Setting node node3.is_leader=False
-2025-12-16 21:45:56,943 - INFO - [Global][Consensus] Leader node1 creating proposal...
-2025-12-16 21:45:56,943 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:56,943 - INFO - [Consensus] Latest QC found: view=0, parent_block=0000000000000000
-2025-12-16 21:45:56,943 - WARNING - [Consensus] Parent block for latest_qc not found, using genesis
-2025-12-16 21:45:56,944 - INFO - [Consensus] Creating block at height 1, parent height=0, parent QC view=0
-2025-12-16 21:45:56,944 - INFO - [Consensus] Leader node1 creating new block at height 1
-2025-12-16 21:45:56,944 - INFO - [Consensus] Parent hash: 0000000000000000
-2025-12-16 21:45:56,944 - INFO - [Consensus] Parent QC view: 0
-2025-12-16 21:45:56,944 - INFO - [Consensus] Transactions for new block: 20 transactions
-2025-12-16 21:45:56,945 - INFO - [Consensus] New block created: id=ac5be4fb, height=1, view=1
-2025-12-16 21:45:56,945 - DEBUG - [node1] add_block -> id=ac5be4fb, height=1, view=1
-2025-12-16 21:45:56,946 - INFO - [node1]blockhash=ac5be4fb added to block_tree
-2025-12-16 21:45:56,946 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:56,947 - INFO - [Global][Consensus] Leader node1 created block ac5be4fb
-2025-12-16 21:45:56,947 - INFO - [Global][Consensus] Leader node1 broadcasting proposal...
-2025-12-16 21:45:56,948 - INFO - [Consensus] Threads started: consensus_thread=True, message_handler_thread=True
-2025-12-16 21:45:56,948 - DEBUG - [Broadcast] Proposal from node1, block hash: ac5be4fb
-2025-12-16 21:45:56,948 - DEBUG - [ThreadManager] 注册线程: consensus
-2025-12-16 21:45:56,949 - DEBUG - [Broadcast] proposal from node1
-2025-12-16 21:45:56,950 - DEBUG - [ThreadManager] 注册线程: simulator_monitor
-2025-12-16 21:45:56,966 - DEBUG - ✓ proposal from node1 to node2 (delay: 0.016s)
-2025-12-16 21:45:56,967 - DEBUG - [DEBUG] Delivering Proposal to node2
-2025-12-16 21:45:56,967 - INFO - [Node] 节点 node2 收到消息，类型=proposal
-2025-12-16 21:45:56,968 - DEBUG - ✓ proposal from node1 to node3 (delay: 0.016s)
-2025-12-16 21:45:56,969 - DEBUG - [DEBUG] Delivering Proposal to node3
-2025-12-16 21:45:56,969 - INFO - [Node] 节点 node3 收到消息，类型=proposal
-2025-12-16 21:45:56,992 - DEBUG - ✓ proposal from node1 to node0 (delay: 0.042s)
-2025-12-16 21:45:56,993 - DEBUG - [DEBUG] Delivering Proposal to node0
-2025-12-16 21:45:56,993 - INFO - [Node] 节点 node0 收到消息，类型=proposal
-2025-12-16 21:45:57,106 - DEBUG - [Node] 节点 node0 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:45:57,106 - DEBUG - [Node] 节点 node0 处理队列消息，类型=proposal，延迟=0.000s
-2025-12-16 21:45:57,107 - INFO - [Node] 节点 node0 收到提案消息
-2025-12-16 21:45:57,107 - INFO - [Consensus] 节点 node0 处理提案
-2025-12-16 21:45:57,108 - INFO - [Consensus] 为节点 node0 验证提案
-2025-12-16 21:45:57,108 - INFO - [Consensus] 节点 node0 验证QC
-2025-12-16 21:45:57,109 - INFO - [Consensus] 创世QC验证通过（特殊处理）
-2025-12-16 21:45:57,109 - INFO - [Consensus] 节点 node0 提案验证通过
-2025-12-16 21:45:57,109 - DEBUG -  准备签名数据: view=1, block_hash=b'\xac[\xe4\xfb\x08ek\x83]\x08\xaf\x87\xfc\xe2i\xc0\x90vV\x1c\xd3U\xe4\xc9\xa2\xaf1\xd7\x7f;9\xc8'
-2025-12-16 21:45:57,110 - DEBUG -  block_hash_bytes 长度: 32
-2025-12-16 21:45:57,137 - DEBUG - [Node] 节点 node3 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:45:57,138 - DEBUG - [Node] 节点 node3 处理队列消息，类型=proposal，延迟=0.001s
-2025-12-16 21:45:57,138 - INFO - [Node] 节点 node3 收到提案消息
-2025-12-16 21:45:57,149 - INFO - [Consensus] 节点 node3 处理提案
-2025-12-16 21:45:57,160 - INFO - [Consensus] 为节点 node3 验证提案
-2025-12-16 21:45:57,171 - INFO - [Consensus] 节点 node3 验证QC
-2025-12-16 21:45:57,179 - INFO - [Consensus] 创世QC验证通过（特殊处理）
-2025-12-16 21:45:57,185 - INFO - [Consensus] 节点 node3 提案验证通过
-2025-12-16 21:45:57,191 - DEBUG -  准备签名数据: view=1, block_hash=b'\xac[\xe4\xfb\x08ek\x83]\x08\xaf\x87\xfc\xe2i\xc0\x90vV\x1c\xd3U\xe4\xc9\xa2\xaf1\xd7\x7f;9\xc8'
-2025-12-16 21:45:57,193 - DEBUG -  block_hash_bytes 长度: 32
-2025-12-16 21:45:57,311 - DEBUG - [Node] 节点 node2 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:45:57,312 - DEBUG - [Node] 节点 node2 处理队列消息，类型=proposal，延迟=0.001s
-2025-12-16 21:45:57,317 - INFO - [Node] 节点 node2 收到提案消息
-2025-12-16 21:45:57,323 - DEBUG - [Broadcast] proposal from node1 成功发送给 3/3 个节点
-2025-12-16 21:45:57,333 - INFO - [Consensus] 节点 node2 处理提案
-2025-12-16 21:45:57,367 - INFO - {"ts": 1765892757.3673384, "event": "proposal_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
-2025-12-16 21:45:57,382 - DEBUG -  partial_sig 长度: 96
-2025-12-16 21:45:57,388 - INFO - [Consensus] 为节点 node2 验证提案
-2025-12-16 21:45:57,399 - INFO -  node0 创建投票成功
-2025-12-16 21:45:57,410 - INFO - [Consensus] 节点 node2 验证QC
-2025-12-16 21:45:57,421 - INFO - [Consensus] 节点 node0 发送投票给领导者 node1
-2025-12-16 21:45:57,432 - INFO - [Consensus] 创世QC验证通过（特殊处理）
-2025-12-16 21:45:57,432 - INFO - [Consensus] 准备广播投票，节点: node0
-2025-12-16 21:45:57,433 - INFO - [Consensus] 节点 node2 提案验证通过
-2025-12-16 21:45:57,439 - INFO - [Consensus] network实例: <network.Network object at 0x7fbc0323ae90>, vote_manager: <vote_manager.VoteManager object at 0x7fbc02a01750>
-2025-12-16 21:45:57,444 - DEBUG -  准备签名数据: view=1, block_hash=b'\xac[\xe4\xfb\x08ek\x83]\x08\xaf\x87\xfc\xe2i\xc0\x90vV\x1c\xd3U\xe4\xc9\xa2\xaf1\xd7\x7f;9\xc8'
-2025-12-16 21:45:57,459 - INFO - [VoteManager] 节点 node0 开始广播投票
-2025-12-16 21:45:57,470 - DEBUG -  block_hash_bytes 长度: 32
-2025-12-16 21:45:57,475 - DEBUG -  partial_sig 长度: 96
-2025-12-16 21:45:57,491 - INFO - [VoteManager] network实例: <network.Network object at 0x7fbc0323ae90>, 类型: <class 'network.Network'>
-2025-12-16 21:45:57,492 - INFO - [VoteManager] vote对象: Vote(id=468898267261cf1d, voter=node0, index=0, view=1), block对象: Block(hash=ac5be4fb, height=1, proposer=node1, view=1)
-2025-12-16 21:45:57,493 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node0, vote.view=1
-2025-12-16 21:45:57,494 - INFO - [Network] 节点 node0 广播投票，view=1, block=ac5be4fb
-2025-12-16 21:45:57,495 - DEBUG - [Broadcast] vote from node0
-2025-12-16 21:45:57,506 - INFO -  node3 创建投票成功
-2025-12-16 21:45:57,532 - INFO - [Consensus] 节点 node3 发送投票给领导者 node1
-2025-12-16 21:45:57,537 - INFO - [Consensus] 准备广播投票，节点: node3
-2025-12-16 21:45:57,548 - INFO - [Consensus] network实例: <network.Network object at 0x7fbc0323ae90>, vote_manager: <vote_manager.VoteManager object at 0x7fbc02a01750>
-2025-12-16 21:45:57,554 - INFO - [VoteManager] 节点 node3 开始广播投票
-2025-12-16 21:45:57,555 - INFO - [VoteManager] network实例: <network.Network object at 0x7fbc0323ae90>, 类型: <class 'network.Network'>
-2025-12-16 21:45:57,560 - DEBUG - ✓ vote from node0 to node1 (delay: 0.038s)
-2025-12-16 21:45:57,566 - DEBUG - ✓ vote from node0 to node2 (delay: 0.024s)
-2025-12-16 21:45:57,566 - INFO - [VoteManager] vote对象: Vote(id=1a8cc31cf268db54, voter=node3, index=3, view=1), block对象: Block(hash=ac5be4fb, height=1, proposer=node1, view=1)
-2025-12-16 21:45:57,575 - INFO - [Node] 节点 node1 收到消息，类型=vote
-2025-12-16 21:45:57,587 - DEBUG - ✓ vote from node0 to node3 (delay: 0.021s)
-2025-12-16 21:45:57,587 - INFO - [Node] 节点 node2 收到消息，类型=vote
-2025-12-16 21:45:57,592 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node3, vote.view=1
-2025-12-16 21:45:57,593 - INFO - [Node] 节点 node3 收到消息，类型=vote
-2025-12-16 21:45:57,598 - DEBUG - [Node] 节点 node2 收到消息，类型=vote，队列大小=1
-2025-12-16 21:45:57,598 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=1
-2025-12-16 21:45:57,598 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.000s
-2025-12-16 21:45:57,635 - DEBUG - [Node] 节点 node3 收到消息，类型=vote，队列大小=1
-2025-12-16 21:45:57,658 - DEBUG -  partial_sig 长度: 96
-2025-12-16 21:45:57,658 - DEBUG - [Broadcast] vote from node0 成功发送给 3/3 个节点
-2025-12-16 21:45:57,658 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:57,658 - INFO - [Network] 节点 node3 广播投票，view=1, block=ac5be4fb
-2025-12-16 21:45:57,659 - INFO - [Network] 广播投票完成
-2025-12-16 21:45:57,659 - INFO -  node2 创建投票成功
-2025-12-16 21:45:57,660 - INFO - [VoteManager] 投票广播完成，结果: True
-2025-12-16 21:45:57,660 - DEBUG - [Broadcast] vote from node3
-2025-12-16 21:45:57,660 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:57,660 - INFO - [Consensus] 节点 node2 发送投票给领导者 node1
-2025-12-16 21:45:57,661 - INFO - [Consensus] 节点 node0 投票发送成功
-2025-12-16 21:45:57,662 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': '88f2e2e5c1e7cc56c96ffb82845748fa91b4c27920b16c9ef1f4236721d703a5953077c66baf45b17e6917d1c8b543d20559d378841d541dc4c055f9395e2c89fa77cee7d364e326cf18a45790d6f5deea473d642d1342f46c57d54f997aad41', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '468898267261cf1d'}
-2025-12-16 21:45:57,663 - INFO - [Consensus] 准备广播投票，节点: node2
-2025-12-16 21:45:57,663 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:57,663 - INFO - [Node] 节点 node0 成功处理提案
-2025-12-16 21:45:57,664 - INFO - [Consensus] network实例: <network.Network object at 0x7fbc0323ae90>, vote_manager: <vote_manager.VoteManager object at 0x7fbc02a01750>
-2025-12-16 21:45:57,664 - INFO - [VoteManager] 节点 node2 开始广播投票
-2025-12-16 21:45:57,665 - INFO - [VoteManager] network实例: <network.Network object at 0x7fbc0323ae90>, 类型: <class 'network.Network'>
-2025-12-16 21:45:57,665 - INFO - [VoteManager] vote对象: Vote(id=9b95c4e2d307c97f, voter=node2, index=2, view=1), block对象: Block(hash=ac5be4fb, height=1, proposer=node1, view=1)
-2025-12-16 21:45:57,665 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node2, vote.view=1
-2025-12-16 21:45:57,665 - INFO - [Network] 节点 node2 广播投票，view=1, block=ac5be4fb
-2025-12-16 21:45:57,666 - DEBUG - [Broadcast] vote from node2
-2025-12-16 21:45:57,664 - INFO - [Node] 反序列化后的vote对象: Vote(id=468898267261cf1d, voter=node0, index=0, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:57,667 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:57,667 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:57,667 - INFO - [Consensus] vote_data is a leader
-2025-12-16 21:45:57,668 - INFO - [Consensus] Leader node1 收到来自 node0 的投票
-2025-12-16 21:45:57,668 - INFO - [Consensus] start assemble qc
-2025-12-16 21:45:57,668 - INFO - [Consensus] 从投票对象获取区块哈希: ac5be4fb
-2025-12-16 21:45:57,674 - DEBUG - ✓ vote from node3 to node1 (delay: 0.011s)
-2025-12-16 21:45:57,677 - INFO - 聚合签名验证成功---模拟
-2025-12-16 21:45:57,678 - INFO - [Node] 节点 node1 收到消息，类型=vote
-2025-12-16 21:45:57,678 - INFO - QC组装成功: view=1, block_hash=ac5be4fb08656b83
-2025-12-16 21:45:57,679 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=1
-2025-12-16 21:45:57,679 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:57,679 - DEBUG - ✓ vote from node3 to node2 (delay: 0.016s)
-2025-12-16 21:45:57,680 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:57,680 - INFO - [Node] 节点 node2 收到消息，类型=vote
-2025-12-16 21:45:57,681 - INFO - [Consensus] start update qc state
-2025-12-16 21:45:57,681 - DEBUG - [Node] 节点 node2 收到消息，类型=vote，队列大小=2
-2025-12-16 21:45:57,682 - ERROR - 节点 node0 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:57,682 - ERROR - 节点 node1 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:57,683 - ERROR - 节点 node2 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:57,683 - ERROR - 节点 node3 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:57,683 - INFO - [Consensus] start broadcast qc 
-2025-12-16 21:45:57,684 - DEBUG - [Broadcast] new_view from node1
-2025-12-16 21:45:57,687 - DEBUG - ✓ vote from node2 to node1 (delay: 0.013s)
-2025-12-16 21:45:57,687 - INFO - [Node] 节点 node1 收到消息，类型=vote
-2025-12-16 21:45:57,687 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=2
-2025-12-16 21:45:57,690 - DEBUG - ✓ vote from node3 to node0 (delay: 0.028s)
-2025-12-16 21:45:57,690 - INFO - [Node] 节点 node0 收到消息，类型=vote
-2025-12-16 21:45:57,693 - DEBUG - ✓ vote from node2 to node3 (delay: 0.015s)
-2025-12-16 21:45:57,693 - INFO - [Node] 节点 node3 收到消息，类型=vote
-2025-12-16 21:45:57,693 - DEBUG - [Node] 节点 node3 收到消息，类型=vote，队列大小=2
-2025-12-16 21:45:57,697 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.013s)
-2025-12-16 21:45:57,698 - INFO - [Node] 节点 node0 收到消息，类型=new_view
-2025-12-16 21:45:57,698 - DEBUG - ✓ vote from node2 to node0 (delay: 0.032s)
-2025-12-16 21:45:57,698 - INFO - [Node] 节点 node0 收到消息，类型=vote
-2025-12-16 21:45:57,702 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.018s)
-2025-12-16 21:45:57,702 - INFO - [Node] 节点 node2 收到消息，类型=new_view
-2025-12-16 21:45:57,702 - DEBUG - [Node] 节点 node2 收到消息，类型=new_view，队列大小=3
-2025-12-16 21:45:57,732 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.047s)
-2025-12-16 21:45:57,732 - INFO - [Node] 节点 node3 收到消息，类型=new_view
-2025-12-16 21:45:57,732 - DEBUG - [Node] 节点 node3 收到消息，类型=new_view，队列大小=3
-2025-12-16 21:45:58,031 - DEBUG - [Node] 节点 node0 收到消息，类型=vote，队列大小=1
-2025-12-16 21:45:58,031 - DEBUG - [Node] 节点 node0 收到消息，类型=new_view，队列大小=2
-2025-12-16 21:45:58,031 - DEBUG - [Node] 节点 node0 收到消息，类型=vote，队列大小=3
-2025-12-16 21:45:58,032 - DEBUG - [Broadcast] vote from node2 成功发送给 3/3 个节点
-2025-12-16 21:45:58,033 - DEBUG - [Broadcast] new_view from node1 成功发送给 3/3 个节点
-2025-12-16 21:45:58,033 - DEBUG - [Broadcast] vote from node3 成功发送给 3/3 个节点
-2025-12-16 21:45:58,035 - INFO - [Network] 广播投票完成
-2025-12-16 21:45:58,035 - INFO - [VoteManager] 投票广播完成，结果: True
-2025-12-16 21:45:58,035 - INFO - [Consensus] 节点 node3 投票发送成功
-2025-12-16 21:45:58,034 - INFO - [Network] 广播投票完成
-2025-12-16 21:45:58,035 - INFO - [Node] 节点 node3 成功处理提案
-2025-12-16 21:45:58,035 - INFO - [VoteManager] 投票广播完成，结果: True
-2025-12-16 21:45:58,036 - INFO - [Consensus] 节点 node2 投票发送成功
-2025-12-16 21:45:58,034 - DEBUG - [Node] 节点 node0 处理队列消息，类型=vote，延迟=0.003s
-2025-12-16 21:45:58,036 - INFO - [Node] 节点 node2 成功处理提案
-2025-12-16 21:45:58,036 - INFO - [Node] 节点 node0 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,036 - INFO - [Node] 收到来自 node2 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,036 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node2', 'voter_index': 2, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': 'a4afed5f8c2910addedc7d91cf71ae5e6a0f472d0f27f626336eef4890f8265d867c7beca64fdba4d1218a9bea25a25515b33eafdd54e1f5ea1eb95cbbb8f4b96a29e59d83dc86693024b2f6f30d74b0e2d945bfdc844fa9277541efed6916bc', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '9b95c4e2d307c97f'}
-2025-12-16 21:45:58,037 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,037 - DEBUG - [Node] 节点 node3 处理队列消息，类型=vote，延迟=0.402s
-2025-12-16 21:45:58,037 - DEBUG - [Node] 节点 node2 处理队列消息，类型=vote，延迟=0.439s
-2025-12-16 21:45:58,037 - INFO - [Node] 反序列化后的vote对象: Vote(id=9b95c4e2d307c97f, voter=node2, index=2, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,038 - INFO - [Node] 节点 node3 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,038 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,038 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': '88f2e2e5c1e7cc56c96ffb82845748fa91b4c27920b16c9ef1f4236721d703a5953077c66baf45b17e6917d1c8b543d20559d378841d541dc4c055f9395e2c89fa77cee7d364e326cf18a45790d6f5deea473d642d1342f46c57d54f997aad41', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '468898267261cf1d'}
-2025-12-16 21:45:58,038 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,038 - INFO - [Node] 反序列化后的vote对象: Vote(id=468898267261cf1d, voter=node0, index=0, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,038 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,039 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,039 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,039 - INFO - [Node] 节点 node3 成功处理投票
-2025-12-16 21:45:58,039 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,039 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,039 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,039 - INFO - [Node] 节点 node0 成功处理投票
-2025-12-16 21:45:58,039 - INFO - [Node] 节点 node2 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,039 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,040 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': '88f2e2e5c1e7cc56c96ffb82845748fa91b4c27920b16c9ef1f4236721d703a5953077c66baf45b17e6917d1c8b543d20559d378841d541dc4c055f9395e2c89fa77cee7d364e326cf18a45790d6f5deea473d642d1342f46c57d54f997aad41', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '468898267261cf1d'}
-2025-12-16 21:45:58,040 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,040 - INFO - [Node] 反序列化后的vote对象: Vote(id=468898267261cf1d, voter=node0, index=0, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,040 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,040 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,040 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,040 - INFO - [Node] 节点 node2 成功处理投票
-2025-12-16 21:45:58,040 - DEBUG - [Node] 节点 node3 处理队列消息，类型=vote，延迟=0.347s
-2025-12-16 21:45:58,040 - DEBUG - [Node] 节点 node0 处理队列消息，类型=new_view，延迟=0.009s
-2025-12-16 21:45:58,041 - INFO - [Node] 节点 node3 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,041 - INFO - [Node] 收到来自 node2 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,041 - DEBUG - [Node] 节点 node2 处理队列消息，类型=vote，延迟=0.360s
-2025-12-16 21:45:58,041 - INFO - [Node] 节点 node0 处理NEW-VIEW消息
-2025-12-16 21:45:58,042 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node2', 'voter_index': 2, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': 'a4afed5f8c2910addedc7d91cf71ae5e6a0f472d0f27f626336eef4890f8265d867c7beca64fdba4d1218a9bea25a25515b33eafdd54e1f5ea1eb95cbbb8f4b96a29e59d83dc86693024b2f6f30d74b0e2d945bfdc844fa9277541efed6916bc', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '9b95c4e2d307c97f'}
-2025-12-16 21:45:58,042 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,042 - INFO - [Node] 反序列化后的vote对象: Vote(id=9b95c4e2d307c97f, voter=node2, index=2, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,042 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,042 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,043 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,043 - INFO - [Node] 节点 node3 成功处理投票
-2025-12-16 21:45:58,043 - INFO - [Consensus] 节点 node0 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:58,043 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:58,043 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:58,043 - INFO - [Node] 节点 node2 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,043 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,044 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': 'a5877b380570d141c9c508e279e115c405e7dbf2566bc89ffb3f4c0c37265b81f7c669fa4d5ddeb04de3949f5f0483c41030973b7aed38587a619225bdbb2b53ba6160cbf82024f75c0183d45bea2177ec58b1a85a4047328f2722330ce273c0', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '1a8cc31cf268db54'}
-2025-12-16 21:45:58,044 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,044 - INFO - [Node] 反序列化后的vote对象: Vote(id=1a8cc31cf268db54, voter=node3, index=3, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,044 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,044 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,044 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,044 - INFO - [Node] 节点 node2 成功处理投票
-2025-12-16 21:45:58,044 - INFO - [Consensus] 节点 node0 验证QC
-2025-12-16 21:45:58,044 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:58,045 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:58,045 - WARNING - [Node] 节点 node0 处理NEW-VIEW消息失败
-2025-12-16 21:45:58,045 - DEBUG - [Node] 节点 node3 处理队列消息，类型=new_view，延迟=0.313s
-2025-12-16 21:45:58,045 - INFO - [Node] 节点 node3 处理NEW-VIEW消息
-2025-12-16 21:45:58,045 - INFO - [Consensus] 节点 node3 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:58,046 - DEBUG - [Node] 节点 node0 处理队列消息，类型=vote，延迟=0.015s
-2025-12-16 21:45:58,047 - DEBUG - [Node] 节点 node2 处理队列消息，类型=new_view，延迟=0.345s
-2025-12-16 21:45:58,047 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:58,048 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:58,048 - INFO - [Consensus] 节点 node3 验证QC
-2025-12-16 21:45:58,048 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:58,048 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:58,048 - WARNING - [Node] 节点 node3 处理NEW-VIEW消息失败
-2025-12-16 21:45:58,048 - INFO - {"ts": 1765892758.04881, "event": "new_view_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
-2025-12-16 21:45:58,049 - INFO - [Consensus] clear 4 next round 
-2025-12-16 21:45:58,050 - INFO - [Node] 节点 node0 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,050 - INFO - [Node] 节点 node2 处理NEW-VIEW消息
-2025-12-16 21:45:58,051 - INFO - [Consensus] 节点 node2 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:58,052 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:58,051 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,052 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:58,052 - INFO - [Consensus] 节点 node2 验证QC
-2025-12-16 21:45:58,053 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:58,053 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:58,053 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': 'a5877b380570d141c9c508e279e115c405e7dbf2566bc89ffb3f4c0c37265b81f7c669fa4d5ddeb04de3949f5f0483c41030973b7aed38587a619225bdbb2b53ba6160cbf82024f75c0183d45bea2177ec58b1a85a4047328f2722330ce273c0', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '1a8cc31cf268db54'}
-2025-12-16 21:45:58,053 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,053 - INFO - [Node] 反序列化后的vote对象: Vote(id=1a8cc31cf268db54, voter=node3, index=3, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,054 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,054 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,054 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,054 - INFO - [Node] 节点 node0 成功处理投票
-2025-12-16 21:45:58,050 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,054 - WARNING - [Node] 节点 node2 处理NEW-VIEW消息失败
-2025-12-16 21:45:58,054 - INFO - [Node] 节点 node1 成功处理投票
-2025-12-16 21:45:58,056 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.377s
-2025-12-16 21:45:58,056 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,057 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,057 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': 'a5877b380570d141c9c508e279e115c405e7dbf2566bc89ffb3f4c0c37265b81f7c669fa4d5ddeb04de3949f5f0483c41030973b7aed38587a619225bdbb2b53ba6160cbf82024f75c0183d45bea2177ec58b1a85a4047328f2722330ce273c0', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '1a8cc31cf268db54'}
-2025-12-16 21:45:58,057 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,057 - INFO - [Node] 反序列化后的vote对象: Vote(id=1a8cc31cf268db54, voter=node3, index=3, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,058 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,058 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,058 - INFO - [Consensus] vote_data is a leader
-2025-12-16 21:45:58,058 - INFO - [Consensus] Leader node1 收到来自 node3 的投票
-2025-12-16 21:45:58,058 - INFO - [Consensus] start assemble qc
-2025-12-16 21:45:58,058 - INFO - [Consensus] 从投票对象获取区块哈希: ac5be4fb
-2025-12-16 21:45:58,067 - INFO - 聚合签名验证成功---模拟
-2025-12-16 21:45:58,067 - INFO - QC组装成功: view=1, block_hash=ac5be4fb08656b83
-2025-12-16 21:45:58,068 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:58,068 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:58,068 - INFO - [Consensus] start update qc state
-2025-12-16 21:45:58,068 - ERROR - 节点 node0 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,068 - ERROR - 节点 node1 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,069 - ERROR - 节点 node2 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,069 - ERROR - 节点 node3 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,069 - INFO - [Consensus] start broadcast qc 
-2025-12-16 21:45:58,070 - DEBUG - [Broadcast] new_view from node1
-2025-12-16 21:45:58,113 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.042s)
-2025-12-16 21:45:58,113 - INFO - [Node] 节点 node2 收到消息，类型=new_view
-2025-12-16 21:45:58,116 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.046s)
-2025-12-16 21:45:58,116 - INFO - [Node] 节点 node0 收到消息，类型=new_view
-2025-12-16 21:45:58,118 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.048s)
-2025-12-16 21:45:58,118 - INFO - [Node] 节点 node3 收到消息，类型=new_view
-2025-12-16 21:45:58,217 - DEBUG - [Node] 节点 node0 收到消息，类型=new_view，队列大小=1
-2025-12-16 21:45:58,218 - DEBUG - [Node] 节点 node0 处理队列消息，类型=new_view，延迟=0.000s
-2025-12-16 21:45:58,218 - INFO - [Node] 节点 node0 处理NEW-VIEW消息
-2025-12-16 21:45:58,219 - INFO - [Consensus] 节点 node0 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:58,219 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:58,219 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:58,219 - INFO - [Consensus] 节点 node0 验证QC
-2025-12-16 21:45:58,220 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:58,220 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:58,220 - WARNING - [Node] 节点 node0 处理NEW-VIEW消息失败
-2025-12-16 21:45:58,420 - DEBUG - [Node] 节点 node2 收到消息，类型=new_view，队列大小=1
-2025-12-16 21:45:58,420 - DEBUG - [Node] 节点 node2 处理队列消息，类型=new_view，延迟=0.000s
-2025-12-16 21:45:58,422 - INFO - [Node] 节点 node2 处理NEW-VIEW消息
-2025-12-16 21:45:58,422 - INFO - [Consensus] 节点 node2 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:58,422 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:58,422 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:58,423 - INFO - [Consensus] 节点 node2 验证QC
-2025-12-16 21:45:58,423 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:58,423 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:58,423 - WARNING - [Node] 节点 node2 处理NEW-VIEW消息失败
-2025-12-16 21:45:58,611 - DEBUG - [Node] 节点 node3 收到消息，类型=new_view，队列大小=1
-2025-12-16 21:45:58,611 - DEBUG - [Node] 节点 node3 处理队列消息，类型=new_view，延迟=0.000s
-2025-12-16 21:45:58,611 - INFO - [Node] 节点 node3 处理NEW-VIEW消息
-2025-12-16 21:45:58,612 - INFO - [Consensus] 节点 node3 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:58,612 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:58,612 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:58,612 - INFO - [Consensus] 节点 node3 验证QC
-2025-12-16 21:45:58,612 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:58,612 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:58,612 - WARNING - [Node] 节点 node3 处理NEW-VIEW消息失败
-2025-12-16 21:45:58,612 - DEBUG - [Broadcast] new_view from node1 成功发送给 3/3 个节点
-2025-12-16 21:45:58,613 - INFO - {"ts": 1765892758.6129303, "event": "new_view_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
-2025-12-16 21:45:58,613 - INFO - [Consensus] clear 4 next round 
-2025-12-16 21:45:58,613 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:58,613 - INFO - [Node] 节点 node1 成功处理投票
-2025-12-16 21:45:58,614 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.927s
-2025-12-16 21:45:58,614 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
-2025-12-16 21:45:58,615 - INFO - [Node] 收到来自 node2 的投票，vote_dict类型: <class 'dict'>
-2025-12-16 21:45:58,615 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node2', 'voter_index': 2, 'block_hash': 'ac5be4fb08656b835d08af87fce269c09076561cd355e4c9a2af31d77f3b39c8', 'view': 1, 'partial_signature': 'a4afed5f8c2910addedc7d91cf71ae5e6a0f472d0f27f626336eef4890f8265d867c7beca64fdba4d1218a9bea25a25515b33eafdd54e1f5ea1eb95cbbb8f4b96a29e59d83dc86693024b2f6f30d74b0e2d945bfdc844fa9277541efed6916bc', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '9b95c4e2d307c97f'}
-2025-12-16 21:45:58,615 - INFO - [votes]从字典反序列化
-2025-12-16 21:45:58,615 - INFO - [Node] 反序列化后的vote对象: Vote(id=9b95c4e2d307c97f, voter=node2, index=2, view=1), 类型: <class 'votes.Vote'>
-2025-12-16 21:45:58,615 - INFO - [Consensus] vote_data do not need from_dict
-2025-12-16 21:45:58,615 - INFO - [Consensus] vote_data start validation
-2025-12-16 21:45:58,615 - INFO - [Consensus] vote_data is a leader
-2025-12-16 21:45:58,616 - INFO - [Consensus] Leader node1 收到来自 node2 的投票
-2025-12-16 21:45:58,616 - INFO - [Consensus] start assemble qc
-2025-12-16 21:45:58,616 - INFO - [Consensus] 从投票对象获取区块哈希: ac5be4fb
-2025-12-16 21:45:58,624 - INFO - 聚合签名验证成功---模拟
-2025-12-16 21:45:58,625 - INFO - QC组装成功: view=1, block_hash=ac5be4fb08656b83
-2025-12-16 21:45:58,625 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:58,625 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:58,625 - INFO - [Consensus] start update qc state
-2025-12-16 21:45:58,625 - ERROR - 节点 node0 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,626 - ERROR - 节点 node1 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,626 - ERROR - 节点 node2 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,626 - ERROR - 节点 node3 更新状态失败: 'NoneType' object has no attribute 'hash'
-2025-12-16 21:45:58,626 - INFO - [Consensus] start broadcast qc 
-2025-12-16 21:45:58,626 - DEBUG - [Broadcast] new_view from node1
-2025-12-16 21:45:58,652 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.025s)
-2025-12-16 21:45:58,652 - INFO - [Node] 节点 node0 收到消息，类型=new_view
-2025-12-16 21:45:58,664 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.037s)
-2025-12-16 21:45:58,664 - INFO - [Node] 节点 node3 收到消息，类型=new_view
-2025-12-16 21:45:58,674 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.047s)
-2025-12-16 21:45:58,674 - INFO - [Node] 节点 node2 收到消息，类型=new_view
-2025-12-16 21:45:58,827 - DEBUG - [Node] 节点 node0 收到消息，类型=new_view，队列大小=1
-2025-12-16 21:45:58,827 - DEBUG - [Node] 节点 node0 处理队列消息，类型=new_view，延迟=0.000s
-2025-12-16 21:45:58,828 - INFO - [Node] 节点 node0 处理NEW-VIEW消息
-2025-12-16 21:45:58,828 - INFO - [Consensus] 节点 node0 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:58,829 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:58,829 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:58,829 - INFO - [Consensus] 节点 node0 验证QC
-2025-12-16 21:45:58,829 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:58,829 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:58,829 - WARNING - [Node] 节点 node0 处理NEW-VIEW消息失败
-2025-12-16 21:45:58,979 - INFO - 
+2025-12-17 17:32:48,050 - INFO - 创建模拟器...
+2025-12-17 17:32:48,522 - INFO - {"ts": 1765963968.5228906, "event": "simulator_setup_start", "node": "system", "view": 0, "consensus_type": "my"}
+2025-12-17 17:32:49,014 - DEBUG - [node0] add_block -> id=36558119, height=0, view=0
+2025-12-17 17:32:49,014 - INFO - [node0]blockhash=36558119 added to block_tree
+2025-12-17 17:32:49,014 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,014 - DEBUG - Node node0 registered to network (total: 1)
+2025-12-17 17:32:49,014 - INFO - {"ts": 1765963969.014603, "event": "node_created", "node": "node0", "view": 0, "consensus_type": "my"}
+2025-12-17 17:32:49,015 - INFO - [Node] 节点 node0 启动消息队列处理
+2025-12-17 17:32:49,015 - INFO - [Node] 启动消息处理线程: node0
+2025-12-17 17:32:49,016 - DEBUG - [ThreadManager] 注册线程: node_node0
+2025-12-17 17:32:49,016 - DEBUG - [node1] add_block -> id=36558119, height=0, view=0
+2025-12-17 17:32:49,016 - INFO - [node1]blockhash=36558119 added to block_tree
+2025-12-17 17:32:49,016 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,016 - DEBUG - Node node1 registered to network (total: 2)
+2025-12-17 17:32:49,017 - INFO - {"ts": 1765963969.0170276, "event": "node_created", "node": "node1", "view": 0, "consensus_type": "my"}
+2025-12-17 17:32:49,017 - DEBUG - [ThreadManager] 注册线程: node_node0
+2025-12-17 17:32:49,017 - INFO - [Node] 节点 node1 启动消息队列处理
+2025-12-17 17:32:49,017 - INFO - [Node] 启动消息处理线程: node1
+2025-12-17 17:32:49,018 - DEBUG - [ThreadManager] 注册线程: node_node1
+2025-12-17 17:32:49,018 - DEBUG - [node2] add_block -> id=36558119, height=0, view=0
+2025-12-17 17:32:49,018 - INFO - [node2]blockhash=36558119 added to block_tree
+2025-12-17 17:32:49,019 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,019 - DEBUG - Node node2 registered to network (total: 3)
+2025-12-17 17:32:49,019 - INFO - {"ts": 1765963969.019209, "event": "node_created", "node": "node2", "view": 0, "consensus_type": "my"}
+2025-12-17 17:32:49,019 - DEBUG - [ThreadManager] 注册线程: node_node0
+2025-12-17 17:32:49,019 - DEBUG - [ThreadManager] 注册线程: node_node1
+2025-12-17 17:32:49,020 - INFO - [Node] 节点 node2 启动消息队列处理
+2025-12-17 17:32:49,020 - INFO - [Node] 启动消息处理线程: node2
+2025-12-17 17:32:49,020 - DEBUG - [ThreadManager] 注册线程: node_node2
+2025-12-17 17:32:49,020 - DEBUG - [node3] add_block -> id=36558119, height=0, view=0
+2025-12-17 17:32:49,020 - INFO - [node3]blockhash=36558119 added to block_tree
+2025-12-17 17:32:49,020 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,021 - DEBUG - Node node3 registered to network (total: 4)
+2025-12-17 17:32:49,021 - INFO - {"ts": 1765963969.0211163, "event": "node_created", "node": "node3", "view": 0, "consensus_type": "my"}
+2025-12-17 17:32:49,021 - DEBUG - [ThreadManager] 注册线程: node_node0
+2025-12-17 17:32:49,021 - DEBUG - [ThreadManager] 注册线程: node_node1
+2025-12-17 17:32:49,021 - DEBUG - [ThreadManager] 注册线程: node_node2
+2025-12-17 17:32:49,022 - INFO - [Node] 节点 node3 启动消息队列处理
+2025-12-17 17:32:49,022 - INFO - [Node] 启动消息处理线程: node3
+2025-12-17 17:32:49,022 - DEBUG - [ThreadManager] 注册线程: node_node3
+2025-12-17 17:32:49,022 - INFO - [Consensus] 初始化超时和视图切换机制，故障容错f=1
+2025-12-17 17:32:49,023 - INFO - 创建创世区块: height=0, id=00000000, hash=0000000000000000
+2025-12-17 17:32:49,023 - INFO - Using genesis QC from NodeState: view=0
+2025-12-17 17:32:49,023 - DEBUG - [node0] add_block -> id=00000000, height=0, view=0
+2025-12-17 17:32:49,023 - INFO - [node0]blockhash=00000000 added to block_tree
+2025-12-17 17:32:49,023 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,023 - INFO - Added genesis block to node node0
+2025-12-17 17:32:49,023 - INFO - Node node0 initialized with genesis: height=0, locked_qc.view=0
+2025-12-17 17:32:49,023 - DEBUG - [node1] add_block -> id=00000000, height=0, view=0
+2025-12-17 17:32:49,023 - INFO - [node1]blockhash=00000000 added to block_tree
+2025-12-17 17:32:49,024 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,024 - INFO - Added genesis block to node node1
+2025-12-17 17:32:49,024 - INFO - Node node1 initialized with genesis: height=0, locked_qc.view=0
+2025-12-17 17:32:49,024 - DEBUG - [node2] add_block -> id=00000000, height=0, view=0
+2025-12-17 17:32:49,024 - INFO - [node2]blockhash=00000000 added to block_tree
+2025-12-17 17:32:49,024 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,024 - INFO - Added genesis block to node node2
+2025-12-17 17:32:49,024 - INFO - Node node2 initialized with genesis: height=0, locked_qc.view=0
+2025-12-17 17:32:49,024 - DEBUG - [node3] add_block -> id=00000000, height=0, view=0
+2025-12-17 17:32:49,024 - INFO - [node3]blockhash=00000000 added to block_tree
+2025-12-17 17:32:49,024 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:32:49,024 - INFO - Added genesis block to node node3
+2025-12-17 17:32:49,024 - INFO - Node node3 initialized with genesis: height=0, locked_qc.view=0
+2025-12-17 17:32:49,024 - INFO - [Consensus] Initialized with group_pk=True, public_key_map_size=4, nodes=4
+2025-12-17 17:32:49,025 - INFO - 节点 node0 设置共识实例
+2025-12-17 17:32:49,025 - INFO - 节点 node1 设置共识实例
+2025-12-17 17:32:49,025 - INFO - 节点 node2 设置共识实例
+2025-12-17 17:32:49,025 - INFO - 节点 node3 设置共识实例
+2025-12-17 17:32:49,025 - INFO - {"ts": 1765963969.0256004, "event": "simulator_setup_complete", "node": "system", "view": 0, "consensus_type": "my"}
+2025-12-17 17:32:49,025 - INFO - [Simulator] 开始填充内存池，目标数量: 100
+2025-12-17 17:33:03,978 - INFO - [Simulator] 已添加 100 个交易到内存池
+2025-12-17 17:33:03,978 - INFO - [Simulator] 内存池填充完成，成功添加: 100/100
+2025-12-17 17:33:03,979 - INFO - [Simulator] 内存池当前大小: 100
+2025-12-17 17:33:03,979 - INFO - 启动模拟器...
+2025-12-17 17:33:03,979 - INFO - {"ts": 1765963983.9798398, "event": "consensus_start", "node": "system", "view": 0, "consensus_type": "my"}
+2025-12-17 17:33:03,980 - INFO - [Consensus] Starting consensus with view=1, nodes=['node0', 'node1', 'node2', 'node3']
+2025-12-17 17:33:03,980 - INFO - [Global][Consensus] Starting global consensus loop
+2025-12-17 17:33:03,981 - INFO - [Global][Consensus] ===== Round 0 ===== view=1, leader=node1
+2025-12-17 17:33:03,981 - INFO - [Consensus] Threads started: consensus_thread=True, message_handler_thread=True
+2025-12-17 17:33:03,981 - INFO - [Global][Consensus] 同步节点状态: view=1, leader=node1
+2025-12-17 17:33:03,982 - DEBUG - [Global][Consensus] 节点 node0 视图同步: 0 -> 1
+2025-12-17 17:33:03,982 - DEBUG - [ThreadManager] 注册线程: consensus
+2025-12-17 17:33:03,982 - DEBUG - [Global][Consensus] 节点 node1 视图同步: 0 -> 1
+2025-12-17 17:33:03,983 - DEBUG - [Global][Consensus] 节点 node1 领导者状态: True
+2025-12-17 17:33:03,983 - DEBUG - [ThreadManager] 注册线程: simulator_monitor
+2025-12-17 17:33:03,983 - DEBUG - [Global][Consensus] 节点 node2 视图同步: 0 -> 1
+2025-12-17 17:33:03,984 - DEBUG - [Global][Consensus] 节点 node3 视图同步: 0 -> 1
+2025-12-17 17:33:03,984 - INFO - [Global][Consensus] 领导者 node1 开始处理视图 1
+2025-12-17 17:33:03,984 - INFO - [Global][Consensus] 领导者 node1 开始处理视图 1
+2025-12-17 17:33:03,985 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:03,985 - INFO - [Consensus] Latest QC found: view=0, parent_block=0000000000000000
+2025-12-17 17:33:03,985 - WARNING - [Consensus] Parent block for latest_qc not found, using genesis
+2025-12-17 17:33:03,985 - INFO - [Consensus] Creating block at height 1, parent height=0, parent QC view=0
+2025-12-17 17:33:03,986 - INFO - [Consensus] Leader node1 creating new block at height 1
+2025-12-17 17:33:03,986 - INFO - [Consensus] Parent hash: 0000000000000000
+2025-12-17 17:33:03,986 - INFO - [Consensus] Parent QC view: 0
+2025-12-17 17:33:03,987 - INFO - [Consensus] Transactions for new block: 20 transactions
+2025-12-17 17:33:03,987 - INFO - [Consensus] New block created: id=5ba11356, height=1, view=1
+2025-12-17 17:33:03,987 - DEBUG - [node1] add_block -> id=5ba11356, height=1, view=1
+2025-12-17 17:33:03,988 - INFO - [node1]blockhash=5ba11356 added to block_tree
+2025-12-17 17:33:03,988 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:03,988 - INFO - [Global][Consensus] 领导者 node1 创建区块成功: 5ba11356
+2025-12-17 17:33:03,989 - DEBUG - [Broadcast] Proposal from node1, block hash: 5ba11356
+2025-12-17 17:33:03,989 - DEBUG - [Broadcast] proposal from node1
+2025-12-17 17:33:04,019 - DEBUG - ✓ proposal from node1 to node2 (delay: 0.029s)
+2025-12-17 17:33:04,019 - DEBUG - [DEBUG] Delivering Proposal to node2
+2025-12-17 17:33:04,020 - INFO - [Node] 节点 node2 收到消息，类型=proposal
+2025-12-17 17:33:04,025 - DEBUG - ✓ proposal from node1 to node0 (delay: 0.035s)
+2025-12-17 17:33:04,025 - DEBUG - [DEBUG] Delivering Proposal to node0
+2025-12-17 17:33:04,025 - INFO - [Node] 节点 node0 收到消息，类型=proposal
+2025-12-17 17:33:04,033 - DEBUG - ✓ proposal from node1 to node3 (delay: 0.043s)
+2025-12-17 17:33:04,034 - DEBUG - [DEBUG] Delivering Proposal to node3
+2025-12-17 17:33:04,034 - INFO - [Node] 节点 node3 收到消息，类型=proposal
+2025-12-17 17:33:05,429 - DEBUG - [Node] 节点 node2 收到消息，类型=proposal，队列大小=1
+2025-12-17 17:33:05,429 - DEBUG - [Node] 节点 node2 处理队列消息，类型=proposal，延迟=0.000s
+2025-12-17 17:33:05,430 - INFO - [Node] 节点 node2 收到提案消息
+2025-12-17 17:33:05,430 - INFO - [Consensus] 节点 node2 处理提案
+2025-12-17 17:33:05,431 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:05,431 - DEBUG - [node2] add_block -> id=5ba11356, height=1, view=1
+2025-12-17 17:33:05,431 - INFO - [node2]blockhash=5ba11356 added to block_tree
+2025-12-17 17:33:05,431 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:05,431 - INFO - [Consensus] 节点 node2 接受提案: block=5ba11356, view=1
+2025-12-17 17:33:05,431 - DEBUG -  准备签名数据: view=1, block_hash=b'[\xa1\x13V\xc8S[l\x8b\xb8\x0b*b#N \xed\x7f\xa8\x8e-\x92\xe6\xc2J\xdb \x0b/\xf3\xf7\xfa'
+2025-12-17 17:33:05,431 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-17 17:33:05,494 - DEBUG - [Node] 节点 node0 收到消息，类型=proposal，队列大小=1
+2025-12-17 17:33:05,500 - DEBUG - [Node] 节点 node0 处理队列消息，类型=proposal，延迟=0.006s
+2025-12-17 17:33:05,506 - INFO - [Node] 节点 node0 收到提案消息
+2025-12-17 17:33:05,517 - INFO - [Consensus] 节点 node0 处理提案
+2025-12-17 17:33:05,532 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:05,538 - DEBUG - [node0] add_block -> id=5ba11356, height=1, view=1
+2025-12-17 17:33:05,544 - INFO - [node0]blockhash=5ba11356 added to block_tree
+2025-12-17 17:33:05,569 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:05,580 - INFO - [Consensus] 节点 node0 接受提案: block=5ba11356, view=1
+2025-12-17 17:33:05,584 - DEBUG -  partial_sig 长度: 96
+2025-12-17 17:33:05,584 - DEBUG -  准备签名数据: view=1, block_hash=b'[\xa1\x13V\xc8S[l\x8b\xb8\x0b*b#N \xed\x7f\xa8\x8e-\x92\xe6\xc2J\xdb \x0b/\xf3\xf7\xfa'
+2025-12-17 17:33:05,585 - INFO -  node2 创建投票成功
+2025-12-17 17:33:05,585 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-17 17:33:05,585 - INFO - [Consensus] 节点 node2 发送投票给领导者 node1
+2025-12-17 17:33:05,601 - INFO - [Consensus] 准备广播投票，节点: node2
+2025-12-17 17:33:05,617 - INFO - [Consensus] network实例: <network.Network object at 0x7fdc3a853590>, vote_manager: <vote_manager.VoteManager object at 0x7fdc3a827ad0>
+2025-12-17 17:33:05,617 - INFO - [VoteManager] 节点 node2 开始广播投票
+2025-12-17 17:33:05,617 - INFO - [VoteManager] network实例: <network.Network object at 0x7fdc3a853590>, 类型: <class 'network.Network'>
+2025-12-17 17:33:05,617 - INFO - [VoteManager] vote对象: Vote(id=5aee18c4bce15d4a, voter=node2, index=2, view=1), block对象: Block(hash=5ba11356, height=1, proposer=node1, view=1)
+2025-12-17 17:33:05,617 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node2, vote.view=1
+2025-12-17 17:33:05,617 - INFO - [Network] 节点 node2 广播投票，view=1, block=5ba11356
+2025-12-17 17:33:05,618 - DEBUG - [Broadcast] vote from node2
+2025-12-17 17:33:05,658 - DEBUG - ✓ vote from node2 to node0 (delay: 0.030s)
+2025-12-17 17:33:05,669 - INFO - [Node] 节点 node0 收到消息，类型=vote
+2025-12-17 17:33:05,669 - DEBUG - ✓ vote from node2 to node1 (delay: 0.023s)
+2025-12-17 17:33:05,684 - DEBUG - [Node] 节点 node0 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:05,696 - DEBUG - ✓ vote from node2 to node3 (delay: 0.034s)
+2025-12-17 17:33:05,702 - INFO - [Node] 节点 node1 收到消息，类型=vote
+2025-12-17 17:33:05,712 - INFO - [Node] 节点 node3 收到消息，类型=vote
+2025-12-17 17:33:05,744 - DEBUG -  partial_sig 长度: 96
+2025-12-17 17:33:05,744 - INFO -  node0 创建投票成功
+2025-12-17 17:33:05,744 - INFO - [Consensus] 节点 node0 发送投票给领导者 node1
+2025-12-17 17:33:05,744 - INFO - [Consensus] 准备广播投票，节点: node0
+2025-12-17 17:33:05,744 - INFO - [Consensus] network实例: <network.Network object at 0x7fdc3a853590>, vote_manager: <vote_manager.VoteManager object at 0x7fdc3a827ad0>
+2025-12-17 17:33:05,744 - INFO - [VoteManager] 节点 node0 开始广播投票
+2025-12-17 17:33:05,745 - INFO - [VoteManager] network实例: <network.Network object at 0x7fdc3a853590>, 类型: <class 'network.Network'>
+2025-12-17 17:33:05,745 - INFO - [VoteManager] vote对象: Vote(id=7c31879f70998696, voter=node0, index=0, view=1), block对象: Block(hash=5ba11356, height=1, proposer=node1, view=1)
+2025-12-17 17:33:05,745 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node0, vote.view=1
+2025-12-17 17:33:05,745 - INFO - [Network] 节点 node0 广播投票，view=1, block=5ba11356
+2025-12-17 17:33:05,745 - DEBUG - [Broadcast] vote from node0
+2025-12-17 17:33:05,764 - DEBUG - ✓ vote from node0 to node3 (delay: 0.018s)
+2025-12-17 17:33:05,765 - INFO - [Node] 节点 node3 收到消息，类型=vote
+2025-12-17 17:33:05,792 - DEBUG - ✓ vote from node0 to node1 (delay: 0.047s)
+2025-12-17 17:33:05,793 - INFO - [Node] 节点 node1 收到消息，类型=vote
+2025-12-17 17:33:05,795 - DEBUG - ✓ vote from node0 to node2 (delay: 0.049s)
+2025-12-17 17:33:05,795 - INFO - [Node] 节点 node2 收到消息，类型=vote
+2025-12-17 17:33:05,796 - DEBUG - [Node] 节点 node2 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:05,960 - DEBUG - [Node] 节点 node3 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:05,960 - DEBUG - [Node] 节点 node3 收到消息，类型=vote，队列大小=2
+2025-12-17 17:33:05,960 - DEBUG - [Node] 节点 node3 收到消息，类型=proposal，队列大小=3
+2025-12-17 17:33:05,961 - DEBUG - [Node] 节点 node3 处理队列消息，类型=vote，延迟=0.001s
+2025-12-17 17:33:05,961 - INFO - [Node] 节点 node3 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:05,962 - DEBUG - [Broadcast] proposal from node1 成功发送给 3/3 个节点
+2025-12-17 17:33:05,962 - INFO - [Node] 收到来自 node2 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:05,963 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node2', 'voter_index': 2, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': 'a2d86902a2899a62147b9c2920fa4cd3a60d2c95f83ec44a46dbdc48d5adef776fc33995e50c9b1b751b972a2a9f5d4307fddb930b83553c1acf2a4ecc99cc02a9632a31959798fcf135a4be5770a0f0abf5d08f1aba72afc88a005cd17cc7b5', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '5aee18c4bce15d4a'}
+2025-12-17 17:33:05,963 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:05,963 - INFO - [Node] 反序列化后的vote对象: Vote(id=5aee18c4bce15d4a, voter=node2, index=2, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:05,962 - INFO - {"ts": 1765963985.962596, "event": "proposal_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
+2025-12-17 17:33:05,964 - INFO - [Consensus] 处理投票: 来自 node2, 节点 node3 是副本
+2025-12-17 17:33:05,964 - DEBUG - [Consensus] 副本 node3 收到投票，仅记录
+2025-12-17 17:33:05,964 - INFO - [Node] 节点 node3 成功处理投票
+2025-12-17 17:33:05,965 - DEBUG - [Consensus] 启动投票超时定时器，视图=1，超时时间=2.0s
+2025-12-17 17:33:05,966 - DEBUG - [Node] 节点 node3 处理队列消息，类型=vote，延迟=0.006s
+2025-12-17 17:33:05,966 - INFO - [Node] 节点 node3 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:05,966 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:05,966 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': '8d3363d1b402b563c6a853c80f69634c2b928ca879a2cb18e4163336049e86960ecf514999d434cba1697e5ab0e3e1a20f58ac12ac98bc843f33aca3d5fb36baa71f73da65de573f4895623d4e2a26b02a0afa3a0158c0f45c1f8bc693334dcd', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '7c31879f70998696'}
+2025-12-17 17:33:05,966 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:05,966 - INFO - [Node] 反序列化后的vote对象: Vote(id=7c31879f70998696, voter=node0, index=0, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:05,966 - INFO - [Consensus] 处理投票: 来自 node0, 节点 node3 是副本
+2025-12-17 17:33:05,967 - DEBUG - [Consensus] 副本 node3 收到投票，仅记录
+2025-12-17 17:33:05,967 - INFO - [Node] 节点 node3 成功处理投票
+2025-12-17 17:33:05,968 - DEBUG - [Node] 节点 node3 处理队列消息，类型=proposal，延迟=0.008s
+2025-12-17 17:33:05,968 - INFO - [Node] 节点 node3 收到提案消息
+2025-12-17 17:33:05,968 - INFO - [Consensus] 节点 node3 处理提案
+2025-12-17 17:33:05,968 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:05,969 - DEBUG - [node3] add_block -> id=5ba11356, height=1, view=1
+2025-12-17 17:33:05,969 - INFO - [node3]blockhash=5ba11356 added to block_tree
+2025-12-17 17:33:05,969 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:05,969 - INFO - [Consensus] 节点 node3 接受提案: block=5ba11356, view=1
+2025-12-17 17:33:05,969 - DEBUG -  准备签名数据: view=1, block_hash=b'[\xa1\x13V\xc8S[l\x8b\xb8\x0b*b#N \xed\x7f\xa8\x8e-\x92\xe6\xc2J\xdb \x0b/\xf3\xf7\xfa'
+2025-12-17 17:33:05,969 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-17 17:33:06,001 - INFO - 
 === 模拟器统计 (轮数: 0/50) ===
-2025-12-16 21:45:58,979 - INFO - 活跃节点: 4
-2025-12-16 21:45:58,979 - INFO - 内存池大小: 80
-2025-12-16 21:45:58,980 - INFO - 已提交区块: 0
-2025-12-16 21:45:58,980 - INFO - 视图: 1
-2025-12-16 21:45:59,394 - DEBUG - [Consensus] 同步节点状态: view=1, leader=node1
-2025-12-16 21:45:59,395 - INFO - [Consensus] 状态同步完成: 4/4 个节点已同步
-2025-12-16 21:45:59,625 - DEBUG - [Node] 节点 node3 收到消息，类型=new_view，队列大小=1
-2025-12-16 21:45:59,625 - DEBUG - [Node] 节点 node3 处理队列消息，类型=new_view，延迟=0.000s
-2025-12-16 21:45:59,626 - INFO - [Node] 节点 node3 处理NEW-VIEW消息
-2025-12-16 21:45:59,626 - INFO - [Consensus] 节点 node3 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:59,626 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:59,627 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:59,627 - INFO - [Consensus] 节点 node3 验证QC
-2025-12-16 21:45:59,627 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:59,627 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:59,627 - WARNING - [Node] 节点 node3 处理NEW-VIEW消息失败
-2025-12-16 21:45:59,830 - DEBUG - [Node] 节点 node2 收到消息，类型=new_view，队列大小=1
-2025-12-16 21:45:59,831 - DEBUG - [Node] 节点 node2 处理队列消息，类型=new_view，延迟=0.001s
-2025-12-16 21:45:59,832 - DEBUG - [Broadcast] new_view from node1 成功发送给 3/3 个节点
-2025-12-16 21:45:59,833 - INFO - {"ts": 1765892759.833021, "event": "new_view_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
-2025-12-16 21:45:59,833 - INFO - [Node] 节点 node2 处理NEW-VIEW消息
-2025-12-16 21:45:59,833 - INFO - [Consensus] 节点 node2 收到NEW-VIEW消息，来自 node1，视图=1
-2025-12-16 21:45:59,834 - INFO - [Consensus] 验证NEW-VIEW QC
-2025-12-16 21:45:59,834 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
-2025-12-16 21:45:59,834 - INFO - [Consensus] 节点 node2 验证QC
-2025-12-16 21:45:59,835 - WARNING - [Consensus] NEW-VIEW QC验证失败: 签名者不足: 1
-2025-12-16 21:45:59,836 - INFO - [Consensus] clear 4 next round 
-2025-12-16 21:45:59,836 - INFO - [Consensus] vote_data end
-2025-12-16 21:45:59,837 - INFO - [Node] 节点 node1 成功处理投票
-2025-12-16 21:45:59,837 - WARNING - [Consensus] NEW-VIEW QC验证失败
-2025-12-16 21:45:59,838 - WARNING - [Node] 节点 node2 处理NEW-VIEW消息失败
-2025-12-16 21:45:59,895 - INFO - [Global][Consensus] Round 1: view=1, leader=node1
-2025-12-16 21:45:59,895 - DEBUG - [Consensus] 同步节点状态: view=1, leader=node1
-2025-12-16 21:45:59,895 - INFO - [Consensus] 状态同步完成: 4/4 个节点已同步
-2025-12-16 21:45:59,896 - DEBUG - [Global][Consensus] 设置节点 node0.is_leader=False
-2025-12-16 21:45:59,896 - DEBUG - [Global][Consensus] 设置节点 node1.is_leader=True
-2025-12-16 21:45:59,896 - DEBUG - [Global][Consensus] 设置节点 node2.is_leader=False
-2025-12-16 21:45:59,896 - DEBUG - [Global][Consensus] 设置节点 node3.is_leader=False
-2025-12-16 21:45:59,896 - INFO - [Global][Consensus] Setting node node0.is_leader=False
-2025-12-16 21:45:59,896 - INFO - [Global][Consensus] Setting node node1.is_leader=True
-2025-12-16 21:45:59,896 - INFO - [Global][Consensus] Setting node node2.is_leader=False
-2025-12-16 21:45:59,896 - INFO - [Global][Consensus] Setting node node3.is_leader=False
-2025-12-16 21:45:59,896 - INFO - [Global][Consensus] Leader node1 creating proposal...
-2025-12-16 21:45:59,896 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:59,896 - INFO - [Consensus] Latest QC found: view=0, parent_block=0000000000000000
-2025-12-16 21:45:59,897 - WARNING - [Consensus] Parent block for latest_qc not found, using genesis
-2025-12-16 21:45:59,897 - INFO - [Consensus] Creating block at height 1, parent height=1, parent QC view=0
-2025-12-16 21:45:59,897 - INFO - [Consensus] Leader node1 creating new block at height 1
-2025-12-16 21:45:59,897 - INFO - [Consensus] Parent hash: 0000000000000000
-2025-12-16 21:45:59,897 - INFO - [Consensus] Parent QC view: 0
-2025-12-16 21:45:59,897 - INFO - [Consensus] Transactions for new block: 20 transactions
-2025-12-16 21:45:59,898 - INFO - [Consensus] New block created: id=89515a75, height=1, view=1
-2025-12-16 21:45:59,898 - DEBUG - [node1] add_block -> id=89515a75, height=1, view=1
-2025-12-16 21:45:59,899 - INFO - [node1]blockhash=89515a75 added to block_tree
-2025-12-16 21:45:59,899 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:45:59,899 - INFO - [Global][Consensus] Leader node1 created block 89515a75
-2025-12-16 21:45:59,899 - INFO - [Global][Consensus] Leader node1 broadcasting proposal...
-2025-12-16 21:45:59,899 - DEBUG - [Broadcast] Proposal from node1, block hash: 89515a75
-2025-12-16 21:45:59,899 - DEBUG - [Broadcast] proposal from node1
-2025-12-16 21:45:59,911 - DEBUG - ✓ proposal from node1 to node2 (delay: 0.011s)
-2025-12-16 21:45:59,911 - DEBUG - [DEBUG] Delivering Proposal to node2
-2025-12-16 21:45:59,911 - INFO - [Node] 节点 node2 收到消息，类型=proposal
-2025-12-16 21:45:59,937 - DEBUG - ✓ proposal from node1 to node3 (delay: 0.037s)
-2025-12-16 21:45:59,937 - DEBUG - [DEBUG] Delivering Proposal to node3
-2025-12-16 21:45:59,937 - INFO - [Node] 节点 node3 收到消息，类型=proposal
-2025-12-16 21:45:59,942 - DEBUG - ✓ proposal from node1 to node0 (delay: 0.042s)
-2025-12-16 21:45:59,943 - DEBUG - [DEBUG] Delivering Proposal to node0
-2025-12-16 21:45:59,943 - INFO - [Node] 节点 node0 收到消息，类型=proposal
-2025-12-16 21:45:59,948 - DEBUG - [Node] 节点 node2 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:45:59,949 - DEBUG - [Node] 节点 node2 处理队列消息，类型=proposal，延迟=0.000s
-2025-12-16 21:45:59,949 - INFO - [Node] 节点 node2 收到提案消息
-2025-12-16 21:45:59,950 - INFO - [Node] 节点 node2 已有当前视图的提案，忽略重复提案
-2025-12-16 21:45:59,951 - DEBUG - [Node] 节点 node3 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:45:59,951 - DEBUG - [Node] 节点 node3 处理队列消息，类型=proposal，延迟=0.000s
-2025-12-16 21:45:59,952 - INFO - [Node] 节点 node3 收到提案消息
-2025-12-16 21:45:59,952 - INFO - [Node] 节点 node3 已有当前视图的提案，忽略重复提案
-2025-12-16 21:46:00,981 - INFO - 
+2025-12-17 17:33:06,012 - INFO - 活跃节点: 4
+2025-12-17 17:33:06,023 - INFO - 内存池大小: 80
+2025-12-17 17:33:06,033 - INFO - 已提交区块: 0
+2025-12-17 17:33:06,039 - INFO - 视图: 1
+2025-12-17 17:33:06,123 - DEBUG -  partial_sig 长度: 96
+2025-12-17 17:33:06,123 - INFO -  node3 创建投票成功
+2025-12-17 17:33:06,123 - INFO - [Consensus] 节点 node3 发送投票给领导者 node1
+2025-12-17 17:33:06,123 - INFO - [Consensus] 准备广播投票，节点: node3
+2025-12-17 17:33:06,124 - INFO - [Consensus] network实例: <network.Network object at 0x7fdc3a853590>, vote_manager: <vote_manager.VoteManager object at 0x7fdc3a827ad0>
+2025-12-17 17:33:06,124 - INFO - [VoteManager] 节点 node3 开始广播投票
+2025-12-17 17:33:06,124 - INFO - [VoteManager] network实例: <network.Network object at 0x7fdc3a853590>, 类型: <class 'network.Network'>
+2025-12-17 17:33:06,124 - INFO - [VoteManager] vote对象: Vote(id=db364ba0dd43abe9, voter=node3, index=3, view=1), block对象: Block(hash=5ba11356, height=1, proposer=node1, view=1)
+2025-12-17 17:33:06,124 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node3, vote.view=1
+2025-12-17 17:33:06,124 - INFO - [Network] 节点 node3 广播投票，view=1, block=5ba11356
+2025-12-17 17:33:06,124 - DEBUG - [Broadcast] vote from node3
+2025-12-17 17:33:06,166 - DEBUG - ✓ vote from node3 to node1 (delay: 0.041s)
+2025-12-17 17:33:06,166 - INFO - [Node] 节点 node1 收到消息，类型=vote
+2025-12-17 17:33:06,169 - DEBUG - ✓ vote from node3 to node2 (delay: 0.044s)
+2025-12-17 17:33:06,169 - INFO - [Node] 节点 node2 收到消息，类型=vote
+2025-12-17 17:33:06,169 - DEBUG - [Node] 节点 node2 收到消息，类型=vote，队列大小=2
+2025-12-17 17:33:06,171 - DEBUG - ✓ vote from node3 to node0 (delay: 0.046s)
+2025-12-17 17:33:06,171 - INFO - [Node] 节点 node0 收到消息，类型=vote
+2025-12-17 17:33:06,171 - DEBUG - [Node] 节点 node0 收到消息，类型=vote，队列大小=2
+2025-12-17 17:33:06,965 - INFO - [Global][Consensus] ===== Round 1 ===== view=1, leader=node1
+2025-12-17 17:33:06,965 - INFO - [Global][Consensus] 同步节点状态: view=1, leader=node1
+2025-12-17 17:33:06,966 - INFO - [Global][Consensus] 视图 1 已在进行中或已完成
+2025-12-17 17:33:07,965 - WARNING - [Consensus] 投票超时，视图=1
+2025-12-17 17:33:07,966 - DEBUG - [Broadcast] timeout from node1
+2025-12-17 17:33:07,966 - INFO - [Global][Consensus] ===== Round 2 ===== view=1, leader=node1
+2025-12-17 17:33:07,966 - INFO - [Global][Consensus] 同步节点状态: view=1, leader=node1
+2025-12-17 17:33:07,966 - INFO - [Global][Consensus] 视图 1 已在进行中或已完成
+2025-12-17 17:33:08,003 - DEBUG - ✓ timeout from node1 to node2 (delay: 0.036s)
+2025-12-17 17:33:08,003 - INFO - [Node] 节点 node2 收到消息，类型=timeout
+2025-12-17 17:33:08,003 - DEBUG - [Node] 节点 node2 收到消息，类型=timeout，队列大小=3
+2025-12-17 17:33:08,010 - DEBUG - ✓ timeout from node1 to node3 (delay: 0.043s)
+2025-12-17 17:33:08,010 - INFO - [Node] 节点 node3 收到消息，类型=timeout
+2025-12-17 17:33:08,010 - DEBUG - [Node] 节点 node3 收到消息，类型=timeout，队列大小=1
+2025-12-17 17:33:08,017 - DEBUG - ✓ timeout from node1 to node0 (delay: 0.050s)
+2025-12-17 17:33:08,017 - INFO - [Node] 节点 node0 收到消息，类型=timeout
+2025-12-17 17:33:08,017 - DEBUG - [Node] 节点 node0 收到消息，类型=timeout，队列大小=3
+2025-12-17 17:33:08,017 - DEBUG - [Broadcast] timeout from node1 成功发送给 3/3 个节点
+2025-12-17 17:33:08,018 - DEBUG - [Timeout] node1 times out at view {'sender': 'node1', 'type': 'vote_timeout', 'view': 1, 'reason': '等待投票超时，已等待2.0秒'}
+2025-12-17 17:33:08,018 - INFO - [Consensus] 节点 node1 发起视图切换，从视图 1，原因: vote_timeout
+2025-12-17 17:33:08,018 - INFO - [Consensus] 节点 node1 收到视图切换请求，发送者=node1，新视图=2，原因=vote_timeout
+2025-12-17 17:33:08,018 - WARNING - [Consensus] 无效的视图切换理由: vote_timeout
+2025-12-17 17:33:08,018 - INFO - [Consensus] 节点 node1 记录视图切换请求，当前收集到 1 个请求
+2025-12-17 17:33:08,019 - DEBUG - [Broadcast] view_change from node1
+2025-12-17 17:33:08,030 - DEBUG - ✓ view_change from node1 to node3 (delay: 0.011s)
+2025-12-17 17:33:08,031 - INFO - [Node] 节点 node3 收到消息，类型=view_change
+2025-12-17 17:33:08,031 - DEBUG - [Node] 节点 node3 收到消息，类型=view_change，队列大小=2
+2025-12-17 17:33:08,034 - DEBUG - ✓ view_change from node1 to node2 (delay: 0.015s)
+2025-12-17 17:33:08,034 - INFO - [Node] 节点 node2 收到消息，类型=view_change
+2025-12-17 17:33:08,034 - DEBUG - [Node] 节点 node2 收到消息，类型=view_change，队列大小=4
+2025-12-17 17:33:08,051 - INFO - 
 === 模拟器统计 (轮数: 1/50) ===
-2025-12-16 21:46:00,982 - INFO - 活跃节点: 4
-2025-12-16 21:46:00,982 - INFO - 内存池大小: 60
-2025-12-16 21:46:00,982 - INFO - 已提交区块: 0
-2025-12-16 21:46:00,982 - INFO - 视图: 1
-2025-12-16 21:46:02,984 - INFO - 
-=== 模拟器统计 (轮数: 1/50) ===
-2025-12-16 21:46:02,984 - INFO - 活跃节点: 4
-2025-12-16 21:46:02,985 - INFO - 内存池大小: 60
-2025-12-16 21:46:02,986 - INFO - 已提交区块: 0
-2025-12-16 21:46:02,986 - INFO - 视图: 1
-2025-12-16 21:46:03,075 - DEBUG - [Node] 节点 node0 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:46:03,076 - DEBUG - [Broadcast] proposal from node1 成功发送给 3/3 个节点
-2025-12-16 21:46:03,075 - DEBUG - [Node] 节点 node0 处理队列消息，类型=proposal，延迟=0.000s
-2025-12-16 21:46:03,076 - INFO - {"ts": 1765892763.0766954, "event": "proposal_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
-2025-12-16 21:46:03,077 - INFO - [Node] 节点 node0 收到提案消息
-2025-12-16 21:46:03,077 - INFO - [Node] 节点 node0 已有当前视图的提案，忽略重复提案
-2025-12-16 21:46:04,988 - INFO - 
-=== 模拟器统计 (轮数: 1/50) ===
-2025-12-16 21:46:04,988 - INFO - 活跃节点: 4
-2025-12-16 21:46:04,988 - INFO - 内存池大小: 60
-2025-12-16 21:46:04,988 - INFO - 已提交区块: 0
-2025-12-16 21:46:04,988 - INFO - 视图: 1
-2025-12-16 21:46:05,079 - DEBUG - [Consensus] 同步节点状态: view=1, leader=node1
-2025-12-16 21:46:05,079 - INFO - [Consensus] 状态同步完成: 4/4 个节点已同步
-2025-12-16 21:46:05,579 - INFO - [Global][Consensus] Round 2: view=1, leader=node1
-2025-12-16 21:46:05,580 - DEBUG - [Consensus] 同步节点状态: view=1, leader=node1
-2025-12-16 21:46:05,580 - INFO - [Consensus] 状态同步完成: 4/4 个节点已同步
-2025-12-16 21:46:05,580 - DEBUG - [Global][Consensus] 设置节点 node0.is_leader=False
-2025-12-16 21:46:05,581 - DEBUG - [Global][Consensus] 设置节点 node1.is_leader=True
-2025-12-16 21:46:05,581 - DEBUG - [Global][Consensus] 设置节点 node2.is_leader=False
-2025-12-16 21:46:05,581 - DEBUG - [Global][Consensus] 设置节点 node3.is_leader=False
-2025-12-16 21:46:05,581 - INFO - [Global][Consensus] Setting node node0.is_leader=False
-2025-12-16 21:46:05,581 - INFO - [Global][Consensus] Setting node node1.is_leader=True
-2025-12-16 21:46:05,581 - INFO - [Global][Consensus] Setting node node2.is_leader=False
-2025-12-16 21:46:05,581 - INFO - [Global][Consensus] Setting node node3.is_leader=False
-2025-12-16 21:46:05,582 - INFO - [Global][Consensus] Leader node1 creating proposal...
-2025-12-16 21:46:05,582 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:46:05,582 - INFO - [Consensus] Latest QC found: view=0, parent_block=0000000000000000
-2025-12-16 21:46:05,582 - WARNING - [Consensus] Parent block for latest_qc not found, using genesis
-2025-12-16 21:46:05,582 - INFO - [Consensus] Creating block at height 1, parent height=1, parent QC view=0
-2025-12-16 21:46:05,582 - INFO - [Consensus] Leader node1 creating new block at height 1
-2025-12-16 21:46:05,582 - INFO - [Consensus] Parent hash: 0000000000000000
-2025-12-16 21:46:05,582 - INFO - [Consensus] Parent QC view: 0
-2025-12-16 21:46:05,583 - INFO - [Consensus] Transactions for new block: 20 transactions
-2025-12-16 21:46:05,584 - INFO - [Consensus] New block created: id=584657f7, height=1, view=1
-2025-12-16 21:46:05,585 - DEBUG - [node1] add_block -> id=584657f7, height=1, view=1
-2025-12-16 21:46:05,585 - INFO - [node1]blockhash=584657f7 added to block_tree
-2025-12-16 21:46:05,585 - DEBUG - get_block_by_hash -> in
-2025-12-16 21:46:05,585 - INFO - [Global][Consensus] Leader node1 created block 584657f7
-2025-12-16 21:46:05,586 - INFO - [Global][Consensus] Leader node1 broadcasting proposal...
-2025-12-16 21:46:05,586 - DEBUG - [Broadcast] Proposal from node1, block hash: 584657f7
-2025-12-16 21:46:05,586 - DEBUG - [Broadcast] proposal from node1
-2025-12-16 21:46:05,598 - DEBUG - ✓ proposal from node1 to node0 (delay: 0.011s)
-2025-12-16 21:46:05,599 - DEBUG - [DEBUG] Delivering Proposal to node0
-2025-12-16 21:46:05,599 - INFO - [Node] 节点 node0 收到消息，类型=proposal
-2025-12-16 21:46:05,620 - DEBUG - ✓ proposal from node1 to node2 (delay: 0.033s)
-2025-12-16 21:46:05,621 - DEBUG - [DEBUG] Delivering Proposal to node2
-2025-12-16 21:46:05,621 - INFO - [Node] 节点 node2 收到消息，类型=proposal
-2025-12-16 21:46:05,622 - DEBUG - ✓ proposal from node1 to node3 (delay: 0.035s)
-2025-12-16 21:46:05,622 - DEBUG - [DEBUG] Delivering Proposal to node3
-2025-12-16 21:46:05,622 - INFO - [Node] 节点 node3 收到消息，类型=proposal
-2025-12-16 21:46:05,805 - DEBUG - [Node] 节点 node3 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:46:05,806 - DEBUG - [Node] 节点 node3 处理队列消息，类型=proposal，延迟=0.000s
-2025-12-16 21:46:05,806 - INFO - [Node] 节点 node3 收到提案消息
-2025-12-16 21:46:05,806 - INFO - [Node] 节点 node3 已有当前视图的提案，忽略重复提案
-2025-12-16 21:46:05,989 - DEBUG - [Node] 节点 node2 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:46:05,990 - DEBUG - [Node] 节点 node2 处理队列消息，类型=proposal，延迟=0.001s
-2025-12-16 21:46:05,990 - INFO - [Node] 节点 node2 收到提案消息
-2025-12-16 21:46:05,991 - INFO - [Node] 节点 node2 已有当前视图的提案，忽略重复提案
-2025-12-16 21:46:06,088 - DEBUG - [Node] 节点 node0 收到消息，类型=proposal，队列大小=1
-2025-12-16 21:46:06,088 - DEBUG - [Node] 节点 node0 处理队列消息，类型=proposal，延迟=0.000s
-2025-12-16 21:46:06,090 - INFO - [Node] 节点 node0 收到提案消息
-2025-12-16 21:46:06,090 - INFO - [Node] 节点 node0 已有当前视图的提案，忽略重复提案
-2025-12-16 21:46:06,089 - DEBUG - [Broadcast] proposal from node1 成功发送给 3/3 个节点
-2025-12-16 21:46:06,090 - INFO - {"ts": 1765892766.090912, "event": "proposal_broadcast", "node": "node1", "view": 1, "consensus_type": "my"}
-2025-12-16 21:46:06,990 - ERROR - [Simulator] 超时无进展，当前轮数: 2，退出
-2025-12-16 21:46:06,991 - INFO - 
+2025-12-17 17:33:08,052 - INFO - 活跃节点: 4
+2025-12-17 17:33:08,052 - INFO - 内存池大小: 80
+2025-12-17 17:33:08,052 - INFO - 已提交区块: 0
+2025-12-17 17:33:08,052 - INFO - 视图: 1
+2025-12-17 17:33:08,066 - DEBUG - ✓ view_change from node1 to node0 (delay: 0.047s)
+2025-12-17 17:33:08,066 - INFO - [Node] 节点 node0 收到消息，类型=view_change
+2025-12-17 17:33:08,066 - DEBUG - [Node] 节点 node0 收到消息，类型=view_change，队列大小=4
+2025-12-17 17:33:08,069 - DEBUG - [Broadcast] view_change from node1 成功发送给 3/3 个节点
+2025-12-17 17:33:08,070 - INFO - [View Change] node1 initiates view change to 2: vote_timeout
+2025-12-17 17:33:08,070 - INFO - [Consensus] 节点 node1 广播视图切换请求
+2025-12-17 17:33:08,967 - INFO - [Global][Consensus] ===== Round 3 ===== view=1, leader=node1
+2025-12-17 17:33:08,967 - INFO - [Global][Consensus] 同步节点状态: view=1, leader=node1
+2025-12-17 17:33:08,967 - INFO - [Global][Consensus] 视图 1 已在进行中或已完成
+2025-12-17 17:33:09,097 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:09,097 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=2
+2025-12-17 17:33:09,097 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=3
+2025-12-17 17:33:09,097 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.001s
+2025-12-17 17:33:09,097 - DEBUG - [Broadcast] vote from node3 成功发送给 3/3 个节点
+2025-12-17 17:33:09,098 - DEBUG - [Broadcast] vote from node0 成功发送给 3/3 个节点
+2025-12-17 17:33:09,098 - DEBUG - [Broadcast] vote from node2 成功发送给 3/3 个节点
+2025-12-17 17:33:09,100 - INFO - [Network] 广播投票完成
+2025-12-17 17:33:09,099 - INFO - [Network] 广播投票完成
+2025-12-17 17:33:09,099 - INFO - [Network] 广播投票完成
+2025-12-17 17:33:09,100 - INFO - [VoteManager] 投票广播完成，结果: True
+2025-12-17 17:33:09,100 - INFO - [VoteManager] 投票广播完成，结果: True
+2025-12-17 17:33:09,098 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:09,100 - INFO - [Consensus] 节点 node3 投票发送成功
+2025-12-17 17:33:09,100 - INFO - [VoteManager] 投票广播完成，结果: True
+2025-12-17 17:33:09,101 - INFO - [Consensus] 节点 node2 投票发送成功
+2025-12-17 17:33:09,101 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:09,101 - INFO - [Consensus] 节点 node3 投票发送成功
+2025-12-17 17:33:09,101 - INFO - [Node] 节点 node3 成功处理提案
+2025-12-17 17:33:09,102 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': 'af8c8ba97b1944044f43e043d98eba06cc0dfaddc4c7be8e74df47915b9bd0453aed93dcded2435f8707b91ef186d5dc09c7af9155aeb183ba20ad44bb36d9a1a27fa834b3bfdd17a188e716302a7a21b8d273f48948af6d9d51ff2f5d423452', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': 'db364ba0dd43abe9'}
+2025-12-17 17:33:09,102 - INFO - [Consensus] 节点 node0 投票发送成功
+2025-12-17 17:33:09,102 - INFO - [Consensus] 节点 node2 投票发送成功
+2025-12-17 17:33:09,102 - INFO - [Consensus] 节点 node0 投票发送成功
+2025-12-17 17:33:09,102 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:09,102 - INFO - [Node] 节点 node2 成功处理提案
+2025-12-17 17:33:09,103 - INFO - [Node] 节点 node0 成功处理提案
+2025-12-17 17:33:09,103 - DEBUG - [Node] 节点 node3 处理队列消息，类型=timeout，延迟=1.092s
+2025-12-17 17:33:09,103 - INFO - [Node] 反序列化后的vote对象: Vote(id=db364ba0dd43abe9, voter=node3, index=3, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:09,103 - INFO - [Consensus] 处理投票: 来自 node3, 节点 node1 是领导者
+2025-12-17 17:33:09,103 - INFO - [Consensus] 领导者 node1 收到来自 node3 的投票
+2025-12-17 17:33:09,103 - INFO - [Consensus] 从领导者提案获取区块哈希: 5ba11356
+2025-12-17 17:33:09,104 - INFO - [Consensus] 领导者收集到 1 个投票
+2025-12-17 17:33:09,104 - INFO - [Node] 节点 node1 成功处理投票
+2025-12-17 17:33:09,104 - DEBUG - [Node] 节点 node0 处理队列消息，类型=vote，延迟=3.420s
+2025-12-17 17:33:09,104 - DEBUG - [Node] 节点 node2 处理队列消息，类型=vote，延迟=3.308s
+2025-12-17 17:33:09,104 - INFO - [Node] 节点 node0 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:09,104 - DEBUG - [Node] 节点 node3 处理队列消息，类型=view_change，延迟=1.073s
+2025-12-17 17:33:09,104 - INFO - [Node] 节点 node2 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:09,105 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:09,105 - INFO - [Consensus] 节点 node3 收到视图切换请求，发送者=node1，新视图=2，原因=vote_timeout
+2025-12-17 17:33:09,105 - INFO - [Node] 收到来自 node2 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:09,106 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node2', 'voter_index': 2, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': 'a2d86902a2899a62147b9c2920fa4cd3a60d2c95f83ec44a46dbdc48d5adef776fc33995e50c9b1b751b972a2a9f5d4307fddb930b83553c1acf2a4ecc99cc02a9632a31959798fcf135a4be5770a0f0abf5d08f1aba72afc88a005cd17cc7b5', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '5aee18c4bce15d4a'}
+2025-12-17 17:33:09,106 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:09,105 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.009s
+2025-12-17 17:33:09,106 - INFO - [Node] 反序列化后的vote对象: Vote(id=5aee18c4bce15d4a, voter=node2, index=2, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:09,105 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': '8d3363d1b402b563c6a853c80f69634c2b928ca879a2cb18e4163336049e86960ecf514999d434cba1697e5ab0e3e1a20f58ac12ac98bc843f33aca3d5fb36baa71f73da65de573f4895623d4e2a26b02a0afa3a0158c0f45c1f8bc693334dcd', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '7c31879f70998696'}
+2025-12-17 17:33:09,106 - WARNING - [Consensus] 无效的视图切换理由: vote_timeout
+2025-12-17 17:33:09,106 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:09,107 - INFO - [Consensus] 处理投票: 来自 node2, 节点 node0 是副本
+2025-12-17 17:33:09,107 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:09,107 - DEBUG - [Consensus] 重复的视图切换请求，忽略
+2025-12-17 17:33:09,107 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:09,107 - DEBUG - [Consensus] 副本 node0 收到投票，仅记录
+2025-12-17 17:33:09,107 - INFO - [Node] 节点 node0 成功处理投票
+2025-12-17 17:33:09,108 - INFO - [Node] 反序列化后的vote对象: Vote(id=7c31879f70998696, voter=node0, index=0, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:09,108 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': '8d3363d1b402b563c6a853c80f69634c2b928ca879a2cb18e4163336049e86960ecf514999d434cba1697e5ab0e3e1a20f58ac12ac98bc843f33aca3d5fb36baa71f73da65de573f4895623d4e2a26b02a0afa3a0158c0f45c1f8bc693334dcd', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '7c31879f70998696'}
+2025-12-17 17:33:09,108 - INFO - [Consensus] 处理投票: 来自 node0, 节点 node2 是副本
+2025-12-17 17:33:09,108 - DEBUG - [Consensus] 副本 node2 收到投票，仅记录
+2025-12-17 17:33:09,108 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:09,108 - INFO - [Node] 节点 node2 成功处理投票
+2025-12-17 17:33:09,109 - DEBUG - [Node] 节点 node0 处理队列消息，类型=vote，延迟=2.938s
+2025-12-17 17:33:09,109 - INFO - [Node] 反序列化后的vote对象: Vote(id=7c31879f70998696, voter=node0, index=0, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:09,109 - INFO - [Node] 节点 node0 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:09,110 - INFO - [Consensus] 处理投票: 来自 node0, 节点 node1 是领导者
+2025-12-17 17:33:09,110 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:09,110 - INFO - [Consensus] 领导者 node1 收到来自 node0 的投票
+2025-12-17 17:33:09,110 - DEBUG - [Node] 节点 node2 处理队列消息，类型=vote，延迟=2.941s
+2025-12-17 17:33:09,111 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': 'af8c8ba97b1944044f43e043d98eba06cc0dfaddc4c7be8e74df47915b9bd0453aed93dcded2435f8707b91ef186d5dc09c7af9155aeb183ba20ad44bb36d9a1a27fa834b3bfdd17a188e716302a7a21b8d273f48948af6d9d51ff2f5d423452', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': 'db364ba0dd43abe9'}
+2025-12-17 17:33:09,111 - INFO - [Consensus] 从领导者提案获取区块哈希: 5ba11356
+2025-12-17 17:33:09,111 - INFO - [Node] 节点 node2 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:09,111 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:09,111 - INFO - [Node] 反序列化后的vote对象: Vote(id=db364ba0dd43abe9, voter=node3, index=3, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:09,112 - INFO - [Consensus] 领导者收集到 2 个投票
+2025-12-17 17:33:09,112 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:09,112 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': 'af8c8ba97b1944044f43e043d98eba06cc0dfaddc4c7be8e74df47915b9bd0453aed93dcded2435f8707b91ef186d5dc09c7af9155aeb183ba20ad44bb36d9a1a27fa834b3bfdd17a188e716302a7a21b8d273f48948af6d9d51ff2f5d423452', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': 'db364ba0dd43abe9'}
+2025-12-17 17:33:09,112 - INFO - [Consensus] 处理投票: 来自 node3, 节点 node0 是副本
+2025-12-17 17:33:09,113 - INFO - [Node] 节点 node1 成功处理投票
+2025-12-17 17:33:09,113 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:09,113 - DEBUG - [Consensus] 副本 node0 收到投票，仅记录
+2025-12-17 17:33:09,113 - INFO - [Node] 反序列化后的vote对象: Vote(id=db364ba0dd43abe9, voter=node3, index=3, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:09,114 - INFO - [Node] 节点 node0 成功处理投票
+2025-12-17 17:33:09,114 - INFO - [Consensus] 处理投票: 来自 node3, 节点 node2 是副本
+2025-12-17 17:33:09,114 - DEBUG - [Consensus] 副本 node2 收到投票，仅记录
+2025-12-17 17:33:09,114 - INFO - [Node] 节点 node2 成功处理投票
+2025-12-17 17:33:09,114 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.017s
+2025-12-17 17:33:09,115 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:09,115 - INFO - [Node] 收到来自 node2 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:09,115 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node2', 'voter_index': 2, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'view': 1, 'partial_signature': 'a2d86902a2899a62147b9c2920fa4cd3a60d2c95f83ec44a46dbdc48d5adef776fc33995e50c9b1b751b972a2a9f5d4307fddb930b83553c1acf2a4ecc99cc02a9632a31959798fcf135a4be5770a0f0abf5d08f1aba72afc88a005cd17cc7b5', 'high_qc': {'view': 0, 'block_hash': '0000000000000000000000000000000000000000000000000000000000000000', 'aggregate_signature': None, 'signer_bitmap': 0, 'merkle_root': '0000000000000000000000000000000000000000000000000000000000000000'}, 'timestamp': None, 'id': '5aee18c4bce15d4a'}
+2025-12-17 17:33:09,115 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:09,115 - DEBUG - [Node] 节点 node2 处理队列消息，类型=timeout，延迟=1.112s
+2025-12-17 17:33:09,115 - DEBUG - [Node] 节点 node0 处理队列消息，类型=timeout，延迟=1.098s
+2025-12-17 17:33:09,116 - INFO - [Node] 反序列化后的vote对象: Vote(id=5aee18c4bce15d4a, voter=node2, index=2, view=1), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:09,116 - INFO - [Consensus] 处理投票: 来自 node2, 节点 node1 是领导者
+2025-12-17 17:33:09,116 - INFO - [Consensus] 领导者 node1 收到来自 node2 的投票
+2025-12-17 17:33:09,116 - INFO - [Consensus] 从领导者提案获取区块哈希: 5ba11356
+2025-12-17 17:33:09,116 - INFO - [Consensus] 领导者收集到 3 个投票
+2025-12-17 17:33:09,116 - INFO - [Consensus] 收集到足够投票，开始组装QC
+2025-12-17 17:33:09,122 - DEBUG - [Node] 节点 node0 处理队列消息，类型=view_change，延迟=1.056s
+2025-12-17 17:33:09,122 - DEBUG - [Node] 节点 node2 处理队列消息，类型=view_change，延迟=1.088s
+2025-12-17 17:33:09,127 - INFO - [Consensus] 节点 node0 收到视图切换请求，发送者=node1，新视图=2，原因=vote_timeout
+2025-12-17 17:33:09,138 - INFO - [Consensus] 节点 node2 收到视图切换请求，发送者=node1，新视图=2，原因=vote_timeout
+2025-12-17 17:33:09,141 - WARNING - [Consensus] 无效的视图切换理由: vote_timeout
+2025-12-17 17:33:09,141 - WARNING - [Consensus] 无效的视图切换理由: vote_timeout
+2025-12-17 17:33:09,141 - DEBUG - [Consensus] 重复的视图切换请求，忽略
+2025-12-17 17:33:09,140 - INFO - 聚合签名验证成功---模拟
+2025-12-17 17:33:09,141 - DEBUG - [Consensus] 重复的视图切换请求，忽略
+2025-12-17 17:33:09,142 - INFO - QC组装成功: view=1, block_hash=5ba11356c8535b6c
+2025-12-17 17:33:09,142 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,142 - INFO - [Consensus] QC组装成功: view=1
+2025-12-17 17:33:09,142 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,142 - INFO - 节点 node0 添加区块 5ba11356, 高度=1
+2025-12-17 17:33:09,143 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,143 - INFO - [node0] Added missing block 5ba11356 for QC
+2025-12-17 17:33:09,143 - DEBUG - [node0] update_latest_qc -> view=1, block=5ba11356c8535b6c
+2025-12-17 17:33:09,143 - INFO - 节点 node0 更新QC: 视图 0 -> 1
+2025-12-17 17:33:09,143 - INFO - 节点 node0 清除当前提案
+2025-12-17 17:33:09,143 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,144 - INFO - 节点 node1 添加区块 5ba11356, 高度=1
+2025-12-17 17:33:09,144 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,144 - INFO - [node1] Added missing block 5ba11356 for QC
+2025-12-17 17:33:09,144 - DEBUG - [node1] update_latest_qc -> view=1, block=5ba11356c8535b6c
+2025-12-17 17:33:09,144 - INFO - 节点 node1 更新QC: 视图 0 -> 1
+2025-12-17 17:33:09,144 - INFO - 节点 node1 清除当前提案
+2025-12-17 17:33:09,144 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,145 - INFO - 节点 node2 添加区块 5ba11356, 高度=1
+2025-12-17 17:33:09,145 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,145 - INFO - [node2] Added missing block 5ba11356 for QC
+2025-12-17 17:33:09,145 - DEBUG - [node2] update_latest_qc -> view=1, block=5ba11356c8535b6c
+2025-12-17 17:33:09,146 - INFO - 节点 node2 更新QC: 视图 0 -> 1
+2025-12-17 17:33:09,146 - INFO - 节点 node2 清除当前提案
+2025-12-17 17:33:09,146 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,146 - INFO - 节点 node3 添加区块 5ba11356, 高度=1
+2025-12-17 17:33:09,146 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,146 - INFO - [node3] Added missing block 5ba11356 for QC
+2025-12-17 17:33:09,147 - DEBUG - [node3] update_latest_qc -> view=1, block=5ba11356c8535b6c
+2025-12-17 17:33:09,147 - INFO - 节点 node3 更新QC: 视图 0 -> 1
+2025-12-17 17:33:09,147 - INFO - 节点 node3 清除当前提案
+2025-12-17 17:33:09,147 - DEBUG - [Broadcast] new_view from node1
+2025-12-17 17:33:09,175 - DEBUG - ✓ new_view from node1 to node0 (delay: 0.028s)
+2025-12-17 17:33:09,175 - INFO - [Node] 节点 node0 收到消息，类型=new_view
+2025-12-17 17:33:09,178 - DEBUG - ✓ new_view from node1 to node3 (delay: 0.031s)
+2025-12-17 17:33:09,179 - INFO - [Node] 节点 node3 收到消息，类型=new_view
+2025-12-17 17:33:09,190 - DEBUG - ✓ new_view from node1 to node2 (delay: 0.043s)
+2025-12-17 17:33:09,191 - INFO - [Node] 节点 node2 收到消息，类型=new_view
+2025-12-17 17:33:09,213 - DEBUG - [Node] 节点 node2 收到消息，类型=new_view，队列大小=1
+2025-12-17 17:33:09,214 - DEBUG - [Node] 节点 node2 处理队列消息，类型=new_view，延迟=0.000s
+2025-12-17 17:33:09,214 - INFO - [Node] 节点 node2 处理NEW-VIEW消息
+2025-12-17 17:33:09,214 - INFO - [Consensus] 节点 node2 收到NEW-VIEW消息，来自 node1，视图=1
+2025-12-17 17:33:09,214 - INFO - [Consensus] 验证NEW-VIEW QC
+2025-12-17 17:33:09,215 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
+2025-12-17 17:33:09,215 - INFO - [Consensus] 节点 node2 验证QC
+2025-12-17 17:33:09,215 - INFO - [Consensus]聚合签名验证完成-模拟
+2025-12-17 17:33:09,215 - DEBUG - [Consensus] NEW-VIEW QC视图 1 <= 当前最新视图 1
+2025-12-17 17:33:09,216 - INFO - [Consensus] 节点 node2 用新QC更新状态: view=1
+2025-12-17 17:33:09,216 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,216 - INFO - [Consensus] 节点 node2 更新latest_qc到视图 1，无区块
+2025-12-17 17:33:09,216 - INFO - [Consensus] 检查下一个领导者: 视图 2 的领导者是 node2
+2025-12-17 17:33:09,216 - INFO - [Consensus] 节点 node2 将成为下一个领导者（视图 2）
+2025-12-17 17:33:09,216 - INFO - [Consensus] 节点 node2 成功处理NEW-VIEW，视图更新为 1
+2025-12-17 17:33:09,216 - INFO - [Node] 节点 node2 成功处理NEW-VIEW消息
+2025-12-17 17:33:09,345 - DEBUG - [Node] 节点 node0 收到消息，类型=new_view，队列大小=1
+2025-12-17 17:33:09,345 - DEBUG - [Node] 节点 node0 处理队列消息，类型=new_view，延迟=0.000s
+2025-12-17 17:33:09,345 - INFO - [Node] 节点 node0 处理NEW-VIEW消息
+2025-12-17 17:33:09,345 - INFO - [Consensus] 节点 node0 收到NEW-VIEW消息，来自 node1，视图=1
+2025-12-17 17:33:09,345 - INFO - [Consensus] 验证NEW-VIEW QC
+2025-12-17 17:33:09,346 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
+2025-12-17 17:33:09,346 - INFO - [Consensus] 节点 node0 验证QC
+2025-12-17 17:33:09,346 - INFO - [Consensus]聚合签名验证完成-模拟
+2025-12-17 17:33:09,346 - DEBUG - [Consensus] NEW-VIEW QC视图 1 <= 当前最新视图 1
+2025-12-17 17:33:09,346 - INFO - [Consensus] 节点 node0 用新QC更新状态: view=1
+2025-12-17 17:33:09,346 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:09,346 - INFO - [Consensus] 节点 node0 更新latest_qc到视图 1，无区块
+2025-12-17 17:33:09,346 - INFO - [Consensus] 检查下一个领导者: 视图 2 的领导者是 node2
+2025-12-17 17:33:09,346 - INFO - [Consensus] 节点 node0 成功处理NEW-VIEW，视图更新为 1
+2025-12-17 17:33:09,347 - INFO - [Node] 节点 node0 成功处理NEW-VIEW消息
+2025-12-17 17:33:09,967 - INFO - [Global][Consensus] ===== Round 4 ===== view=1, leader=node1
+2025-12-17 17:33:09,967 - INFO - [Global][Consensus] 同步节点状态: view=1, leader=node1
+2025-12-17 17:33:09,968 - DEBUG - [Global][Consensus] 节点 node2 领导者状态: False
+2025-12-17 17:33:09,968 - INFO - [Global][Consensus] 视图 1 已在进行中或已完成
+2025-12-17 17:33:09,968 - INFO - [Global][Consensus] 视图 1 已完成，推进到下一个视图
+2025-12-17 17:33:10,054 - INFO - 
+=== 模拟器统计 (轮数: 3/50) ===
+2025-12-17 17:33:10,054 - INFO - 活跃节点: 4
+2025-12-17 17:33:10,054 - INFO - 内存池大小: 80
+2025-12-17 17:33:10,054 - INFO - 已提交区块: 0
+2025-12-17 17:33:10,054 - INFO - 视图: 2
+2025-12-17 17:33:10,968 - INFO - [Global][Consensus] ===== Round 5 ===== view=2, leader=node2
+2025-12-17 17:33:10,968 - INFO - [Global][Consensus] 同步节点状态: view=2, leader=node2
+2025-12-17 17:33:10,968 - DEBUG - [Global][Consensus] 节点 node0 视图同步: 1 -> 2
+2025-12-17 17:33:10,968 - DEBUG - [Global][Consensus] 节点 node1 视图同步: 1 -> 2
+2025-12-17 17:33:10,968 - DEBUG - [Global][Consensus] 节点 node1 领导者状态: False
+2025-12-17 17:33:10,968 - DEBUG - [Global][Consensus] 节点 node2 视图同步: 1 -> 2
+2025-12-17 17:33:10,968 - DEBUG - [Global][Consensus] 节点 node2 领导者状态: True
+2025-12-17 17:33:10,969 - DEBUG - [Global][Consensus] 节点 node3 视图同步: 1 -> 2
+2025-12-17 17:33:10,969 - INFO - [Global][Consensus] 领导者 node2 开始处理视图 2
+2025-12-17 17:33:10,969 - INFO - [Global][Consensus] 领导者 node2 开始处理视图 2
+2025-12-17 17:33:10,969 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:10,969 - INFO - [Consensus] Latest QC found: view=1, parent_block=5ba11356c8535b6c
+2025-12-17 17:33:10,969 - WARNING - [Consensus] Parent block for latest_qc not found, using genesis
+2025-12-17 17:33:10,969 - INFO - [Consensus] Creating block at height 1, parent height=1, parent QC view=0
+2025-12-17 17:33:10,969 - INFO - [Consensus] Leader node2 creating new block at height 1
+2025-12-17 17:33:10,969 - INFO - [Consensus] Parent hash: 0000000000000000
+2025-12-17 17:33:10,969 - INFO - [Consensus] Parent QC view: 0
+2025-12-17 17:33:10,970 - INFO - [Consensus] Transactions for new block: 20 transactions
+2025-12-17 17:33:10,970 - INFO - [Consensus] New block created: id=8528a208, height=1, view=2
+2025-12-17 17:33:10,971 - DEBUG - [node2] add_block -> id=8528a208, height=1, view=2
+2025-12-17 17:33:10,971 - INFO - [node2]blockhash=8528a208 added to block_tree
+2025-12-17 17:33:10,971 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:10,971 - INFO - [Global][Consensus] 领导者 node2 创建区块成功: 8528a208
+2025-12-17 17:33:10,971 - DEBUG - [Broadcast] Proposal from node2, block hash: 8528a208
+2025-12-17 17:33:10,971 - DEBUG - [Broadcast] proposal from node2
+2025-12-17 17:33:10,994 - DEBUG - ✓ proposal from node2 to node0 (delay: 0.023s)
+2025-12-17 17:33:10,995 - DEBUG - [DEBUG] Delivering Proposal to node0
+2025-12-17 17:33:10,995 - INFO - [Node] 节点 node0 收到消息，类型=proposal
+2025-12-17 17:33:11,002 - DEBUG - ✓ proposal from node2 to node1 (delay: 0.031s)
+2025-12-17 17:33:11,003 - DEBUG - [DEBUG] Delivering Proposal to node1
+2025-12-17 17:33:11,003 - INFO - [Node] 节点 node1 收到消息，类型=proposal
+2025-12-17 17:33:11,003 - DEBUG - [Node] 节点 node1 收到消息，类型=proposal，队列大小=1
+2025-12-17 17:33:11,019 - DEBUG - ✓ proposal from node2 to node3 (delay: 0.047s)
+2025-12-17 17:33:11,019 - DEBUG - [DEBUG] Delivering Proposal to node3
+2025-12-17 17:33:11,019 - INFO - [Node] 节点 node3 收到消息，类型=proposal
+2025-12-17 17:33:12,056 - INFO - 
+=== 模拟器统计 (轮数: 5/50) ===
+2025-12-17 17:33:12,056 - INFO - 活跃节点: 4
+2025-12-17 17:33:12,056 - INFO - 内存池大小: 60
+2025-12-17 17:33:12,057 - INFO - 已提交区块: 0
+2025-12-17 17:33:12,058 - INFO - 视图: 2
+2025-12-17 17:33:12,236 - DEBUG - [Node] 节点 node3 收到消息，类型=new_view，队列大小=1
+2025-12-17 17:33:12,237 - DEBUG - [Broadcast] new_view from node1 成功发送给 3/3 个节点
+2025-12-17 17:33:12,237 - DEBUG - [Node] 节点 node3 收到消息，类型=proposal，队列大小=2
+2025-12-17 17:33:12,237 - DEBUG - [Node] 节点 node3 处理队列消息，类型=new_view，延迟=0.002s
+2025-12-17 17:33:12,237 - INFO - {"ts": 1765963992.2376263, "event": "new_view_broadcast", "node": "node1", "view": 2, "consensus_type": "my"}
+2025-12-17 17:33:12,238 - INFO - [Node] 节点 node3 处理NEW-VIEW消息
+2025-12-17 17:33:12,238 - INFO - [Consensus] 视图 2 共识完成
+2025-12-17 17:33:12,238 - INFO - [Node] 节点 node1 成功处理投票
+2025-12-17 17:33:12,239 - INFO - [Consensus] 节点 node3 收到NEW-VIEW消息，来自 node1，视图=1
+2025-12-17 17:33:12,239 - INFO - [Consensus] 验证NEW-VIEW QC
+2025-12-17 17:33:12,239 - WARNING - [Consensus] QC视图 1 与期望的视图 0 不匹配
+2025-12-17 17:33:12,239 - INFO - [Consensus] 节点 node3 验证QC
+2025-12-17 17:33:12,239 - INFO - [Consensus]聚合签名验证完成-模拟
+2025-12-17 17:33:12,239 - DEBUG - [Consensus] NEW-VIEW QC视图 1 <= 当前最新视图 1
+2025-12-17 17:33:12,240 - INFO - [Consensus] 节点 node3 用新QC更新状态: view=1
+2025-12-17 17:33:12,240 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:12,240 - INFO - [Consensus] 节点 node3 更新latest_qc到视图 1，无区块
+2025-12-17 17:33:12,240 - INFO - [Consensus] 检查下一个领导者: 视图 2 的领导者是 node2
+2025-12-17 17:33:12,240 - INFO - [Consensus] 节点 node3 成功处理NEW-VIEW，视图更新为 1
+2025-12-17 17:33:12,240 - INFO - [Node] 节点 node3 成功处理NEW-VIEW消息
+2025-12-17 17:33:12,240 - DEBUG - [Node] 节点 node1 处理队列消息，类型=proposal，延迟=1.237s
+2025-12-17 17:33:12,240 - INFO - [Node] 节点 node1 收到提案消息
+2025-12-17 17:33:12,240 - INFO - [Consensus] 节点 node1 处理提案
+2025-12-17 17:33:12,241 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:12,241 - DEBUG - [node1] add_block -> id=8528a208, height=1, view=2
+2025-12-17 17:33:12,241 - INFO - [node1]blockhash=8528a208 added to block_tree
+2025-12-17 17:33:12,241 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:12,241 - INFO - [Consensus] 节点 node1 接受提案: block=8528a208, view=2
+2025-12-17 17:33:12,241 - DEBUG -  准备签名数据: view=2, block_hash=b'\x85(\xa2\x08\x88\xd61\xdc\xae\xc8&G\xb0j\x86\x16\xf5\xdb\xf8\xe4\xc1\xcf}aP\xba\x92\xb7\xe3?\x88r'
+2025-12-17 17:33:12,241 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-17 17:33:12,249 - DEBUG - [Node] 节点 node3 处理队列消息，类型=proposal，延迟=0.012s
+2025-12-17 17:33:12,259 - INFO - [Node] 节点 node3 收到提案消息
+2025-12-17 17:33:12,270 - INFO - [Consensus] 节点 node3 处理提案
+2025-12-17 17:33:12,291 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:12,302 - DEBUG - [node3] add_block -> id=8528a208, height=1, view=2
+2025-12-17 17:33:12,313 - INFO - [node3]blockhash=8528a208 added to block_tree
+2025-12-17 17:33:12,318 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:12,328 - INFO - [Consensus] 节点 node3 接受提案: block=8528a208, view=2
+2025-12-17 17:33:12,334 - DEBUG -  准备签名数据: view=2, block_hash=b'\x85(\xa2\x08\x88\xd61\xdc\xae\xc8&G\xb0j\x86\x16\xf5\xdb\xf8\xe4\xc1\xcf}aP\xba\x92\xb7\xe3?\x88r'
+2025-12-17 17:33:12,349 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-17 17:33:12,431 - DEBUG -  partial_sig 长度: 96
+2025-12-17 17:33:12,442 - INFO -  node1 创建投票成功
+2025-12-17 17:33:12,442 - INFO - [Consensus] 节点 node1 发送投票给领导者 node2
+2025-12-17 17:33:12,452 - INFO - [Consensus] 准备广播投票，节点: node1
+2025-12-17 17:33:12,458 - INFO - [Consensus] network实例: <network.Network object at 0x7fdc3a853590>, vote_manager: <vote_manager.VoteManager object at 0x7fdc3a827ad0>
+2025-12-17 17:33:12,463 - INFO - [VoteManager] 节点 node1 开始广播投票
+2025-12-17 17:33:12,464 - INFO - [VoteManager] network实例: <network.Network object at 0x7fdc3a853590>, 类型: <class 'network.Network'>
+2025-12-17 17:33:12,474 - INFO - [VoteManager] vote对象: Vote(id=927711b0498d8d82, voter=node1, index=1, view=2), block对象: Block(hash=8528a208, height=1, proposer=node2, view=2)
+2025-12-17 17:33:12,490 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node1, vote.view=2
+2025-12-17 17:33:12,490 - INFO - [Network] 节点 node1 广播投票，view=2, block=8528a208
+2025-12-17 17:33:12,490 - DEBUG - [Broadcast] vote from node1
+2025-12-17 17:33:12,512 - DEBUG - ✓ vote from node1 to node0 (delay: 0.018s)
+2025-12-17 17:33:12,512 - INFO - [Node] 节点 node0 收到消息，类型=vote
+2025-12-17 17:33:12,512 - DEBUG - [Node] 节点 node0 收到消息，类型=proposal，队列大小=1
+2025-12-17 17:33:12,512 - DEBUG - [Node] 节点 node0 处理队列消息，类型=proposal，延迟=0.000s
+2025-12-17 17:33:12,533 - INFO - [Node] 节点 node0 收到提案消息
+2025-12-17 17:33:12,533 - INFO - [Consensus] 节点 node0 处理提案
+2025-12-17 17:33:12,533 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:12,533 - DEBUG - [node0] add_block -> id=8528a208, height=1, view=2
+2025-12-17 17:33:12,534 - INFO - [node0]blockhash=8528a208 added to block_tree
+2025-12-17 17:33:12,534 - DEBUG - get_block_by_hash -> in
+2025-12-17 17:33:12,534 - INFO - [Consensus] 节点 node0 接受提案: block=8528a208, view=2
+2025-12-17 17:33:12,534 - DEBUG -  准备签名数据: view=2, block_hash=b'\x85(\xa2\x08\x88\xd61\xdc\xae\xc8&G\xb0j\x86\x16\xf5\xdb\xf8\xe4\xc1\xcf}aP\xba\x92\xb7\xe3?\x88r'
+2025-12-17 17:33:12,534 - DEBUG -  block_hash_bytes 长度: 32
+2025-12-17 17:33:12,518 - DEBUG - [Node] 节点 node0 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:12,552 - DEBUG - ✓ vote from node1 to node2 (delay: 0.047s)
+2025-12-17 17:33:12,552 - DEBUG - [Broadcast] proposal from node2 成功发送给 3/3 个节点
+2025-12-17 17:33:12,558 - INFO - [Node] 节点 node2 收到消息，类型=vote
+2025-12-17 17:33:12,582 - DEBUG -  partial_sig 长度: 96
+2025-12-17 17:33:12,608 - INFO -  node3 创建投票成功
+2025-12-17 17:33:12,608 - INFO - [Consensus] 节点 node3 发送投票给领导者 node2
+2025-12-17 17:33:12,608 - INFO - [Consensus] 准备广播投票，节点: node3
+2025-12-17 17:33:12,609 - INFO - [Consensus] network实例: <network.Network object at 0x7fdc3a853590>, vote_manager: <vote_manager.VoteManager object at 0x7fdc3a827ad0>
+2025-12-17 17:33:12,609 - INFO - [VoteManager] 节点 node3 开始广播投票
+2025-12-17 17:33:12,609 - INFO - [VoteManager] network实例: <network.Network object at 0x7fdc3a853590>, 类型: <class 'network.Network'>
+2025-12-17 17:33:12,609 - INFO - [VoteManager] vote对象: Vote(id=54e28b9c5480dfb0, voter=node3, index=3, view=2), block对象: Block(hash=8528a208, height=1, proposer=node2, view=2)
+2025-12-17 17:33:12,609 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node3, vote.view=2
+2025-12-17 17:33:12,609 - INFO - [Network] 节点 node3 广播投票，view=2, block=8528a208
+2025-12-17 17:33:12,610 - DEBUG - [Broadcast] vote from node3
+2025-12-17 17:33:12,592 - INFO - {"ts": 1765963992.5929298, "event": "proposal_broadcast", "node": "node2", "view": 2, "consensus_type": "my"}
+2025-12-17 17:33:12,582 - DEBUG - ✓ vote from node1 to node3 (delay: 0.044s)
+2025-12-17 17:33:12,626 - DEBUG - [Consensus] 启动投票超时定时器，视图=2，超时时间=2.0s
+2025-12-17 17:33:12,632 - INFO - [Node] 节点 node3 收到消息，类型=vote
+2025-12-17 17:33:12,642 - DEBUG - ✓ vote from node3 to node0 (delay: 0.031s)
+2025-12-17 17:33:12,651 - DEBUG - ✓ vote from node3 to node1 (delay: 0.020s)
+2025-12-17 17:33:12,657 - DEBUG - [Node] 节点 node3 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:12,662 - DEBUG - ✓ vote from node3 to node2 (delay: 0.023s)
+2025-12-17 17:33:12,668 - INFO - [Node] 节点 node0 收到消息，类型=vote
+2025-12-17 17:33:12,668 - DEBUG - [Node] 节点 node2 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:12,679 - DEBUG - [Broadcast] vote from node1 成功发送给 3/3 个节点
+2025-12-17 17:33:12,678 - DEBUG - [Node] 节点 node2 处理队列消息，类型=vote，延迟=0.010s
+2025-12-17 17:33:12,678 - INFO - [Node] 节点 node1 收到消息，类型=vote
+2025-12-17 17:33:12,679 - DEBUG - [Node] 节点 node0 收到消息，类型=vote，队列大小=2
+2025-12-17 17:33:12,680 - INFO - [Network] 广播投票完成
+2025-12-17 17:33:12,690 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:12,696 - INFO - [Node] 节点 node2 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:12,696 - INFO - [Node] 收到来自 node1 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:12,696 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node1', 'voter_index': 1, 'block_hash': '8528a20888d631dcaec82647b06a8616f5dbf8e4c1cf7d6150ba92b7e33f8872', 'view': 2, 'partial_signature': '85b707e911032af985a748a1ca528166170b0a8dedcc84f10be1b346294a12ea9fc472685225f74a2ab2926ce531cd0602bb8c096b73b02ce948d485c3637e416e72d2fb1645706fee668fee7a9211214b4a0a21fe3ccd28570e228d7d86ccad', 'high_qc': {'view': 1, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'aggregate_signature': '87429ac3048965222255f254bc95a39d2668e497231cfeed2717711103d5361850d171058acaa5c330f675ee1dd54336032d48f3ae1f5f4e057bb1ea9352fef4f41394a6a935ca55e8c876dceea5ef1a695890000ccc29063214fc7412143a32', 'signer_bitmap': 13, 'merkle_root': '71e097491f4c6e550646ed7045ebcc6a4cd4e3dc4e59955b02d8aaf6ceaacb6c'}, 'timestamp': None, 'id': '927711b0498d8d82'}
+2025-12-17 17:33:12,701 - INFO - [VoteManager] 投票广播完成，结果: True
+2025-12-17 17:33:12,707 - INFO - [Consensus] 节点 node1 投票发送成功
+2025-12-17 17:33:12,708 - INFO - [Consensus] 节点 node1 投票发送成功
+2025-12-17 17:33:12,708 - INFO - [Node] 节点 node1 成功处理提案
+2025-12-17 17:33:12,710 - INFO - [Node] 节点 node2 收到消息，类型=vote
+2025-12-17 17:33:12,710 - DEBUG - [Node] 节点 node2 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:12,711 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:12,712 - DEBUG - [Broadcast] vote from node3 成功发送给 3/3 个节点
+2025-12-17 17:33:12,712 - INFO - [Network] 广播投票完成
+2025-12-17 17:33:12,712 - INFO - [VoteManager] 投票广播完成，结果: True
+2025-12-17 17:33:12,712 - INFO - [Consensus] 节点 node3 投票发送成功
+2025-12-17 17:33:12,713 - INFO - [Consensus] 节点 node3 投票发送成功
+2025-12-17 17:33:12,713 - INFO - [Node] 节点 node3 成功处理提案
+2025-12-17 17:33:12,713 - INFO - [Node] 反序列化后的vote对象: Vote(id=927711b0498d8d82, voter=node1, index=1, view=2), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:12,713 - INFO - [Consensus] 处理投票: 来自 node1, 节点 node2 是领导者
+2025-12-17 17:33:12,713 - INFO - [Consensus] 领导者 node2 收到来自 node1 的投票
+2025-12-17 17:33:12,713 - INFO - [Consensus] 从领导者提案获取区块哈希: 8528a208
+2025-12-17 17:33:12,713 - INFO - [Consensus] 领导者收集到 1 个投票
+2025-12-17 17:33:12,713 - INFO - [Node] 节点 node2 成功处理投票
+2025-12-17 17:33:12,714 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.023s
+2025-12-17 17:33:12,714 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:12,714 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:12,714 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': '8528a20888d631dcaec82647b06a8616f5dbf8e4c1cf7d6150ba92b7e33f8872', 'view': 2, 'partial_signature': 'a2673234f850c38004be558725764cdee25d932406ac9cc74c2bdd69c9fb7bff7b89714b9b48cd1c3a018656865937d412edede9389d1ec2da77dda24f04089c8ffd4e23dc6165f0f2df63b89038126647bdd6a6534523b9be8e3e27b151c46c', 'high_qc': {'view': 1, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'aggregate_signature': '87429ac3048965222255f254bc95a39d2668e497231cfeed2717711103d5361850d171058acaa5c330f675ee1dd54336032d48f3ae1f5f4e057bb1ea9352fef4f41394a6a935ca55e8c876dceea5ef1a695890000ccc29063214fc7412143a32', 'signer_bitmap': 13, 'merkle_root': '71e097491f4c6e550646ed7045ebcc6a4cd4e3dc4e59955b02d8aaf6ceaacb6c'}, 'timestamp': None, 'id': '54e28b9c5480dfb0'}
+2025-12-17 17:33:12,714 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:12,715 - INFO - [Node] 反序列化后的vote对象: Vote(id=54e28b9c5480dfb0, voter=node3, index=3, view=2), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:12,715 - INFO - [Consensus] 处理投票: 来自 node3, 节点 node1 是副本
+2025-12-17 17:33:12,715 - DEBUG - [Consensus] 副本 node1 收到投票，仅记录
+2025-12-17 17:33:12,715 - INFO - [Node] 节点 node1 成功处理投票
+2025-12-17 17:33:12,714 - DEBUG - [Node] 节点 node3 处理队列消息，类型=vote，延迟=0.057s
+2025-12-17 17:33:12,715 - INFO - [Node] 节点 node3 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:12,715 - INFO - [Node] 收到来自 node1 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:12,715 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node1', 'voter_index': 1, 'block_hash': '8528a20888d631dcaec82647b06a8616f5dbf8e4c1cf7d6150ba92b7e33f8872', 'view': 2, 'partial_signature': '85b707e911032af985a748a1ca528166170b0a8dedcc84f10be1b346294a12ea9fc472685225f74a2ab2926ce531cd0602bb8c096b73b02ce948d485c3637e416e72d2fb1645706fee668fee7a9211214b4a0a21fe3ccd28570e228d7d86ccad', 'high_qc': {'view': 1, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'aggregate_signature': '87429ac3048965222255f254bc95a39d2668e497231cfeed2717711103d5361850d171058acaa5c330f675ee1dd54336032d48f3ae1f5f4e057bb1ea9352fef4f41394a6a935ca55e8c876dceea5ef1a695890000ccc29063214fc7412143a32', 'signer_bitmap': 13, 'merkle_root': '71e097491f4c6e550646ed7045ebcc6a4cd4e3dc4e59955b02d8aaf6ceaacb6c'}, 'timestamp': None, 'id': '927711b0498d8d82'}
+2025-12-17 17:33:12,715 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:12,715 - INFO - [Node] 反序列化后的vote对象: Vote(id=927711b0498d8d82, voter=node1, index=1, view=2), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:12,716 - INFO - [Consensus] 处理投票: 来自 node1, 节点 node3 是副本
+2025-12-17 17:33:12,716 - DEBUG - [Consensus] 副本 node3 收到投票，仅记录
+2025-12-17 17:33:12,716 - INFO - [Node] 节点 node3 成功处理投票
+2025-12-17 17:33:12,716 - DEBUG - [Node] 节点 node2 处理队列消息，类型=vote，延迟=0.006s
+2025-12-17 17:33:12,716 - INFO - [Node] 节点 node2 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:12,716 - INFO - [Node] 收到来自 node3 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:12,716 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node3', 'voter_index': 3, 'block_hash': '8528a20888d631dcaec82647b06a8616f5dbf8e4c1cf7d6150ba92b7e33f8872', 'view': 2, 'partial_signature': 'a2673234f850c38004be558725764cdee25d932406ac9cc74c2bdd69c9fb7bff7b89714b9b48cd1c3a018656865937d412edede9389d1ec2da77dda24f04089c8ffd4e23dc6165f0f2df63b89038126647bdd6a6534523b9be8e3e27b151c46c', 'high_qc': {'view': 1, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'aggregate_signature': '87429ac3048965222255f254bc95a39d2668e497231cfeed2717711103d5361850d171058acaa5c330f675ee1dd54336032d48f3ae1f5f4e057bb1ea9352fef4f41394a6a935ca55e8c876dceea5ef1a695890000ccc29063214fc7412143a32', 'signer_bitmap': 13, 'merkle_root': '71e097491f4c6e550646ed7045ebcc6a4cd4e3dc4e59955b02d8aaf6ceaacb6c'}, 'timestamp': None, 'id': '54e28b9c5480dfb0'}
+2025-12-17 17:33:12,716 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:12,716 - INFO - [Node] 反序列化后的vote对象: Vote(id=54e28b9c5480dfb0, voter=node3, index=3, view=2), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:12,717 - INFO - [Consensus] 处理投票: 来自 node3, 节点 node2 是领导者
+2025-12-17 17:33:12,717 - INFO - [Consensus] 领导者 node2 收到来自 node3 的投票
+2025-12-17 17:33:12,717 - INFO - [Consensus] 从领导者提案获取区块哈希: 8528a208
+2025-12-17 17:33:12,717 - INFO - [Consensus] 领导者收集到 2 个投票
+2025-12-17 17:33:12,717 - INFO - [Node] 节点 node2 成功处理投票
+2025-12-17 17:33:12,723 - DEBUG -  partial_sig 长度: 96
+2025-12-17 17:33:12,723 - INFO -  node0 创建投票成功
+2025-12-17 17:33:12,723 - INFO - [Consensus] 节点 node0 发送投票给领导者 node2
+2025-12-17 17:33:12,723 - INFO - [Consensus] 准备广播投票，节点: node0
+2025-12-17 17:33:12,724 - INFO - [Consensus] network实例: <network.Network object at 0x7fdc3a853590>, vote_manager: <vote_manager.VoteManager object at 0x7fdc3a827ad0>
+2025-12-17 17:33:12,724 - INFO - [VoteManager] 节点 node0 开始广播投票
+2025-12-17 17:33:12,724 - INFO - [VoteManager] network实例: <network.Network object at 0x7fdc3a853590>, 类型: <class 'network.Network'>
+2025-12-17 17:33:12,724 - INFO - [VoteManager] vote对象: Vote(id=60cb478b70245c6c, voter=node0, index=0, view=2), block对象: Block(hash=8528a208, height=1, proposer=node2, view=2)
+2025-12-17 17:33:12,724 - INFO - [VoteManager] 调用network.broadcast_vote, 参数: node_id=node0, vote.view=2
+2025-12-17 17:33:12,724 - INFO - [Network] 节点 node0 广播投票，view=2, block=8528a208
+2025-12-17 17:33:12,724 - DEBUG - [Broadcast] vote from node0
+2025-12-17 17:33:12,758 - DEBUG - ✓ vote from node0 to node1 (delay: 0.033s)
+2025-12-17 17:33:12,758 - INFO - [Node] 节点 node1 收到消息，类型=vote
+2025-12-17 17:33:12,763 - DEBUG - ✓ vote from node0 to node3 (delay: 0.038s)
+2025-12-17 17:33:12,763 - INFO - [Node] 节点 node3 收到消息，类型=vote
+2025-12-17 17:33:12,772 - DEBUG - ✓ vote from node0 to node2 (delay: 0.048s)
+2025-12-17 17:33:12,773 - INFO - [Node] 节点 node2 收到消息，类型=vote
+2025-12-17 17:33:12,788 - DEBUG - [Node] 节点 node1 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:12,788 - DEBUG - [Node] 节点 node1 处理队列消息，类型=vote，延迟=0.000s
+2025-12-17 17:33:12,789 - INFO - [Node] 节点 node1 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:12,789 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:12,789 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': '8528a20888d631dcaec82647b06a8616f5dbf8e4c1cf7d6150ba92b7e33f8872', 'view': 2, 'partial_signature': 'b02403e999d89db1ef0c4755bbede08fe0f10e9c5064fba8f4a9411e374a2ae66d1b8182e30fa8538fadbb4984b87c71167923a42ab07f52ea20e9d17ef25554cca1061cfe2882b45535287c17259d41b98505bd5ddde7cc1c8818dc170456fc', 'high_qc': {'view': 1, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'aggregate_signature': '87429ac3048965222255f254bc95a39d2668e497231cfeed2717711103d5361850d171058acaa5c330f675ee1dd54336032d48f3ae1f5f4e057bb1ea9352fef4f41394a6a935ca55e8c876dceea5ef1a695890000ccc29063214fc7412143a32', 'signer_bitmap': 13, 'merkle_root': '71e097491f4c6e550646ed7045ebcc6a4cd4e3dc4e59955b02d8aaf6ceaacb6c'}, 'timestamp': None, 'id': '60cb478b70245c6c'}
+2025-12-17 17:33:12,790 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:12,790 - INFO - [Node] 反序列化后的vote对象: Vote(id=60cb478b70245c6c, voter=node0, index=0, view=2), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:12,790 - INFO - [Consensus] 处理投票: 来自 node0, 节点 node1 是副本
+2025-12-17 17:33:12,790 - DEBUG - [Consensus] 副本 node1 收到投票，仅记录
+2025-12-17 17:33:12,791 - INFO - [Node] 节点 node1 成功处理投票
+2025-12-17 17:33:13,091 - DEBUG - [Node] 节点 node3 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:13,091 - DEBUG - [Node] 节点 node3 处理队列消息，类型=vote，延迟=0.001s
+2025-12-17 17:33:13,092 - INFO - [Node] 节点 node3 收到vote请求，vote_data keys: dict_keys(['vote', 'block', 'timestamp', 'sender', 'type'])
+2025-12-17 17:33:13,092 - INFO - [Node] 收到来自 node0 的投票，vote_dict类型: <class 'dict'>
+2025-12-17 17:33:13,093 - INFO - [Node] 反序列化vote_dict: {'voter_id': 'node0', 'voter_index': 0, 'block_hash': '8528a20888d631dcaec82647b06a8616f5dbf8e4c1cf7d6150ba92b7e33f8872', 'view': 2, 'partial_signature': 'b02403e999d89db1ef0c4755bbede08fe0f10e9c5064fba8f4a9411e374a2ae66d1b8182e30fa8538fadbb4984b87c71167923a42ab07f52ea20e9d17ef25554cca1061cfe2882b45535287c17259d41b98505bd5ddde7cc1c8818dc170456fc', 'high_qc': {'view': 1, 'block_hash': '5ba11356c8535b6c8bb80b2a62234e20ed7fa88e2d92e6c24adb200b2ff3f7fa', 'aggregate_signature': '87429ac3048965222255f254bc95a39d2668e497231cfeed2717711103d5361850d171058acaa5c330f675ee1dd54336032d48f3ae1f5f4e057bb1ea9352fef4f41394a6a935ca55e8c876dceea5ef1a695890000ccc29063214fc7412143a32', 'signer_bitmap': 13, 'merkle_root': '71e097491f4c6e550646ed7045ebcc6a4cd4e3dc4e59955b02d8aaf6ceaacb6c'}, 'timestamp': None, 'id': '60cb478b70245c6c'}
+2025-12-17 17:33:13,093 - INFO - [votes]从字典反序列化
+2025-12-17 17:33:13,094 - INFO - [Node] 反序列化后的vote对象: Vote(id=60cb478b70245c6c, voter=node0, index=0, view=2), 类型: <class 'votes.Vote'>
+2025-12-17 17:33:13,094 - INFO - [Consensus] 处理投票: 来自 node0, 节点 node3 是副本
+2025-12-17 17:33:13,094 - DEBUG - [Consensus] 副本 node3 收到投票，仅记录
+2025-12-17 17:33:13,094 - INFO - [Node] 节点 node3 成功处理投票
+2025-12-17 17:33:13,651 - INFO - [Global][Consensus] ===== Round 6 ===== view=2, leader=node2
+2025-12-17 17:33:13,652 - INFO - [Global][Consensus] 同步节点状态: view=2, leader=node2
+2025-12-17 17:33:13,652 - INFO - [Global][Consensus] 视图 2 已在进行中或已完成
+2025-12-17 17:33:13,992 - WARNING - [Simulator] 超时无进展，当前轮数: 6，退出
+2025-12-17 17:33:13,992 - INFO - 
 ==================================================
-2025-12-16 21:46:06,991 - INFO - 模拟器运行完成!
-2025-12-16 21:46:06,991 - INFO - ==================================================
-2025-12-16 21:46:06,991 - INFO - 总运行时间: 10.04秒
-2025-12-16 21:46:06,992 - INFO - 总轮数: 2
-2025-12-16 21:46:06,992 - INFO - 节点数: 4
-2025-12-16 21:46:06,993 - INFO - 容错数 (f): 1
-2025-12-16 21:46:06,993 - INFO - 估算TPS: 0.00
-2025-12-16 21:46:06,993 - INFO - ==================================================
-2025-12-16 21:46:06,993 - INFO - [Simulator] 停止模拟器...
-2025-12-16 21:46:06,994 - INFO - {"ts": 1765892766.993933, "event": "consensus_stopped", "node": "system", "view": 1, "consensus_type": "my"}
-2025-12-16 21:46:06,994 - INFO - [Simulator] 共识已停止
-2025-12-16 21:46:06,994 - INFO - [Node] 停止消息处理线程: node0
-2025-12-16 21:46:06,994 - INFO - [Node] 停止消息处理线程: node1
-2025-12-16 21:46:06,994 - INFO - [Node] 停止消息处理线程: node2
-2025-12-16 21:46:06,994 - INFO - [Node] 停止消息处理线程: node3
-2025-12-16 21:46:06,994 - INFO - [Simulator] 所有节点消息处理已停止
-2025-12-16 21:46:06,994 - INFO - [ThreadManager] 停止所有线程
-2025-12-16 21:46:06,994 - DEBUG - [ThreadManager] 等待线程 node_node0 结束
-2025-12-16 21:46:06,998 - INFO - [Node] 节点 node1 消息队列处理停止
-2025-12-16 21:46:06,998 - INFO - [Node] 节点 node3 消息队列处理停止
-2025-12-16 21:46:06,998 - INFO - [Node] 节点 node0 消息队列处理停止
-2025-12-16 21:46:06,999 - INFO - [Node] 节点 node2 消息队列处理停止
-2025-12-16 21:46:07,000 - DEBUG - [ThreadManager] 等待线程 node_node2 结束
-2025-12-16 21:46:07,000 - DEBUG - [ThreadManager] 等待线程 consensus 结束
-2025-12-16 21:46:08,093 - DEBUG - [Consensus] 同步节点状态: view=1, leader=node1
-2025-12-16 21:46:08,094 - INFO - [Consensus] 状态同步完成: 4/4 个节点已同步
-2025-12-16 21:46:08,594 - INFO - [Global][Consensus] Consensus loop completed
-2025-12-16 21:46:08,595 - DEBUG - [ThreadManager] 等待线程 simulator_monitor 结束
-2025-12-16 21:46:08,599 - INFO - 
+2025-12-17 17:33:13,992 - INFO - 模拟器运行完成!
+2025-12-17 17:33:13,992 - INFO - ==================================================
+2025-12-17 17:33:13,992 - INFO - 总运行时间: 10.01秒
+2025-12-17 17:33:13,992 - INFO - 总轮数: 6
+2025-12-17 17:33:13,992 - INFO - 节点数: 4
+2025-12-17 17:33:13,992 - INFO - 容错数 (f): 1
+2025-12-17 17:33:13,993 - INFO - 估算TPS: 0.00
+2025-12-17 17:33:13,993 - INFO - ==================================================
+2025-12-17 17:33:13,993 - INFO - [Simulator] 停止模拟器...
+2025-12-17 17:33:13,993 - INFO - {"ts": 1765963993.9933755, "event": "consensus_stopped", "node": "system", "view": 2, "consensus_type": "my"}
+2025-12-17 17:33:13,993 - INFO - [Simulator] 共识已停止
+2025-12-17 17:33:13,993 - INFO - [Node] 停止消息处理线程: node0
+2025-12-17 17:33:13,993 - INFO - [Node] 停止消息处理线程: node1
+2025-12-17 17:33:13,993 - INFO - [Node] 停止消息处理线程: node2
+2025-12-17 17:33:13,993 - INFO - [Node] 停止消息处理线程: node3
+2025-12-17 17:33:13,993 - INFO - [Simulator] 所有节点消息处理已停止
+2025-12-17 17:33:13,994 - INFO - [ThreadManager] 停止所有线程
+2025-12-17 17:33:13,994 - DEBUG - [ThreadManager] 等待线程 node_node0 结束
+2025-12-17 17:33:14,001 - INFO - [Node] 节点 node1 消息队列处理停止
+2025-12-17 17:33:14,002 - INFO - [Node] 节点 node3 消息队列处理停止
+2025-12-17 17:33:14,003 - INFO - [Node] 节点 node2 消息队列处理停止
+2025-12-17 17:33:14,003 - DEBUG - [Node] 节点 node2 收到消息，类型=vote，队列大小=1
+2025-12-17 17:33:14,004 - DEBUG - [Broadcast] vote from node0 成功发送给 3/3 个节点
+2025-12-17 17:33:14,004 - INFO - [Network] 广播投票完成
+2025-12-17 17:33:14,004 - INFO - [VoteManager] 投票广播完成，结果: True
+2025-12-17 17:33:14,004 - INFO - [Consensus] 节点 node0 投票发送成功
+2025-12-17 17:33:14,004 - INFO - [Consensus] 节点 node0 投票发送成功
+2025-12-17 17:33:14,004 - INFO - [Node] 节点 node0 成功处理提案
+2025-12-17 17:33:14,005 - INFO - [Node] 节点 node0 消息队列处理停止
+2025-12-17 17:33:14,006 - DEBUG - [ThreadManager] 等待线程 consensus 结束
+2025-12-17 17:33:14,611 - WARNING - [Consensus] 投票超时，视图=2
+2025-12-17 17:33:14,611 - DEBUG - [Broadcast] timeout from node2
+2025-12-17 17:33:14,649 - DEBUG - ✓ timeout from node2 to node0 (delay: 0.037s)
+2025-12-17 17:33:14,649 - INFO - [Node] 节点 node0 收到消息，类型=timeout
+2025-12-17 17:33:14,649 - DEBUG - [Node] 节点 node0 收到消息，类型=timeout，队列大小=3
+2025-12-17 17:33:14,651 - DEBUG - ✓ timeout from node2 to node1 (delay: 0.039s)
+2025-12-17 17:33:14,651 - INFO - [Node] 节点 node1 收到消息，类型=timeout
+2025-12-17 17:33:14,652 - DEBUG - [Node] 节点 node1 收到消息，类型=timeout，队列大小=1
+2025-12-17 17:33:14,652 - INFO - [Global][Consensus] Consensus loop completed
+2025-12-17 17:33:14,653 - DEBUG - [ThreadManager] 等待线程 simulator_monitor 结束
+2025-12-17 17:33:14,655 - DEBUG - ✓ timeout from node2 to node3 (delay: 0.042s)
+2025-12-17 17:33:14,655 - INFO - [Node] 节点 node3 收到消息，类型=timeout
+2025-12-17 17:33:14,656 - DEBUG - [Node] 节点 node3 收到消息，类型=timeout，队列大小=1
+2025-12-17 17:33:14,657 - INFO - 
 安全机制验证结果:
-2025-12-16 21:46:08,600 - INFO -   view_number_attack_detection: ✗ 失败
-2025-12-16 21:46:08,600 - INFO -   fake_bitmap_detection: ✗ 失败
-2025-12-16 21:46:08,600 - INFO -   merkle_proof_mechanism: ✓ 通过
+2025-12-17 17:33:14,657 - INFO -   view_number_attack_detection: ✗ 失败
+2025-12-17 17:33:14,657 - INFO -   fake_bitmap_detection: ✗ 失败
+2025-12-17 17:33:14,657 - INFO -   merkle_proof_mechanism: ✓ 通过

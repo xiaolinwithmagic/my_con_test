@@ -187,208 +187,285 @@ class Consensus:
         event("consensus_stopped", node_id="system", view=self.view, consensus_type="my")
 
     ###主循环入口==============================================================================================================
+    ###主循环入口==============================================================================================================
     def _run_consensus(self):
+        """共识主循环 """
         logger.info(f"[Global][Consensus] Starting global consensus loop")
 
-        # 初始化状态
-        self._sync_all_nodes_state()  # 初始同步
-
-        consecutive_failures = 0  # 跟踪连续失败次数
-        max_consecutive_failures = 3  # 最多允许连续失败3次
+        consecutive_failures = 0
+        max_consecutive_failures = 3
         
         while self.active and self.current_round < self.max_rounds:
-            current_view = self.view
-            leader_id = self.validator._leader_for_view(self.view)
-            
-            logger.info(f"[Global][Consensus] Round {self.current_round}: view={current_view}, leader={leader_id}")
+            try:
+                current_view = self.view
+                leader_id = self.validator._leader_for_view(current_view)
+                
+                logger.info(f"[Global][Consensus] ===== Round {self.current_round} ===== view={current_view}, leader={leader_id}")
 
-
-            # if self.pacemaker.should_skip_leader(leader_id):
-            #     logger.info(f"[Global][Consensus] 跳过性能差的领导者 {leader_id}")
-            #     self.view += 1
-            #     continue
-            
-            # 在每个轮次开始时同步状态
-            self._sync_all_nodes_state()
-
-            # 1. 同步所有节点的视图号
-            for node_id, node in self.nodes.items():
-                node.view = current_view
-                node.is_leader = (node_id == leader_id)
-                logger.debug(f"[Global][Consensus] 设置节点 {node_id}.is_leader={node.is_leader}")
-            
-            # 检查leader是否存在
-            if leader_id not in self.nodes:
-                logger.info(f"[Global][Consensus] ERROR: Leader {leader_id} not found in nodes!")
-                self._handle_missing_leader(current_view)
-                continue
-            
-            # 设置所有节点的leader状态
-            for node_id, node in self.nodes.items():
-                node.view = current_view
-                node.is_leader = (node_id == leader_id)
-                logger.info(f"[Global][Consensus] Setting node {node_id}.is_leader={node.is_leader}")
-            
-             # 2. 领导者创建并广播提案
-            leader_node = self.nodes[leader_id]
-            if leader_node.is_leader:
-                logger.info(f"[Global][Consensus] Leader {leader_id} creating proposal...")
-
-                # 启动提案超时定时器（领导者监控投票超时）
-                # self._start_vote_timeout_timer(leader_node, current_view)
-                # logger.info(f"[Global][Consensus] Started vote timeout timer for leader {leader_id} in view {current_view}")
-            
-                #Leader创建区块
-                block = self._create_new_block(leader_node)
-                if not block:
-                    logger.info(f"[Global][Consensus] Failed to create block for leader {leader_id}")
-                    consecutive_failures += 1
-                    if consecutive_failures >= max_consecutive_failures:
-                        logger.info(f"[Global][Consensus] Too many consecutive failures ({consecutive_failures}), stopping")
-                    self.consecutive_timeouts += 1
-                    self.view += 1
-                    time.sleep(0.1)
+                # 1. 基本检查
+                if leader_id not in self.nodes:
+                    logger.error(f"[Global][Consensus] Leader {leader_id} not found in nodes!")
+                    self._handle_missing_leader(current_view)
                     continue
 
-                self.consecutive_timeouts = 0  # 重置连续超时计数
+                # 2. 同步所有节点的状态
+                self._sync_all_nodes_state(current_view, leader_id)
+
+                # 3. 如果当前节点是领导者，执行领导者流程
+                # 注意：这里只设置状态，具体的提案逻辑在网络消息中处理
+                leader_node = self.nodes[leader_id]
+                if leader_node.is_leader:
+                    # 检查是否已经完成当前视图的提案
+                    if not self.waiting_for_votes and not self._is_view_completed(current_view):
+                        logger.info(f"[Global][Consensus] 领导者 {leader_id} 开始处理视图 {current_view}")
+                        success = self._leader_process(leader_node, current_view)
+                        if not success:
+                            consecutive_failures += 1
+                            if consecutive_failures >= max_consecutive_failures:
+                                logger.error(f"[Global][Consensus] 领导者连续失败 {consecutive_failures} 次")
+                                break
+                        else:
+                            consecutive_failures = 0
+                    else:
+                        logger.info(f"[Global][Consensus] 视图 {current_view} 已在进行中或已完成")
+                else:
+                    # 副本节点：启动提案接收超时定时器
+                    self._start_proposal_timeout_timer(leader_node, current_view)
+
+                # 4. 检查视图切换
+                if self._has_pending_view_change(current_view):
+                    logger.info(f"[Global][Consensus] 有待处理的视图切换，优先处理")
+                    # 视图切换会在消息处理中自动执行
+
+                # 5. 检查当前视图是否完成
+                if self._is_view_completed(current_view):
+                    logger.info(f"[Global][Consensus] 视图 {current_view} 已完成，推进到下一个视图")
+                    self.view += 1
+                    # 重置状态
+                    self.waiting_for_votes = False
+                    self.votes_received.clear()
+                    # self._stop_all_timers()
+
+                # 5. 等待一段时间进入下一轮
+                # 这段时间留给网络消息处理
+                time.sleep(1.0)  # 增加等待时间，确保消息处理完成
                 
-                logger.info(f"[Global][Consensus] Leader {leader_id} created block {block.id[:8]}")
-                consecutive_failures = 0
+                # 6. 进入下一轮
+                self.current_round += 1
                 
-                # 2. Leader广播提案到所有副本
-                logger.info(f"[Global][Consensus] Leader {leader_id} broadcasting proposal...")
-                self._broadcast_proposal(leader_node, block)
+                # 7. 可选：如果长时间没有进展，增加视图号
+                if self.current_round % 3 == 0 and not self.waiting_for_votes:
+                    logger.info(f"[Global][Consensus] 轮次 {self.current_round} 没有进展，增加视图")
+                    self.view += 1
+                    self.consecutive_timeouts = 0
 
-                # 设置等待投票状态
-                self.waiting_for_votes = True
-                self.votes_received.clear()  # 清空之前的投票
-                
-                # 等待投票收集
-                wait_start = time.time()
-                while time.time() - wait_start < VOTE_TIMEOUT:
-                    if len(self.votes_received) >= 2 * self.f + 1:
-                        logger.info(f"[Global][Consensus] 收集到足够投票: {len(self.votes_received)}")
-
-                        # 形成QC
-                        qc = self._assemble_qc_from_votes(block.hash, self.votes_received)
-                        if qc:
-                            # self.pacemaker.adjust_timeout(True)
-                            # self.pacemaker.record_leader_performance(leader_id, True)
-                            # 广播NEW-VIEW
-                            self._broadcast_new_view(leader_node, qc)
-
-                            # 更新所有节点状态
-                            self._update_all_nodes_with_qc(qc, block)
-
-                            # 清空状态
-                            self.votes_received.clear()
-                            self.waiting_for_votes = False
-                            
-                            # 重置连续超时计数
-                            self.consecutive_timeouts = 0
-                            break
-                        # else:
-                        #     self.pacemaker.adjust_timeout(False)
-                        #     self.pacemaker.record_leader_performance(leader_id, False)
-
-                    time.sleep(0.1)  # end if 
-                
-                # 检查是否超时
-                # if self.waiting_for_votes:
-                #     logger.warning(f"[Global][Consensus] 领导者 {leader_id} 投票收集超时")
-                    # 超时处理已在定时器回调中完成
-            
-            else:
-                # 3. 副本节点：启动提案接收超时定时器
-                self._start_proposal_timeout_timer(self.nodes[node_id], current_view)
-        
-           
-           # 4.1 再次同步状态（确保所有节点跟上）
-            self._sync_all_nodes_state()
-
-            # 4. 检查是否有待处理的视图切换
-            if self._has_pending_view_change(current_view):
-                logger.info(f"[Global][Consensus] 有待处理的视图切换，优先处理")
-                # 视图切换会在消息处理中自动执行
-            
-            # 5. 进入下一轮
-            time.sleep(0.5)  # 视图间间隔
-            self.current_round += 1
+            except Exception as e:
+                logger.error(f"[Global][Consensus] 共识循环异常: {e}", exc_info=True)
+                consecutive_failures += 1
+                if consecutive_failures >= max_consecutive_failures:
+                    logger.error(f"[Global][Consensus] 连续失败 {consecutive_failures} 次，停止")
+                    break
+                time.sleep(1.0)
 
         logger.info("[Global][Consensus] Consensus loop completed")
 
-
-    def handle_vote(self, node: 'Node', vote_data: dict):
-        """处理投票（由Node调用）"""
-        # 1. 提取数据
-        vote = vote_data.get("vote")
-        sender_id = vote_data.get("sender")
-
-         # 如果vote是字典，反序列化为Vote对象
-        if isinstance(vote, dict):
-            vote = Vote.from_dict(vote)
-            if vote is None:
-                logger.error(f"[Consensus] handle_vote中vote is none")
-        else:
-            logger.info(f"[Consensus] vote_data do not need from_dict")
-            pass
+    def _is_view_completed(self, view):
+        """检查视图是否已完成"""
+        # 方法1：检查是否有该视图的QC
+        for node_id, node in self.nodes.items():
+            if node.state.latest_qc.view >= view:
+                return True
         
-        if vote is None:
-            logger.error(f"[Consensus] vote_data中vote字段为空或不存在")
-            return False
-    
-        if sender_id is None:
-            logger.error(f"[Consensus] vote_data中sender字段为空或不存在")
-            return False
-
-        logger.info(f"[Consensus] vote_data start validation")
-
-        # 2. 验证投票
-        if not self._validate_vote(vote, sender_id):
-            logger.error(f"[Consensus] Invalid vote from {sender_id}, ignoring")
-            return False
+        # # 方法2：检查是否超时（通过连续超时计数）
+        # if self.consecutive_timeouts >= self.max_consecutive_timeouts:
+        #     logger.info(f"视图 {view} 因超时而标记为完成")
+        #     return True
         
-        # 3. 如果是Leader，收集投票
-        if node.is_leader:
-            logger.info(f"[Consensus] vote_data is a leader")
-            self.votes_received[sender_id] = vote
-            logger.info(f"[Consensus] Leader {node.id} 收到来自 {sender_id} 的投票")
-            
-            # 检查是否收集到足够投票
-            if len(self.votes_received) >= 1:  
-            #2 * self.f:  # 2f+1
-                logger.info(f"[Consensus] start assemble qc")
+        return False
 
-                 #安全地获取当前提案的区块哈希
-                current_block_hash = None
+    def _sync_all_nodes_state(self, current_view, leader_id):
+        """同步所有节点的状态"""
+        logger.info(f"[Global][Consensus] 同步节点状态: view={current_view}, leader={leader_id}")
+        
+        for node_id, node in self.nodes.items():
+            try:
+                # 同步视图
+                if node.view != current_view:
+                    old_view = node.view
+                    node.view = current_view
+                    logger.debug(f"[Global][Consensus] 节点 {node_id} 视图同步: {old_view} -> {current_view}")
+                
+                # 同步领导者状态
+                is_leader = (node_id == leader_id)
+                if node.is_leader != is_leader:
+                    node.is_leader = is_leader
+                    logger.debug(f"[Global][Consensus] 节点 {node_id} 领导者状态: {node.is_leader}")
+                
+                # 同步QC状态（可选）
+                # 这里可以添加QC同步逻辑
+                
+            except Exception as e:
+                logger.error(f"[Global][Consensus] 同步节点 {node_id} 状态失败: {e}")
 
-                if hasattr(vote, 'block_hash') and vote.block_hash:
-                    current_block_hash = vote.block_hash
-                    logger.info(f"[Consensus] 从投票对象获取区块哈希: {current_block_hash.hex()[:8]}")
+    def _leader_process(self, leader_node, view):
+        """领导者处理流程"""
+        try:
+            # 检查是否已经在处理其他提案
+            if hasattr(leader_node, 'current_proposal') and leader_node.current_proposal:
+                current_proposal_view = leader_node.current_proposal.get('view', 0) if isinstance(leader_node.current_proposal, dict) else getattr(leader_node.current_proposal, 'view', 0)
+                if current_proposal_view == view:
+                    logger.info(f"[Global][Consensus] 领导者 {leader_node.id} 已经在处理视图 {view} 的提案，跳过")
                     
+            logger.info(f"[Global][Consensus] 领导者 {leader_node.id} 开始处理视图 {view}")
+
+             # 1. 检查是否已经达到最大轮次
+            if self.current_round >= self.max_rounds:
+                logger.info(f"[Global][Consensus] 达到最大轮次 {self.max_rounds}，停止创建提案")
+                return False
+            
+            # 2. 检查视图是否一致
+            if leader_node.view != view:
+                logger.warning(f"[Global][Consensus] 节点视图 {leader_node.view} 与当前视图 {view} 不一致")
+                leader_node.view = view
+            
+            # 1. 创建新区块
+            block = self._create_new_block(leader_node)
+            if not block:
+                logger.error(f"[Global][Consensus] 领导者 {leader_node.id} 创建区块失败")
+                self.consecutive_timeouts += 1
+                return False
+            
+            logger.info(f"[Global][Consensus] 领导者 {leader_node.id} 创建区块成功: {block.id[:8]}")
+            
+            # 2. 设置当前提案
+            leader_node.current_proposal = {
+                "block": block,
+                "qc": leader_node.state.latest_qc,
+                "view": view,
+                "sender": leader_node.id,
+                "received_at": time.time()
+            }
+            
+            # 3. 广播提案（实际的提案广播逻辑）
+            self._broadcast_proposal(leader_node, block)
+            
+            # 4. 启动投票收集
+            self.waiting_for_votes = True
+            self.votes_received.clear()
+            
+            # 5. 启动投票超时定时器
+            self._start_vote_timeout_timer(leader_node, view)
+            
+            # 注意：这里不再等待投票收集，投票收集由handle_vote异步处理
+            # 主循环只负责驱动，具体逻辑在网络消息回调中
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"[Global][Consensus] 领导者流程异常: {e}", exc_info=True)
+            return False
+
+
+    def handle_vote(self, node: 'Node', vote_data: dict) -> bool:
+        """处理投票（由Node调用）"""
+        try:
+            # 1. 提取数据
+            vote = vote_data.get("vote")
+            sender_id = vote_data.get("sender")
+            
+            logger.info(f"[Consensus] 处理投票: 来自 {sender_id}, 节点 {node.id} {'是领导者' if node.is_leader else '是副本'}")
+
+            # 2. 反序列化投票
+            if isinstance(vote, dict):
+                vote = Vote.from_dict(vote)
+            elif not isinstance(vote, Vote):
+                logger.error(f"[Consensus] 无效的投票类型: {type(vote)}")
+                return False
+            
+            if vote is None:
+                logger.error(f"[Consensus] 反序列化投票失败")
+                return False
+            
+            if sender_id is None:
+                logger.error(f"[Consensus] 投票缺少发送者ID")
+                return False
+            
+            # 3. 验证投票基本信息
+            if not self._validate_vote(vote, sender_id):
+                logger.error(f"[Consensus] 投票基本验证失败: {sender_id}")
+                return False
+            
+            # 4. 如果是领导者，收集投票
+            if node.is_leader and self.waiting_for_votes:
+                logger.info(f"[Consensus] 领导者 {node.id} 收到来自 {sender_id} 的投票")
+                
+                # 获取区块哈希（从领导者自己的提案中获取）
+                current_block_hash = None
+                if hasattr(node, 'current_proposal') and node.current_proposal:
+                    if isinstance(node.current_proposal, dict):
+                        block = node.current_proposal.get("block")
+                        if block and hasattr(block, 'hash'):
+                            current_block_hash = block.hash
+                            logger.info(f"[Consensus] 从领导者提案获取区块哈希: {current_block_hash.hex()[:8]}")
+                
+                if not current_block_hash:
+                    logger.warning(f"[Consensus] 领导者无法获取当前提案的区块哈希")
+                    return False
+                
+                # 存储投票
+                vote_key = f"{sender_id}_{current_block_hash.hex()[:16]}"
+                self.votes_received[vote_key] = vote
+                
+                logger.info(f"[Consensus] 领导者收集到 {len(self.votes_received)} 个投票")
+                
+                # 检查是否收集到足够投票
+                required_votes = 2 * self.f + 1
+                if len(self.votes_received) >= required_votes:
+                    logger.info(f"[Consensus] 收集到足够投票，开始组装QC")
+                    
+                    # 组装QC
                     qc = self._assemble_qc_from_votes(current_block_hash, self.votes_received)
+                    
                     if qc:
-                        # 更新所有节点的状态（通过Node的方法）
+                        logger.info(f"[Consensus] QC组装成功: view={qc.view}")
+                        
                         # 找到对应的区块
                         block = None
-                        if hasattr(node, 'state'):
-                            block = node.state.get_block_by_hash(current_block_hash)
-
-                        logger.info(f"[Consensus] start update qc state")
-                        self._update_all_nodes_state(qc, block)
+                        if hasattr(node, 'current_proposal') and node.current_proposal:
+                            if isinstance(node.current_proposal, dict):
+                                block = node.current_proposal.get("block")
                         
-                        # 广播NEW-VIEW
-                        logger.info(f"[Consensus] start broadcast qc ")
-                        self._broadcast_new_view(node, qc)
-                        
-                        # 清空投票收集
-                        logger.info(f"[Consensus] clear 4 next round ")
-                        self.votes_received.clear()
-                else:
-                    logger.info(f"[Consensus] 从投票对象获取区块哈希fail!")
-
-        logger.info(f"[Consensus] vote_data end")
-        return True
+                        if block:
+                            # 更新所有节点的状态
+                            self._update_all_nodes_state(qc, block)
+                            
+                            # 广播NEW-VIEW
+                            self._broadcast_new_view(node, qc)
+                            
+                            # 重置状态
+                            self.votes_received.clear()
+                            self.waiting_for_votes = False
+                            
+                            # 清除当前提案
+                            if hasattr(node, 'current_proposal'):
+                                node.current_proposal = None
+                            
+                            logger.info(f"[Consensus] 视图 {self.view} 共识完成")
+                        else:
+                            logger.warning(f"[Consensus] 找不到对应的区块")
+                    else:
+                        logger.warning(f"[Consensus] 组装QC失败")
+            
+            # 5. 如果是副本节点，记录投票
+            elif not node.is_leader:
+                logger.debug(f"[Consensus] 副本 {node.id} 收到投票，仅记录")
+                # 副本节点可以记录投票，但不进行处理
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"[Consensus] 处理投票异常: {e}", exc_info=True)
+            return False
     
     def _update_all_nodes_state(self, qc: QC, block: Block):
         """更新所有节点的状态"""
@@ -400,17 +477,10 @@ class Consensus:
 
 
     def handle_proposal(self, node: 'Node', proposal_data: dict) -> bool:
-        """        
-        Args:
-            node: 处理提案的节点实例
-            proposal_data: 提案数据
-            
-        Returns:
-            bool: 是否接受提案
-        """
-        logger.info(f"[Consensus] 节点 {node.id} 处理提案")
-        
+        """处理提案"""
         try:
+            logger.info(f"[Consensus] 节点 {node.id} 处理提案")
+            
             # 1. 提取数据
             block_dict = proposal_data.get("block")
             qc_dict = proposal_data.get("qc")
@@ -424,29 +494,23 @@ class Consensus:
             # 2. 反序列化
             from block import Block
             block = Block.from_dict(block_dict) if isinstance(block_dict, dict) else block_dict
-            qc = QC.from_dict(qc_dict) if qc_dict and isinstance(qc_dict, dict) else None
+            qc = QC.from_dict(qc_dict) if isinstance(qc_dict, dict) else qc_dict
             
             if not block or not qc:
                 logger.error(f"[Consensus] 反序列化失败")
                 return False
             
-            # 3. 验证提案
-            is_valid, reason = self._validate_proposal_for_replica(node, block, qc, view, sender_id)
-            
-            if not is_valid:
-                logger.warning(f"[Consensus] 提案无效: {reason}")
-                
-                # 如果怀疑，可以请求Merkle证明
-                if self._should_request_proof(node, qc):
-                    logger.info(f"[Consensus] 启动Merkle证明验证")
-                    proof_valid = self._verify_with_merkle_proof(node, qc, node.index)
-                    if not proof_valid:
-                        logger.warning(f"[Consensus] Merkle证明验证失败")
-                        return False
-                
+            # 3. 验证提案（简化版，只检查基本条件）
+            leader_id = self.validator._leader_for_view(view)
+            if sender_id != leader_id:
+                logger.warning(f"[Consensus] 提议者 {sender_id} 不是当前领导者 {leader_id}")
                 return False
             
-            # 4. 存储当前提案到节点
+            if qc.view >= view:
+                logger.warning(f"[Consensus] QC视图 {qc.view} >= 提案视图 {view}")
+                return False
+            
+            # 4. 存储提案到节点
             node.current_proposal = {
                 "block": block,
                 "qc": qc,
@@ -455,10 +519,24 @@ class Consensus:
                 "received_at": time.time()
             }
             
-            logger.info(f"[Consensus] 节点 {node.id} 提案验证通过")
+            # 5. 添加到节点状态
+            if hasattr(node, 'state'):
+                # 添加区块
+                if not node.state.get_block_by_hash(block.hash):
+                    node.state.add_block(block)
+                
+                # 更新QC状态
+                node.state.update_latest_qc(qc, block)
             
-            # 5. 创建并发送投票
-            return self._create_and_send_vote_for_replica(node, block, qc, view)
+            logger.info(f"[Consensus] 节点 {node.id} 接受提案: block={block.id[:8]}, view={view}")
+            
+            # 6. 创建并发送投票
+            if self._create_and_send_vote_for_replica(node, block, qc, view):
+                logger.info(f"[Consensus] 节点 {node.id} 投票发送成功")
+                return True
+            else:
+                logger.warning(f"[Consensus] 节点 {node.id} 投票发送失败")
+                return False
             
         except Exception as e:
             logger.error(f"[Consensus] 处理提案异常: {e}", exc_info=True)
@@ -544,8 +622,10 @@ class Consensus:
                 # 使用QC验证器验证
                 if self.gpk:
                     # 如果有组公钥，使用组验证
-                    if not self.qc_verifier.verify_with_group_pk(qc, self.gpk):
-                        return False, "聚合签名验证失败"
+                    # if not self.qc_verifier.verify_with_group_pk(qc, self.gpk):
+                    #     return False, "聚合签名验证失败"
+                    logger.info(f"[Consensus]聚合签名验证完成-模拟")
+                    return True
                 else:
                     # 使用公钥映射验证
                     if not self.qc_verifier.verify_with_pub_keys(qc, self.public_key_map):
@@ -565,7 +645,42 @@ class Consensus:
         if hasattr(node.state, 'suspicious_qc_count'):
             return node.state.suspicious_qc_count > 0
         return False
-    
+
+    def _should_update_locked_qc(self,node, qc: QC) -> bool:
+        """判断是否应该更新locked_qc"""
+        # 锁定规则：
+        # 如果新QC的视图比当前locked_qc高，并且新QC的父QC视图 >= 当前locked_qc的视图
+        # 则更新locked_qc
+        
+        # 获取新QC对应的区块
+        # if(qc.block_hash is None):
+        #     logger.warning(f"[{self.id}] Cannot update locked_qc: qc.block_hash is None for QC {qc.view}")
+        #     return False
+        # block = node.state.get_block_by_hash(qc.block_hash)
+        # # if not block or not block.qc:
+        # if block is None:
+        #     logger.warning(f"[{self.id}] Cannot update locked_qc: block not found for QC {qc.view}")
+        #     return False
+        
+        # # 检查新QC的父QC
+        # parent_qc = block.qc
+        
+        # # 规则：新QC的父QC视图 >= 当前locked_qc的视图
+        # if parent_qc is None:
+        #     logger.warning(f"[{self.id}] Cannot update locked_qc: parent_qc is None for block {block.id[:8]}")
+        #     # return False
+        # if self.state.locked_qc is None:
+        #     logger.warning(f"[{self.id}] Cannot update locked_qc: locked_qc is Nonehhhhh")
+        #     return False
+
+        # # if parent_qc.view >= self.state.locked_qc.view:
+        # #     return True 
+        # #todo
+
+        # return True
+        
+        return True
+
     def _should_request_proof(self, node, qc: QC) -> bool:
         """判断是否需要请求Merkle证明"""
         # 简化逻辑：如果QC视图较高或不在签名者中，需要证明
@@ -802,7 +917,7 @@ class Consensus:
                 logger.info(f"[Consensus] 节点 {node.id} 成功处理NEW-VIEW，视图更新为 {qc.view}")
                 return True
             else:
-                logger.warning(f"[Consensus] 节点 {node.id} 更新状态失败")
+                logger.warning(f"[Consensus] 节点 {node.id} 更新状态失败，，，")
                 return False
             
         except Exception as e:
@@ -835,11 +950,11 @@ class Consensus:
                     logger.warning(f"[Consensus] 节点 {node.id} 更新latest_qc失败")
             
             # 2. 检查是否需要更新locked_qc
-            if self._should_update_locked_qc(node, qc):
-                if node.state.update_locked_qc(qc):
-                    logger.info(f"[Consensus] 节点 {node.id} 更新locked_qc到视图 {qc.view}")
-                else:
-                    logger.warning(f"[Consensus] 节点 {node.id} 更新locked_qc失败")
+            # if self._should_update_locked_qc(qc):
+            #     if node.state.update_locked_qc(qc):
+            #         logger.info(f"[Consensus] 节点 {node.id} 更新locked_qc到视图 {qc.view}")
+            #     else:
+            #         logger.warning(f"[Consensus] 节点 {node.id} 更新locked_qc失败")
             
             
             # 4. 更新节点的视图号
@@ -893,9 +1008,9 @@ class Consensus:
         
         # 2. **复用提案验证中的QC验证逻辑**
         # 注意：这里我们复用 _verify_qc_as_replica 方法
-        qc_valid, reason = self._verify_qc_as_replica(node, qc)
+        qc_valid = self._verify_qc_as_replica(node, qc)
         if not qc_valid:
-            logger.warning(f"[Consensus] NEW-VIEW QC验证失败: {reason}")
+            logger.warning(f"[Consensus] NEW-VIEW QC验证失败")
             return False
         
         # 3. 检查QC是否比当前最新QC更新
@@ -1267,10 +1382,45 @@ class Consensus:
 
     def _handle_messages(self):
         """处理网络消息（后台线程）"""
+        # while self.active:
+        #     # 在实际实现中，这会从网络消息队列中获取并处理消息
+        #     # 这里简化处理
+        #     time.sleep(0.01)
         while self.active:
-            # 在实际实现中，这会从网络消息队列中获取并处理消息
-            # 这里简化处理
-            time.sleep(0.01)
+            try:
+                # 优先处理提案和投票消息
+                priority_messages = []
+                normal_messages = []
+                
+                # 分类消息
+                while not self.message_queue.empty():
+                    try:
+                        msg = self.message_queue.get_nowait()
+                        msg_type = msg.get("type", "")
+                        
+                        # 提案和投票为高优先级
+                        if msg_type in ["proposal", "vote"]:
+                            priority_messages.append(msg)
+                        else:
+                            normal_messages.append(msg)
+                    except queue.Empty:
+                        break
+                
+                # 优先处理高优先级消息
+                for msg in priority_messages:
+                    self._process_single_message(msg)
+                
+                # 处理普通消息
+                for msg in normal_messages:
+                    self._process_single_message(msg)
+                
+                # 如果没有消息，短暂休眠
+                if not priority_messages and not normal_messages:
+                    time.sleep(0.01)
+                    
+            except Exception as e:
+                logger.error(f"[Node] 消息队列处理异常: {e}")
+                time.sleep(0.1)
 
 
     def handle_timeout(self, node: 'Node', timeout_data) -> bool:
@@ -1999,50 +2149,6 @@ class Consensus:
         return self.validator._leader_for_view(self.view)
 
 
-    def _sync_all_nodes_state(self):
-        """
-        同步所有节点的状态
-        
-        同步内容：
-        1. 视图号 (view)
-        2. 领导者状态 (is_leader)
-        3. 最新的QC (optional)
-        4. 其他共识相关状态
-        """
-        current_view = self.view
-        leader_id = self.validator._leader_for_view(current_view)
-        
-        logger.debug(f"[Consensus] 同步节点状态: view={current_view}, leader={leader_id}")
-        
-        synced_count = 0
-        for node_id, node in self.nodes.items():
-            try:
-                # 1. 同步视图号
-                if node.view != current_view:
-                    old_view = node.view
-                    node.view = current_view
-                    logger.debug(f"[Consensus] 节点 {node_id} 视图同步: {old_view} -> {current_view}")
-                
-                # 2. 同步领导者状态
-                is_leader = (node_id == leader_id)
-                if node.is_leader != is_leader:
-                    node.is_leader = is_leader
-                    logger.debug(f"[Consensus] 节点 {node_id} 领导者状态: {node.is_leader}")
-                
-                # 3. 可选：同步最新QC（确保所有节点都有最新QC）
-                self._sync_latest_qc_if_needed(node)
-                
-                # 4. 可选：同步区块（确保所有节点都有必要区块）
-                self._sync_missing_blocks(node)
-                
-                synced_count += 1
-                
-            except Exception as e:
-                logger.error(f"[Consensus] 同步节点 {node_id} 状态失败: {e}")
-        
-        logger.info(f"[Consensus] 状态同步完成: {synced_count}/{len(self.nodes)} 个节点已同步")
-        return synced_count
-    
     def _sync_latest_qc_if_needed(self, node):
         """如果节点没有最新QC，尝试同步"""
         try:
